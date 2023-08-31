@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  resources :aircraft_users
   resources :users
-  resources :reservations
+  resources :reservations do
+    resources :flights, controller: 'flights'
+  end
   resources :flights
   resources :aircrafts
   get "home/index"  
