@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :membership_users
+  resources :memberships
+  resources :permissions
   resources :aircraft_users
   resources :users
   resources :reservations do
