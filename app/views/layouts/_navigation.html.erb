@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+  <div class="container-fluid">
+  <%= link_to "SOAR BASE", root_path, class: "navbar-brand", id: "logo" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">My Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Upcoming Flights</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Manage Reservations
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">View Upcoming Reservations</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Add a Reservation</a></li>
+
+          </ul>
+        </li>
+        <li class="nav-item">
+          <% if logged_in? && current_user.permission.user_admin? %>
+            <%= link_to 'Manage Users', users_path, class: "nav-link" %>
+          <% else %>
+            <a class="nav-link disabled" aria-disabled="true">Manage Users</a>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <% if logged_in? && current_user.permission.club_admin? %>
+          <%= link_to 'Manage Aircraft', aircrafts_path, class: "nav-link" %>
+          <% else %>
+            <a class="nav-link disabled" aria-disabled="true">Manage Aircraft</a>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <% if logged_in? && current_user.permission.site_admin? %>
+            <a class="nav-link" aria-disabled="true">Manage Site Info</a>
+          <% else %>
+            <a class="nav-link disabled" aria-disabled="true">Manage Site Info</a>
+          <% end %>
+        </li>
+        <% if logged_in? %>
+        <li class="nav-item">
+          <%= button_to 'Logout', logout_path, class: "nav-link", method: :delete %>
+        </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Log In', login_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+      <!-- <form class="d-flex" role="search"> 
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> -->
+    </div>
+  </div>
+</nav>
