@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   before_save { self.email = email.downcase }
+  has_one :permission
   has_many :membership_users
   has_many :flights
   has_many :reservations

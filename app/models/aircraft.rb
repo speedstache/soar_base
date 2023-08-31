@@ -7,4 +7,5 @@ class Aircraft < ApplicationRecord
   has_many :users, through: :aircraft_users
   has_many :reservations
   has_many :flights
+  belongs_to :aircraft_group
 end

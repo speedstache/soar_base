@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[ show edit update destroy ]
+  
 
   # GET /reservations or /reservations.json
   def index
@@ -67,4 +68,5 @@ class ReservationsController < ApplicationController
     def reservation_params
       params.fetch(:reservation, {})
     end
+
 end

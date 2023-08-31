@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_31_142208) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_31_172753) do
+  create_table "aircraft_groups", force: :cascade do |t|
+    t.string "group"
+  end
+
   create_table "aircraft_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "aircraft_id"
@@ -81,7 +85,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_142208) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
-    t.boolean "admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
