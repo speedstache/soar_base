@@ -1,2 +1,36 @@
-<div id="<%= dom_id reservation %>">
-</div>
+<h1>Show reservation details for user: <%= current_user.username %></h1>
+
+<p><strong>Reservation date: </strong><%= @reservation.reservation_date.strftime("%m/%d/%y") %></p>
+<p><strong>Reservation start time: </strong><%= @reservation.reservation_time_start.strftime("%I:%M%p") %></p>
+
+
+<p>User has added <%= @reservation.flights.count %> flights to this reservation</p>
+<table>
+	<thead>
+		<tr>
+			<th>Flight aircraft  </th>
+      <th>Tow Height</th>
+      <th>Flight Time</th>
+      <th>Has Rope Break?</th>
+      <th>delete flight</th>
+		</tr>
+	</thead>
+		<tbody>
+			<% @reservation.flights.each do |flight| %>
+				<tr>
+        <td><%= flight.aircraft.competition_id %></td>
+          <td><%= flight.tow_height %>  </td>
+          <td><%= flight.flight_time %>  </td>
+          <td><%= flight.rope_break %>  </td>
+          <td><%= link_to 'delete flight', [@reservation, flight], data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+				</tr>
+			<% end %>
+
+		</tbody>
+</table>
+
+
+  <p><%= link_to 'Add a flight to this reservation', new_reservation_flight_path(@reservation) %></p>
+  <p><%= link_to 'Go back to reservations page', reservations_path %></p>
+
+

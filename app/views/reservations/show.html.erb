@@ -1,10 +1,25 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @reservation %>
-
-<div>
-  <%= link_to "Edit this reservation", edit_reservation_path(@reservation) %> |
-  <%= link_to "Back to reservations", reservations_path %>
-
-  <%= button_to "Destroy this reservation", @reservation, method: :delete %>
-</div>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th >Username  </th>
+			<th>Date  </th>
+			<th>Start Time  </th>
+      <th>Aircraft requested  </th>
+      <th>Instructor needed  </th>
+      <th>Edit reservation  </th>
+      <th>Delete reservation  </th>
+		</tr>
+	</thead>
+		<tbody>
+				<tr>
+					<td><%= @reservation.user.username %></td>
+					<td><%= @reservation.reservation_date.strftime("%m/%d/%y") %>  </td>
+          <td><%= @reservation.reservation_time_start.strftime("%I:%M%p") %></td>
+          <td><%= @reservation.aircraft.name %>, <%= @reservation.aircraft.short_name %>  </td>
+          <td><%= @reservation.instructor_flag %>  </td>
+          <td></td>
+          <td><%= link_to "Delete reservation", reservation_path(@reservation), data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+				</tr>
+		</tbody>
+</table>
+<%= link_to 'Go back to reservations', reservations_path, :class => "btn btn-primary" %>

@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[ show edit update destroy ]
-  
+  helper_method :current_user, :logged_in?
 
   # GET /reservations or /reservations.json
   def index
@@ -9,6 +9,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/1 or /reservations/1.json
   def show
+    @reservation = Reservation.find(params[:id])
   end
 
   # GET /reservations/new
@@ -24,14 +25,11 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
 
-    respond_to do |format|
-      if @reservation.save
-        format.html { redirect_to reservation_url(@reservation), notice: "Reservation was successfully created." }
-        format.json { render :show, status: :created, location: @reservation }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @reservation.errors, status: :unprocessable_entity }
-      end
+    if @reservation.save
+      flash[:notice] = "Reservation was successfully created."
+      redirect_to reservations_path
+    else
+      render :new, status: :unprocessable_entity 
     end
   end
 
@@ -66,7 +64,7 @@ class ReservationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reservation_params
-      params.fetch(:reservation, {})
+      params.require(:reservation).permit(:user_id, :reservation_date, :reservation_time_start, :reservation_duration, :aircraft_id, :instructor_flag)
     end
 
 end
