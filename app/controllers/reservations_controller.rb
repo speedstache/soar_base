@@ -14,6 +14,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
+    @avail_hours = Hour.where(active_flag: 1)
     @reservation = Reservation.new
   end
 
@@ -23,13 +24,14 @@ class ReservationsController < ApplicationController
 
   # POST /reservations or /reservations.json
   def create
+    @avail_hours = Hour.where(active_flag: 1)
     @reservation = Reservation.new(reservation_params)
 
     if @reservation.save
       flash[:notice] = "Reservation was successfully created."
       redirect_to reservations_path
     else
-      render :new, status: :unprocessable_entity 
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -64,7 +66,7 @@ class ReservationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reservation_params
-      params.require(:reservation).permit(:user_id, :reservation_date, :reservation_time_start, :reservation_duration, :aircraft_id, :instructor_flag)
+      params.require(:reservation).permit(:user_id, :reservation_date, :reservation_time, :reservation_duration, :aircraft_id, :instructor_flag)
     end
 
 end
