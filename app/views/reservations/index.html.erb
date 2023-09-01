@@ -34,7 +34,6 @@
 	<thead>
 		<tr>
 			<th >Aircraft  </th>
-			<th>8:00 AM  </th>
 			<th>9:00 AM  </th>
       <th>10:00 AM  </th>
       <th>11:00 AM  </th>
@@ -47,4 +46,50 @@
       <th>6:00 PM  </th>
 		</tr>
 	</thead>
+	<tbody>
+		<tr>
+			<td>21A</td>
+			<td><%= Reservation.where(reservation_time: "9am", aircraft_id: 1).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "10am", aircraft_id: 1).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "11am", aircraft_id: 1).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "12pm", aircraft_id: 1).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "1pm", aircraft_id: 1).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "2pm", aircraft_id: 1).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "3pm", aircraft_id: 1).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "4pm", aircraft_id: 1).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "5pm", aircraft_id: 1).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "6pm", aircraft_id: 1).pluck(:user_id) %>  </td>
+		</tr>
+		<tr>
+			<td>21A</td>
+			<td><%= Reservation.where(reservation_time: "9am", aircraft_id: 2).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "10am", aircraft_id: 2).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "11am", aircraft_id: 2).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "12pm", aircraft_id: 2).pluck(:user_id) %> </td>
+			<td><%= Reservation.where(reservation_time: "1pm", aircraft_id: 2).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "2pm", aircraft_id: 2).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "3pm", aircraft_id: 2).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "4pm", aircraft_id: 2).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "5pm", aircraft_id: 2).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "6pm", aircraft_id: 2).pluck(:user_id) %>  </td>
+		</tr>
+		<tr>
+			<td>21A</td>
+			<td><%= Reservation.where(reservation_time: "9am", aircraft_id: 3).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "10am", aircraft_id: 3).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "11am", aircraft_id: 3).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "12pm", aircraft_id: 3).pluck(:user_id) %> </td>
+			<td><%= Reservation.where(reservation_time: "1pm", aircraft_id: 3).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "2pm", aircraft_id: 3).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "3pm", aircraft_id: 3).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "4pm", aircraft_id: 3).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "5pm", aircraft_id: 3).pluck(:user_id) %>  </td>
+			<td><%= Reservation.where(reservation_time: "6pm", aircraft_id: 3).pluck(:user_id) %>  </td>
+		</tr>
+
+
+
+</tbody>
+</table>
+
 		
