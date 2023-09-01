@@ -1,0 +1,3 @@
+class Hour < ApplicationRecord
+
+end

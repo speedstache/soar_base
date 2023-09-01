@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :permissions
   resources :aircraft_users
   resources :users
+  resources :hours
   resources :reservations do
     resources :flights, controller: 'flights'
   end

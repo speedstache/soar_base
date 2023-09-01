@@ -1,0 +1,23 @@
+<div class="mt-4 mx-5">
+<h2>Hours available for scheduling</h2>
+<div class="col-6">
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Hour</th>
+			<th>Active</th>
+			<th>Edit</th>
+		</tr>
+	</thead>
+		<tbody>
+			<% @hours.each do |hour| %>
+				<tr>
+					<td><%= hour.hour %></td>
+					<td><%=  hour.active_flag.humanize %></td>
+          <td><%= link_to 'Edit', edit_hour_path(hour), class: "btn btn-primary"%></td>
+				</tr>
+			<% end %>
+		</tbody>
+</table>
+</div>
+</div>

@@ -1,0 +1,17 @@
+<%= form_with(model: hour) do |form| %>
+  <% if hour.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(hour.errors.count, "error") %> prohibited this membership from being saved:</h2>
+
+      <ul>
+        <% memberhourship.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
