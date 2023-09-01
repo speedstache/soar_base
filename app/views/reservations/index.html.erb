@@ -1,4 +1,4 @@
-<h2>Current Reservations</h1>
+<h2>My Current Reservations</h2>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -13,7 +13,7 @@
 		</tr>
 	</thead>
 		<tbody>
-			<% @reservations.each do |reservation| %>
+			<% current_user.reservations.each do |reservation| %>
 				<tr>
 					<td><%= reservation.user.username %></td>
 					<td><%= reservation.reservation_date.strftime("%m/%d/%y") %>  </td>
