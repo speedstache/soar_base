@@ -1,9 +1,12 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: %i[ show edit update destroy ]
   helper_method :current_user, :logged_in?
+  before_action :set_reservation, only: %i[ show edit update destroy ]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+ 
 
   # GET /reservations or /reservations.json
   def index
+
     @reservations = Reservation.all
   end
 
@@ -14,6 +17,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
+    @avail_days = Day.where(day: Date.today .. 60.days.from_now)
     @avail_hours = Hour.where(active_flag: 1)
     @reservation = Reservation.new
   end
@@ -24,6 +28,7 @@ class ReservationsController < ApplicationController
 
   # POST /reservations or /reservations.json
   def create
+    @avail_days = Day.where(day: Date.today .. 60.days.from_now)
     @avail_hours = Hour.where(active_flag: 1)
     @reservation = Reservation.new(reservation_params)
 
@@ -68,5 +73,12 @@ class ReservationsController < ApplicationController
     def reservation_params
       params.require(:reservation).permit(:user_id, :reservation_date, :reservation_time, :reservation_duration, :aircraft_id, :instructor_flag)
     end
+
+    def require_same_user
+      if current_user != @reservation.user_id && !current_user.permission.club_admin?
+      flash[:alert] = "You can only edit or delete your own article"
+      redirect_to @reservation
+      end
+    end	
 
 end

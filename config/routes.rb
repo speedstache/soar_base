@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :aircraft_users
   resources :users
   resources :hours
+  resources :days
   resources :reservations do
     resources :flights, controller: 'flights'
   end

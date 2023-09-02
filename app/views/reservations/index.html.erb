@@ -30,7 +30,8 @@
 </table>
 <%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-primary" %>
 
-<h2 class="mt-4">Reservations and Open Slots</h2>
+<h2 class="mt-4">Reservations and Open Slots </h2>
+<h5 class="mt-2">Need to figure out how to move this forward and backward in time </h5>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -49,7 +50,7 @@
 	<tbody>
 		<tr>
 			<td>ASK-21A</td>
-			<td><% if Reservation.where(reservation_time: "10am", aircraft_id: 1).exists? %>
+			<td ><% if Reservation.where(reservation_time: "10am", aircraft_id: 1).exists? %>
 					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "10am", aircraft_id: 1).pluck(:id)) %><% else %>
 					<%= link_to 'open', new_reservation_path %><% end %></td>
 					<td><% if Reservation.where(reservation_time: "11am", aircraft_id: 1).exists? %>
@@ -108,7 +109,7 @@
 					<%= link_to 'open', new_reservation_path %><% end %></td>
 		</tr>
 		<tr>
-		<td>ASK-21B</td>
+		<td>ASK-23</td>
 			<td><% if Reservation.where(reservation_time: "10am", aircraft_id: 3).exists? %>
 					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "10am", aircraft_id: 3).pluck(:id)) %><% else %>
 					<%= link_to 'open', new_reservation_path %><% end %></td>

@@ -1,0 +1,25 @@
+<div class="mt-4 mx-5 mb-5">
+<h2>Days available for scheduling</h2>
+<div class="col-6">
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Day</th>
+			<th>Active</th>
+			<th>Edit</th>
+		</tr>
+	</thead>
+		<tbody>
+			<% @days.each do |day| %>
+				<tr>
+					<td><%= day.day %></td>
+					<td><%=  day.active_flag.humanize %></td>
+          <td><%= link_to 'Edit', edit_day_path(day), class: "btn btn-primary"%></td>
+				</tr>
+			<% end %>
+		</tbody>
+</table>
+<%= link_to 'Add another day', new_day_path, :class => "btn btn-primary mb-5" %>
+
+</div>
+</div>
