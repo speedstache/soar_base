@@ -1,3 +1,4 @@
+<div class="mx-5">
 <h2 class="mt-4">My Current Reservations</h2>
 <table class="table table-striped">
 	<thead>
@@ -29,12 +30,11 @@
 </table>
 <%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-primary" %>
 
-<h2 class="mt-4">All Reservations and availability</h2>
+<h2 class="mt-4">Reservations and Open Slots</h2>
 <table class="table table-striped">
 	<thead>
 		<tr>
 			<th >Aircraft  </th>
-			<th>9:00 AM  </th>
       <th>10:00 AM  </th>
       <th>11:00 AM  </th>
       <th>12:00 PM </th>
@@ -48,48 +48,100 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>21A</td>
-			<td><%= Reservation.where(reservation_time: "9am", aircraft_id: 1).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "10am", aircraft_id: 1).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "11am", aircraft_id: 1).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "12pm", aircraft_id: 1).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "1pm", aircraft_id: 1).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "2pm", aircraft_id: 1).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "3pm", aircraft_id: 1).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "4pm", aircraft_id: 1).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "5pm", aircraft_id: 1).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "6pm", aircraft_id: 1).pluck(:user_id) %>  </td>
+			<td>ASK-21A</td>
+			<td><% if Reservation.where(reservation_time: "10am", aircraft_id: 1).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "10am", aircraft_id: 1).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "11am", aircraft_id: 1).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "11am", aircraft_id: 1).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "12pm", aircraft_id: 1).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "12pm", aircraft_id: 1).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "1pm", aircraft_id: 1).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "1pm", aircraft_id: 1).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "2pm", aircraft_id: 1).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "2pm", aircraft_id: 1).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "3pm", aircraft_id: 1).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "3pm", aircraft_id: 1).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "4pm", aircraft_id: 1).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "4pm", aircraft_id: 1).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "5pm", aircraft_id: 1).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "5pm", aircraft_id: 1).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "6pm", aircraft_id: 1).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "6pm", aircraft_id: 1).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
 		</tr>
 		<tr>
-			<td>21A</td>
-			<td><%= Reservation.where(reservation_time: "9am", aircraft_id: 2).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "10am", aircraft_id: 2).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "11am", aircraft_id: 2).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "12pm", aircraft_id: 2).pluck(:user_id) %> </td>
-			<td><%= Reservation.where(reservation_time: "1pm", aircraft_id: 2).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "2pm", aircraft_id: 2).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "3pm", aircraft_id: 2).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "4pm", aircraft_id: 2).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "5pm", aircraft_id: 2).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "6pm", aircraft_id: 2).pluck(:user_id) %>  </td>
+		<td>ASK-21B</td>
+			<td><% if Reservation.where(reservation_time: "10am", aircraft_id: 2).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "10am", aircraft_id: 2).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "11am", aircraft_id: 2).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "11am", aircraft_id: 2).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "12pm", aircraft_id: 2).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "12pm", aircraft_id: 2).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "1pm", aircraft_id: 2).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "1pm", aircraft_id: 2).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "2pm", aircraft_id: 2).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "2pm", aircraft_id: 2).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "3pm", aircraft_id: 2).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "3pm", aircraft_id: 2).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "4pm", aircraft_id: 2).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "4pm", aircraft_id: 2).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "5pm", aircraft_id: 2).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "5pm", aircraft_id: 2).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "6pm", aircraft_id: 2).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "6pm", aircraft_id: 2).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
 		</tr>
 		<tr>
-			<td>21A</td>
-			<td><%= Reservation.where(reservation_time: "9am", aircraft_id: 3).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "10am", aircraft_id: 3).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "11am", aircraft_id: 3).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "12pm", aircraft_id: 3).pluck(:user_id) %> </td>
-			<td><%= Reservation.where(reservation_time: "1pm", aircraft_id: 3).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "2pm", aircraft_id: 3).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "3pm", aircraft_id: 3).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "4pm", aircraft_id: 3).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "5pm", aircraft_id: 3).pluck(:user_id) %>  </td>
-			<td><%= Reservation.where(reservation_time: "6pm", aircraft_id: 3).pluck(:user_id) %>  </td>
+		<td>ASK-21B</td>
+			<td><% if Reservation.where(reservation_time: "10am", aircraft_id: 3).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "10am", aircraft_id: 3).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "11am", aircraft_id: 3).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "11am", aircraft_id: 3).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "12pm", aircraft_id: 3).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "12pm", aircraft_id: 3).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "1pm", aircraft_id: 3).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "1pm", aircraft_id: 3).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "2pm", aircraft_id: 3).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "2pm", aircraft_id: 3).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "3pm", aircraft_id: 3).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "3pm", aircraft_id: 3).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "4pm", aircraft_id: 3).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "4pm", aircraft_id: 3).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "5pm", aircraft_id: 3).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "5pm", aircraft_id: 3).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
+					<td><% if Reservation.where(reservation_time: "6pm", aircraft_id: 3).exists? %>
+					<%= link_to 'booked', reservation_path(Reservation.where(reservation_time: "6pm", aircraft_id: 3).pluck(:id)) %><% else %>
+					<%= link_to 'open', new_reservation_path %><% end %></td>
 		</tr>
 
 
 
 </tbody>
 </table>
+</div>
 
 		

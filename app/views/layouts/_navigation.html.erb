@@ -9,9 +9,6 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Profile</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Upcoming Flights</a>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Manage Reservations
@@ -19,8 +16,6 @@
           <ul class="dropdown-menu">
             <li><%= link_to 'View upcoming reservations', reservations_path, class: "dropdown-item" %></li>
             <li><hr class="dropdown-divider"></li>
-            <li><%= link_to 'Add a Reservation', new_reservation_path, class: "dropdown-item" %></li>
-
           </ul>
         </li>
         <li class="nav-item">

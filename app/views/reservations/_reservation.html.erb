@@ -1,7 +1,7 @@
 <h1>Show reservation details for user: <%= current_user.username %></h1>
 
 <p><strong>Reservation date: </strong><%= @reservation.reservation_date.strftime("%m/%d/%y") %></p>
-<p><strong>Reservation start time: </strong><%= @reservation.reservation_time_start.strftime("%I:%M%p") %></p>
+<p><strong>Reservation start time: </strong><%= @reservation.reservation_time %></p>
 
 
 <p>User has added <%= @reservation.flights.count %> flights to this reservation</p>
