@@ -28,7 +28,7 @@ class DaysController < ApplicationController
   end
 
   def create
-    @day = Day.new
+    @day = Day.new(day_params)
     if @day.save
       flash[:notice] = "day was successfully created."
       redirect_to days_path
@@ -39,7 +39,7 @@ class DaysController < ApplicationController
 
 private
 
-  def day
+  def day_params
     params.require(:day).permit(:day, :active_flag)
   end
 

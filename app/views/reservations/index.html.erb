@@ -28,7 +28,13 @@
 			<% end %>
 		</tbody>
 </table>
-<%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-primary" %>
+<div class="pull-right range-query">
+<%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-primary" %> 
+	<%= form_tag(reservations_path, method: :get) do %>
+		<%= text_field_tag(:search, params[:search]) %>
+	<%= submit_tag ("Search") %>
+	<% end %>
+</div>
 
 <%= render 'grid' %>
 </div>

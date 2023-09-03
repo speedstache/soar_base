@@ -1,5 +1,5 @@
-<h2 class="mt-4">All Reservations and Open Slots for <%= Date.today %></h2>
-<h5 class="mt-2">Need to figure out how to move this forward and backward in time </h5>
+<h2 class="mt-4">Full Schedule for <%= @res_show %></h2>
+<h5 class="mt-2">Enter a weekend date in format 2023-09-02 to see schedule</h5>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -13,8 +13,8 @@
 		<tr>
 		<td>ASK-21 A</td>
 		<% @avail_hours.each do |hour| %>
-			<td ><% if @res_date.where(reservation_time: hour.hour).exists? %>
-					<%= link_to 'booked', reservation_path(@res_date.where(reservation_time: hour.hour).pluck(:id)) %><% else %>
+			<td ><% if @view_21a.where(reservation_time: hour.hour).exists? %>
+					<%= link_to 'booked', reservation_path(@view_21a.where(reservation_time: hour.hour).pluck(:id)) %><% else %>
 					<%= link_to 'open', new_reservation_path %><% end %></td>
 		<% end %>
 		</tr>
