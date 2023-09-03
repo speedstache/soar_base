@@ -6,9 +6,13 @@ class ReservationsController < ApplicationController
 
   # GET /reservations or /reservations.json
   def index
-
-    @reservations = Reservation.all
+    @avail_hours = Hour.where(active_flag: 1)
+    @view_21a = Reservation.where(reservation_date: Date.today, aircraft_id: 1)
+    @view_21b = Reservation.where(reservation_date: Date.today, aircraft_id: 2)
+    @view_23 = Reservation.where(reservation_date: Date.today, aircraft_id: 3)
+    @reservations = current_user.reservations.where(reservation_date: 3.days.ago..30.days.from_now)
   end
+
 
   # GET /reservations/1 or /reservations/1.json
   def show
@@ -17,7 +21,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
-    @avail_days = Day.where(day: Date.today .. 60.days.from_now)
+    @avail_days = Day.where(day: Date.today .. 30.days.from_now, active_flag: 1).order('days.day ASC')
     @avail_hours = Hour.where(active_flag: 1)
     @reservation = Reservation.new
   end
@@ -80,5 +84,7 @@ class ReservationsController < ApplicationController
       redirect_to @reservation
       end
     end	
+
+    
 
 end

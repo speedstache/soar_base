@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users
   resources :hours
   resources :days
+  get 'reservations/date/:reservation_date', to: 'reservations#date'
   resources :reservations do
     resources :flights, controller: 'flights'
   end
@@ -17,4 +18,6 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
 	post 'login', to: 'sessions#create'
 	delete 'logout', to: 'sessions#destroy'
+
+  
 end
