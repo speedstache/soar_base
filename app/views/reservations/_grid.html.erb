@@ -13,7 +13,7 @@
 		<tr>
 		<td>ASK-21 A</td>
 		<% @avail_hours.each do |hour| %>
-			<td ><% if @view_21a.where(reservation_time: hour.hour).exists? %>
+			<td ><% if @view_21a.where(reservation_time: hour.hour && reservation_date: @avail_days).exists? %>
 					<%= link_to 'booked', reservation_path(@view_21a.where(reservation_time: hour.hour).pluck(:id)) %><% else %>
 					<%= link_to 'open', new_reservation_path %><% end %></td>
 		<% end %>
