@@ -2,21 +2,20 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-9">
-				<h2>Club schedule grid for: <%= @res_show.strftime("%A, %b %d, %Y") %></h2>
-				<h8>Grid will display for non-operating days, but reservations cannot be added </h8>
+				<h2>Grid view Club Reservations for: <%= @res_show.strftime("%A, %b %d, %Y") %></h2>
+				<h8>Reservations will display for non-operating days, but reservations cannot be added </h8>
 			</div>
 			<div class="col input-group aligh-right">
-				<%= form_tag(reservations_path, method: :get) do %>
+				<%= form_tag(reservations_club_path, method: :get) do %>
 					<%= submit_tag ("Check reservations"), {class: "btn btn-secondary"} %>
 					<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
-				
 				<% end %>
 			</div>
 		</div>
 	</div>
 
 <%= render 'grid' %> 
-<h2 class="mt-4"><%= current_user.username %>'s reservations next 60 days</h2>
+<h2 class="mt-4">List view Club reservations: <%= @res_show.strftime("%A, %b %d, %Y") %></h2>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -25,28 +24,20 @@
 			<th>Start Time  </th>
       <th>Aircraft requested  </th>
       <th>Instructor needed  </th>
-      <th>Show reservation </th>
-      <th>Edit reservation  </th>
-      <th>Delete reservation  </th>
 		</tr>
 	</thead>
 		<tbody>
-			<% @myreservations.each do |reservation| %>
+			<% @res_date.each do |reservation| %>
 				<tr>
 					<td><%= reservation.user.username %></td>
 					<td><%= reservation.reservation_date.strftime("%m/%d/%y") %>  </td>
           <td><%= reservation.reservation_time %></td>
           <td><%= reservation.aircraft.name %>, <%= reservation.aircraft.short_name %>  </td>
           <td><%= reservation.instructor_flag.humanize %>  </td>
-          <td><%= link_to "Reservation Details", reservation_path(reservation) %>  </td>
-          <td></td>
-          <td><%= link_to "Delete reservation", reservation_path(reservation), data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
 				</tr>
 			<% end %>
 		</tbody>
-</table>
-<%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-primary" %> 
-	
+</table>	
 </div>
 
 		

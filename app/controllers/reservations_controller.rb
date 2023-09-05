@@ -15,7 +15,6 @@ class ReservationsController < ApplicationController
     elsif
       @res_show = Date.today
       flash[:notice] = "search grid set to today's date"
-      
     end
 
     @avail_days = Day.where(day: Date.today .. 60.days.from_now, active_flag: 1).order('days.day ASC')
@@ -23,9 +22,26 @@ class ReservationsController < ApplicationController
     @view_21a = @res_date.where(aircraft_id: 1)
     @view_21b = @res_date.where(aircraft_id: 2)
     @view_23 = @res_date.where(aircraft_id: 3)
-    @reservations = current_user.reservations.where(reservation_date: 3.days.ago..60.days.from_now).order('reservation_date ASC')
+    @myreservations = current_user.reservations.where(reservation_date: 3.days.ago..60.days.from_now).order('reservation_date ASC')
+  end
 
-    
+  def club
+  
+    @res_date = Reservation.search(params[:search])
+
+    if params[:search] != nil
+      @res_show = Day.find_by(day: params[:search]).day
+      flash[:notice] = "search date applied"
+    elsif
+      @res_show = Date.today
+      flash[:notice] = "search grid set to today's date"
+    end
+
+    @avail_days = Day.where(day: Date.today .. 60.days.from_now, active_flag: 1).order('days.day ASC')
+    @avail_hours = Hour.where(active_flag: 1)
+    @view_21a = @res_date.where(aircraft_id: 1)
+    @view_21b = @res_date.where(aircraft_id: 2)
+    @view_23 = @res_date.where(aircraft_id: 3)
   end
 
 

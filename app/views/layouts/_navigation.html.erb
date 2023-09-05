@@ -14,8 +14,9 @@
             Manage Reservations
           </a>
           <ul class="dropdown-menu">
-            <li><%= link_to 'View upcoming reservations', reservations_path, class: "dropdown-item" %></li>
+            <li><%= link_to 'View My reservations', reservations_path, class: "dropdown-item" %></li>
             <li><hr class="dropdown-divider"></li>
+            <li><%= link_to 'View Club reservations', reservations_club_path, class: "dropdown-item" %></li>
           </ul>
         </li>
         <li class="nav-item">
