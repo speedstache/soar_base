@@ -37,7 +37,7 @@
 					<td><%= reservation.reservation_date.strftime("%m/%d/%y") %>  </td>
           <td><%= reservation.reservation_time %></td>
           <td><%= reservation.aircraft.name %>, <%= reservation.aircraft.short_name %>  </td>
-          <td><%= reservation.instructor_flag %>  </td>
+          <td><%= reservation.instructor_flag.humanize %>  </td>
           <td><%= link_to "Reservation Details", reservation_path(reservation) %>  </td>
           <td></td>
           <td><%= link_to "Delete reservation", reservation_path(reservation), data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
