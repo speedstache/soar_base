@@ -21,7 +21,7 @@ class AircraftsController < ApplicationController
 
   # POST /aircrafts or /aircrafts.json
   def create
-    @aircraft = Aircraft.new(aircraft_params)
+    @aircraft = Aircraft.new(params.require(:aircraft).permit(:name, :short_name, :group, :last_maintenance, :active_flag))
 
     respond_to do |format|
       if @aircraft.save
@@ -37,7 +37,7 @@ class AircraftsController < ApplicationController
   # PATCH/PUT /aircrafts/1 or /aircrafts/1.json
   def update
     respond_to do |format|
-      if @aircraft.update(aircraft_params)
+      if @aircraft.update(params.require(:aircraft).permit(:name, :short_name, :group, :last_maintenance, :active_flag))
         format.html { redirect_to aircraft_url(@aircraft), notice: "Aircraft was successfully updated." }
         format.json { render :show, status: :ok, location: @aircraft }
       else
@@ -67,4 +67,7 @@ class AircraftsController < ApplicationController
     def aircraft_params
       params.fetch(:aircraft, {})
     end
+
+
+
 end

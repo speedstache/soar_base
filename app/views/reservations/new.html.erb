@@ -22,7 +22,7 @@
           <div class="form-group row p-2" >
             <%= f.label :aircraft, class: "col-4 col-form-label text-light" %>
             <div class="col-5">  
-              <%= f.collection_select :aircraft_id, Aircraft.all, :id, :short_name, {}, {class: "input-group-text"} %>
+              <%= f.collection_select :aircraft_id, Aircraft.where(group: 'club'), :id, :short_name, {}, {class: "input-group-text"} %>
             </div>
           </div>
           <div class="form-group row p-2" >

@@ -1,14 +1,32 @@
-<p style="color: green"><%= notice %></p>
+<div class="mt-4 mx-5 mb-5">
+<h2>Aircraft managed by this club</h2>
+<div class="col-9">
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Aircraft Name</th>
+			<th>Short Name </th>
+			<th>Group</th>
+      <th>Last Maintenance</th>
+      <th>Active flag</th>
+      <th>Edit Aircraft</th>
+      <th>Show details</th>
+		</tr>
+	</thead>
+		<tbody>
+			<% @aircrafts.each do |aircraft| %>
+				<tr>
+					<td><%= aircraft.name %></td>
+          <td><%= aircraft.short_name %></td>
+          <td><%= aircraft.group %></td>
+          <td><%= aircraft.last_maintenance %></td>
+					<td><%=  aircraft.active_flag.humanize %></td>
+          <td><%= link_to 'Edit', edit_aircraft_path(aircraft), class: "btn btn-primary"%></td>
+				</tr>
+			<% end %>
+		</tbody>
+</table>
+<%= link_to 'Add another aircraft', new_aircraft_path, :class => "btn btn-primary mb-5" %>
 
-<h1>Aircrafts</h1>
-
-<div id="aircrafts">
-  <% @aircrafts.each do |aircraft| %>
-    <%= render aircraft %>
-    <p>
-      <%= link_to "Show this aircraft", aircraft %>
-    </p>
-  <% end %>
 </div>
-
-<%= link_to "New aircraft", new_aircraft_path %>
+</div>

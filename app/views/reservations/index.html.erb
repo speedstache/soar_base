@@ -1,13 +1,13 @@
 <div class="mx-5 mt-2 mb-5 pb-5">
 	<div class="container">
 		<div class="row">
-			<div class="col-8">
-				<h2>Full Schedule for <%= @res_show.strftime("%A, %b %d %Y") %></h2>
-				<h8>Open links do not carry the aircraft, day, or time to the reservation window yet. </h8>
+			<div class="col-9">
+				<h2>Club schedule grid for: <%= @res_show.strftime("%A, %b %d, %Y") %></h2>
+				<h8>Grid will display for non-operating days, but reservations cannot be added </h8>
 			</div>
 			<div class="col input-group aligh-right">
 				<%= form_tag(reservations_path, method: :get) do %>
-					<%= submit_tag ("Check reservations for another day"), {class: "btn btn-secondary"} %>
+					<%= submit_tag ("Check reservations"), {class: "btn btn-secondary"} %>
 					<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
 				
 				<% end %>
