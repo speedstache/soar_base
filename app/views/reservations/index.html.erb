@@ -1,5 +1,22 @@
-<div class="mx-5 mb-5 pb-5">
-<h2 class="mt-4"><%= current_user.username %>'s reservations next 30 days</h2>
+<div class="mx-5 mt-2 mb-5 pb-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-8">
+				<h2>Full Schedule for <%= @res_show.strftime("%A, %b %d %Y") %></h2>
+				<h8>Open links do not carry the aircraft, day, or time to the reservation window yet. </h8>
+			</div>
+			<div class="col input-group aligh-right">
+				<%= form_tag(reservations_path, method: :get) do %>
+					<%= submit_tag ("Check reservations for another day"), {class: "btn btn-secondary"} %>
+					<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
+				
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+<%= render 'grid' %> 
+<h2 class="mt-4"><%= current_user.username %>'s reservations next 60 days</h2>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -28,15 +45,8 @@
 			<% end %>
 		</tbody>
 </table>
-<div class="pull-right range-query">
 <%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-primary" %> 
-	<%= form_tag(reservations_path, method: :get) do %>
-		<%= text_field_tag(:search, params[:search]) %>
-	<%= submit_tag ("Search") %>
-	<% end %>
-</div>
-
-<%= render 'grid' %>
+	
 </div>
 
 		

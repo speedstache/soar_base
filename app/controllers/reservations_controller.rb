@@ -9,20 +9,21 @@ class ReservationsController < ApplicationController
   
     @res_date = Reservation.search(params[:search])
 
-    if @res_date.exists?
-      @res_show = @res_date.first.reservation_date
+    if params[:search] != nil
+      @res_show = Day.find_by(day: params[:search]).day
       flash[:notice] = "search date applied"
     elsif
-      flash[:notice] = "Query date is not a valid operating day"
+      @res_show = Date.today
+      flash[:notice] = "search grid set to today's date"
       
     end
 
-    @avail_days = Day.where(day: Date.today .. 30.days.from_now, active_flag: 1).order('days.day ASC')
+    @avail_days = Day.where(day: Date.today .. 60.days.from_now, active_flag: 1).order('days.day ASC')
     @avail_hours = Hour.where(active_flag: 1)
     @view_21a = @res_date.where(aircraft_id: 1)
     @view_21b = @res_date.where(aircraft_id: 2)
     @view_23 = @res_date.where(aircraft_id: 3)
-    @reservations = current_user.reservations.where(reservation_date: 3.days.ago..30.days.from_now)
+    @reservations = current_user.reservations.where(reservation_date: 3.days.ago..60.days.from_now).order('reservation_date ASC')
 
     
   end
