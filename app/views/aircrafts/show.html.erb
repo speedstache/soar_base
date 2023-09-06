@@ -27,7 +27,7 @@
 		<%= link_to 'Go back to aircraft', aircrafts_path, :class => "btn btn-primary" %>
 		</div>
     <div class="mt-4">
-    <h4>This aircraft has had <%= @sumhours.count %> flights, and <%= @sumhours.sum(:flight_time)/60 %> hours of flight time since last maintenance
+    <h4>This aircraft has had <%= @sumhours.count %> flights, and <%= @sumhours.sum(:flight_time)/60 %>.<%= @sumhours.sum(:flight_time)%60 %> hours of flight time since last maintenance</h4>
     </div>
 		<div class="mt-4 col-7">
 		<h4>The following flights have been logged on this aircraft</h4>
