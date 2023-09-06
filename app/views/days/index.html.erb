@@ -1,25 +1,25 @@
-<div class="mt-4 mx-5 mb-5">
-<h2>Days available for scheduling</h2>
-<div class="col-6">
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Day</th>
-			<th>Active</th>
-			<th>Edit</th>
-		</tr>
-	</thead>
-		<tbody>
-			<% @days.each do |day| %>
+<div class="container mt-4">
+	<h2>Days available for scheduling</h2>
+	<h8>If non-weekend days are required for scheduling, add them and flag as active</h8>
+	<div class="col-5 pb-5 mb-5">
+		<table class="table table-striped">
+			<thead>
 				<tr>
-					<td><%= day.day %></td>
-					<td><%=  day.active_flag.humanize %></td>
-          <td><%= link_to 'Edit', edit_day_path(day), class: "btn btn-primary"%></td>
+					<th>Day</th>
+					<th>Active</th>
+					<th>Edit</th>
 				</tr>
-			<% end %>
-		</tbody>
-</table>
-<%= link_to 'Add another day', new_day_path, :class => "btn btn-primary mb-5" %>
-
-</div>
+			</thead>
+			<tbody>
+				<% @days.each do |day| %>
+					<tr>
+						<td><%= day.day %></td>
+						<td><%=  day.active_flag.humanize %></td>
+						<td><%= link_to 'Edit', edit_day_path(day), class: "btn btn-primary btn-sm"%></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<%= link_to 'Add another day', new_day_path, :class => "btn btn-secondary btn-sm" %>
+	</div>
 </div>
