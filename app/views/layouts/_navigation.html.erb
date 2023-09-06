@@ -9,6 +9,7 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Profile</a>
         </li>
+        <% if logged_in? %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Manage Reservations
@@ -19,6 +20,9 @@
             <li><%= link_to 'View Club reservations', reservations_club_path, class: "dropdown-item" %></li>
           </ul>
         </li>
+        <% else %>
+          <a class="nav-link disabled" aria-disabled="true">Manage Reservations</a>
+        <% end %>
         <li class="nav-item">
           <% if logged_in? && current_user.permission.user_admin? %>
             <%= link_to 'Manage Users', users_path, class: "nav-link" %>
