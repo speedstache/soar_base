@@ -1,4 +1,6 @@
 class FlightsController < ApplicationController
+  helper_method :current_user, :logged_in?
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   before_action :set_flight, only: %i[ show edit update destroy ]
   before_action :set_reservation
 
@@ -76,4 +78,11 @@ class FlightsController < ApplicationController
     def set_reservation
       @reservation = Reservation.find(params[:reservation_id])
     end
+
+    def require_same_user
+      if current_user != Flight.where(id: current_user) && !current_user.permission.club_admin?
+      flash[:alert] = "You can only edit or delete your own flights"
+      redirect_to reservations_path
+      end
+    end	
 end
