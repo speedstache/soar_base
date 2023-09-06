@@ -62,7 +62,7 @@ end
 
 group :production do
   # Use postgres for production database
-  gem "pg"
+  gem 'pg', "~> 1.5.4"
 end
 
 group :development do
