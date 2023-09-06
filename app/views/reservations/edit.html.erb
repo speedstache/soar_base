@@ -1,10 +1,38 @@
-<h1>Editing reservation</h1>
-
-<%= render "form", reservation: @reservation %>
-
-<br>
-
-<div>
-  <%= link_to "Show this reservation", @reservation %> |
-  <%= link_to "Back to reservations", reservations_path %>
+<div class="container">
+<h2>Edit a reservation</h2>
+	<div class="row justify-content-start ml-5" >
+    <div class="col-5">
+      <%= render 'shared/errors', obj: @reservation %>
+      <%= form_for [@reservation], html: {class: "shadow p-3 mb-3 bg-info rounded", data: { turbo: false }, local: true}  do |f| %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+          <div class="form-group row p-2" >
+            <%= f.label :date, class: "col-4 col-form-label text-light" %>
+            <div class="col-5">
+              <%= f.select :reservation_date, options_from_collection_for_select(@avail_days, 'day', 'day', @reservation.reservation_date), {}, {class: "input-group-text"} %>
+            </div>
+          </div>	
+          <div class="form-group row p-2">
+            <%= f.label :start_time, class: "col-4 col-form-label text-light" %>
+            <div class="col-5"> 
+            <%= f.select :reservation_time, options_from_collection_for_select(@avail_hours, 'hour', 'hour', @reservation.reservation_time), {}, {class: "input-group-text"} %>
+              
+            </div>
+          </div>
+            <%= f.hidden_field :reservation_duration %>
+          <div class="form-group row p-2" >
+            <%= f.label :aircraft, class: "col-4 col-form-label text-light" %>
+            <div class="col-5">  
+              <%= f.collection_select :aircraft_id, Aircraft.where(group: 'club'), :id, :short_name, {}, {class: "input-group-text"} %>
+            </div>
+          </div>
+          <div class="form-group row p-2" >
+            <%= f.label :instructor_flag, class: "col-4 col-form-label text-light" %>
+            <div class="col-5">
+              <%= f.check_box :instructor_flag, class: "form-check-label" %>
+            </div>
+          </div>
+        <%= f.submit class:"btn btn-outline-light btn-lg col-6" %>
+      <% end %>
+    </div>
+  </div>
 </div>

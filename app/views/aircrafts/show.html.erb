@@ -1,10 +1,59 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @aircraft %>
-
-<div>
-  <%= link_to "Edit this aircraft", edit_aircraft_path(@aircraft) %> |
-  <%= link_to "Back to aircrafts", aircrafts_path %>
-
-  <%= button_to "Destroy this aircraft", @aircraft, method: :delete %>
+<div class="container">
+	<div class="mt-4">
+		<h2>Show Aircraft details</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+        <th>Aircraft Name</th>
+			<th>Short Name </th>
+			<th>Group</th>
+      <th>Last Maintenance</th>
+      <th>Active flag</th>
+      <th colspan="2">Modify Aircraft</th>
+				</tr>
+			</thead>
+      <tbody>
+				<tr>
+					<td><%= @aircraft.name %></td>
+          <td><%= @aircraft.short_name %></td>
+          <td><%= @aircraft.group %></td>
+          <td><%= @aircraft.last_maintenance %></td>
+					<td><%=  @aircraft.active_flag.humanize %></td>
+					<td><%= link_to 'See Details', aircraft_path(@aircraft), class: "btn btn-info btn-sm"%></td>
+					<td><%= link_to 'Edit', edit_aircraft_path(@aircraft), class: "btn btn-primary btn-sm"%></td>
+				</tr>
+		</tbody>
+		</table>
+		<%= link_to 'Go back to aircraft', aircrafts_path, :class => "btn btn-primary" %>
+		</div>
+    <div class="mt-4">
+    <h4>This aircraft has had <%= @sumhours.count %> flights, and <%= @sumhours.sum(:flight_time)/60 %> hours of flight time since last maintenance
+    </div>
+		<div class="mt-4 col-7">
+		<h4>The following flights have been logged on this aircraft</h4>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+          <th>Date of Flight</th>
+          <th>Username</th>
+          <th>Aircraft</th>
+					<th>Tow Height  </th>
+					<th>Flight Time  </th>
+					<th>Rope Break  </th>
+				</tr>
+			</thead>
+				<tbody>
+					<% @aircraft.flights.each do |flight| %>
+						<tr>
+              <td><%= flight.reservation.reservation_date %></td>
+              <td><%= flight.user.username %></td>
+              <td><%= flight.aircraft.short_name %></td>
+							<td><%= flight.tow_height %></td>
+							<td><%= flight.flight_time %></td>
+							<td><%= flight.rope_break.humanize %></td>
+						</tr>
+						<% end %>
+				</tbody>
+		</table>
+	</div>
 </div>

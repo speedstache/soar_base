@@ -1,5 +1,6 @@
 class FlightsController < ApplicationController
   before_action :set_flight, only: %i[ show edit update destroy ]
+  before_action :set_reservation
 
   # GET /flights or /flights.json
   def index
@@ -22,10 +23,14 @@ class FlightsController < ApplicationController
   # POST /flights or /flights.json
   def create
     @flight = Flight.new(flight_params)
+    @flight.reservation_id = @reservation.id
+    @flight.flight_date = @reservation.reservation_date
+    @flight.user_id = @reservation.user_id
+    @flight.aircraft_id = @reservation.aircraft_id
 
     respond_to do |format|
       if @flight.save
-        format.html { redirect_to flight_url(@flight), notice: "Flight was successfully created." }
+        format.html { redirect_to reservation_path(@reservation), notice: "Flight was successfully created." }
         format.json { render :show, status: :created, location: @flight }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +43,7 @@ class FlightsController < ApplicationController
   def update
     respond_to do |format|
       if @flight.update(flight_params)
-        format.html { redirect_to flight_url(@flight), notice: "Flight was successfully updated." }
+        format.html { redirect_to reservation_path(@reservation), notice: "Flight was successfully updated." }
         format.json { render :show, status: :ok, location: @flight }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,6 +70,10 @@ class FlightsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def flight_params
-      params.fetch(:flight, {})
+      params.require(:flight).permit(:tow_height, :flight_time, :rope_break)
+    end
+
+    def set_reservation
+      @reservation = Reservation.find(params[:reservation_id])
     end
 end

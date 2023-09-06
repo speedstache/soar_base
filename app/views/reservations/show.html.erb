@@ -1,26 +1,58 @@
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th >Username  </th>
-			<th>Date  </th>
-			<th>Start Time  </th>
-      <th>Aircraft requested  </th>
-      <th>Instructor needed  </th>
-      <th>Edit reservation  </th>
-      <th>Delete reservation  </th>
-		</tr>
-	</thead>
-		<tbody>
+<div class="container">
+	<div class="mt-4">
+		<h2>Show Flight details</h2>
+		<table class="table table-striped">
+			<thead>
 				<tr>
-					<td><%= @reservation.user.username %></td>
-					<td><%= @reservation.reservation_date.strftime("%m/%d/%y") %>  </td>
-          <td><%= @reservation.reservation_time %></td>
-          <td><%= @reservation.aircraft.name %>, <%= @reservation.aircraft.short_name %>  </td>
-          <td><%= @reservation.instructor_flag.humanize %>  </td>
-          <td></td>
-          <td><%= link_to "Delete reservation", reservation_path(@reservation), data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+					<th >Username  </th>
+					<th>Date  </th>
+					<th>Start Time  </th>
+					<th>Aircraft requested  </th>
+					<th>Instructor needed  </th>
+					<th colspan="3">Modify reservation details</th>
 				</tr>
-		</tbody>
-</table>
-<%= link_to 'Go back to reservations', reservations_path, :class => "btn btn-primary" %>
-
+			</thead>
+				<tbody>
+						<tr>
+							<td><%= @reservation.user.username %></td>
+							<td><%= @reservation.reservation_date.strftime("%m/%d/%y") %>  </td>
+							<td><%= @reservation.reservation_time %></td>
+							<td><%= @reservation.aircraft.name %>, <%= @reservation.aircraft.short_name %>  </td>
+							<td><%= @reservation.instructor_flag.humanize %>  </td>
+							<td><%= link_to "Edit", edit_reservation_path(@reservation), class: "btn btn-primary btn-sm" %></td>
+							<td><%= link_to "Delete", reservation_path(@reservation), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+							<td><%= link_to "Add flights", new_reservation_flight_path(@reservation), class: "btn btn-secondary btn-sm" %></td>
+						</tr>
+				</tbody>
+		</table>
+		<%= link_to 'Go back to reservations', reservations_path, :class => "btn btn-primary" %>
+		</div>
+		<div class="my-5 col-7">
+		<h4>The following flights have been added to 	this reservation</h4>
+		<h8>Check to make sure flight aircraft matches resevation aircraft</h8>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Aircaft</th>
+					<th>Tow Height  </th>
+					<th>Flight Time  </th>
+					<th>Rope Break  </th>
+					<th colspan="2">Modify Flights</th>
+				</tr>
+			</thead>
+				<tbody>
+					<% @reservation.flights.each do |flight| %>
+						<tr>
+							<td><%= flight.aircraft.short_name %></td>
+							<td><%= flight.tow_height %></td>
+							<td><%= flight.flight_time %></td>
+							<td><%= flight.rope_break.humanize %></td>
+							<td><%= link_to 'Modify flight', edit_reservation_flight_path(@reservation, flight), class: "btn btn-primary btn-sm"  %></td>
+							<td><%= link_to "Delete flight", [@reservation, flight], class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+						</tr>
+						<% end %>
+				</tbody>
+		</table>
+	</div>
+	<%= link_to "Add additional flights", new_reservation_flight_path(@reservation), :class => "btn btn-primary" %>
+</div>

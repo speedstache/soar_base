@@ -48,6 +48,7 @@ class ReservationsController < ApplicationController
   # GET /reservations/1 or /reservations/1.json
   def show
     @reservation = Reservation.find(params[:id])
+  
   end
 
   # GET /reservations/new
@@ -59,6 +60,8 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/1/edit
   def edit
+    @avail_days = Day.where(day: Date.today .. 60.days.from_now)
+    @avail_hours = Hour.where(active_flag: 1)
   end
 
   # POST /reservations or /reservations.json
@@ -77,9 +80,12 @@ class ReservationsController < ApplicationController
 
   # PATCH/PUT /reservations/1 or /reservations/1.json
   def update
+    @avail_days = Day.where(day: Date.today .. 60.days.from_now)
+    @avail_hours = Hour.where(active_flag: 1)
+
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to reservation_url(@reservation), notice: "Reservation was successfully updated." }
+        format.html { redirect_to reservations_path, notice: "Reservation was successfully updated." }
         format.json { render :show, status: :ok, location: @reservation }
       else
         format.html { render :edit, status: :unprocessable_entity }

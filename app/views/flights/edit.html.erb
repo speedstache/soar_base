@@ -1,10 +1,37 @@
-<h1>Editing flight</h1>
-
-<%= render "form", flight: @flight %>
-
-<br>
-
-<div>
-  <%= link_to "Show this flight", @flight %> |
-  <%= link_to "Back to flights", flights_path %>
+<div class="container">
+<h2>Modify a flight</h2>
+	<div class="row justify-content-start ml-5" >
+    <div class="col-5">
+      <%= render 'shared/errors', obj: @flight %>
+        <%= form_for [@reservation, @flight], html: {class: "shadow p-3 mb-3 bg-info rounded", data: { turbo: false }, local: true}  do |f| %>
+            <%= f.hidden_field :user_id, value: @flight.user_id %>
+						<%= f.hidden_field :user_id, value: @flight.flight_date %>
+            <div class="form-group row p-2" >
+            <%= f.label :aircraft, class: "col-4 col-form-label text-light" %>
+            <div class="col-5">  
+              <%= f.collection_select :aircraft_id, Aircraft.where(group: 'club'), :id, :short_name, {}, {class: "input-group-text"} %>
+            </div>
+          </div>
+            <div class="form-group row p-2" >
+            <%= f.label :tow_height, class: "col-4 col-form-label text-light" %>
+            <div class="col-5">
+              <%= f.number_field :tow_height, class: "input-group-text" %>
+            </div>
+          </div>	
+          <div class="form-group row p-2" >
+            <%= f.label :flight_time, class: "col-4 col-form-label text-light" %>
+            <div class="col-5">
+              <%= f.number_field :flight_time, class: "input-group-text" %>
+            </div>
+          </div>	
+          <div class="form-group row p-2" >
+            <%= f.label :rope_break, class: "col-4 col-form-label text-light" %>
+            <div class="col-5">
+              <%= f.check_box :rope_break, class: "form-check-label" %>
+            </div>
+          </div>
+        <%= f.submit class:"btn btn-outline-light btn-lg col-6" %>
+      <% end %>
+    </div>
+  </div>
 </div>

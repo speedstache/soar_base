@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'reservations/club', to: 'reservations#club'
   get 'reservations/date/:reservation_date', to: 'reservations#date'
   resources :reservations do
-    resources :flights, controller: 'flights'
+    resources :flights
   end
   resources :flights
   resources :aircrafts

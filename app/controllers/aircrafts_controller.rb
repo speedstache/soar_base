@@ -8,6 +8,7 @@ class AircraftsController < ApplicationController
 
   # GET /aircrafts/1 or /aircrafts/1.json
   def show
+    @sumhours = Flight.where(aircraft_id: @aircraft, flight_date: @aircraft.last_maintenance..Date.today )
   end
 
   # GET /aircrafts/new
