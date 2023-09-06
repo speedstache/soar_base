@@ -1,26 +1,26 @@
-<h1>Editing A specific hour</h1>
-<div class="container">
-	<div class="row justify-content-start ml-5 my-5" >
+<div class="container my-4">
+  <h2>Editing a specific hour</h2>
+  <h8>Format is hour digit and am/pm with no spaces</h8>
+	<div class="row justify-content-start" >
     <div class="col-5">
       <%= render 'shared/errors', obj: @hour %>
         <%= form_with(model: @hour, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
           <div class="form-group row p-2" >
-              <%= f.label :hour, class: "col-2 col-form-label text-light" %>
-            <div class="col-5">
+              <%= f.label :hour, class: "col-4 col-form-label text-light" %>
+            <div class="col-2">
               <%= f.text_field :hour, class: "input-group-text" %>
             </div>
           </div>	
           <div class="form-group row p-2" >
-              <%= f.label :active_flag, class: "col-1 col-form-label text-light" %>
-            <div class="col-5">
+              <%= f.label :active_flag, class: "col-4 col-form-label text-light" %>
+            <div class="col-2">
               <%= f.check_box :active_flag %>
             </div>
           </div>
         <%= f.submit class:"btn btn-outline-light btn-lg col-6" %>
-      <% end %>
+        <% end %>
+      </div>
     </div>
+    <%= link_to "Back to hours", hours_path, class:"btn btn-primary btn-sm" %>
   </div>
-</div>
-<div>
-  <%= link_to "Back to hours", hours_path %>
 </div>
