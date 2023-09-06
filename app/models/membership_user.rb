@@ -1,4 +1,4 @@
 class MembershipUser < ApplicationRecord
   belongs_to :membership
-  belongs to :user
+  belongs_to :user
 end
