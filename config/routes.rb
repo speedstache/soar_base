@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :towfees
   resources :membership_users
   resources :memberships
   resources :permissions

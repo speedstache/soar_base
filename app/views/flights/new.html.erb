@@ -5,8 +5,8 @@
       <%= render 'shared/errors', obj: @flight %>
         <%= form_for [@reservation, @flight], html: {class: "shadow p-3 mb-3 bg-info rounded", data: { turbo: false }, local: true}  do |f| %>
             <%= f.hidden_field :user_id, value: @flight.user_id %>
-						<%= f.hidden_field :user_id, value: @flight.flight_date %>
-						<%= f.hidden_field :user_id, value: @flight.aircraft_id %>
+						<%= f.hidden_field :flight_Date, value: @flight.flight_date %>
+						<%= f.hidden_field :aircraft_id, value: @flight.aircraft_id %>
           <div class="form-group row p-2" >
             <%= f.label :tow_height, class: "col-4 col-form-label text-light" %>
             <div class="col-5">

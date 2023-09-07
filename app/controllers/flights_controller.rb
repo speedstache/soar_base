@@ -7,6 +7,7 @@ class FlightsController < ApplicationController
   # GET /flights or /flights.json
   def index
     @flights = Flight.all
+    @towtal
   end
 
   # GET /flights/1 or /flights/1.json
@@ -32,6 +33,9 @@ class FlightsController < ApplicationController
 
     respond_to do |format|
       if @flight.save
+
+        @flight.update({'fees': @flight.calcfees})
+
         format.html { redirect_to reservation_path(@reservation), notice: "Flight was successfully created." }
         format.json { render :show, status: :created, location: @flight }
       else
@@ -45,6 +49,7 @@ class FlightsController < ApplicationController
   def update
     respond_to do |format|
       if @flight.update(flight_params)
+        @flight.update({'fees': @flight.calcfees})
         format.html { redirect_to reservation_path(@reservation), notice: "Flight was successfully updated." }
         format.json { render :show, status: :ok, location: @flight }
       else
@@ -72,7 +77,7 @@ class FlightsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def flight_params
-      params.require(:flight).permit(:tow_height, :flight_time, :rope_break)
+      params.require(:flight).permit(:tow_height, :flight_time, :rope_break, :fees)
     end
 
     def set_reservation
@@ -85,4 +90,5 @@ class FlightsController < ApplicationController
       redirect_to reservations_path
       end
     end	
+
 end

@@ -1,0 +1,32 @@
+<div class="container mt-4">
+	<h2>Tow fee increment schedule</h2>
+  <h4>Prices calculated in 100 foot increments</h2>
+	<div class="col-8 mb-5 pb-5">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Minimum Height</th>
+					<th>Maximum Height</th>
+					<th>Price increment</th>
+          <th>Created Date</th>
+          <th>Modified Date</th>
+          <th colspan="2">Modify Fees</th>
+				</tr>
+			</thead>
+				<tbody>
+					<% @towfees.each do |towfee| %>
+						<tr>
+							<td><%= towfee.min_height %></td>
+							<td><%= towfee.max_height %></td>
+              <td><%= number_to_currency(towfee.price_per) %></td>
+              <td><%= towfee.created_at.strftime("%m/%d/%y") %></td>
+              <td><%= towfee.updated_at.strftime("%m/%d/%y") %></td>
+							<td><%= link_to 'Edit', edit_towfee_path(towfee), class: "btn btn-primary btn-sm"%></td>
+              <td><%= link_to "Delete", towfee_path(towfee),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+            </tr>
+					<% end %>
+				</tbody>
+		</table>
+    <%= link_to 'Add another row', new_towfee_path, :class => "btn btn-secondary btn-sm" %>
+	</div>
+</div>
