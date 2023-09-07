@@ -7,7 +7,7 @@
 			</div>
 			<div class="col input-group aligh-right">
 				<%= form_tag(reservations_path, method: :get) do %>
-					<%= submit_tag ("Check reservations"), {class: "btn btn-secondary"} %>
+					<%= submit_tag ("Check reservations"), {class: "btn btn-secondary btn-sm"} %>
 					<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
 				
 				<% end %>
@@ -38,14 +38,14 @@
           <td><%= reservation.aircraft.name %>, <%= reservation.aircraft.short_name %>  </td>
           <td><%= reservation.instructor_flag.humanize %>  </td>
 					<td><%= reservation.flights.count %></td>
-          <td><%= link_to "View Details", reservation_path(reservation), class: "btn btn-info" %>  </td>
-          <td><%= link_to "Edit", edit_reservation_path(reservation), class: "btn btn-primary" %></td>
-          <td><%= link_to "Delete", reservation_path(reservation),class: "btn btn-warning", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+          <td><%= link_to "View Details", reservation_path(reservation), class: "btn btn-info btn-sm" %>  </td>
+          <td><%= link_to "Edit", edit_reservation_path(reservation), class: "btn btn-primary btn-sm" %></td>
+          <td><%= link_to "Delete", reservation_path(reservation),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
 				</tr>
 			<% end %>
 		</tbody>
 </table>
-<%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-secondary" %> 
+<%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-secondary btn-sm" %> 
 	
 </div>
 
