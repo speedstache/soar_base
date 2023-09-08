@@ -1,5 +1,4 @@
 class ReservationsController < ApplicationController
-  helper_method :current_user, :logged_in?
   before_action :set_reservation, only: %i[ show edit update destroy ]
   before_action :require_same_user, only: [:edit, :update, :destroy]
  

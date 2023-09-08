@@ -1,5 +1,4 @@
 class DaysController < ApplicationController
-  helper_method :current_user, :logged_in?
 
   def new
     @day = Day.new

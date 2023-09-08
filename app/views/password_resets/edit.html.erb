@@ -1,0 +1,29 @@
+<h1 class="text-center mt-4 mb-4">Reset Password</h1>
+
+<div class="container">
+	<div class="row justify-content-center" >
+		<div class="col-8">
+			<%= form_for(@user, url: password_reset_path(params[:id]), html: { class: "shadow p-3 mb-3 bg-info rounded"}) do |f| %>
+        <%= hidden_field_tag :email, @user.email %>
+        <div class="form-group row p-2" >
+          <%= f.label :password, class: "col-2 col-form-label text-light" %><br/>
+          <div class="col-10">	
+            <%= f.password_field :password, class: "form-control shadow rounded", placeholder: "Enter new password" %>
+          </div>
+        </div>
+        <div class="form-group row p-2" >
+          <%= f.label :password_confirmation, class: "col-2 col-form-label text-light" %><br/>
+          <div class="col-10">	
+            <%= f.password_field :password_confirmation, class: "form-control shadow rounded", placeholder: "Confirm new password" %>
+          </div>
+        </div>
+
+			<div class="form-group row p-2 justify-content-center" >
+				<%= f.submit "Update Password", class:"btn btn-outline-light btn-lg col-4" %>
+			</div>
+			<% end %>	
+		</div>
+		<div class="text-center my-3">
+		</div
+	</div>
+</div>
