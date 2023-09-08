@@ -1,10 +1,14 @@
-<h1>Editing permission</h1>
+<h1>Edit Permissions </h1>
+<div class="container">
+	<div class="row justify-content-start ml-5 my-5" >
+    <div class="col-5">
+      <%= render 'shared/errors', obj: @permission %>
+        
+      <%= render 'form' %>
 
-<%= render "form", permission: @permission %>
-
-<br>
-
+    </div>
+  </div>
+</div>
 <div>
-  <%= link_to "Show this permission", @permission %> |
-  <%= link_to "Back to permissions", permissions_path %>
+  <%= link_to "Back to permission list", permissions_path %>
 </div>

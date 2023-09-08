@@ -1,5 +1,5 @@
 class PermissionsController < ApplicationController
-  before_action :set_permission, only: %i[ show edit update destroy ]
+  before_action :set_permission, only: %i[ show edit update ]
 
   # GET /permissions or /permissions.json
   def index
@@ -25,7 +25,7 @@ class PermissionsController < ApplicationController
 
     if @permission.save
 
-    flash[:info] = "New permissions set up"
+    flash[:notice] = "New permissions set up"
     redirect_to users_path
     else
       render 'new', status: :unprocessable_entity
@@ -36,13 +36,13 @@ class PermissionsController < ApplicationController
   def update
     respond_to do |format|
       if @permission.update(permission_params)
-        format.html { redirect_to permission_url(@permission), notice: "Permission was successfully updated." }
+        format.html { redirect_to permissions_path, notice: "Permission was successfully updated." }
         format.json { render :show, status: :ok, location: @permission }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @permission.errors, status: :unprocessable_entity }
       end
-    end
+    end 
   end
 
   # DELETE /permissions/1 or /permissions/1.json
@@ -63,6 +63,6 @@ class PermissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def permission_params
-      params.require(:permission).permit(:user_id, :user_admin, :club_admin_admin, :site_admin_admin, :global_admin)
+      params.require(:permission).permit(:user_admin, :club_admin, :site_admin, :global_admin)
     end
 end

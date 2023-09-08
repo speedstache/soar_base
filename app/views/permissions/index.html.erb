@@ -1,14 +1,33 @@
-<p style="color: green"><%= notice %></p>
+<div class="mt-4 mx-5 mb-5">
+<h2>User Permissions</h2>
+<div class="col-12">
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Username</th>
+			<th>Email</th>
+      <th>User Admin</th>
+      <th>Club Admin</th>
+      <th>Site Admin</th>
+      <th>Global Admin</th>
+      <th>Edit Permissions</th>
+		</tr>
+	</thead>
+		<tbody>
+			<% @permissions.each do |permission| %>
+				<tr>
+					<td><%= permission.user.username %></td>
+          <td><%= permission.user.email %></td>
+          <td><%= permission.user_admin.humanize %></td>
+          <td><%= permission.club_admin.humanize %></td>
+					<td><%= permission.site_admin.humanize %></td>
+          <td><%= permission.global_admin.humanize %></td>
+					<td><%= link_to 'Edit', edit_permission_path(permission), class: "btn btn-primary btn-sm"%></td>
+				</tr>
+			<% end %>
+		</tbody>
+</table>
+<%= link_to 'Go back to users list', users_path, :class => "btn btn-primary mb-5" %>
 
-<h1>Permissions</h1>
-
-<div id="permissions">
-  <% @permissions.each do |permission| %>
-    <%= render permission %>
-    <p>
-      <%= link_to "Show this permission", permission %>
-    </p>
-  <% end %>
 </div>
-
-<%= link_to "New permission", new_permission_path %>
+</div>
