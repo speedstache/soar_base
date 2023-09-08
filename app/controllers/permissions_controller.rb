@@ -21,16 +21,14 @@ class PermissionsController < ApplicationController
 
   # POST /permissions or /permissions.json
   def create
-    @permission = Permission.new(permission_params)
+    @permission = Permission.new(user_params)
 
-    respond_to do |format|
-      if @permission.save
-        format.html { redirect_to permission_url(@permission), notice: "Permission was successfully created." }
-        format.json { render :show, status: :created, location: @permission }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @permission.errors, status: :unprocessable_entity }
-      end
+    if @permission.save
+
+    flash[:info] = "New permissions set up"
+    redirect_to users_path
+    else
+      render 'new', status: :unprocessable_entity
     end
   end
 
@@ -65,6 +63,6 @@ class PermissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def permission_params
-      params.require(:permission).permit(:membership, :membership_user)
+      params.require(:permission).permit(:user_id, :user_admin, :club_admin_admin, :site_admin_admin, :global_admin)
     end
 end

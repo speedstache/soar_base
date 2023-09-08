@@ -3,7 +3,7 @@ class User < ApplicationRecord
   before_create :create_activation_digest
   before_save :downcase_email
 
-  has_one :permission
+  has_one :permission, dependent: :destroy
   has_many :membership_users
   has_many :flights
   has_many :reservations

@@ -25,11 +25,15 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+
+      # create blank permission record, defaults set to false
+      @permission = @user.create_permission
+
       UserMailer.account_activation(@user).deliver_now
     flash[:info] = "Please check your email to activate your account."
     redirect_to root_url
     else
-      render 'new'
+      render 'new', status: :unprocessable_entity
     end
   end
 
@@ -64,7 +68,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :email, :password,
+      params.require(:user).permit(:username, :email, :password,
                                    :password_confirmation)
     end
 end

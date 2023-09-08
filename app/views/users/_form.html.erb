@@ -1,17 +1,28 @@
-<%= form_with(model: user) do |form| %>
-  <% if user.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-        <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= form_with(model: @user, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+  <div class="form-group row p-2" >
+      <%= f.label :username, class: "col-4 col-form-label text-light" %>
+    <div class="col-3">
+      <%= f.text_field :username, class: "input-group-text" %>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.submit %>
   </div>
+  <div class="form-group row p-2" >
+      <%= f.label :email, class: "col-4 col-form-label text-light" %>
+    <div class="col-5">
+      <%= f.text_field :email, class: "input-group-text" %>
+    </div>
+  </div>	
+  <div class="form-group row p-2" >
+      <%= f.label :password, class: "col-4 col-form-label text-light" %>
+    <div class="col-5">
+      <%= f.password_field :password, class: "input-group-text" %>
+    </div>
+  </div>
+  <div class="form-group row p-2" >
+      <%= f.label :password_confirmation, class: "col-4 col-form-label text-light" %>
+    <div class="col-5">
+      <%= f.password_field :password_confirmation, class: "input-group-text" %>
+    </div>
+  </div>
+    
+<%= f.submit class:"btn btn-outline-light btn-lg col-6" %>
 <% end %>
