@@ -17,7 +17,7 @@
                 <tr>
                   <td><%= user.username %></td>
                   <td><%= user.email %></td>
-                  <td><%= user.has_privileges_in %></td> 
+                  <td><%= user.has_privileges_in.map {|x| x.values[1]} %></td> 
                 </tr>
               <% end %>
           </tbody>

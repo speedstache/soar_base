@@ -73,11 +73,10 @@ class User < ApplicationRecord
     
     # will need to limit this to users that have active memberships once available
     aircraftuser_ids = AircraftUser.where(user_id: User.where(id: self.id).ids)
-      has_privileges_in = "[  "
+      has_privileges_in = []
       aircraftuser_ids.each do |aircraftuser_id|
-        has_privileges_in += AircraftUser.find(aircraftuser_id.id).aircraft.short_name + " "
+        has_privileges_in << { id: AircraftUser.find(aircraftuser_id.id).aircraft.id, short_name: AircraftUser.find(aircraftuser_id.id).aircraft.short_name }
       end
-      has_privileges_in += "]"
     return has_privileges_in
 
   end
