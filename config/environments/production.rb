@@ -100,8 +100,8 @@ Rails.application.configure do
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
     :authentication => :plain,
-    :user_name      => 'apikey',
-    :password       => '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',
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
     :domain         => 'eaglevillesoaring.com',
     :enable_starttls_auto => true
   }
