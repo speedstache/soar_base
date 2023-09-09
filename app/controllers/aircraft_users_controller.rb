@@ -4,6 +4,8 @@ class AircraftUsersController < ApplicationController
   # GET /aircraft_users or /aircraft_users.json
   def index
     @aircraft_users = AircraftUser.all
+    @aircrafts = Aircraft.where(group: "club")
+    @users = User.all
   end
 
   # GET /aircraft_users/1 or /aircraft_users/1.json

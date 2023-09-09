@@ -1,14 +1,27 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Aircraft users</h1>
-
-<div id="aircraft_users">
-  <% @aircraft_users.each do |aircraft_user| %>
-    <%= render aircraft_user %>
-    <p>
-      <%= link_to "Show this aircraft user", aircraft_user %>
-    </p>
-  <% end %>
+<div class="mt-4 mx-5 mb-5">
+  <h2>Matrix of Aircraft Users</h2>
+  <h6>User privileges on aircraft are edited within the user profiles, not here.<br>
+   This is just for reporting purposes</h6>
+    <div class="col-6">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th colspan="3">Has reservation privileges in</th>
+          </tr>
+        </thead>
+          <tbody>
+              <% @users = User.all %>
+              <% @users.each do |user| %>
+                <tr>
+                  <td><%= user.username %></td>
+                  <td><%= user.email %></td>
+                  <td><%= user.has_privileges_in %></td> 
+                </tr>
+              <% end %>
+          </tbody>
+      </table>
+    <%= link_to 'Go back to aircraft listings', aircrafts_path, :class => "btn btn-primary mb-5" %>
+  </div>
 </div>
-
-<%= link_to "New aircraft user", new_aircraft_user_path %>

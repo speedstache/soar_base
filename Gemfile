@@ -15,6 +15,9 @@ gem "tod"
 # Humanize gem for boolean values
 gem "humanize_boolean"
 
+# Ruby reports gem for simplifying data generation and future reporting
+gem "ruport"
+
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
 
