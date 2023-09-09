@@ -1,5 +1,5 @@
 class AircraftUser < ApplicationRecord
-  belongs_to :aircraft
+  has_one :aircraft
   belongs_to :user
 
 

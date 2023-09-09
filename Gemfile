@@ -36,6 +36,8 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+#email server setup via SendGrid
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -66,6 +68,10 @@ end
 group :production do
   # Use postgres for production database
   gem 'pg', "~> 1.1"
+
+  #email server setup via SendGrid
+  gem 'sendgrid-ruby'
+
 end
 
 group :development do
