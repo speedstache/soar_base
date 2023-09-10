@@ -10,7 +10,7 @@
 				</tr>
 			</thead>
 				<tbody>
-					<% @hours.each do |hour| %>
+					<% @hours.order(:id).each do |hour| %>
 						<tr>
 							<td><%= hour.hour %></td>
 							<td><%=  hour.active_flag.humanize %></td>
