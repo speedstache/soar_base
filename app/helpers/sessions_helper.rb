@@ -25,6 +25,18 @@ module SessionsHelper
     end
   end
 
+  def has_privileges_in
+    
+    # will need to limit this to users that have active memberships once available
+    aircraftuser_ids = AircraftUser.where(user_id: User.where(id: current_user.id).ids)
+      has_privileges_in = []
+      aircraftuser_ids.each do |aircraftuser_id|
+        has_privileges_in << { id: AircraftUser.find(aircraftuser_id.id).aircraft.id, short_name: AircraftUser.find(aircraftuser_id.id).aircraft.short_name }
+      end
+    return has_privileges_in
+  
+  end
+  
   # Returns true if the user is logged in, false otherwise.
   def logged_in?
     !current_user.nil?

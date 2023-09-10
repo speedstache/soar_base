@@ -1,7 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[ show edit update destroy ]
   before_action :require_same_user, only: [:edit, :update, :destroy]
- 
 
   # GET /reservations or /reservations.json
   def index
@@ -55,6 +54,7 @@ class ReservationsController < ApplicationController
     @avail_days = Day.where(day: Date.today .. 30.days.from_now, active_flag: 1).order('days.day ASC')
     @avail_hours = Hour.where(active_flag: 1)
     @reservation = Reservation.new
+    
   end
 
   # GET /reservations/1/edit

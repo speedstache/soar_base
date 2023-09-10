@@ -1,6 +1,6 @@
 class Reservation < ApplicationRecord
   belongs_to :user
-  has_one :aircraft
+  belongs_to :aircraft
   has_many :flights
   has_one :day
   accepts_nested_attributes_for :flights
@@ -21,15 +21,3 @@ class Reservation < ApplicationRecord
     end
   end
 end
-
-# returns a string of all aircraft that the user has reservation privileges in
-  # this is of limited usefulness but prints the data in the AircraftUser table in a visual way
-  def has_privileges_in(res_user_id)
-    
-    # will need to limit this to users that have active memberships once available
-    aircraftuser_ids = AircraftUser.where(user_id: User.where(id: res_user_id))
-      has_privileges_in = aircraftuser_ids.aircraft_ids
-      
-    return has_privileges_in
-
-  end

@@ -69,15 +69,15 @@ class User < ApplicationRecord
   
   # returns a string of all aircraft that the user has reservation privileges in
   # this is of limited usefulness but prints the data in the AircraftUser table in a visual way
-  def has_privileges_in
+  def privileges_in
     
     # will need to limit this to users that have active memberships once available
     aircraftuser_ids = AircraftUser.where(user_id: User.where(id: self.id).ids)
-      has_privileges_in = []
+      privileges_in = []
       aircraftuser_ids.each do |aircraftuser_id|
-        has_privileges_in << { id: AircraftUser.find(aircraftuser_id.id).aircraft.id, short_name: AircraftUser.find(aircraftuser_id.id).aircraft.short_name }
+        privileges_in << { id: AircraftUser.find(aircraftuser_id.id).aircraft.id, short_name: AircraftUser.find(aircraftuser_id.id).aircraft.short_name }
       end
-    return has_privileges_in
+    return privileges_in
 
   end
 
