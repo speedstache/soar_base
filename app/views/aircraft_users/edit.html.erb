@@ -1,10 +1,14 @@
-<h1>Editing aircraft user</h1>
+<div class="container">
+	<div class="row justify-content-start ml-5 my-5" >
+  <h2>Edit user association with aircraft(s) </h2>
+    <div class="col-6">
+      <%= render 'shared/errors', obj: @aircraft_user %>
+        
+        <%= render 'form' %>
 
-<%= render "form", aircraft_user: @aircraft_user %>
-
-<br>
-
+    </div>
+    <%= link_to "Back to Aircraft User list", aircraft_users_path %>
+  </div>
+</div>
 <div>
-  <%= link_to "Show this aircraft user", @aircraft_user %> |
-  <%= link_to "Back to aircraft users", aircraft_users_path %>
 </div>

@@ -24,15 +24,12 @@ class AircraftUsersController < ApplicationController
   # POST /aircraft_users or /aircraft_users.json
   def create
     @aircraft_user = AircraftUser.new(aircraft_user_params)
-
-    respond_to do |format|
-      if @aircraft_user.save
-        format.html { redirect_to aircraft_user_url(@aircraft_user), notice: "Aircraft user was successfully created." }
-        format.json { render :show, status: :created, location: @aircraft_user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @aircraft_user.errors, status: :unprocessable_entity }
-      end
+   
+    if @aircraft_user.save
+      flash[:notice] = "Aircraft and User map was successfully created."
+      redirect_to aircraft_users_path
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -67,6 +64,6 @@ class AircraftUsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def aircraft_user_params
-      params.fetch(:aircraft_user, {})
+      params.require(:aircraft_user).permit(:user_id, :aircraft_id)
     end
 end
