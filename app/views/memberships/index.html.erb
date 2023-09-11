@@ -1,14 +1,28 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Memberships</h1>
-
-<div id="memberships">
-  <% @memberships.each do |membership| %>
-    <%= render membership %>
-    <p>
-      <%= link_to "Show this membership", membership %>
-    </p>
-  <% end %>
+<div class="container mt-4">
+	<h2>List of membership types</h2>
+	<div class="col-5 mb-5 pb-5">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Membership Type</th>
+					<th>Renewal Period</th>
+					<th>Renewal Price</th>
+          <th>Active Flag</th>
+          <th colspan="2">Modify</th>
+				</tr>
+			</thead>
+				<tbody>
+					<% @memberships.each do |membership| %>
+						<tr>
+							<td><%= membership.membership_type %></td>
+              <td><%= membership.renewal_period %></td>
+              <td><%= membership.renewal_price %></td>
+							<td><%=  membership.active_flag.humanize %></td>
+							<td><%= link_to 'Edit', edit_membership_path(membership), class: "btn btn-primary btn-sm"%></td>
+						</tr>
+					<% end %>
+				</tbody>
+		</table>
+    <%= link_to 'Add a new membership type', new_membership_path, class: "btn btn-primary btn-sm"%>
+	</div>
 </div>
-
-<%= link_to "New membership", new_membership_path %>

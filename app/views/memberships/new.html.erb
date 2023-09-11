@@ -1,9 +1,14 @@
-<h1>New membership</h1>
+<div class="container">
+	<div class="row justify-content-start ml-5 my-5" >
+  <h1>Add a new membership type</h1>
+    <div class="col-6">
+      <%= render 'shared/errors', obj: @membership %>
+        
+        <%= render 'form' %>
 
-<%= render "form", membership: @membership %>
-
-<br>
-
+    </div>
+  </div>
+</div>
 <div>
-  <%= link_to "Back to memberships", memberships_path %>
+  <%= link_to "Back to membership list", memberships_path %>
 </div>

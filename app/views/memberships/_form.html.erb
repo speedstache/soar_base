@@ -1,17 +1,28 @@
-<%= form_with(model: membership) do |form| %>
-  <% if membership.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(membership.errors.count, "error") %> prohibited this membership from being saved:</h2>
-
-      <ul>
-        <% membership.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= form_with(model: @membership, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+  <div class="form-group row p-2" >
+      <%= f.label :membership_type, class: "col-4 col-form-label text-light" %>
+      <div class="col-3">
+      <%= f.text_field :membership_type, class: "input-group-text" %>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.submit %>
   </div>
+  <div class="form-group row p-2" >
+      <%= f.label :renewal_period, class: "col-4 col-form-label text-light" %>
+      <div class="col-3">
+      <%= f.number_field :renewal_period, class: "input-group-text" %>
+    </div>
+  </div>
+  <div class="form-group row p-2" >
+      <%= f.label :renewal_price, class: "col-4 col-form-label text-light" %>
+      <div class="col-3">
+      <%= f.number_field :renewal_price, class: "input-group-text" %>
+    </div>
+  </div>
+  <div class="form-group row p-2" >
+      <%= f.label :active_flag, class: "col-4 col-form-label text-light" %>
+      <div class="col-3">
+      <%= f.check_box :active_flag, class: "input-group-text" %>
+    </div>
+  </div>
+    
+<%= f.submit class:"btn btn-outline-light btn-sm col-6" %>
 <% end %>
