@@ -23,14 +23,12 @@ class MembershipUsersController < ApplicationController
   def create
     @membership_user = MembershipUser.new(membership_user_params)
 
-    respond_to do |format|
-      if @membership_user.save
-        format.html { redirect_to membership_user_url(@membership_user), notice: "Membership user was successfully created." }
-        format.json { render :show, status: :created, location: @membership_user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @membership_user.errors, status: :unprocessable_entity }
-      end
+    
+    if @membership_user.save
+      flash[:notice] = "Membership and User link was successfully created."
+      redirect_to membership_users_path
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -38,7 +36,7 @@ class MembershipUsersController < ApplicationController
   def update
     respond_to do |format|
       if @membership_user.update(membership_user_params)
-        format.html { redirect_to membership_user_url(@membership_user), notice: "Membership user was successfully updated." }
+        format.html { redirect_to membership_users_path, notice: "Membership user was successfully updated." }
         format.json { render :show, status: :ok, location: @membership_user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,6 +63,6 @@ class MembershipUsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def membership_user_params
-      params.fetch(:membership_user, {})
+      params.require(:membership_user).permit(:user_id, :membership_id, :renewal_date, :active_flag)
     end
 end

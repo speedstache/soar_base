@@ -45,8 +45,11 @@
 			<% end %>
 		</tbody>
 </table>
-<%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-secondary btn-sm" %> 
-	
+<% if has_membership == true %>
+	<%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-secondary btn-sm" %> 
+<% else %>
+	<div class="badge text-bg-warning">Membership has expired, user has no reservation privileges</div>
+<% end %>
 </div>
 
 		

@@ -1,10 +1,14 @@
-<h1>Editing membership user</h1>
+<div class="container">
+	<div class="row justify-content-start ml-5 my-5" >
+  <h2>Edit user membership </h2>
+    <div class="col-6">
+      <%= render 'shared/errors', obj: @membership_user %>
+        
+        <%= render 'form' %>
 
-<%= render "form", membership_user: @membership_user %>
-
-<br>
-
+    </div>
+    <%= link_to "Back to Membership User list", membership_users_path %>
+  </div>
+</div>
 <div>
-  <%= link_to "Show this membership user", @membership_user %> |
-  <%= link_to "Back to membership users", membership_users_path %>
 </div>

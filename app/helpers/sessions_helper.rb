@@ -36,6 +36,22 @@ module SessionsHelper
     return has_privileges_in
   
   end
+
+  # Check the current user for an active membership
+  def has_membership
+
+    active_member = MembershipUser.where(user_id: current_user.id).last
+      if !active_member.nil? 
+        next_renewal_date = active_member.renewal_date + active_member.membership.renewal_period
+        if Date.today <= next_renewal_date 
+          has_membership = true
+        else
+          has_membership = false
+        end
+      else
+        has_membership = false
+      end
+    end
   
   # Returns true if the user is logged in, false otherwise.
   def logged_in?
