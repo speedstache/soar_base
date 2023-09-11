@@ -39,7 +39,7 @@ class AircraftsController < ApplicationController
   def update
     respond_to do |format|
       if @aircraft.update(params.require(:aircraft).permit(:name, :short_name, :group, :last_maintenance, :active_flag))
-        format.html { redirect_to aircraft_url(@aircraft), notice: "Aircraft was successfully updated." }
+        format.html { redirect_to aircrafts_path, notice: "Aircraft was successfully updated." }
         format.json { render :show, status: :ok, location: @aircraft }
       else
         format.html { render :edit, status: :unprocessable_entity }

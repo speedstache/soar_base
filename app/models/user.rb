@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   has_one :permission, dependent: :destroy
   has_many :membership_users
+  has_many :memberships, through: :membership_users
   has_many :flights
   has_many :reservations
   has_many :flights, through: :reservations
