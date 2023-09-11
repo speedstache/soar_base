@@ -84,7 +84,8 @@ class FlightsController < ApplicationController
     end
 
     def require_same_user
-      if current_user != Flight.where(id: current_user) && !current_user.permission.club_admin?
+      @flight = Flight.find(params[:id])
+      if current_user.id != @flight.user_id && !current_user.permission.club_admin?
       flash[:alert] = "You can only edit or delete your own flights"
       redirect_to reservations_path
       end
