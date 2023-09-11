@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-9">
-				<h2>Grid view Club Reservations for: <%= next_flying_day.strftime("%A, %b %d, %Y") %></h2>
+				<h2>Grid view Club Reservations for: <%= @res_show.strftime("%A, %b %d, %Y") %></h2>
 				<h8>Reservations will display for non-operating days, but reservations cannot be added </h8>
 			</div>
 			<div class="col input-group aligh-right">
@@ -15,7 +15,7 @@
 	</div>
 
 <%= render 'grid' %> 
-<h2 class="mt-4">List view Club reservations: <%= next_flying_day.strftime("%A, %b %d, %Y") %></h2>
+<h2 class="mt-4">List view Club reservations: <%= @res_show.strftime("%A, %b %d, %Y") %></h2>
 <table class="table table-striped">
 	<thead>
 		<tr>

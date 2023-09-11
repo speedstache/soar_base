@@ -8,6 +8,12 @@ class Reservation < ApplicationRecord
   validates :reservation_date, uniqueness: {scope: [:reservation_date, :reservation_time, :aircraft_id]}
   validates :aircraft_id, uniqueness: {scope: [:reservation_date, :reservation_time, :aircraft_id]}
 
+  def self.search_date
+    find_date = Day.order('days.day ASC').where(day: Date.today.., active_flag: true).first
+    search_date = find_date.day
+    return search_date
+  end
+
   def self.search(search)
     if search
       show_date = Day.find_by(day: search)
@@ -17,8 +23,8 @@ class Reservation < ApplicationRecord
         Reservation.where(reservation_date: search)
       end
     else
-      find_date = Day.order('days.day ASC').where(day: Date.today.., active_flag: true).first
-      Reservation.where(reservation_date: find_date.day)
+      Reservation.where(reservation_date: search_date)
     end
   end
+
 end
