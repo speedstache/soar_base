@@ -17,7 +17,8 @@ class Reservation < ApplicationRecord
         Reservation.where(reservation_date: search)
       end
     else
-      Reservation.where(reservation_date: Date.today)
+      find_date = Day.order('days.day ASC').where(day: Date.today.., active_flag: true).first
+      Reservation.where(reservation_date: find_date.day)
     end
   end
 end

@@ -58,6 +58,13 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  # return the next flying day after today, or today if the date is the same
+  def next_flying_day
+    find_date = Day.order('days.day ASC').where(day: Date.today.., active_flag: true).first
+    
+    next_flying_day = find_date.day
+  end
+
   # Forgets a persistent session.
   def forget(user)
     user.forget
