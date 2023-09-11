@@ -1,73 +1,93 @@
 <div class="container my-5 pb-5"
   <div class="card align-start" style="width: auto;">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item lead pb-3">Release Notes</li>
+      <d1 class="row">
+      <dt class="col-sm-2 ps-4 pt-2">9/10/23</dt>
+        <dd class="col-sm-9 pt-2">
+          <p>Fixed minor issue preventing users from modifying or deleting their own flights and reservations.</p>
+          <p><strong>Heroku deployed V20</strong></p>
+          <p>Users require an active membership in order to create any new reservation</p>
+          <p>Add membership types under Manage Club dropdown</p>
+          <p><strong>Heroku deployed V17</strong></p>
+          <p>Seeded production database with hours, days, aircraft, permisions for first user</p>
+          <p>Reservations now limited to only aircraft that user has privileges in</p>
+        </dd>
+      <dt class="col-sm-2 ps-4 pt-2">9/9/23</dt>
+        <dd class="col-sm-9 pt-2"> 
+          <p>Email server fully provisioned! tested with user activation and user password recovery in production!</p>
+        </dd>
+      <dt class="col-sm-2 ps-4 pt-2">9/8/23</dt>
+        <dd class="col-sm-9 pt-2"> 
+          <p>next up is user profiles and additional user details, as well as limiting reservation capabilities by 'has_privileges_in' method </p>
+          <p>Created 'has_privileges_in' method in '/models/users.rb' to show which aircraft(s) a given user has reservation
+          privileges on. This will be managed within user profiles. View this under Manage Aircraft </p>
+          <p>Added user permissions to Manage Users dropdown. Confirmed working </p>
+          <p>Added user account activation via email, password recovery via email, account_activation 
+          generation of permissions table (default to no permissions), remember me cookie for sessions control </p>
+          <p>Requested SendGrid add-on for Heroku to enable sending of email from the server</p>
+        </dd> 
+      <dt class="col-sm-2 ps-4 pt-2">9/7/23</dt>
+        <dd class="col-sm-9 pt-2"> 
+          <p>Completed most of password reset and email notification
+          for account activation and password recovery. Not deployed. Testing needs to be cleaned up first. </p>
+        </dd>  
+      <dt class="col-sm-2 ps-4 pt-2">9/6/23</dt>
+        <dd class="col-sm-9 pt-2"> 
+          <p><strong>Heroku deployment V10 </strong></p>
+          <p>Added data table to control tow height values 
+          and wrote 'calcfees' method to calculate tow heights and save them to flights table </p>
+          <p>Initial deployment to production server on Heroku. Database migrated 
+          and is ready to accept test data once a few more features are added</p>
+        </dd> 
+      <dt class="col-sm-2 ps-4 pt-2">9/5/23</dt>
+        <dd class="col-sm-9 pt-2"> 
+          <p>Built functionality to add flights to reservations, keeping user_id, reservation_id,
+          date, and other items as hidden entries. Aircraft is still selectable for edge cases.</p>
+        </dd>
+      <dt class="col-sm-2 ps-4 pt-2">9/4/23</dt>
+        <dd class="col-sm-9 pt-2"> 
+          <p>Manage aircraft tables built and index, show, edit, destroy paths enabled. 
+          Additional functionality coming once AircraftUsers are built out.</p>
+        </dd>
+      <dt class="col-sm-2 ps-4 pt-2">9/3/23</dt>
+        <dd class="col-sm-9 pt-2"> 
+          <p>Dropdown search enabled for updating the reservations grid </p>
+        </dd>
+      <dt class="col-sm-2 ps-4 pt-2">9/2/23</dt>
+        <dd class="col-sm-9 pt-2"> 
+        </dd>
+      <dt class="col-sm-2 ps-4 pt-2">9/1/23</dt>
+        <dd class="col-sm-9 pt-2"> 
+          <p>Built 'view reservations' grid. Workable, if messy solution </p>
+          <p>Added hours and days of operation and dependent routes</p>
+        </dd>
+      <dt class="col-sm-2 ps-4 pt-2">8/31/23</dt>
+        <dd class="col-sm-9 pt-2"> 
+          <p>Added capability for multiple admin levels within navigation and controllers (user admin, club admin, site admin) </p>
+          <p>Added simple login/logout functions using has_secure_password </p>
+          <p>Rails app created, git repository set up, Bootstrap and app dependencies intstalled </p>
+        </dd> 
+    </d1>  
+   
     <ul class="list-group list-group-flush">
-      <li class="list-group-item lead">Release Notes</li>
-      
-      <div class="my-2 mx-5">9/10/2023 - Fixed minor issue preventing users from modifying or deleting their own flights and reservations.</div>
-      
-      <div class="my-2 mx-5">9/10/2023 - Heroku deployed V20</div>
-
-      <div class="my-2 mx-5">9/10/2023 - Users require an active membership in order to create any new reservation</div>
-
-      <div class="my-2 mx-5">9/10/2023 - Associate memberships to users via MembershipUsers table </div>
-
-      <div class="my-2 mx-5">9/10/2023 - Add membership types under Manage Club dropdown</div>
-      
-      <div class="my-2 mx-5">9/10/2023 - Heroku deployed V17</div>
-      
-      <div class="my-2 mx-5">9/10/2023 - Seeded production database with hours, days, aircraft, permisions for first user</div>
-
-      <div class="my-2 mx-5">9/10/2023 - Reservations now limited to only aircraft that user has privileges in</div>
-      
-      <div class="my-2 mx-5">9/9/2023 - Email server fully provisioned! tested with user activation and user password recovery in production!</div>
-  
-
-      <div class="my-2 mx-5">9/8/2023 - next up is user profiles and additional user details, as well as limiting reservation capabilities by 'has_privileges_in' method </div>
-
-        <div class="my-2 mx-5">9/8/2023 - Created 'has_privileges_in' method in '/models/users.rb' to show which aircraft(s) a given user has reservation
-        privileges on. This will be managed within user profiles. View this under Manage Aircraft </div>
-        
-        <div class="my-2 mx-5">9/8/2023 - Added user permissions to Manage Users dropdown. Confirmed working </div>
-
-        <div class="my-2 mx-5">9/8/2023 - Added user account activation via email, password recovery via email, account_activation 
-          generation of permissions table (default to no permissions), remember me cookie for sessions control </div>
-
-        <div class="my-2 mx-5">9/8/2023 - Requested SendGrid add-on for Heroku to enable sending of email from the server</div>
-
-        <div class="my-2 mx-5">9/7/2023 - Completed most of password reset and email notification
-          for account activation and password recovery. Not deployed. Testing needs to be cleaned up first. </div>  
-        
-        <div class="my-2 mx-5">9/6/2023 - Heroku deployment V10 </div>
-
-        <div class="my-2 mx-5">9/6/2023 - Added data table to control tow height values 
-            and wrote 'calcfees' method to calculate tow heights and save them to flights table </div>
-          
-        <div class="my-2 mx-5">9/6/2023 - Initial deployment to production server on Heroku. Database migrated 
-              and is ready to accept test data once a few more features are added</div>
-
-        <div class="my-2 mx-5">9/5/2023 - Built functionality to add flights to reservations, keeping user_id, reservation_id,
-            date, and other items as hidden entries. Aircraft is still selectable for edge cases.</div>
-         
-        <div class="my-2 mx-5">9/4/2023 - Manage aircraft tables built and index, show, edit, destroy paths enabled. 
-            Additional functionality coming once AircraftUsers are built out.</div>
-         
-        <div class="my-2 mx-5">9/3/2023 - Dropdown search enabled for updating the reservations grid </div>
-         
-        <div class="my-2 mx-5">9/1/2023 - Built 'view reservations' grid. Workable, if messy solution </div>
-
-        <div class="my-2 mx-5">9/1/2023 - Added hours and days of operation and dependent routes </div>
-
-        <div class="my-2 mx-5">8/31/2023 - Added capability for multiple admin levels within navigation and controllers (user admin, club admin, site admin) </div>
-
-        <div class="my-2 mx-5">8/31/2023 - Added simple login/logout functions using has_secure_password </div>
-
-        <div class="my-2 mx-5">8/31/2023 - Implemented basic reservation functions that prevent users from overlapping reservations </div>
-
-        <div class="my-2 mx-5">8/31/2023 - Rails app created, git repository set up, Bootstrap and app dependencies intstalled </div>
       <li class="list-group-item lead">Resources</li>
-      
-        <div class="my-2 mx-5"><a href="https://www.softcover.io/read/28fdb94f/ruby_on_rails_tutorial_3rd_edition">Ruby on Rails Tutorial 3rd edition</a> </div>
-        
+      <d1 class="row">
+        <dt class="col-sm-2 ps-4 pt-2">Online Books</dt>
+          <dd class="col-sm-9 pt-2">
+            <p><a href="https://www.softcover.io/read/28fdb94f/ruby_on_rails_tutorial_3rd_edition">Ruby on Rails Tutorial 3rd edition</a></p>
+
+          </dd>
+        <dt class="col-sm-2 ps-4 pt-2">Classes</dt> 
+          <dd class="col-sm-9 pt-2">
+            <p>Link to Udemy class I took</p>
+          </dd>
+        <dt class="col-sm-2 ps-4 pt-2">Links</dt> 
+            <dd class="col-sm-9 pt-2"> 
+              <p>Github repository for SoarBase</p>
+
+            </dd>
+      </d1>
     </ul>
   </div>
 
