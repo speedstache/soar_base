@@ -2,8 +2,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-9">
-				<h2>Club schedule grid for: <%= @res_show.strftime("%A, %b %d, %Y") %></h2>
-				<h8>Grid will display for non-operating days, but reservations cannot be added </h8>
+				<h4>Club schedule grid for: <%= @res_show.strftime("%A, %b %d, %Y") %></h4>
+				<h8>Search for reservations from a different day using the dropdown to the right </h8>
 			</div>
 			<div class="col input-group aligh-right">
 				<%= form_tag(reservations_path, method: :get) do %>
@@ -16,7 +16,8 @@
 	</div>
 
 <%= render 'grid' %> 
-<h2 class="mt-4"><%= current_user.username %>'s reservations next 60 days</h2>
+<h4 class="mt-4"><%= current_user.username %>'s reservations next 60 days</h4>
+<h8>Past reservations stay in this list for 3 days after the date to allow for adding flights</h8>
 <table class="table table-striped">
 	<thead>
 		<tr>
