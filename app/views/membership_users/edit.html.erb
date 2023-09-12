@@ -1,13 +1,12 @@
 <div class="container">
-	<div class="row justify-content-start ml-5 my-5" >
+	<div class="row justify-content-start ml-2 my-2" >
   <h4>Edit user membership </h4>
     <div class="col-6">
       <%= render 'shared/errors', obj: @membership_user %>
         
         <%= render 'form' %>
-
+        <%= link_to "Back to Membership User list", membership_users_path, :class => "btn btn-primary btn-sm mb-5" %>
     </div>
-    <%= link_to "Back to Membership User list", membership_users_path %>
   </div>
 </div>
 <div>

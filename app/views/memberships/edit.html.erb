@@ -1,14 +1,14 @@
 <div class="container">
-	<div class="row justify-content-start ml-5 my-5" >
+	<div class="row justify-content-start ml-2 my-2" >
   <h4>Edit membership types</h4>
     <div class="col-6">
       <%= render 'shared/errors', obj: @membership %>
         
         <%= render 'form' %>
 
+        <%= link_to "Cancel and return to membership list", memberships_path, class: "btn btn-primary btn-sm" %>
     </div>
   </div>
 </div>
 <div>
-  <%= link_to "Cancel and return to membership list", memberships_path %>
 </div>

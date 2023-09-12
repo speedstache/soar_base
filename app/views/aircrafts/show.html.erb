@@ -1,15 +1,16 @@
 <div class="container">
-	<div class="mt-4">
+	<div class="mt-2">
 		<h4>Show Aircraft details</h4>
+		<div class="col-8">
 		<table class="table table-striped">
 			<thead>
 				<tr>
-        <th>Aircraft Name</th>
-			<th>Short Name </th>
-			<th>Group</th>
-      <th>Last Maintenance</th>
-      <th>Active flag</th>
-      <th colspan="2">Modify Aircraft</th>
+					<th>Aircraft Name</th>
+					<th>Short Name </th>
+					<th>Group</th>
+					<th>Last Maintenance</th>
+					<th>Active flag</th>
+					<th colspan="2">Modify</th>
 				</tr>
 			</thead>
       <tbody>
@@ -19,7 +20,6 @@
           <td><%= @aircraft.group %></td>
           <td><%= @aircraft.last_maintenance %></td>
 					<td><%=  @aircraft.active_flag.humanize %></td>
-					<td><%= link_to 'See Details', aircraft_path(@aircraft), class: "btn btn-info btn-sm"%></td>
 					<td><%= link_to 'Edit', edit_aircraft_path(@aircraft), class: "btn btn-primary btn-sm"%></td>
 				</tr>
 		</tbody>
@@ -27,10 +27,10 @@
 		<%= link_to 'Go back to aircraft', aircrafts_path, :class => "btn btn-primary" %>
 		</div>
     <div class="mt-4">
-    <h4>This aircraft has flown <%= @sumhours.count %> flights, and <%= @sumhours.sum(:flight_time)/60 %>.<%= @sumhours.sum(:flight_time)%60 %> hours of flight time since last maintenance</h4>
+    <h6>This aircraft has flown <%= @sumhours.count %> flights, and <%= @sumhours.sum(:flight_time)/60 %>.<%= @sumhours.sum(:flight_time)%60 %> hours of flight time since last maintenance</h6>
     </div>
 		<div class="mt-4 col-7">
-		<h4>The following flights have been logged on this aircraft</h4>
+		<h6>The following flights have been logged on this aircraft</h6>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -56,4 +56,5 @@
 				</tbody>
 		</table>
 	</div>
+</div>
 </div>

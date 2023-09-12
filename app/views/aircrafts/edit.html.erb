@@ -1,6 +1,6 @@
-<h1>Edit aircraft </h1>
 <div class="container">
-	<div class="row justify-content-start ml-5 my-5" >
+	<div class="row justify-content-start ml-2 my-2" >
+  <h4>Edit aircraft </h4>
     <div class="col-5">
       <%= render 'shared/errors', obj: @aircraft %>
         
@@ -8,7 +8,7 @@
 
     </div>
   </div>
+  <%= link_to "Back to aircraft list", aircrafts_path, :class => "btn btn-primary mb-5" %>
 </div>
 <div>
-  <%= link_to "Back to aircraft list", aircrafts_path %>
 </div>
