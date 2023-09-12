@@ -1,5 +1,5 @@
-<div class="container">
-	<div class="row justify-content-start ml-5 my-5" >
+<div class="container my-2 mx-2">
+	<div class="row justify-content-start" >
     <h4>Edit user </h4>
       <div class="col-5">
       <%= render 'shared/errors', obj: @user %>
@@ -10,5 +10,6 @@
   </div>
 </div>
 <div>
-  <%= link_to "Back to user list", users_path %>
+  <%= link_to "Back to user list", users_path :class => "btn btn-secondary btn-sm" %>
+ %>
 </div>
