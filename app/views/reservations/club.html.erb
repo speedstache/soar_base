@@ -1,7 +1,7 @@
-<div class="container mx-5 mt-2 mb-5 pb-5">
+<div class="container mx-1 mt-1 mb-5 pb-5">
 	<div class="row">
 		<div class="col-5">
-			<h4>Grid of Club Reservations for: <%= @res_show.strftime("%A, %b %d, %Y") %></h4>
+			<h4>Club reservations grid: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
 			<h8>Search for a specific day using the dropdown selector</h8><br>
 			<h8>Click on red (booked) dots to see reservation details </h8>
 
@@ -19,8 +19,8 @@
 	
 
 <div class="row">
-	<div class="col-7 mt-4">		
-		<h4>List view Club reservations: <%= @res_show.strftime("%A, %b %d, %Y") %></h4>
+	<div class="col-7">		
+		<h4>Club reservations list: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
 		<table class="table table-striped">
 			<thead>
 				<tr>
