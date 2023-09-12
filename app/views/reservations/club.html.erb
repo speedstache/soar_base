@@ -1,43 +1,49 @@
-<div class="mx-5 mt-2 mb-5 pb-5">
-	<div class="container">
-		<div class="row">
-			<div class="col-9">
-				<h4>Grid view Club Reservations for: <%= @res_show.strftime("%A, %b %d, %Y") %></h4>
-				<h8>Search for reservations from a different day using the dropdown to the right </h8>
-			</div>
-			<div class="col input-group aligh-right">
-				<%= form_tag(reservations_club_path, method: :get) do %>
-					<%= submit_tag ("Check reservations"), {class: "btn btn-secondary"} %>
-					<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
-				<% end %>
-			</div>
+<div class="container mx-5 mt-2 mb-5 pb-5">
+	<div class="row">
+		<div class="col-5">
+			<h4>Grid of Club Reservations for: <%= @res_show.strftime("%A, %b %d, %Y") %></h4>
+			<h8>Search for a specific day using the dropdown selector</h8><br>
+			<h8>Click on red (booked) dots to see reservation details </h8>
+
+		</div>
+		<div class="col input-group aligh-right">
+			<%= form_tag(reservations_club_path, method: :get) do %>
+				<%= submit_tag ("Check reservations"), {class: "btn btn-secondary"} %>
+				<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
+			<% end %>
+		</div>
+		<div class="col-7">
+			<%= render 'grid' %> 
 		</div>
 	</div>
+	
 
-<%= render 'grid' %> 
-<h4 class="mt-4">List view Club reservations: <%= @res_show.strftime("%A, %b %d, %Y") %></h4>
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th >Username  </th>
-			<th>Date  </th>
-			<th>Start Time  </th>
-      <th>Aircraft requested  </th>
-      <th>Instructor needed  </th>
-		</tr>
-	</thead>
-		<tbody>
-			<% @res_date.each do |reservation| %>
+<div class="row">
+	<div class="col-7 mt-4">		
+		<h4>List view Club reservations: <%= @res_show.strftime("%A, %b %d, %Y") %></h4>
+		<table class="table table-striped">
+			<thead>
 				<tr>
-					<td><%= reservation.user.username %></td>
-					<td><%= reservation.reservation_date.strftime("%m/%d/%y") %>  </td>
-          <td><%= reservation.reservation_time %></td>
-          <td><%= reservation.aircraft.name %>, <%= reservation.aircraft.short_name %>  </td>
-          <td><%= reservation.instructor_flag.humanize %>  </td>
+					<th >Username  </th>
+					<th>Date  </th>
+					<th>Start Time  </th>
+					<th>Aircraft </th>
+					<th>Instructor?</th>
 				</tr>
-			<% end %>
-		</tbody>
-</table>	
+			</thead>
+				<tbody>
+					<% @res_date.each do |reservation| %>
+						<tr>
+							<td><%= reservation.user.username %></td>
+							<td><%= reservation.reservation_date.strftime("%m/%d/%y") %>  </td>
+							<td><%= reservation.reservation_time %></td>
+							<td><%= reservation.aircraft.short_name %>  </td>
+							<td><%= reservation.instructor_flag.humanize %>  </td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>		
+	</div>
 </div>
-
 		

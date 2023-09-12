@@ -9,27 +9,27 @@
 	</thead>
 	<tbody>
 		<tr>
-		<td>ASK-21 A</td>
+		<td>ASK-21A</td>
 		<% @avail_hours.each do |hour| %>
 			<td ><% if @view_21a.where(reservation_time: hour.hour).exists? %>
-					<%= link_to 'booked', reservation_path(@view_21a.where(reservation_time: hour.hour).pluck(:id)) %>
-					<% else %>open<% end %></td>
+					<%= link_to '', reservation_path(@view_21a.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
+					<% else %><span class="open_dot"></span><% end %></td>
 		<% end %>
 		</tr>
 		<tr>
-		<td>ASK-21 B</td>
+		<td>ASK-21B</td>
 		<% @avail_hours.each do |hour| %>
 			<td ><% if @view_21b.where(reservation_time: hour.hour).exists? %>
-					<%= link_to 'booked', reservation_path(@view_21b.where(reservation_time: hour.hour).pluck(:id)) %>
-					<% else %>open<% end %></td>
+					<%= link_to '', reservation_path(@view_21b.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
+					<% else %><span class="open_dot"><% end %></td>
 		<% end %>
 		</tr>
 		<tr>
 		<td>ASK-23</td>
 		<% @avail_hours.each do |hour| %>
 			<td ><% if @view_23.where(reservation_time: hour.hour).exists? %>
-					<%= link_to 'booked', reservation_path(@view_23.where(reservation_time: hour.hour).pluck(:id)) %>
-					<% else %>open<% end %></td>
+					<%= link_to '', reservation_path(@view_23.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
+					<% else %><span class="open_dot"><% end %></td>
 		<% end %>
 		</tr>
 

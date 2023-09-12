@@ -1,56 +1,58 @@
-<div class="mx-5 mt-2 mb-5 pb-5">
-	<div class="container">
-		<div class="row">
-			<div class="col-9">
-				<h4>Club schedule grid for: <%= @res_show.strftime("%A, %b %d, %Y") %></h4>
-				<h8>Search for reservations from a different day using the dropdown to the right </h8>
-			</div>
-			<div class="col input-group aligh-right">
-				<%= form_tag(reservations_path, method: :get) do %>
-					<%= submit_tag ("Check reservations"), {class: "btn btn-secondary btn-sm"} %>
-					<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
-				
-				<% end %>
-			</div>
+<div class="container mx-5 mt-2 mb-5 pb-5">
+	<div class="row">
+		<div class="col-5">
+			<h4>Club schedule grid for: <%= @res_show.strftime("%A, %b %d, %Y") %></h4>
+			<h8>Search for reservations from a different day using the dropdown to the right </h8>
+			<h8>Click on any red (booked) dot to see reservation details</h8>
+		</div>
+		<div class="col input-group aligh-right">
+			<%= form_tag(reservations_path, method: :get) do %>
+				<%= submit_tag ("Check reservations"), {class: "btn btn-secondary btn-sm"} %>
+				<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
+			<% end %>
+		</div>
+		<div class="col-7">
+			<%= render 'grid' %> 
 		</div>
 	</div>
 
-<%= render 'grid' %> 
-<h4 class="mt-4"><%= current_user.username %>'s reservations next 60 days</h4>
-<h8>Past reservations stay in this list for 3 days after the date to allow for adding flights</h8>
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th >Username  </th>
-			<th>Date  </th>
-			<th>Time  </th>
-      <th>Aircraft reserved</th>
-      <th>Instructor?</th>
-			<th>Flights</th>
-      <th colspan="3">Modify reservation details</th>
-		</tr>
-	</thead>
-		<tbody>
-			<% @myreservations.each do |reservation| %>
-				<tr>
-					<td><%= reservation.user.username %></td>
-					<td><%= reservation.reservation_date.strftime("%m/%d/%y") %>  </td>
-          <td><%= reservation.reservation_time %></td>
-          <td><%= reservation.aircraft.name %>, <%= reservation.aircraft.short_name %>  </td>
-          <td><%= reservation.instructor_flag.humanize %>  </td>
-					<td><%= reservation.flights.count %></td>
-          <td><%= link_to "View Details", reservation_path(reservation), class: "btn btn-info btn-sm" %>  </td>
-          <td><%= link_to "Edit", edit_reservation_path(reservation), class: "btn btn-primary btn-sm" %></td>
-          <td><%= link_to "Delete", reservation_path(reservation),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
-				</tr>
+	<div class="row">
+		<div class="col-7">	
+			<h4><%= current_user.username %>'s reservations next 60 days</h4>
+			<h8>Past reservations stay in this list for 3 days after the date to allow for adding flights</h8>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Date  </th>
+						<th>Time  </th>
+						<th>Aircraft</th>
+						<th>Instructor?</th>
+						<th>Flights</th>
+						<th colspan="3">Modify details</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @myreservations.each do |reservation| %>
+					<tr>
+						<td><%= reservation.reservation_date.strftime("%m/%d/%y") %>  </td>
+						<td><%= reservation.reservation_time %></td>
+						<td><%= reservation.aircraft.short_name %>  </td>
+						<td><%= reservation.instructor_flag.humanize %>  </td>
+						<td><%= reservation.flights.count %></td>
+						<td><%= link_to "View", reservation_path(reservation), class: "btn btn-info btn-sm" %>  </td>
+						<td><%= link_to "Edit", edit_reservation_path(reservation), class: "btn btn-primary btn-sm" %></td>
+						<td><%= link_to "Delete", reservation_path(reservation),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<% if has_membership == true %>
+				<%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-secondary btn-sm" %> 
+			<% else %>
+				<div class="badge text-bg-warning">Membership has expired, user has no reservation privileges</div>
 			<% end %>
-		</tbody>
-</table>
-<% if has_membership == true %>
-	<%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-secondary btn-sm" %> 
-<% else %>
-	<div class="badge text-bg-warning">Membership has expired, user has no reservation privileges</div>
-<% end %>
+		</div>
+	</div>
 </div>
 
 		
