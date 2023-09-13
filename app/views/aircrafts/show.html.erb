@@ -2,7 +2,7 @@
 	<div class="mt-2">
 		<h4>Show Aircraft details</h4>
 		<div class="table-responsive">
-		<table class="table table-striped">
+		<table class="table table-striped w-75">
 			<thead>
 				<tr>
 					<th>Aircraft Name</th>
@@ -29,9 +29,9 @@
     <div class="mt-4">
     <h6>This aircraft has flown <%= @sumhours.count %> flights, and <%= @sumhours.sum(:flight_time)/60 %>.<%= @sumhours.sum(:flight_time)%60 %> hours of flight time since last maintenance</h6>
     </div>
-		<div class="mt-4 col-7">
+		<div class="mt-4 col">
 		<h6>The following flights have been logged on this aircraft</h6>
-		<table class="table table-striped">
+		<table class="table table-striped w-50">
 			<thead>
 				<tr>
           <th>Date of Flight</th>

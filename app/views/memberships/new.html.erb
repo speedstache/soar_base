@@ -1,5 +1,5 @@
 <div class="container mx-2 my-2">
-	<div class="row justify-content-start ml-5 my-5" >
+	<div class="row justify-content-start ml-5 my-2 w-50" >
   <h4>Add a new membership type</h4>
     <div class="col">
       <%= render 'shared/errors', obj: @membership %>
@@ -8,7 +8,7 @@
 
     </div>
   </div>
+  <%= link_to "Back to membership list", memberships_path, :class => "btn btn-secondary btn-sm" %>
 </div>
 <div>
-  <%= link_to "Back to membership list", memberships_path, :class => "btn btn-secondary btn-sm" %>
 </div>
