@@ -1,5 +1,5 @@
 <div class="container mx-1 mt-1 mb-5 pb-5">
-	<div class="row w-75">
+	<div class="row">
 		<div class="col justify-content-start">
 			<h4>Club reservations grid: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
 		</div>
@@ -9,19 +9,32 @@
 				<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
 			<% end %>
 		</div>
-		<h8>Search for reservations from a different day using the dropdown to the right and clicking the box </h8><br>
+		<div>
+			<h8>Search for reservations from a different day using the dropdown to the right and clicking the box </h8><br>
 			<h8>Click on any red (booked) dot to see reservation details</h8>
+		</div>
 		<div class="table-responsive">
 			<%= render 'grid' %> 
 		</div>
 	</div>
-
 	<div class="row">
-		<div >	
+		<div class="col justify-content-start">	
 			<h4><%= current_user.username %>'s reservations next 60 days</h4>
+		</div>
+		<div class="col input-group justify-content-end">
+			<% if has_membership == true %>
+				<%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-secondary btn-sm" %> 
+			<% else %>
+				<div class="badge text-bg-warning">Membership has expired, user has no reservation privileges</div>
+			<% end %>
+		</div>
+		<div>
 			<h8>Past reservations stay in this list for 3 days after the date to allow for adding flights</h8>
-			<div class="table-responsive">
-			<table class="table table-striped w-75">
+		</div>
+	</div>
+	<div class="row">
+		<div class="table-responsive">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Date  </th>
@@ -47,12 +60,6 @@
 					<% end %>
 				</tbody>
 			</table>
-			</div>
-			<% if has_membership == true %>
-				<%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-secondary btn-sm" %> 
-			<% else %>
-				<div class="badge text-bg-warning">Membership has expired, user has no reservation privileges</div>
-			<% end %>
 		</div>
 	</div>
 </div>

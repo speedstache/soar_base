@@ -1,5 +1,5 @@
 <div class="container mx-1 mt-1 mb-5 pb-5">
-	<div class="row w-75">
+	<div class="row">
 		<div class="col justify-content-start">
 			<h4>Club reservations grid: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
 		</div>
@@ -9,39 +9,43 @@
 				<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
 			<% end %>
 		</div>
-		<h8>Search for a specific day using the dropdown selector</h8><br>
+		<div>
+			<h8>Search for a specific day using the dropdown selector</h8><br>
 			<h8>Click on red (booked) dots to see reservation details </h8>
+		</div>
 		<div class="table-responsive">
 			<%= render 'grid' %> 
 		</div>
 	</div>
-	
-
 <div class="row">
-	<div class="table-responsive">		
+	<div class="col justify-content-start">
 		<h4>Club reservations list: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
-		<table class="table table-striped w-75">
-			<thead>
-				<tr>
-					<th >Username  </th>
-					<th>Date  </th>
-					<th>Start Time  </th>
-					<th>Aircraft </th>
-					<th>Instructor?</th>
-				</tr>
-			</thead>
-				<tbody>
-					<% @res_date.each do |reservation| %>
-						<tr>
-							<td><%= reservation.user.username %></td>
-							<td><%= reservation.reservation_date.strftime("%m/%d/%y") %>  </td>
-							<td><%= reservation.reservation_time %></td>
-							<td><%= reservation.aircraft.short_name %>  </td>
-							<td><%= reservation.instructor_flag.humanize %>  </td>
-						</tr>
-					<% end %>
-				</tbody>
-			</table>
+	</div>
+	<div class="row">
+		<div class="table-responsive">		
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th >Username  </th>
+						<th>Date  </th>
+						<th>Start Time  </th>
+						<th>Aircraft </th>
+						<th>Instructor?</th>
+					</tr>
+				</thead>
+					<tbody>
+						<% @res_date.each do |reservation| %>
+							<tr>
+								<td><%= reservation.user.username %></td>
+								<td><%= reservation.reservation_date.strftime("%m/%d/%y") %>  </td>
+								<td><%= reservation.reservation_time %></td>
+								<td><%= reservation.aircraft.short_name %>  </td>
+								<td><%= reservation.instructor_flag.humanize %>  </td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
 		</div>		
 	</div>
 </div>

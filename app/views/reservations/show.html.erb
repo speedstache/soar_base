@@ -1,8 +1,15 @@
 <div class="container mx-2 my-2">
-	<div class="mt-2">
-		<h4>Show Flight details</h4>
+	<div class="row">
+		<div class="col justify-content-start mt-2">
+			<h4>Show Flight details</h4>
+		</div>
+		<div class="col input-group justify-content-end">	
+			<%= link_to 'Go back to reservations', reservations_path, :class => "btn btn-primary" %>
+		</div>
+	</div>	
+	<div class="row">
 		<div class="table-responsive">
-		<table class="table table-striped w-75">
+			<table class="table table-striped">
 			<thead>
 				<tr>
 					<th >Username  </th>
@@ -24,25 +31,34 @@
 							<td><%= link_to "Delete", reservation_path(@reservation), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
 						</tr>
 				</tbody>
-		</table>
+			</table>
 		</div>
-		<%= link_to 'Go back to reservations', reservations_path, :class => "btn btn-primary" %>
+	</div>
+	<div class="row">
+		<div class="col justify-content-start my-2">
+			<h4>Flight Details for this reservation</h4>
 		</div>
-		<div class="my-2 col">
-		<h4>This reservation has <%= @reservation.flights.count %> flights and a total of <%= number_to_currency(@reservation.flights.pluck(:fees).sum) %> in tow fees</h4>
+		<div class="col input-group justify-content-end">
+			<%= link_to "Add additional flights", new_reservation_flight_path(@reservation), :class => "btn btn-secondary" %>
+		</div>
+	</div>	
+	<div class="row">
+		<h8>Reservation has <%= @reservation.flights.count %> flights and <%= number_to_currency(@reservation.flights.pluck(:fees).sum) %> in tow fees</h8>
 		<h8>Check to make sure flight aircraft matches reservation aircraft</h8>
+	</div>
+	<div class="row mb-5 pb-5">	
 		<div class="table-responsive">
-		<table class="table table-striped w-75">
-			<thead>
-				<tr>
-					<th>Aircaft</th>
-					<th>Tow Height  </th>
-					<th>Flight Time  </th>
-					<th>Rope Break  </th>
-					<th>Tow Fee</th>
-					<th colspan="2">Modify Flights</th>
-				</tr>
-			</thead>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Aircaft</th>
+						<th>Tow Height  </th>
+						<th>Flight Time  </th>
+						<th>Rope Break  </th>
+						<th>Tow Fee</th>
+						<th colspan="2">Modify Flights</th>
+					</tr>
+				</thead>
 				<tbody>
 					<% @reservation.flights.each do |flight| %>
 						<tr>
@@ -55,11 +71,9 @@
 							<td><%= link_to "Delete", [@reservation, flight], class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
 						</tr>
 						<% end %>
-				</tbody>
-		</table>
-		</div>
-		<div class="mb-4 pb-4">
-		<%= link_to "Add additional flights", new_reservation_flight_path(@reservation), :class => "btn btn-secondary mb-5" %>
+					</tbody>
+				</table>
+			<div>	
 		</div>
 	</div>
 </div>
