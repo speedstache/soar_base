@@ -2,13 +2,13 @@
   <h4>Matrix of Aircraft Users</h4>
   <h8>User privileges on aircraft are edited within the user profiles, not here.<br>
    This is just for reporting purposes</h8>
-    <div class="col-6">
+    <div class="table-responsive">
       <table class="table table-striped">
         <thead>
           <tr>
             <th>Username</th>
             <th>Email</th>
-            <th class="col-4">Has reservation privileges in</th>
+            <th >Has reservation privileges in</th>
             <!-- <th>Modify Privileges</th> -->
           </tr>
         </thead>
@@ -18,12 +18,14 @@
                 <tr>
                   <td><%= user.username %></td>
                   <td><%= user.email %></td>
-                  <td><%= user.privileges_in.map {|x| x.values[1]} %></td> 
+                  <td ><%= user.privileges_in.map {|x| x.values[1]} %></td> 
                   <!-- <td><%= link_to 'Edit Associations', edit_aircraft_user_path(user), :class => "btn btn-primary btn-sm" %></td> -->
                 </tr>
               <% end %>
           </tbody>
       </table>
+  </div>
+  <div class="mb-5 pb-5">
     <%= link_to 'Create another aircraft user association', new_aircraft_user_path, :class => "btn btn-primary btn-sm mb-5" %>
   </div>
 </div>

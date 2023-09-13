@@ -1,7 +1,7 @@
-<div class="container">
-	<div class="row justify-content-start ml-5 my-5" >
+<div class="container mx-2 my-2">
+	<div class="row justify-content-start" >
     <h4>Add a new user</h4>
-    <div class="col-6">
+    <div class="col">
       <%= render 'shared/errors', obj: @user %>
         
         <%= render 'form' %>
@@ -10,5 +10,5 @@
   </div>
 </div>
 <div>
-  <%= link_to "Back to user list", users_path %>
+  <%= link_to "Back to user list", users_path,  class: "btn btn-secondary btn-sm" %>
 </div>

@@ -1,7 +1,7 @@
 <div class="container mt-2 mx-2">
 	<h4>Days available for scheduling</h4>
 	<h8>If non-weekend days are required for scheduling, add them and flag as active</h8>
-	<div class="col-5 pb-5 mb-5">
+	<div class="table-responsive">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -20,6 +20,8 @@
 				<% end %>
 			</tbody>
 		</table>
+	</div>
+	<div class="mb-5 pb-5">
 		<%= link_to 'Add another day', new_day_path, :class => "btn btn-secondary btn-sm" %>
 	</div>
 </div>

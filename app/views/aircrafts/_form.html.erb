@@ -1,33 +1,33 @@
 <%= form_with(model: @aircraft, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
   <div class="form-group row p-2" >
-      <%= f.label :name, class: "col-4 col-form-label text-light" %>
-    <div class="col-3">
+      <%= f.label :name, class: "col col-form-label text-light" %>
+    <div class="col">
       <%= f.text_field :name, class: "input-group-text" %>
     </div>
   </div>
   <div class="form-group row p-2" >
-      <%= f.label :short_name, class: "col-4 col-form-label text-light" %>
-    <div class="col-5">
+      <%= f.label :short_name, class: "col col-form-label text-light" %>
+    <div class="col">
       <%= f.text_field :short_name, class: "input-group-text" %>
     </div>
   </div>	
   <div class="form-group row p-2" >
-      <%= f.label :group, class: "col-4 col-form-label text-light" %>
-    <div class="col-5">
+      <%= f.label :group, class: "col col-form-label text-light" %>
+    <div class="col">
       <%= f.select :group, options_for_select(["club", "private", "towplane"]),{}, {class: "input-group-text"} %>
     </div>
     <div class="form-group row p-2" >
-      <%= f.label :last_maintenance, class: "col-4 col-form-label text-light" %>
-    <div class="col-5">
+      <%= f.label :last_maintenance, class: "col col-form-label text-light" %>
+    <div class="col">
       <%= f.date_field :last_maintenance, class: "input-group-text" %>
     </div>
   </div>	
   </div>	
   <div class="form-group row p-2" >
-      <%= f.label :active_flag, class: "col-4 col-form-label text-light" %>
-    <div class="col-5">
+      <%= f.label :active_flag, class: "col col-form-label text-light" %>
+    <div class="col">
       <%= f.check_box :active_flag %>
     </div>
   </div>
-<%= f.submit class:"btn btn-outline-light btn-lg col-6" %>
+<%= f.submit class:"btn btn-outline-light col" %>
 <% end %>

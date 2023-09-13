@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mx-2 my-2">
 	<div class="mt-4">
 		<h4>Show Flight details</h4>
 		<table class="table table-striped">
@@ -9,7 +9,7 @@
 					<th>Start Time  </th>
 					<th>Aircraft requested  </th>
 					<th>Instructor needed  </th>
-					<th colspan="3">Modify reservation details</th>
+					<th colspan="3">Modify Reservation</th>
 				</tr>
 			</thead>
 				<tbody>
@@ -19,15 +19,14 @@
 							<td><%= @reservation.reservation_time %></td>
 							<td><%= @reservation.aircraft.name %>, <%= @reservation.aircraft.short_name %>  </td>
 							<td><%= @reservation.instructor_flag.humanize %>  </td>
-							<td><%= link_to "Edit", edit_reservation_path(@reservation), class: "btn btn-primary btn-sm" %></td>
+							<td><%= link_to "Modify", edit_reservation_path(@reservation), class: "btn btn-primary btn-sm" %></td>
 							<td><%= link_to "Delete", reservation_path(@reservation), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
-							<td><%= link_to "Add flights", new_reservation_flight_path(@reservation), class: "btn btn-secondary btn-sm" %></td>
 						</tr>
 				</tbody>
 		</table>
 		<%= link_to 'Go back to reservations', reservations_path, :class => "btn btn-primary" %>
 		</div>
-		<div class="my-5 col-8">
+		<div class="my-5 col">
 		<h4>This reservation has <%= @reservation.flights.count %> flights and a total of <%= number_to_currency(@reservation.flights.pluck(:fees).sum) %> in tow fees</h4>
 		<h8>Check to make sure flight aircraft matches reservation aircraft</h8>
 		<table class="table table-striped">
@@ -37,7 +36,6 @@
 					<th>Tow Height  </th>
 					<th>Flight Time  </th>
 					<th>Rope Break  </th>
-					<th>Tow Fee</th>
 					<th>Tow Fee</th>
 					<th colspan="2">Modify Flights</th>
 				</tr>
@@ -50,8 +48,8 @@
 							<td><%= flight.flight_time %></td>
 							<td><%= flight.rope_break.humanize %></td>
 							<td><%= number_to_currency(flight.fees) %></td>
-							<td><%= link_to 'Modify flight', edit_reservation_flight_path(@reservation, flight), class: "btn btn-primary btn-sm"  %></td>
-							<td><%= link_to "Delete flight", [@reservation, flight], class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+							<td><%= link_to 'Modify', edit_reservation_flight_path(@reservation, flight), class: "btn btn-primary btn-sm"  %></td>
+							<td><%= link_to "Delete", [@reservation, flight], class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
 						</tr>
 						<% end %>
 				</tbody>

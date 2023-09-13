@@ -1,6 +1,6 @@
 <div class="container mt-2 mx-2">
 	<h4>List of membership types</h4>
-	<div class="col-5 mb-5 pb-5">
+	<div class="table-responsive">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -23,6 +23,8 @@
 					<% end %>
 				</tbody>
 		</table>
-    <%= link_to 'Add a new membership type', new_membership_path, class: "btn btn-primary btn-sm"%>
+	</div>
+	<div class="mb-5 pb-5">
+	<%= link_to 'Add a new membership type', new_membership_path, class: "btn btn-primary btn-sm"%>
 	</div>
 </div>

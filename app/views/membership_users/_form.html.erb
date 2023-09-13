@@ -1,28 +1,28 @@
 <%= form_with(model: @membership_user, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
   <div class="form-group row p-2" >
-      <%= f.label :user_id, class: "col-4 col-form-label text-light" %>
-    <div class="col-3">
+      <%= f.label :user_id, class: "col col-form-label text-light" %>
+    <div class="col">
       <%= f.collection_select(:user_id, User.all, 'id', 'username', {}, {class: "input-group-text"}) %>
     </div>
   </div>
   <div class="form-group row p-2" >
-      <%= f.label :membership_type, class: "col-4 col-form-label text-light" %>
-    <div class="col-5">
+      <%= f.label :membership_type, class: "col col-form-label text-light" %>
+    <div class="col">
     <%= f.collection_select(:membership_id, Membership.all, 'id', 'membership_type', {}, {class: "input-group-text"}) %>
     </div>
   </div>
   <div class="form-group row p-2" >
-      <%= f.label :renewal_date, class: "col-4 col-form-label text-light" %>
-    <div class="col-5">
+      <%= f.label :renewal_date, class: "col col-form-label text-light" %>
+    <div class="col">
     <%= f.date_field :renewal_date, class: "input-group-text" %>
     </div>
   </div>
   <div class="form-group row p-2" >
-      <%= f.label :active_flag, class: "col-4 col-form-label text-light" %>
-    <div class="col-5">
+      <%= f.label :active_flag, class: "col col-form-label text-light" %>
+    <div class="col">
     <%= f.check_box :active_flag, class: "input-group-text" %>
     </div>
   </div>
     
-<%= f.submit class:"btn btn-outline-light btn-lg col-6" %>
+<%= f.submit class:"btn btn-outline-light col" %>
 <% end %>

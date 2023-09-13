@@ -1,30 +1,30 @@
 <div class="container my-2 mx-2">
   <h4>Editing A specific day</h4>
 	<div class="row justify-content-start" >
-    <div class="col-auto">
+  <h8>Date format is like 2023-09-02</h8>
+    <div class="col">
       <%= render 'shared/errors', obj: @day %>
         <%= form_with(model: @day, class: "shadow p-3 bg-info rounded", local: true) do |f| %>
           <div class="form-group row p-2" >
-            <div class="col-1 mx-4">
-              <%= f.label :day, class: "col-form-label text-light" %>
+            <div class="col mx-4">
+              <%= f.label :day, class: "col col-form-label text-light" %>
               </div>
-            <div class="col-2">
+            <div class="col">
               <%= f.text_field :day, class: "input-group-text" %>
             </div>
           </div>	
           <div class="form-group row p-2" >
-          <div class="col-1 mx-4">
-              <%= f.label :active_flag, class: "col-form-label text-light" %>
+          <div class="col mx-4">
+              <%= f.label :active_flag, class: "col col-form-label text-light" %>
               </div>
-            <div class="col-2">
+            <div class="col">
               <%= f.check_box :active_flag %>
             </div>
           </div>
-        <%= f.submit class:"btn btn-outline-light col-6" %>
+        <%= f.submit class:"btn btn-outline-light col" %>
         <% end %>
       </div>
     </div>
-    <%= link_to "Cancel edit and to back to days", days_path, class:"btn btn-primary btn-sm mt-2" %>
-
+    <%= link_to "Cancel edit and to back to days", days_path, class:"btn btn-primary mt-2" %>
   </div>
 </div>

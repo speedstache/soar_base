@@ -1,25 +1,24 @@
 <div class="container mx-1 mt-1 mb-5 pb-5">
 	<div class="row">
-		<div class="col-5">
+		<div class="col justify-content-start">
 			<h4>Club reservations grid: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
-			<h8>Search for a specific day using the dropdown selector</h8><br>
-			<h8>Click on red (booked) dots to see reservation details </h8>
-
 		</div>
-		<div class="col input-group aligh-right">
+		<div class="col input-group justify-content-end">
 			<%= form_tag(reservations_club_path, method: :get) do %>
 				<%= submit_tag ("Check reservations"), {class: "btn btn-secondary"} %>
 				<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
 			<% end %>
 		</div>
-		<div class="col-7">
+		<h8>Search for a specific day using the dropdown selector</h8><br>
+			<h8>Click on red (booked) dots to see reservation details </h8>
+		<div class="table-responsive">
 			<%= render 'grid' %> 
 		</div>
 	</div>
 	
 
 <div class="row">
-	<div class="col-7">		
+	<div class="table-responsive">		
 		<h4>Club reservations list: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
 		<table class="table table-striped">
 			<thead>

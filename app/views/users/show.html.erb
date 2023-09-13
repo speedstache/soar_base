@@ -1,6 +1,6 @@
 <div class="mt-2 mx-2 mb-5">
 <h4>List of Users</h4>
-<div class="col-10">
+<div class="table-responsive">
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -22,12 +22,10 @@
 					<td><%= @user.activated.humanize %></td>
           <td><%= @user.reset_sent_at %></td>
 					<td><%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary btn-sm"%></td>
-          <td><%= link_to "Delete", user_path(@user),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+          <!-- <td><%= link_to "Delete", user_path(@user),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>-->
 				</tr>
 		</tbody>
 </table>
-<%= link_to 'Go back to users list', users_path, :class => "btn btn-primary mb-5" %>
-
-
 </div>
+<%= link_to 'Go back to users list', users_path, :class => "btn btn-primary btn-sm mb-5" %>
 </div>
