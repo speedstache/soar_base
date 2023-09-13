@@ -1,19 +1,18 @@
 Rails.application.routes.draw do
   resources :towfees
   resources :membership_users
-  resources :memberships
-  resources :permissions
+  resources :memberships,     except: [:destroy]
+  resources :permissions,     except: [:destroy]
   resources :aircraft_users
-  resources :users
-  resources :hours
-  resources :days
+  resources :users,     except: [:destroy]
+  resources :hours,     except: [:destroy]
+  resources :days,     except: [:destroy]
   get 'reservations/club', to: 'reservations#club'
-  get 'reservations/date/:reservation_date', to: 'reservations#date'
   resources :reservations do
     resources :flights
   end
   resources :flights
-  resources :aircrafts
+  resources :aircrafts,     except: [:destroy]
   get "home/index"  
   root to: "home#index"
 

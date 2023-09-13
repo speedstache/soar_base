@@ -1,6 +1,7 @@
 <div class="container mx-2 my-2">
 	<div class="mt-4">
 		<h4>Show Flight details</h4>
+		<div class="table-responsive"</div>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -24,11 +25,13 @@
 						</tr>
 				</tbody>
 		</table>
-		<%= link_to 'Go back to reservations', reservations_path, :class => "btn btn-primary" %>
 		</div>
-		<div class="my-5 col">
+		<%= link_to 'Go back to reservations', reservations_path, :class => "btn btn-primary btn-sm" %>
+		</div>
+		<div class="col mt-2">
 		<h4>This reservation has <%= @reservation.flights.count %> flights and a total of <%= number_to_currency(@reservation.flights.pluck(:fees).sum) %> in tow fees</h4>
 		<h8>Check to make sure flight aircraft matches reservation aircraft</h8>
+		<div class="table-responsive">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -54,6 +57,7 @@
 						<% end %>
 				</tbody>
 		</table>
-		<%= link_to "Add additional flights", new_reservation_flight_path(@reservation), :class => "btn btn-secondary mb-5" %>
+		</div>
+		<%= link_to "Add additional flights", new_reservation_flight_path(@reservation), :class => "btn btn-secondary btn-sm mb-5" %>
 	</div>
 </div>
