@@ -5,7 +5,7 @@
 		</div>
 		<div class="col input-group justify-content-end">
 			<%= form_tag(reservations_club_path, method: :get) do %>
-				<%= submit_tag ("Check reservations"), {class: "btn btn-secondary"} %>
+				<%= submit_tag ("Check reservations"), {class: "btn btn-info"} %>
 				<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
 			<% end %>
 		</div>
@@ -28,7 +28,7 @@
 					<tr>
 						<th >Username  </th>
 						<th>Date  </th>
-						<th>Start Time  </th>
+						<th>Time  </th>
 						<th>Aircraft </th>
 						<th>Instructor?</th>
 					</tr>

@@ -9,7 +9,7 @@
 	</thead>
 	<tbody>
 		<tr>
-		<td>ASK-21A</td>
+		<td>21A</td>
 		<% @avail_hours.each do |hour| %>
 			<td ><% if @view_21a.where(reservation_time: hour.hour).exists? %>
 					<%= link_to '', reservation_path(@view_21a.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
@@ -17,7 +17,7 @@
 		<% end %>
 		</tr>
 		<tr>
-		<td>ASK-21B</td>
+		<td>21B</td>
 		<% @avail_hours.each do |hour| %>
 			<td ><% if @view_21b.where(reservation_time: hour.hour).exists? %>
 					<%= link_to '', reservation_path(@view_21b.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>

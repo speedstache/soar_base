@@ -3,9 +3,9 @@
 		<div class="col justify-content-start">
 			<h4>Club reservations grid: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
 		</div>
-		<div class="col input-group justify-content-end">
+		<div class="col input-group justify-content-end align-middle">
 			<%= form_tag(reservations_path, method: :get) do %>
-				<%= submit_tag ("Check reservations"), {class: "btn btn-secondary"} %>
+				<%= submit_tag ("Check Reservations"), {class: "btn btn-info"} %>
 				<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
 			<% end %>
 		</div>
@@ -19,17 +19,17 @@
 	</div>
 	<div class="row">
 		<div class="col justify-content-start">	
-			<h4><%= current_user.username %>'s reservations next 60 days</h4>
+			<h4><%= current_user.username %>'s reservations</h4>
 		</div>
-		<div class="col input-group justify-content-end">
+		<div class="col input-group justify-content-end align-middle">
 			<% if has_membership == true %>
-				<%= link_to 'Add another reservation', new_reservation_path, :class => "btn btn-secondary btn-sm" %> 
+				<%= link_to 'Add New Reservation', new_reservation_path, :class => "btn btn-success" %> 
 			<% else %>
 				<div class="badge text-bg-warning">Membership has expired, user has no reservation privileges</div>
 			<% end %>
 		</div>
 		<div>
-			<h8>Past reservations stay in this list for 3 days after the date to allow for adding flights</h8>
+			<h8>Reservations shown from prior 3 days through next 60 days</h8>
 		</div>
 	</div>
 	<div class="row">

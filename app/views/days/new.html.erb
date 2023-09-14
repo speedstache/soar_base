@@ -1,26 +1,28 @@
 <div class="container mx-2 my-2">
   <h4>Add a Day to the schedule</h4>
-	<div class="row justify-content-start ml-2 w-50" >
+	<div class="row justify-content-start ml-2" >
     <h8>Date format is like 2023-09-02</h8>
-    <div class="col">
-      <%= render 'shared/errors', obj: @day %>
-        <%= form_with scope: :day, url: days_path, class: "shadow p-3 mb-3 bg-info rounded", data: { turbo: false }, local: true do |f| %>
-          <div class="form-group row p-2" >
-            <%= f.label :date, class: "col col-form-label text-light" %>
-            <div class="col">
-              <%= f.date_field :day, class: "input-group-text" %>
-            </div>
-          </div>	
-          <div>
-          <div class="form-group row p-2" >
-            <%= f.label :activeflag, class: "col col-form-label text-light" %>
-            <div class="col">
-              <%= f.check_box :active_flag, class: "form-check-label" %>
-            </div>
-          </div>
-        <%= f.submit class:"btn btn-outline-light col" %>
-      <% end %>
-    </div>
+  </div>
+    <%= render 'shared/errors', obj: @day %>
+    <%= form_with scope: :day, url: days_path, class: "col-sm-10 col-md-5 shadow p-3 mb-3 bg-info rounded", data: { turbo: false }, local: true do |f| %>
+      <div class="row p-2">
+        <div class="form-group col" >
+          <%= f.label :date, class: "col col-form-label text-light" %>
+        </div>
+        <div class="col">
+          <%= f.date_field :day, class: "input-group-text" %>
+        </div>
+      </div>
+      <div class="row p-2">  
+        <div class="form-group col" >
+          <%= f.label :activeflag, class: "col col-form-label text-light" %>
+        </div>
+        <div class="col">
+          <%= f.check_box :active_flag, class: "form-check-label" %>
+        </div>
+      </div>
+    <%= f.submit class:"btn btn-outline-light col" %>
+    <% end %>
     <%= link_to 'Cancel and return to days list', days_path, :class => "btn btn-secondary" %>
   </div>
 </div>
