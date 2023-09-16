@@ -32,6 +32,47 @@
 			<h8>Reservations shown from prior 3 days through next 60 days</h8>
 		</div>
 	</div>
+
+	<!-- replace table with card for upcoming reservations -->
+	<% @myreservations.each do |reservation| %>
+		<div class="col-sm-10 col-md-6">
+			<div class="card shadow p-3 mb-5 bg-white rounded">
+				<div class="row card-header fst-italic">
+					<div class="col text-start justify-content-start">
+					<strong><%= reservation.reservation_date.strftime("%m/%d/%y") %></strong>
+					</div>
+					<div class="col text-center justify-content-center">
+						<%= reservation.reservation_time %>
+					</div>
+					<div class="col text-end justify-content-end">
+						<%= reservation.aircraft.short_name %>
+					</div>
+				</div>
+				<div class="card-body justify-content-start">
+					<p>Requires instructor: <%= reservation.instructor_flag.humanize %></p>
+					
+					<p>Reservation has <%= reservation.flights.count %> flights </p>
+					<p>Total tow fees: <%= number_to_currency(reservation.flights.pluck(:fees).sum) %></p>
+
+
+				</div>
+				<div class="card-footer text-body-secondary">
+					<div class="col input-group justify-content-start">
+						<%= link_to "View", reservation_path(reservation), class: "btn btn-info btn-sm" %>
+						<%= link_to "Edit", edit_reservation_path(reservation), class: "btn btn-primary btn-sm" %>
+						<%= link_to "Delete", reservation_path(reservation),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>	
+					</div>
+					<div class="col text-end justify-content-end">
+						Pay/Close Reservation
+					</div>
+				</div>
+			</div>
+		</div>
+	<% end %>
+
+
+
+
 	<div class="row">
 		<div class="table-responsive">
 			<table class="table table-striped">
