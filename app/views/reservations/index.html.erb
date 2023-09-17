@@ -1,16 +1,16 @@
 <div class="container mx-1 mt-1 mb-5 pb-5">
 	<div class="row">
 		<div class="col justify-content-start">
-			<h4>Club reservations grid: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
+			<h4>Availability for: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
 		</div>
 		<div class="col input-group justify-content-end align-middle">
 			<%= form_tag(reservations_path, method: :get) do %>
-				<%= submit_tag ("Check Reservations"), {class: "btn btn-info"} %>
+				<%= submit_tag ("Submit Date Selection"), {class: "btn btn-info"} %>
 				<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
 			<% end %>
 		</div>
 		<div>
-			<h8>Search for reservations from a different day using the dropdown to the right and clicking the box </h8><br>
+			<h8>Search for availability by selecting date from the dropdown clicking the submit date box </h8><br>
 			<h8>Click on any red (booked) dot to see reservation details</h8>
 		</div>
 		<div class="table-responsive">
@@ -29,13 +29,13 @@
 			<% end %>
 		</div>
 		<div>
-			<h8>Reservations shown from prior 3 days through next 60 days</h8>
+			<h8>Reservations from prior 3 days through next 30 days</h8>
 		</div>
 	</div>
 
 	<!-- replace table with card for upcoming reservations -->
 	<% @myreservations.each do |reservation| %>
-		<div class="col-sm-10 col-md-6">
+		<div class="col-sm-10 col-md-8">
 			<div class="card shadow p-3 mb-5 bg-white rounded">
 				<div class="row card-header fst-italic">
 					<div class="col text-start justify-content-start">
@@ -45,25 +45,21 @@
 						<%= reservation.reservation_time %>
 					</div>
 					<div class="col text-end justify-content-end">
-						<%= reservation.aircraft.short_name %>
+						Glider: <%= reservation.aircraft.short_name %>
 					</div>
 				</div>
 				<div class="card-body justify-content-start">
 					<p>Requires instructor: <%= reservation.instructor_flag.humanize %></p>
-					
-					<p>Reservation has <%= reservation.flights.count %> flights </p>
-					<p>Total tow fees: <%= number_to_currency(reservation.flights.pluck(:fees).sum) %></p>
-
-
+					<p>You flew <%= reservation.flights.count %> flights with <%= number_to_currency(reservation.flights.pluck(:fees).sum) %> in tow fees. </p>
 				</div>
-				<div class="card-footer text-body-secondary">
+				<div class="row card-footer text-body-secondary">
 					<div class="col input-group justify-content-start">
-						<%= link_to "View", reservation_path(reservation), class: "btn btn-info btn-sm" %>
-						<%= link_to "Edit", edit_reservation_path(reservation), class: "btn btn-primary btn-sm" %>
-						<%= link_to "Delete", reservation_path(reservation),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>	
+						<%= link_to "View", reservation_path(reservation), class: "btn btn-info btn-sm" %> 
+						<%= link_to "Edit", edit_reservation_path(reservation), class: "btn btn-primary btn-sm" %> 
+						<%= link_to "Drop", reservation_path(reservation),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>	
 					</div>
-					<div class="col text-end justify-content-end">
-						Pay/Close Reservation
+					<div class="col input-group justify-content-end">
+					<%= link_to "Pay for Flights", reservation_path(reservation), class: "btn btn-success btn-sm" %>
 					</div>
 				</div>
 			</div>
@@ -72,7 +68,7 @@
 
 
 
-
+<!-- Older design for showing reservation as a table instead of a card 
 	<div class="row">
 		<div class="table-responsive">
 			<table class="table table-striped">
@@ -103,6 +99,7 @@
 			</table>
 		</div>
 	</div>
+	-->
 </div>
 
 		
