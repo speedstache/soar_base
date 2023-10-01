@@ -64,10 +64,14 @@
 						<div class="col input-group justify-content-start">
 							<%= link_to 'Go back to reservations', reservations_path, :class => "btn btn-primary" %>
 						</div>
-						<div class="col input-group justify-content-end">
+						<div class="col input-group justify-content-center">
 							<%= link_to "Add additional flights", new_reservation_flight_path(@reservation), :class => "btn btn-secondary" %>
 						</div>
+						<div class="col input-group justify-content-end">
+							<%= link_to "Pay for Flights", checkout_path(:id => @reservation.id), class: "btn btn-success" %>
+						</div>
 					</div>
+
 
 	<!-- Old design showing reservation and flight details as tables instead of cards
 		<div class="table-responsive">

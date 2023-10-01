@@ -36,6 +36,11 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Add Stripe and Pay gems for payment of flights and memberships
+gem 'stripe'
+gem "pay", "~> 6.0"
+gem "receipts", "~> 2.0"
+
 #email server setup via SendGrid
 
 # Use Redis adapter to run Action Cable in production
