@@ -2,8 +2,6 @@ require_relative "boot"
 
 require "rails/all"
 
-config.assets.initialize_on_precompile = false
-
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -21,5 +19,7 @@ module SoarBase
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.action_mailer.default_url_options = { host: "eaglevillesoaring.com" }
+
+    config.assets.initialize_on_precompile = false
   end
 end
