@@ -12,4 +12,5 @@ class Webhooks::StripeJob < ApplicationJob
       else
         inbound_webhook.update!(status: skipped)
     end
+  end
 end
