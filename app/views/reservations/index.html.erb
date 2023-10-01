@@ -54,11 +54,10 @@
 				</div>
 				<div class="row card-footer text-body-secondary">
 					<div class="col input-group justify-content-start">
-						<%= link_to "View", reservation_path(reservation), class: "btn btn-info btn-sm" %> 
-						<%= link_to "Edit", edit_reservation_path(reservation), class: "btn btn-primary btn-sm" %> 
-						<%= link_to "Drop", reservation_path(reservation),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>	
+						<%= link_to "See Details", reservation_path(reservation), class: "btn btn-info btn-sm" %> 
 					</div>
 					<div class="col input-group justify-content-end">
+						<%= link_to "Delete", reservation_path(reservation),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>	
 					</div>
 				</div>
 			</div>

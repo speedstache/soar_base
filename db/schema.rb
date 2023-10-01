@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_30_153544) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_01_183550) do
   create_table "aircraft_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "aircraft_id"
@@ -49,6 +49,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_30_153544) do
   create_table "hours", force: :cascade do |t|
     t.string "hour"
     t.boolean "active_flag"
+  end
+
+  create_table "inbound_webhooks", force: :cascade do |t|
+    t.string "status", default: "pending"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "membership_users", force: :cascade do |t|
