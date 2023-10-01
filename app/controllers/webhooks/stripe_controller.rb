@@ -10,7 +10,7 @@ class Webhooks::StripeController < Webhooks::BaseController
 
   def verify_event 
     signature = request.headers['Stripe-Signature']
-    secret = Rails.application.credentials.dig(:stripe, :webhook_signing_secret)
+    secret = Rails.application.credentials.dig(:stripe, :stripe_webhook_signing_secret)
 
     ::Stripe::Webhook::Signature.verify_header(
       payload, 
