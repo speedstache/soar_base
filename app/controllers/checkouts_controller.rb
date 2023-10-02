@@ -3,7 +3,6 @@ class CheckoutsController < ApplicationController
   
 
   def show
-    Stripe.api_key = Rails.configuration.stripe(:secret_key)
     @reservation = Reservation.find(params[:id])
 
     current_user.set_payment_processor :stripe
