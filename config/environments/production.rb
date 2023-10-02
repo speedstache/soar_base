@@ -107,6 +107,8 @@ Rails.application.configure do
   }
   
   #define production ENV variables for Stripe
-    Rails.configuration.stripe.secret_key = ENV['STRIPE_SECRET_KEY']
-    Rails.configuration.stripe.publishable_key = ENV['STRIPE_PUBLISHABLE_KEY'] 
+
+  config.stripe.secret_key = Rails.application.credentials.stripe[:production][:secret_key]
+  config.stripe.publishable_key = Rails.application.credentials.stripe[:production][:publishable_key]
+
 end
