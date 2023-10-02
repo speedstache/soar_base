@@ -1,7 +1,9 @@
 class CheckoutsController < ApplicationController
   #before_action :authenticate_user!
+  
 
   def show
+    Stripe.api_key = Rails.configuration.stripe(:secret_key)
     @reservation = Reservation.find(params[:id])
 
     current_user.set_payment_processor :stripe
