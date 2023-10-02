@@ -106,4 +106,7 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
   
+  #define production ENV variables for Stripe
+    Rails.configuration.stripe.secret_key = ENV['STRIPE_SECRET_KEY']
+    Rails.configuration.stripe.publishable_key = ENV['STRIPE_PUBLISHABLE_KEY'] 
 end
