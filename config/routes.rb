@@ -27,9 +27,9 @@ Rails.application.routes.draw do
 
   namespace :webhooks do
     resource :reservation, controller: :reservation, only: [:create]
-    resource :stripe, controller: :stripe, only: [:create]
+    resource :stripe, controller: :stripe, only: [:create, :show]
   end
-    
+
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   
