@@ -12,6 +12,7 @@ class CheckoutsController < ApplicationController
       .payment_processor
       .checkout(
         mode: 'payment',
+        payment_method_configuration: 'pmc_1NxNOeHnDxnfrk7n8dp8f8yB',
         client_reference_id: @reservation.id,
         line_items: [
           {
