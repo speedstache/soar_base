@@ -1,4 +1,5 @@
 class MembershipUsersController < ApplicationController
+  before_action :require_user
   before_action :set_membership_user, only: %i[ show edit update destroy ]
 
   # GET /membership_users or /membership_users.json

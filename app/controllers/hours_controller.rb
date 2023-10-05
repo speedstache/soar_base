@@ -1,4 +1,5 @@
 class HoursController < ApplicationController
+  before_action :require_user
 
   def index
     @hours = Hour.all

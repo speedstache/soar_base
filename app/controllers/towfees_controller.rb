@@ -1,4 +1,5 @@
 class TowfeesController < ApplicationController
+  before_action :require_user
   before_action :set_towfee, only: %i[ show edit update destroy ]
 
   # GET /towfees or /towfees.json

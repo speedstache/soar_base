@@ -47,6 +47,9 @@
 					<div class="col text-end justify-content-end">
 						Glider: <%= reservation.aircraft.short_name %>
 					</div>
+					<div class="col text-end justify-content-end">
+						Status: <%= reservation.status %>
+					</div>
 				</div>
 				<div class="card-body justify-content-start">
 					<p>Requires instructor: <%= reservation.instructor_flag.humanize %></p>
@@ -57,7 +60,11 @@
 						<%= link_to "See Details", reservation_path(reservation), class: "btn btn-info btn-sm" %> 
 					</div>
 					<div class="col input-group justify-content-end">
+					<% if reservation.flights.count > 0 && reservation.status != 'open' %>
+						<%= link_to "Delete", reservation_path(reservation),class: "btn btn-warning btn-sm disabled", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>	
+					<% else %>
 						<%= link_to "Delete", reservation_path(reservation),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>	
+					<% end %>
 					</div>
 				</div>
 			</div>

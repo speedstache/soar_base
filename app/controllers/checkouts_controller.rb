@@ -1,6 +1,6 @@
 class CheckoutsController < ApplicationController
   #before_action :authenticate_user!
-  
+  before_action :require_user
 
   def show
     @reservation = Reservation.find(params[:id])
