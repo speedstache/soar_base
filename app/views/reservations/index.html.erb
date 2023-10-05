@@ -1,41 +1,41 @@
-<div class="container mx-1 mt-1 mb-5 pb-5">
+<div class="container mt-2 mb-5 pb-5">
 	<div class="row">
-		<div class="col justify-content-start">
+		<div class="col justify-content-center">
 			<h4>Availability for: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
 		</div>
 		<div class="col input-group justify-content-end align-middle">
 			<%= form_tag(reservations_path, method: :get) do %>
-				<%= submit_tag ("Submit Date Selection"), {class: "btn btn-info"} %>
+				<%= submit_tag ("Submit Date Selection"), {class: "btn btn-info btn-sm"} %>
 				<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
 			<% end %>
 		</div>
 		<div>
-			<h8>Search for availability by selecting date from the dropdown clicking the submit date box </h8><br>
-			<h8>Click on any red (booked) dot to see reservation details</h8>
+			<p>Check open slots by selecting date and clicking Submit Date Selection </p>
 		</div>
 		<div class="table-responsive">
-			<%= render 'grid' %> 
+			<%= render 'grid' %>
+			<p>Click on red (booked) dot to see reservation details</p> 
 		</div>
 	</div>
 	<div class="row">
-		<div class="col justify-content-start">	
+		<div class="col justify-content-end">	
 			<h4><%= current_user.username %>'s reservations</h4>
 		</div>
 		<div class="col input-group justify-content-end align-middle">
 			<% if has_membership == true %>
-				<%= link_to 'Add New Reservation', new_reservation_path, :class => "btn btn-success" %> 
+				<%= link_to 'Add Reservation', new_reservation_path, :class => "btn btn-success btn-lg" %> 
 			<% else %>
 				<div class="badge text-bg-warning">Membership has expired, user has no reservation privileges</div>
 			<% end %>
 		</div>
 		<div>
-			<h8>Reservations from prior 3 days through next 30 days</h8>
+			<p>Past 3 days through next 30 days</p>
 		</div>
 	</div>
 
 	<!-- replace table with card for upcoming reservations -->
 	<% @myreservations.each do |reservation| %>
-		<div class="col-sm-10 col-md-8">
+		<div class="col-sm-10 col-md-8 ">
 			<div class="card shadow p-3 mb-5 bg-white rounded">
 				<div class="row card-header fst-italic">
 					<div class="col text-start justify-content-start">

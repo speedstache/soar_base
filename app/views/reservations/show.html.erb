@@ -11,7 +11,7 @@
 		<div class="col-sm-10 col-md-8">
 			<div class="card shadow p-3 mb-5 bg-white rounded">
 				<div class="row card-header fst-italic">
-					<div class="row">
+					<div class="row p-0">
 						<div class="col text-start justify-content-start">
 							<strong><%= @reservation.reservation_date.strftime("%m/%d/%y") %></strong>
 						</div>
@@ -22,7 +22,7 @@
 							Glider: <%= @reservation.aircraft.short_name %>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row p-0">
 						<div class="col input-group justify-content-start">
 							<% if @reservation.status == 'open' %>
 								<%= link_to "Edit reservation", edit_reservation_path(@reservation), class: "btn btn-primary btn-sm" %>
@@ -38,20 +38,19 @@
 							<% end %>
 						</div>
 					</div>
-				<div class="card-body justify-content-start">
+				<div class="card-body">
 					<div class="row">
-						<h8>You flew <%= @reservation.flights.count %> flight(s) with <%= number_to_currency(@reservation.flights.pluck(:fees).sum) %> in tow fees</h8>
-						<h8>Verify flight glider matches glider used</h8>
+						<h8 class="p-0">You flew <%= @reservation.flights.count %> flight(s) with <%= number_to_currency(@reservation.flights.pluck(:fees).sum) %> in tow fees</h8>
+						<h8 class="p-0">Verify flight glider matches glider used</h8>
 					</div>
 					<div class="row">
-					<div class="table-responsive">
+					<div class="table-responsive p-0">
 					<table class="table table-striped">
 						<thead>
 							<tr>
 								<th>Glider</th>
 								<th>Tow Height  </th>
 								<th>Flight Time  </th>
-								<th>Rope Break  </th>
 								<th>Tow Fee</th>
 								<th colspan="2">Modify Flights</th>
 							</tr>
@@ -62,7 +61,6 @@
 									<td><%= flight.aircraft.short_name %></td>
 									<td><%= flight.tow_height %></td>
 									<td><%= flight.flight_time %></td>
-									<td><%= flight.rope_break.humanize %></td>
 									<td><%= number_to_currency(flight.fees) %></td>
 									<td>
 										<% if @reservation.status == 'open' %>
@@ -85,20 +83,20 @@
 					</div>
 					<div class="row card-footer text-body-secondary">
 						<div class="col input-group justify-content-start">
-							<%= link_to 'Go back to reservations', reservations_path, :class => "btn btn-primary" %>
+							<%= link_to 'Reservations', reservations_path, :class => "btn btn-primary btn-sm" %>
 						</div>
 						<div class="col input-group justify-content-center">
 						<% if @reservation.reservation_date <= Date.today && @reservation.status == 'open' %>
-							<%= link_to "Add additional flights", new_reservation_flight_path(@reservation), :class => "btn btn-secondary" %>
+							<%= link_to "Add flights", new_reservation_flight_path(@reservation), :class => "btn btn-secondary btn-sm" %>
 						<% else %>
-							<%= link_to "Add additional flights", new_reservation_flight_path(@reservation), :class => "btn btn-secondary disabled" %>
+							<%= link_to "Add flights", new_reservation_flight_path(@reservation), :class => "btn btn-secondary btn-sm disabled" %>
 						<% end %>
 						</div>
 						<div class="col input-group justify-content-end">
 						<% if @reservation.reservation_date <= Date.today && @reservation.flights.count > 0 && @reservation.status == 'open' %>
-							<%= link_to "Pay for Flights", checkout_path(:id => @reservation.id), class: "btn btn-success" %>
+							<%= link_to "Pay for Flights", checkout_path(:id => @reservation.id), class: "btn btn-success btn-sm" %>
 						<% else %>
-							<%= link_to "Pay for Flights", checkout_path(:id => @reservation.id), class: "btn btn-success disabled" %>
+							<%= link_to "Pay for Flights", checkout_path(:id => @reservation.id), class: "btn btn-success btn-sm disabled" %>
 						<% end %>	
 						</div>
 					</div>
