@@ -5,12 +5,12 @@
 		</div>
 		<div class="col input-group justify-content-end align-middle">
 			<%= form_tag(reservations_path, method: :get) do %>
-				<%= submit_tag ("Submit Date Selection"), {class: "btn btn-info btn-sm"} %>
+				<%= submit_tag ("Check Reservations"), {class: "btn btn-info btn-sm"} %>
 				<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
 			<% end %>
 		</div>
 		<div>
-			<p>Check open slots by selecting date and clicking Submit Date Selection </p>
+			<p>Check open slots by selecting date and clicking Check Reservations </p>
 		</div>
 		<div class="table-responsive">
 			<%= render 'grid' %>
@@ -23,7 +23,7 @@
 		</div>
 		<div class="col input-group justify-content-end align-middle">
 			<% if has_membership == true %>
-				<%= link_to 'Add Reservation', new_reservation_path, :class => "btn btn-success btn-lg" %> 
+				<%= link_to 'Add Reservation', new_reservation_path, :class => "btn btn-success" %> 
 			<% else %>
 				<div class="badge text-bg-warning">Membership has expired, user has no reservation privileges</div>
 			<% end %>
@@ -37,18 +37,18 @@
 	<% @myreservations.each do |reservation| %>
 		<div class="col-sm-10 col-md-8 ">
 			<div class="card shadow p-3 mb-5 bg-white rounded">
-				<div class="row card-header fst-italic">
+				<div class="row p-1 card-header fst-italic">
 					<div class="col text-start justify-content-start">
 					<strong><%= reservation.reservation_date.strftime("%m/%d/%y") %></strong>
 					</div>
 					<div class="col text-center justify-content-center">
 						<%= reservation.reservation_time %>
 					</div>
-					<div class="col text-end justify-content-end">
-						Glider: <%= reservation.aircraft.short_name %>
+					<div class="col text-center justify-content-center">
+						 <%= reservation.aircraft.short_name %>
 					</div>
-					<div class="col text-end justify-content-end">
-						Status: <%= reservation.status %>
+					<div class="col text-center justify-content-end">
+						<strong> <%= reservation.status %> </strong>
 					</div>
 				</div>
 				<div class="card-body justify-content-start">
