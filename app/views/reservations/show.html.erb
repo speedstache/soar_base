@@ -98,7 +98,7 @@
 						<% if @reservation.reservation_date <= Date.today && @reservation.flights.count > 0 && @reservation.status == 'open' %>
 							<%= link_to "Pay for Flights", checkout_path(:id => @reservation.id), class: "btn btn-success" %>
 						<% else %>
-							<%= link_to "Flights Paid", checkout_path(:id => @reservation.id), class: "btn btn-success disabled" %>
+							<%= link_to "Pay for Flights", checkout_path(:id => @reservation.id), class: "btn btn-success disabled" %>
 						<% end %>	
 						</div>
 					</div>
