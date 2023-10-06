@@ -1,10 +1,14 @@
-<h1>Sample App</h1>
+<h1>Eagleville Soaring Club</h1>
 
-<p>Hi <%= @user.username %>,</p>
+<p>Hello <%= @user.username %>,</p>
 
 <p>
-Welcome to the Sample App! Click on the link below to activate your account:
+Welcome to the Eagleville Soaring Club! Click on the link below to activate your account:
 </p>
+<p>Once your account is activated you will be able to:</p>
+<ul>
+  <li>Make reservations in club aircraft</li>
+  <li>Log flights and pay for tows</li>
+</ul>  
 
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
-                                                    email: @user.email) %>
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>

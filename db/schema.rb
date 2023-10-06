@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_05_020917) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_06_193253) do
   create_table "aircraft_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "aircraft_id"
@@ -29,6 +29,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_05_020917) do
   create_table "days", force: :cascade do |t|
     t.date "day"
     t.boolean "active_flag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "field_status_updates", force: :cascade do |t|
+    t.string "username"
+    t.date "date"
+    t.boolean "ops_status"
+    t.string "title"
+    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

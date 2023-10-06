@@ -1,0 +1,33 @@
+
+<div class="mt-2 mx-2 mb-5">
+<h4>Field Ops Status Updates</h4>
+<div >
+	<%= link_to 'Create and send new field status update', new_field_status_update_path, :class => "btn btn-primary" %>
+</div>
+<div class="table-responsive">
+<table class="table table-striped w-7">
+	<thead>
+		<tr>
+			<th>Username</th>
+			<th>Date</th>
+			<th>Ops Status</th>
+      <th>Title</th>
+      <th>Notes</th>
+      <th colspan="2">Modify Status</th>
+		</tr>
+	</thead>
+		<tbody>
+			<% @field_status_updates.each do |field_status_update| %>
+				<tr>
+					<td><%= field_status_update.username %></td>
+          <td><%= field_status_update.date %></td>
+          <td><%= field_status_update.ops_status.humanize %></td>
+          <td><%= field_status_update.title %></td>
+					<td><%= field_status_update.notes %></td>
+					<td><%= link_to 'modify', edit_field_status_update_path(field_status_update), class: "btn btn-primary btn-sm"%></td>
+				</tr>
+			<% end %>
+		</tbody>
+</table>
+</div>
+</div>

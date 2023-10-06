@@ -1,0 +1,9 @@
+<h1>Field Operation Status for <%= @field_status_update.date %> </hi>
+
+<ul>
+  <li>Are we flying? - 
+    <%= if @field_status_update.ops_status == true then 'Yes' else 'No' end %>
+  </li>
+  <li><%= @field_status_update.title %></li>
+  <li><%= @field_status_update.notes %></li>
+</ul>

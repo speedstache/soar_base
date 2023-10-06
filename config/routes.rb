@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :field_status_updates
   resources :towfees
   resources :membership_users
   resources :memberships,     except: [:destroy]

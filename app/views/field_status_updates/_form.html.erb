@@ -1,0 +1,29 @@
+<%= form_with(model: @field_status_update, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+  <%= f.hidden_field :username, value: current_user.username %>
+  <div class="form-group row p-2" >
+      <%= f.label :Are_we_flying?, class: "col col-form-label text-light" %>
+    <div class="col">
+      <%= f.check_box :ops_status %>
+    </div>
+  </div>
+  <div class="form-group row p-2" >
+      <%= f.label :date, class: "col col-form-label text-light" %>
+    <div class="col">
+      <%= f.date_field :date, class: "input-group-text" %>
+    </div>
+  </div>	
+  <div class="form-group row p-2" >
+      <%= f.label :title, class: "col col-form-label text-light" %>
+    <div class="col">
+      <%= f.text_field :title, class: "input-group-text" %>
+    </div>
+  </div>
+  <div class="form-group row p-2" >
+      <%= f.label :notes, class: "col col-form-label text-light" %>
+    <div class="col">
+      <%= f.text_area :notes, rows: 3, class: "input-group-text" %>
+    </div>
+  </div>
+    
+<%= f.submit class:"btn btn-outline-light col" %>
+<% end %>

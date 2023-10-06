@@ -1,0 +1,2 @@
+class FieldStatusUpdate < ApplicationRecord
+end
