@@ -59,12 +59,14 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <% if logged_in? && current_user.permission.site_admin? %>
+          <% if logged_in? && current_user.permission.club_admin? %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Manage Club
               </a>
               <ul class="dropdown-menu">
+              <li><%= link_to 'Send Field Ops Status', field_status_updates_path, class: "dropdown-item" %></li>
+                  <li><hr class="dropdown-divider"></li>
                 <li><%= link_to 'Hours of Operation', hours_path, class: "dropdown-item" %></li>
                   <li><hr class="dropdown-divider"></li>
                 <li><%= link_to 'Days of Operation', days_path, class: "dropdown-item" %></li>
