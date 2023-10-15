@@ -64,6 +64,6 @@ class PermissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def permission_params
-      params.require(:permission).permit(:user_admin, :club_admin, :site_admin, :global_admin)
+      params.require(:permission).permit(:instructor, :user_admin, :club_admin, :site_admin, :global_admin)
     end
 end

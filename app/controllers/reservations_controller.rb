@@ -21,7 +21,7 @@ class ReservationsController < ApplicationController
     @view_21a = @res_date.where(aircraft_id: 1)
     @view_21b = @res_date.where(aircraft_id: 2)
     @view_23 = @res_date.where(aircraft_id: 3)
-    @myreservations = current_user.reservations.where(reservation_date: 3.days.ago..60.days.from_now).order('reservation_date ASC')
+    @myreservations = current_user.reservations.where(reservation_date: 30.days.ago..60.days.from_now).order('reservation_date ASC')
   end
 
   def club

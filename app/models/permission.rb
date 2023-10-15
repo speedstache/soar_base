@@ -3,6 +3,7 @@ class Permission < ApplicationRecord
   belongs_to :user
 
   def set_defaults
+    self.instructor ||= false
     self.user_admin ||= false 
     self.club_admin ||= false
     self.site_admin ||= false

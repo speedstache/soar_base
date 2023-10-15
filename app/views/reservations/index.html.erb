@@ -29,7 +29,7 @@
 			<% end %>
 		</div>
 		<div>
-			<p>Past 3 days through next 30 days</p>
+			<p>Past 30 days through next 30 days. Reservations are past due if unpaid 5 days after flight</p>
 		</div>
 	</div>
 
@@ -48,7 +48,15 @@
 						 <%= reservation.aircraft.short_name %>
 					</div>
 					<div class="col text-center justify-content-end">
-						<strong> <%= reservation.status %> </strong>
+						<strong>
+							<% if reservation.status == 'open' && reservation.reservation_date > Date.today %>
+								Upcoming
+							<% elsif reservation.status == 'open' && reservation.reservation_date < 5.days.ago %>
+								Payment Past Due
+							<% else %>
+								<%= reservation.status %> 
+							<% end %>
+						</strong>
 					</div>
 				</div>
 				<div class="card-body justify-content-start">
@@ -60,10 +68,10 @@
 						<%= link_to "See Details", reservation_path(reservation), class: "btn btn-info btn-sm" %> 
 					</div>
 					<div class="col input-group justify-content-end">
-					<% if reservation.flights.count > 0 && reservation.status != 'open' %>
-						<%= link_to "Delete", reservation_path(reservation),class: "btn btn-warning btn-sm disabled", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>	
-					<% else %>
+					<% if reservation.flights.count == 0 && reservation.status == 'open' %>
 						<%= link_to "Delete", reservation_path(reservation),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>	
+					<% else %>
+						<%= link_to "Delete", reservation_path(reservation),class: "btn btn-warning btn-sm disabled", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>	
 					<% end %>
 					</div>
 				</div>

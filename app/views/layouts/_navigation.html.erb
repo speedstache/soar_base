@@ -19,10 +19,24 @@
             <li><hr class="dropdown-divider"></li>
             <li><%= link_to 'View Club reservations', reservations_club_path, class: "dropdown-item" %></li>
           </ul>
-        </li>
         <% else %>
           <a class="nav-link disabled" aria-disabled="true">Manage Reservations</a>
         <% end %>
+        </li>
+        <li class="nav-item">
+          <% if logged_in? && current_user.permission.instructor? %>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Instructors
+                </a>
+                <ul class="dropdown-menu">
+                <a class="nav-link disabled" aria-disabled="true">My Students</a>
+                <li><hr class="dropdown-divider"></li>
+              </ul>
+          <% else %>
+            <a class="nav-link disabled" aria-disabled="true">Instructors</a>
+          <% end %>
+        </li>
         <li class="nav-item">
           <% if logged_in? && current_user.permission.user_admin? %>
             <li class="nav-item dropdown">

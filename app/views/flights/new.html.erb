@@ -19,12 +19,25 @@
               <%= f.number_field :flight_time, class: "input-group-text" %>
             </div>
           </div>	
+          <!-- Remove rope break for now
           <div class="form-group row p-2" >
             <%= f.label :rope_break, class: "col col-form-label text-light" %>
             <div class="col">
               <%= f.check_box :rope_break, class: "form-check-label" %>
             </div>
           </div>
+          -->
+          <!-- only bring up instructor list if instructor was selected in reservation -->
+          <% if @reservation.instructor_flag == true %>
+          <div class="form-group row p-2" >
+            <%= f.label :instructor, class: "col col-form-label text-light" %>
+            <div class="col">
+              <%= f.collection_select(:instructor_id, User.where(id: Permission.where(instructor: true).ids), 'id', 'username', {}, {class: "input-group-text"}) %>
+            </div>
+          </div>
+          <% else %>
+          <div></div>
+          <% end %>
         <%= f.submit class:"btn btn-outline-light btn-lg col" %>
       <% end %>
       <%= link_to "Cancel and return to reservation", reservation_path(@reservation), :class => "btn btn-secondary" %>
