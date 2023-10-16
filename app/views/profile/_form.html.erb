@@ -1,0 +1,17 @@
+<%= form_with(model: current_user, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+  <div class="form-group row p-2" >
+      <%= f.label :username, class: "col col-form-label text-light" %>
+    <div class="col">
+      <%= f.text_field :username, class: "input-group-text" %>
+    </div>
+  </div>
+  <div class="form-group row p-2" >
+      <%= f.label :email, class: "col col-form-label text-light" %>
+    <div class="col">
+      <%= f.text_field :email, class: "input-group-text" %>
+    </div>
+  </div>
+
+
+<%= f.submit class:"btn btn-outline-light col" %>
+<% end %>

@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   # GET /users/1 or /users/1.json
   def show
     @user = User.find(params[:id])
+    @membership_info = current_user.memberships.last
+    @my_membership = current_user.membership_users.last
+    @my_renewal_date = @my_membership.renewal_date + @membership_info.renewal_period
   end
 
   # GET /users/new

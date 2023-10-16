@@ -17,7 +17,7 @@
 		</tr>
 	</thead>
 		<tbody>
-			<% @field_status_updates.each do |field_status_update| %>
+			<% @field_status_updates.order(date: :desc).each do |field_status_update| %>
 				<tr>
 					<td><%= field_status_update.username %></td>
           <td><%= field_status_update.date %></td>

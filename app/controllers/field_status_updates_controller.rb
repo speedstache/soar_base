@@ -28,7 +28,7 @@ class FieldStatusUpdatesController < ApplicationController
       if @field_status_update.save
 
         FieldStatusMailer.field_status(@field_status_update).deliver_now
-        format.html { redirect_to field_status_update_url(@field_status_update), notice: "Field status update was created and sent." }
+        format.html { redirect_to field_status_updates_path, notice: "Field status update was created and sent." }
         format.json { render :show, status: :created, location: @field_status_update }
       else
         format.html { render :new, status: :unprocessable_entity }

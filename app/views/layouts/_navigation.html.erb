@@ -6,13 +6,24 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Profile</a>
-        </li>
+        <% if logged_in? %>
+          <li class="nav-item">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile
+            </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'View My Profile', profile_index_path, class: "dropdown-item" %></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= link_to 'Club Member list', members_path, class: "dropdown-item" %></li>
+          </ul>
+        <% else %>
+            <a class="nav-link disabled" aria-disabled="true">Profile</a>
+          </li>
+        <% end %>
+      
         <% if logged_in? %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Manage Reservations
+            Reservations
           </a>
           <ul class="dropdown-menu">
             <li><%= link_to 'View My reservations', reservations_path, class: "dropdown-item" %></li>
@@ -20,7 +31,7 @@
             <li><%= link_to 'View Club reservations', reservations_club_path, class: "dropdown-item" %></li>
           </ul>
         <% else %>
-          <a class="nav-link disabled" aria-disabled="true">Manage Reservations</a>
+          <a class="nav-link disabled" aria-disabled="true">Reservations</a>
         <% end %>
         </li>
         <li class="nav-item">
@@ -30,6 +41,8 @@
                   Instructors
                 </a>
                 <ul class="dropdown-menu">
+                <a class="nav-link disabled" aria-disabled="true">Instructor List</a>
+                <li><hr class="dropdown-divider"></li>
                 <a class="nav-link disabled" aria-disabled="true">My Students</a>
                 <li><hr class="dropdown-divider"></li>
               </ul>
@@ -41,7 +54,7 @@
           <% if logged_in? && current_user.permission.user_admin? %>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Manage Users
+                  Users
                 </a>
                 <ul class="dropdown-menu">
                 <li><%= link_to 'Users List', users_path, class: "dropdown-item" %></li>
@@ -53,14 +66,14 @@
                 <li><a class="nav-link disabled" aria-disabled="true">Profile Details</a></li>
               </ul>
           <% else %>
-            <a class="nav-link disabled" aria-disabled="true">Manage Users</a>
+            <a class="nav-link disabled" aria-disabled="true">Users</a>
           <% end %>
         </li>
         <li class="nav-item">
           <% if logged_in? && current_user.permission.club_admin? %>
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Manage Aircraft
+                Aircraft
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to 'Aircraft List', aircrafts_path, class: "dropdown-item" %></li>
@@ -69,14 +82,14 @@
               </ul>
             </li>
           <% else %>
-            <a class="nav-link disabled" aria-disabled="true">Manage Aircraft</a>
+            <a class="nav-link disabled" aria-disabled="true">Aircraft</a>
           <% end %>
         </li>
         <li class="nav-item">
           <% if logged_in? && current_user.permission.club_admin? %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Manage Club
+                Club
               </a>
               <ul class="dropdown-menu">
               <li><%= link_to 'Send Field Ops Status', field_status_updates_path, class: "dropdown-item" %></li>
@@ -91,7 +104,7 @@
               </ul>
             </li>
           <% else %>
-            <a class="nav-link disabled" aria-disabled="true">Manage Club</a>
+            <a class="nav-link disabled" aria-disabled="true">Club</a>
           <% end %>
         </li>
         <% if logged_in? %>
