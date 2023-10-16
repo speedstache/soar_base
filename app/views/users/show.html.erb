@@ -1,34 +1,3 @@
-<div class="mt-2 mx-2 mb-5">
-<h4>List of Users</h4>
-<div class="table-responsive">
-<table class="table table-striped w-75">
-	<thead>
-		<tr>
-			<th>Username</th>
-			<th>Email</th>
-      <th>Created</th>
-      <th>Modified</th>
-      <th>Activated</th>
-      <th>Password reset sent</th>
-      <th colspan="3">Modify User</th>
-		</tr>
-	</thead>
-		<tbody>
-				<tr>
-					<td><%= @user.username %></td>
-          <td><%= @user.email %></td>
-          <td><%= @user.created_at.strftime("%m/%d/%y") %></td>
-          <td><%= @user.updated_at.strftime("%m/%d/%y") %></td>
-					<td><%= @user.activated.humanize %></td>
-          <td><%= @user.reset_sent_at %></td>
-					<td><%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary btn-sm"%></td>
-          <!-- <td><%= link_to "Delete", user_path(@user),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>-->
-				</tr>
-		</tbody>
-</table>
-</div>
-<%= link_to 'Go back to users list', users_path, :class => "btn btn-primary btn-sm mb-5" %>
-</div>
 
 <div class="container mt-2 mb-5 pb-5">
 	<div class="row">
@@ -37,19 +6,19 @@
 			  <div class="card shadow p-3 mb-5 bg-white rounded">
 				  <div class="row p-1 card-header fst-italic">
 					  <div class="col text-start justify-content-start">
-              <strong>User Profile for <%= current_user.username %></strong>
+              <strong>User Profile for <%= @user.username %></strong>
             </div>
               <div class="col text-end justify-content-end">
-                <%= link_to 'Update Personal Info', edit_profile_path(current_user), class: "btn btn-primary btn-sm"%>
+                <%= link_to 'Update Personal Info', edit_profile_path(@user), class: "btn btn-primary btn-sm"%>
               </div>
           <div class="card-body justify-content-start">
             <ul class="list-group list-group-flush ">
               <li class="list-group-item lead pb-3">Personal Info</li>
                 <d1 class="row">
                   <dt class="col-sm-4 ps-4 pt-2">Username</dt>
-                  <dd class="col-sm-8 pt-2"><%= current_user.username %></dd>
+                  <dd class="col-sm-8 pt-2"><%= @user.username %></dd>
                   <dt class="col-sm-4 ps-4 pt-2">Email</dt>
-                  <dd class="col-sm-8 pt-2"><%= current_user.email %></dd>
+                  <dd class="col-sm-8 pt-2"><%= @user.email %></dd>
                   <dt class="col-sm-4 ps-4 pt-2">Phone Number</dt>
                   <dd class="col-sm-8 pt-2"></dd>
                   <dt class="col-sm-4 ps-4 pt-2">Date of Birth</dt>
@@ -77,23 +46,43 @@
                   <dd class="col-sm-8 pt-2"><%= @membership_info.membership_type %> member: renews on <%= @my_renewal_date.strftime("%a, %b %d, %Y") %>  </dd>
 
                 <dt class="col-sm-4 ps-4 pt-2">Aircraft Privileges</dt>
-                  <dd class="col-sm-8 pt-2"><%= current_user.privileges_in.map {|x| x.values[1]} %>  </dd>
+                  <dd class="col-sm-8 pt-2"><%= @user.privileges_in.map {|x| x.values[1]} %>  </dd>
 
                 <dt class="col-sm-4 ps-4 pt-2">Site Permissions</dt>
                   <dd class="col-sm-8 pt-2">
-                    <p>Instructor: <%= current_user.permission.instructor.humanize %></p>
-                    <p>User admin: <%= current_user.permission.user_admin.humanize %></p>
-                    <p>Club admin: <%= current_user.permission.club_admin.humanize %></p>
-                    <p>Site admin: <%= current_user.permission.site_admin.humanize %></p>
-                    <p>Global admin: <%= current_user.permission.global_admin.humanize %></p>
+                    <p>Instructor: <%= @user.permission.instructor.humanize %></p>
+                    <p>User admin: <%= @user.permission.user_admin.humanize %></p>
+                    <p>Club admin: <%= @user.permission.club_admin.humanize %></p>
+                    <p>Site admin: <%= @user.permission.site_admin.humanize %></p>
+                    <p>Global admin: <%= @user.permission.global_admin.humanize %></p>
                   </dd>
-                  <dd class="col-sm-8 pt-2">
+								</d1>
+                <ul class="list-group list-group-flush">
+              		<li class="list-group-item lead">Login Info</li>
+                		<d1 class="row">
+                			<dt class="col-sm-4 ps-4 pt-2">Profile Created</dt>
+												<dd class="col-sm-8 pt-2"><%= @user.created_at.strftime("%m/%d/%y") %></dd>
+											<dt class="col-sm-4 ps-4 pt-2">Profile Updated</dt>
+												<dd class="col-sm-8 pt-2"><%= @user.updated_at.strftime("%m/%d/%y") %></dd>
+											<dt class="col-sm-4 ps-4 pt-2">Account Activated</dt>
+												<dd class="col-sm-8 pt-2"><%= @user.activated.humanize %></dd>
+											<dt class="col-sm-4 ps-4 pt-2">Password Reset Sent</dt>
+												<dd class="col-sm-8 pt-2"><%= @user.reset_sent_at %></dd>
+											</d1>
                     
 
 
           </div>
           <div class="row card-footer text-body-secondary">
+						<div class="col input-group justify-content-start">
+							<% if logged_in? && current_user.permission.user_admin? %>
+								<%= link_to 'Go back to users list', users_path, :class => "btn btn-primary btn-sm mb-5" %>
+							<% else %>	
+								<%= link_to 'Go back to Profile Page', profile_index_path, :class => "btn btn-primary btn-sm mb-5" %>
+							<% end %>	
 
+					</div>
+					</div>
 
           </div>
 
