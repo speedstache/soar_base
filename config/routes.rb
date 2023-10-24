@@ -14,8 +14,11 @@ Rails.application.routes.draw do
   end
   resources :flights
   resources :aircrafts,     except: [:destroy]
+  
   get "home/index"  
   root to: "home#index"
+
+  get "pages/index", to: 'pages#index'
 
   resources :profile, only: [:index, :edit, :update]
   resources :members, only: [:index]
