@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :aircrafts,     except: [:destroy]
   
   get "home/index"  
-  root to: "home#index"
+  root to: "pages#index"
 
   get "pages/index", to: 'pages#index'
 

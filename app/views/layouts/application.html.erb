@@ -20,6 +20,7 @@
 
   </head>
   
+  <% if logged_in? %>
   <body class="d-flex flex-column" id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
     <%= render 'layouts/navigation' %>
     <div id="page-content">
@@ -27,4 +28,9 @@
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>
+  <% else %>
+    <body class="d-flex flex-column" id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
+      <%= yield %>
+  <% end %>
+
 </html>

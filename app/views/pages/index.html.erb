@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
     <div class="container">
       <div class="navbar-brand-wrapper d-flex w-100">
-        <img src="../simple_landing_page/images/Group2.svg" alt="">
+        <img src="../simple_landing_page/images/Eagleville_Logo_Color.png" width="150" alt="">
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="mdi mdi-menu navbar-toggler-icon"></span>
         </button> 
@@ -20,9 +20,15 @@
           <li class="nav-item">
             <a class="nav-link" href="#header-section">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#features-section">About</a>
-          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">About</a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'Users List', users_path, class: "nav-item" %></li>
+                <li><%= link_to 'User Permissions', permissions_path, class: "nav-item" %></li>
+                <li><%= link_to 'User Membership', membership_users_path, class: "nav-item" %></li>
+                <li><a class="nav-item disabled" aria-disabled="true">Profile Details</a></li>
+              </ul>
+            </li>
           <li class="nav-item">
             <a class="nav-link" href="#digital-marketing-section">Blog</a>  
           </li>
@@ -30,7 +36,7 @@
             <a class="nav-link" href="#feedback-section">Testimonials</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Contact Us</button>
+            <button class="btn btn-info" data-toggle="modal" data-target="#loginModal">Login</button>
           </li>
         </ul>
       </div>
@@ -38,84 +44,46 @@
     </nav>   
   </header>
   <div class="banner" >
-    <div class="container">
-      <h1 class="font-weight-semibold">Search engine optimisation &<br>Marketing.</h1>
-      <h6 class="font-weight-normal text-muted pb-3">Simple is a simple template with a creative design that solves all your marketing and SEO queries.</h6>
-      <div>
-        <button class="btn btn-opacity-light mr-1">Get started</button>
-        <button class="btn btn-opacity-success ml-1">Learn more</button>
-      </div>
-      <img src="../simple_landing_page/images/Group171.svg" alt="" class="img-fluid">
-    </div>
+    
   </div>
   <div class="content-wrapper">
     <div class="container">
-      <section class="features-overview" id="features-section" >
-        <div class="content-header">
-          <h2>How does it works</h2>
-          <h6 class="section-subtitle text-muted">One theme that serves as an easy-to-use operational toolkit<br>that meets customer's needs.</h6>
-        </div>
-        <div class="d-md-flex justify-content-between">
-          <div class="grid-margin d-flex justify-content-start">
-            <div class="features-width">
-              <img src="../simple_landing_page/images/Group12.svg" alt="" class="img-icons">
-              <h5 class="py-3">Speed<br>Optimisation</h5>
-              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-              <a href="#"><p class="readmore-link">Readmore</p></a>  
-            </div>
-          </div>
-          <div class="grid-margin d-flex justify-content-center">
-            <div class="features-width">
-              <img src="../simple_landing_page/images/Group7.svg" alt="" class="img-icons">
-              <h5 class="py-3">SEO and<br>Backlinks</h5>
-              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-              <a href="#"><p class="readmore-link">Readmore</p></a>
-            </div>
-          </div>
-          <div class="grid-margin d-flex justify-content-end">
-            <div class="features-width">
-              <img src="../simple_landing_page/images/Group5.svg" alt="" class="img-icons">
-              <h5 class="py-3">Content<br>Marketing</h5>
-              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-              <a href="#"><p class="readmore-link">Readmore</p></a>
-            </div>
-          </div>
-        </div>
-      </section>     
+          
       <section class="digital-marketing-service" id="digital-marketing-section">
         <div class="row align-items-center">
-          <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right">
-            <h3 class="m-0">We Offer a Full Range<br>of Digital Marketing Services!</h3>
-            <div class="col-lg-7 col-xl-6 p-0">
-              <p class="py-4 m-0 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-              <p class="font-weight-medium text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer</p>
+          <div class="col-12 col-lg-5 flex-item grid-margin" data-aos="fade-right">
+            <h3 class="m-0">More than 70 years<br> of soaring in Middle Tennesse</h3>
+            <div class="col-lg-9 col-xl-8 p-0">
+              <p class="py-4 m-0 text-muted">Eagleville Soaring is a Soaring Society of America (SSA) Chapter Club operation<br>
+                 located in beautiful Middle Tennessee at Puckett Gliderport (50M) approximately 30 miles south of Nashville.</p>
+              <p class="font-weight-medium text-muted">We have been flying gliders in Eagleville, TN since the 1950s.</p>
             </div>    
           </div>
-          <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
-            <img src="../simple_landing_page/images/Group1.png" alt="" class="img-fluid">
+          <div class="col-12 col-lg-7 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
+            <img src="../simple_landing_page/images/1690722449753blob.jpg" alt="" class="img-fluid">
           </div>
         </div>
+        <br>
         <div class="row align-items-center">
           <div class="col-12 col-lg-7 text-center flex-item grid-margin" data-aos="fade-right">
-            <img src="../simple_landing_page/images/Group2.png" alt="" class="img-fluid">
+            <img src="../simple_landing_page/images/picasabackground-046.jpg" alt="" class="img-fluid">
           </div>
           <div class="col-12 col-lg-5 flex-item grid-margin" data-aos="fade-left">
-            <h3 class="m-0">Leading Digital Agency<br>for  Business Solution.</h3>
+            <h3 class="m-0">Soar with eagles<br> or learn to fly like one</h3>
             <div class="col-lg-9 col-xl-8 p-0">
-              <p class="py-4 m-0 text-muted">Power-packed with impressive features and well-optimized, this template is designed to provide the best performance in all circumstances.</p>
-              <p class="pb-2 font-weight-medium text-muted">Its smart features make it a powerful stand-alone website building tool.</p>
+              <p class="py-4 m-0 text-muted">If you’ve ever spotted a hawk gracefully gliding high overhead, effortlessly floating along on air currents, <br>
+                and wondered what that must feel like, now you can know!</p>
+              <p class="pb-2 font-weight-medium text-muted">Eagleville Soaring club offers glider rides and pilot lessons at Puckett Gliderport, our home airfield just a half-hour drive from Nashville.</p>
             </div>
-            <button class="btn btn-info">Readmore</button>
+            <button class="btn btn-info">Contact Us</button>
           </div>
         </div>
       </section>     
       <section class="case-studies" id="case-studies-section">
         <div class="row grid-margin">
           <div class="col-12 text-center pb-5">
-            <h2>Our case studies</h2>
-            <h6 class="section-subtitle text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum.</h6>
           </div>
-          <div class="col-12 col-md-6 col-lg-3 stretch-card mb-3 mb-lg-0" data-aos="zoom-in">
+          <div class="col-12 col-md-6 col-lg-4 stretch-card mb-3 mb-lg-0" data-aos="zoom-in">
             <div class="card color-cards">
               <div class="card-body p-0">
                 <div class="bg-primary text-center card-contents">
@@ -124,19 +92,18 @@
                   </div>  
                   <div class="card-desc-box d-flex align-items-center justify-content-around">
                     <div>
-                      <h6 class="text-white pb-2 px-3">Know more about Online marketing</h6>
-                      <button class="btn btn-white">Read More</button>
+                      <h6 class="text-white pb-2 px-3">Find out how to fly with us</h6>
+                      <a class="btn btn-white" href="#fly-with-us">Read More</a>
                     </div>
                   </div>
                 </div>   
                 <div class="card-details text-center pt-4">
-                    <h6 class="m-0 pb-1">Online Marketing</h6>
-                    <p>Seo, Marketing</p>
+                    <h6 class="m-0 pb-1">Fly with us</h6>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-6 col-lg-3 stretch-card mb-3 mb-lg-0" data-aos="zoom-in" data-aos-delay="200">
+          <div class="col-12 col-md-6 col-lg-4 stretch-card mb-3 mb-lg-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="card color-cards">
               <div class="card-body p-0">
                 <div class="bg-warning text-center card-contents">
@@ -145,19 +112,18 @@
                   </div>  
                   <div class="card-desc-box d-flex align-items-center justify-content-around">
                     <div>
-                      <h6 class="text-white pb-2 px-3">Know more about Web Development</h6>
-                      <button class="btn btn-white">Read More</button>
+                      <h6 class="text-white pb-2 px-3">Learn more about flight training</h6>
+                      <a class="btn btn-white" href="#learn-to-fly">Read More</a>
                     </div>
                   </div>
                 </div>   
                 <div class="card-details text-center pt-4">
-                    <h6 class="m-0 pb-1">Web Development</h6>
-                    <p>Developing, Designing</p>
+                    <h6 class="m-0 pb-1">Learn to Fly</h6>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-6 col-lg-3 stretch-card mb-3 mb-lg-0" data-aos="zoom-in" data-aos-delay="400">
+          <div class="col-12 col-md-6 col-lg-4 stretch-card mb-3 mb-lg-0" data-aos="zoom-in" data-aos-delay="400">
             <div class="card color-cards">
               <div class="card-body p-0">
                 <div class="bg-violet text-center card-contents">
@@ -166,56 +132,33 @@
                   </div>  
                   <div class="card-desc-box d-flex align-items-center justify-content-around">
                     <div>
-                      <h6 class="text-white pb-2 px-3">Know more about Web Designing</h6>
-                      <button class="btn btn-white">Read More</button>
+                      <h6 class="text-white pb-2 px-3">Read more about membership</h6>
+                      <a class="btn btn-white" href="#become-a-member">Read More</a>
                     </div>
                   </div>
                 </div>   
                 <div class="card-details text-center pt-4">
-                    <h6 class="m-0 pb-1">Web Designing</h6>
-                    <p>Designing, Developing</p>
+                    <h6 class="m-0 pb-1">Become a member</h6>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-6 col-lg-3 stretch-card" data-aos="zoom-in" data-aos-delay="600">
-            <div class="card color-cards">
-              <div class="card-body p-0">
-                <div class="bg-success text-center card-contents">
-                  <div class="card-image">
-                      <img src="../simple_landing_page/images/Group115.svg" class="case-studies-card-img" alt="">
-                  </div>  
-                  <div class="card-desc-box d-flex align-items-center justify-content-around">
-                    <div>
-                      <h6 class="text-white pb-2 px-3">Know more about Software Development</h6>
-                      <button class="btn btn-white">Read More</button>
-                    </div>
-                  </div>
-                </div>   
-                <div class="card-details text-center pt-4">
-                    <h6 class="m-0 pb-1">Software Development</h6>
-                    <p>Developing, Designing</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          
       </section>     
       <section class="customer-feedback" id="feedback-section">
         <div class="row">
           <div class="col-12 text-center pb-5">
-            <h2>What our customers have to say</h2>
-            <h6 class="section-subtitle text-muted m-0">Lorem ipsum dolor sit amet, tincidunt vestibulum.</h6>
+            <h2>Meet our fleet</h2>
           </div>
           <div class="owl-carousel owl-theme grid-margin">
               <div class="card customer-cards">
                 <div class="card-body">
                   <div class="text-center">
                     <img src="../simple_landing_page/images/face2.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
+                    <p class="m-0 py-3 text-muted">Our primary two place trainer.</p>
                     <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Tony Martinez</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
+                    <h6 class="card-title pt-3">"21A" N121FL</h6>
+                    <h6 class="customer-designation text-muted m-0">Schleicher ASK-21</h6>
                   </div>
                 </div>
               </div>
@@ -223,10 +166,10 @@
                 <div class="card-body">
                   <div class="text-center">
                     <img src="../simple_landing_page/images/face3.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
+                    <p class="m-0 py-3 text-muted">Our second two-place trainer. Used for glider rides and instruction.</p>
                     <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Sophia Armstrong</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
+                    <h6 class="card-title pt-3">"21B" N2237W</h6>
+                    <h6 class="customer-designation text-muted m-0">Schleicher ASK-21</h6>
                   </div>
                 </div>
               </div>
@@ -234,10 +177,10 @@
                 <div class="card-body">
                   <div class="text-center">
                     <img src="../simple_landing_page/images/face20.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
+                    <p class="m-0 py-3 text-muted">A perfect single place trainer for students to transition to after solo sign-off</p>
                     <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Cody Lambert</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
+                    <h6 class="card-title pt-3">N12345</h6>
+                    <h6 class="customer-designation text-muted m-0">Schleicher ASK-23</h6>
                   </div>
                 </div>
               </div>
@@ -245,111 +188,76 @@
                 <div class="card-body">
                   <div class="text-center">
                     <img src="../simple_landing_page/images/face15.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
+                    <p class="m-0 py-3 text-muted">Our trusty Piper Pawnee tow plane.</p>
                     <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Cody Lambert</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
+                    <h6 class="card-title pt-3">N23566</h6>
+                    <h6 class="customer-designation text-muted m-0">Piper PA-XX Pawnee</h6>
                   </div>
                 </div>
               </div>
-              <div class="card customer-cards">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="../simple_landing_page/images/face16.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                    <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Cody Lambert</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="card customer-cards">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="../simple_landing_page/images/face1.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                    <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Tony Martinez</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="card customer-cards">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="../simple_landing_page/images/face2.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                    <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Tony Martinez</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="card customer-cards">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="../simple_landing_page/images/face3.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                    <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Sophia Armstrong</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="card customer-cards">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="../simple_landing_page/images/face20.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                    <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Cody Lambert</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
-                  </div>
-                </div>
-              </div>
+              
           </div>
         </div>
       </section>
-      <section class="contact-us" id="contact-section">
-        <div class="contact-us-bgimage grid-margin" >
-          <div class="pb-4">
-            <h4 class="px-3 px-md-0 m-0" data-aos="fade-down">Do you have any projects?</h4>
-            <h4 class="pt-1" data-aos="fade-down">Contact us</h4>
+      <section class="digital-marketing-service" id="digital-marketing-service">
+        <div class="row align-items-center" id="fly-with-us">
+          <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right">
+            <h3 class="m-0">How to fly with us</h3>
+            <div class="col-lg-7 col-xl-6 p-0">
+              <p class="py-4 m-0 text-muted">text about weekend operations and what not</p>
+              <p class="font-weight-medium text-muted">We have been flying gliders in Eagleville, TN since the 1950s.</p>
+            </div> 
+            <button class="btn btn-info">Request a ride</button>
+   
           </div>
-          <div data-aos="fade-up">
-            <button class="btn btn-rounded btn-outline-danger">Contact us</button>
-          </div>          
+          <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
+            <img src="../simple_landing_page/images/1690722449753blob.jpg" alt="" class="img-fluid">
+          </div>
         </div>
-      </section>
+        <br>
+        <div class="row align-items-center" id="learn-to-fly">
+          <div class="col-12 col-lg-7 text-center flex-item grid-margin" data-aos="fade-right">
+            <img src="../simple_landing_page/images/picasabackground-046.jpg" alt="" class="img-fluid">
+          </div>
+          <div class="col-12 col-lg-5 flex-item grid-margin" data-aos="fade-left">
+            <h3 class="m-0">Learning to fly a glider</h3>
+            <div class="col-lg-9 col-xl-8 p-0">
+              <p class="py-4 m-0 text-muted">If you’ve ever spotted a hawk gracefully gliding high overhead, effortlessly floating along on air currents, <br>
+                and wondered what that must feel like, now you can know!</p>
+              <p class="pb-2 font-weight-medium text-muted">Eagleville Soaring club offers glider rides and pilot lessons at Puckett Gliderport, our home airfield just a half-hour drive from Nashville.</p>
+            </div>
+            <button class="btn btn-info">Contact Us</button>
+          </div>
+        </div>
+        <div class="row align-items-center" id="become-a-member">
+          <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right">
+            <h3 class="m-0">Join the Eagleville Soaring Club</h3>
+            <div class="col-lg-7 col-xl-6 p-0">
+              <p class="py-4 m-0 text-muted">text about weekend operations and what not</p>
+              <p class="font-weight-medium text-muted">We have been flying gliders in Eagleville, TN since the 1950s.</p>
+            </div> 
+            <button class="btn btn-info">Request a ride</button>
+   
+          </div>
+          <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
+            <img src="../simple_landing_page/images/1690722449753blob.jpg" alt="" class="img-fluid">
+          </div>
+        </div>
+      </section>   
+      <br><br>
       <section class="contact-details" id="contact-details-section">
         <div class="row text-center text-md-left">
-          <div class="col-12 col-md-6 col-lg-3 grid-margin">
-            <img src="../simple_landing_page/images/Group2.svg" alt="" class="pb-2">
+          <div class="col-12 col-md-6 col-lg-4 grid-margin">
+            <img src="../simple_landing_page/images/Eagleville_Logo_Color.png" width="100" alt="" class="pb-2">
+
             <div class="pt-2">
-              <p class="text-muted m-0">mikayla_beer@feil.name</p>
-              <p class="text-muted m-0">906-179-8309</p>
+              <p class="text-muted m-0">clubadmin@eaglevillesoaring.com</p>
+              <p class="text-muted m-0">800-306-6690</p>
             </div>         
           </div>
-          <div class="col-12 col-md-6 col-lg-3 grid-margin">
-            <h5 class="pb-2">Get in Touch</h5>
-            <p class="text-muted">Don’t miss any updates of our new templates and extensions.!</p>
-            <form>
-              <input type="text" class="form-control" id="Email" placeholder="Email id">
-            </form>
-            <div class="pt-3">
-              <button class="btn btn-dark">Subscribe</button>
-            </div>   
-          </div>
-          <div class="col-12 col-md-6 col-lg-3 grid-margin">
-            <h5 class="pb-2">Our Guidelines</h5>
-            <a href="#"><p class="m-0 pb-2">Terms</p></a>   
-            <a href="#" ><p class="m-0 pt-1 pb-2">Privacy policy</p></a> 
-            <a href="#"><p class="m-0 pt-1 pb-2">Cookie Policy</p></a> 
-            <a href="#"><p class="m-0 pt-1">Discover</p></a> 
-          </div>
-          <div class="col-12 col-md-6 col-lg-3 grid-margin">
+          <div class="col-12 col-md-6 col-lg-4 grid-marg">
               <h5 class="pb-2">Our address</h5>
-              <p class="text-muted">518 Schmeler Neck<br>Bartlett. Illinois</p>
+              <p class="text-muted">4689 Highway 41A<br>Eagleville, Tennessee 37060</p>
               <div class="d-flex justify-content-center justify-content-md-start">
                 <a href="#"><span class="mdi mdi-facebook"></span></a>
                 <a href="#"><span class="mdi mdi-twitter"></span></a>
@@ -360,7 +268,7 @@
         </div>  
       </section>
       <footer class="border-top">
-        <p class="text-center text-muted pt-4">Copyright © 2019<a href="https://www.bootstrapdash.com/" class="px-1">Bootstrapdash.</a>All rights reserved.</p>
+        <p class="text-center text-muted pt-4">Copyright © 2023<a href="https://Eaglevillesoaring.com" class="px-1">Eagleville Soaring Club.</a>All rights reserved.</p>
       </footer>
       <!-- Modal for Contact - us Button -->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -388,6 +296,37 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-success">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal for Login Button -->
+      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="loginModalLabel">Login</h4>
+            </div>
+            <div class="modal-body">
+              <%= form_for(:session, url: login_path) do |f| %>
+
+                <%= f.label :email %>
+                <%= f.email_field :email, class: 'form-control' %>
+          
+                <%= f.label :password %>
+                <%= link_to "(forgot password)", new_password_reset_path %>
+                <%= f.password_field :password, class: 'form-control' %>
+          
+                <%= f.label :remember_me, class: "checkbox inline" do %>
+                  <%= f.check_box :remember_me %>
+                    <span>Remember me on this computer</span>
+                  <% end %><br>
+                  
+                <div class="modal-footer">  
+                  <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                  <%= f.submit "Log in", class: "btn btn-primary" %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
