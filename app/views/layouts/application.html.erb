@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
   <head>
-    <title>SoarBase</title>
+    <title>Eagleville Soaring Club</title>
+    <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -21,15 +26,14 @@
   </head>
   
   <% if logged_in? %>
-  <body class="d-flex flex-column" id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
+  <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
     <%= render 'layouts/navigation' %>
     <div id="page-content">
       <%= render 'layouts/messages' %>
       <%= yield %>
     </div>
-    <%= render 'layouts/footer' %>
   <% else %>
-    <body class="d-flex flex-column" id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
+    <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
       <%= yield %>
   <% end %>
 

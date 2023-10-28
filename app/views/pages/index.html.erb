@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
     <div class="container">
       <div class="navbar-brand-wrapper d-flex w-100">
-        <img src="../simple_landing_page/images/Eagleville_Logo_Color.png" width="150" alt="">
+        <img src="../simple_landing_page/images/Eagleville_Logo_Color.png" width="100" alt="">
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="mdi mdi-menu navbar-toggler-icon"></span>
         </button> 
@@ -11,7 +11,7 @@
         <ul class="navbar-nav align-items-lg-center align-items-start ml-auto">
           <li class="d-flex align-items-center justify-content-between pl-4 pl-lg-0">
             <div class="navbar-collapse-logo">
-              <img src="../simple_landing_page/images/Group2.svg" alt="">
+              <img src="../simple_landing_page/images/Eagleville_Logo_Color.png" width="100" alt="">
             </div>
             <button class="navbar-toggler close-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="mdi mdi-close navbar-toggler-icon pl-5"></span>
@@ -20,7 +20,7 @@
           <li class="nav-item">
             <a class="nav-link" href="#header-section">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item dropdown">
+          <!--<li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">About</a>
               <ul class="dropdown-menu">
                 <li><%= link_to 'Users List', users_path, class: "nav-item" %></li>
@@ -28,15 +28,18 @@
                 <li><%= link_to 'User Membership', membership_users_path, class: "nav-item" %></li>
                 <li><a class="nav-item disabled" aria-disabled="true">Profile Details</a></li>
               </ul>
-            </li>
+            </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="#digital-marketing-section">Blog</a>  
+            <a class="nav-link" href="#club-info-section">About</a>  
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#feedback-section">Testimonials</a>
+            <a class="nav-link" href="#fleet-section">Our&nbsp;Fleet</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#read-more-section">Fly&nbsp;with&nbsp;us</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-            <button class="btn btn-info" data-toggle="modal" data-target="#loginModal">Login</button>
+            <button class="btn btn-info" data-toggle="modal" data-target="#loginModal">Member Login</button>
           </li>
         </ul>
       </div>
@@ -46,9 +49,9 @@
   
   <div class="content-wrapper">
     <div class="container">
-      <section class="digital-marketing-service" id="digital-marketing-section">
+      <section class="digital-marketing-service" id="club-info-section">
         <div class="row align-items-center">
-          <div class="col-12 col-lg-5 flex-item grid-margin" data-aos="fade-right">
+          <div class="col-12 col-lg-5 flex-item grid-margin grid-margin-lg-0" data-aos="fade-right">
             <h3 class="m-0">More than 70 years<br> of soaring in Middle Tennesse</h3>
             <div class="col-lg-9 col-xl-8 p-0">
               <p class="py-4 m-0 text-muted">Eagleville Soaring is a Soaring Society of America (SSA) Chapter Club operation<br>
@@ -64,8 +67,9 @@
         <br>
       <div class="container-fluid" style="background-color:#f7f8fa">  
         <div class="container">
+        <br><br>
           <div class="row align-items-center">
-            <div class="col-12 col-lg-7 text-center flex-item grid-margin bg-color="green" data-aos="fade-right">
+            <div class="col-12 col-lg-7 img-digital grid-margin" data-aos="fade-right">
               <img src="../simple_landing_page/images/picasabackground-046.jpg" alt="" class="img-fluid">
             </div>
             <div class="col-12 col-lg-5 flex-item grid-margin" data-aos="fade-left">
@@ -81,7 +85,7 @@
         </div>
       </div>  
       </section>     
-      <section class="case-studies" id="case-studies-section">
+      <section class="case-studies" id="read-more-section">
         <div class="container">
           <div class="row grid-margin">
             <div class="col-12 text-center pb-5">
@@ -91,7 +95,7 @@
                 <div class="card-body p-0">
                   <div class="bg-primary text-center card-contents">
                     <div class="card-image">
-                      <img src="../simple_landing_page/images/Group95.svg" class="case-studies-card-img" alt="">
+                      <img src="../simple_landing_page/images/fly_with_us.jpg" class="case-studies-card-img" alt="">
                     </div>  
                     <div class="card-desc-box d-flex align-items-center justify-content-around">
                       <div>
@@ -109,9 +113,9 @@
             <div class="col-12 col-md-6 col-lg-4 stretch-card mb-3 mb-lg-0" data-aos="zoom-in" data-aos-delay="200">
               <div class="card color-cards">
                 <div class="card-body p-0">
-                  <div class="bg-warning text-center card-contents">
+                  <div class="bg-primary text-center card-contents">
                     <div class="card-image">
-                        <img src="../simple_landing_page/images/Group108.svg" class="case-studies-card-img" alt="">
+                        <img src="../simple_landing_page/images/learn_to_fly.jpg" class="case-studies-card-img" alt="">
                     </div>  
                     <div class="card-desc-box d-flex align-items-center justify-content-around">
                       <div>
@@ -129,9 +133,9 @@
             <div class="col-12 col-md-6 col-lg-4 stretch-card mb-3 mb-lg-0" data-aos="zoom-in" data-aos-delay="400">
               <div class="card color-cards">
                 <div class="card-body p-0">
-                  <div class="bg-violet text-center card-contents">
+                  <div class="bg-primary text-center card-contents">
                     <div class="card-image">
-                        <img src="../simple_landing_page/images/Group126.svg" class="case-studies-card-img" alt="">
+                        <img src="../simple_landing_page/images/become_a_member.jpg" class="case-studies-card-img" alt="">
                     </div>  
                     <div class="card-desc-box d-flex align-items-center justify-content-around">
                       <div>
@@ -149,7 +153,7 @@
           </div>
         </div>  
       </section>     
-      <section class="customer-feedback" id="feedback-section">
+      <section class="customer-feedback" id="fleet-section">
         <div class="container">
           <div class="row">
             <div class="col-12 text-center pb-5">
@@ -159,8 +163,8 @@
                 <div class="card customer-cards">
                   <div class="card-body">
                     <div class="text-center">
-                      <img src="../simple_landing_page/images/face2.jpg" width="89" height="89" alt="" class="img-customer">
-                      <p class="m-0 py-3 text-muted">Our primary two place trainer.</p>
+                      <img src="../simple_landing_page/images/ASK21B-04-1024x768.jpg" width="150" height="150" alt="" class="img-customer">
+                      <p class="m-0 py-3 text-muted">Our primary two place trainer. This ASK-21 has trained hundreds of pilots at ESC.</p>
                       <div class="content-divider m-auto"></div>
                       <h6 class="card-title pt-3">"21A" N121FL</h6>
                       <h6 class="customer-designation text-muted m-0">Schleicher ASK-21</h6>
@@ -170,8 +174,8 @@
                 <div class="card customer-cards">
                   <div class="card-body">
                     <div class="text-center">
-                      <img src="../simple_landing_page/images/face3.jpg" width="89" height="89" alt="" class="img-customer">
-                      <p class="m-0 py-3 text-muted">Our second two-place trainer. Used for glider rides and instruction.</p>
+                      <img src="../simple_landing_page/images/ASK21B-03-1024x768.jpg" width="150" height="150" alt="" class="img-customer">
+                      <p class="m-0 py-3 text-muted">Our second two-place trainer. Mostly used for glider rides, though we also use it for training.</p>
                       <div class="content-divider m-auto"></div>
                       <h6 class="card-title pt-3">"21B" N2237W</h6>
                       <h6 class="customer-designation text-muted m-0">Schleicher ASK-21</h6>
@@ -181,8 +185,8 @@
                 <div class="card customer-cards">
                   <div class="card-body">
                     <div class="text-center">
-                      <img src="../simple_landing_page/images/face20.jpg" width="89" height="89" alt="" class="img-customer">
-                      <p class="m-0 py-3 text-muted">A perfect single place trainer for students to transition to after solo sign-off</p>
+                      <img src="../simple_landing_page/images/ASK23-A.jpg" width="150" height="150" alt="" class="img-customer">
+                      <p class="m-0 py-3 text-muted">A perfect single place trainer for students to transition to after solo sign-off. </p>
                       <div class="content-divider m-auto"></div>
                       <h6 class="card-title pt-3">N12345</h6>
                       <h6 class="customer-designation text-muted m-0">Schleicher ASK-23</h6>
@@ -192,8 +196,8 @@
                 <div class="card customer-cards">
                   <div class="card-body">
                     <div class="text-center">
-                      <img src="../simple_landing_page/images/face15.jpg" width="89" height="89" alt="" class="img-customer">
-                      <p class="m-0 py-3 text-muted">Our trusty Piper Pawnee tow plane.</p>
+                      <img src="../simple_landing_page/images/Pawnie1.jpg" width="150" height="150" alt="" class="img-customer">
+                      <p class="m-0 py-3 text-muted">Our trusty Piper Pawnee tow plane carries our members aloft every weekend.</p>
                       <div class="content-divider m-auto"></div>
                       <h6 class="card-title pt-3">N23566</h6>
                       <h6 class="customer-designation text-muted m-0">Piper PA-XX Pawnee</h6>
@@ -208,21 +212,25 @@
       <section class="digital-marketing-service" id="digital-marketing-service">
         <div class="container-fluid" style="background-color:#f7f8fa">
           <div class="container">
+          <br><br>
             <div class="row align-items-center" id="fly-with-us">
-              <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right">
+              <div class="col-12 col-lg-7 grid-margin" data-aos="fade-right">
                 <h3 class="m-0">How to fly with us</h3>
                 <div class="col-lg-7 col-xl-6 p-0">
-                  <p class="py-4 m-0 text-muted">text about weekend operations and what not</p>
-                  <p class="font-weight-medium text-muted">We have been flying gliders in Eagleville, TN since the 1950s.</p>
+                  <p class="py-4 m-0 text-muted">Eagleville Soaring Club flies on most Saturdays and Sundays year round, weather permitting.
+                          We fly from <%= Hour.where(active_flag: true).min.hour %> to <%= Hour.where(active_flag: true).max.hour %> and offer paid
+                          rides to non-members.
+
+                  </p>
+                  <p class="font-weight-medium text-muted">Contact us using this form to request a ride with one of our pilots. </p>
                 </div> 
                 <button class="btn btn-info">Request a ride</button>
       
               </div>
-              <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
+              <div class="col-12 col-lg-5 p-0 img-digital grid-margin" data-aos="fade-left">
                 <img src="../simple_landing_page/images/1690722449753blob.jpg" alt="" class="img-fluid">
               </div>
             </div>
-            <br>
             <div class="row align-items-center" id="learn-to-fly">
               <div class="col-12 col-lg-7 text-center flex-item grid-margin" data-aos="fade-right">
                 <img src="../simple_landing_page/images/picasabackground-046.jpg" alt="" class="img-fluid">
@@ -230,24 +238,28 @@
               <div class="col-12 col-lg-5 flex-item grid-margin" data-aos="fade-left">
                 <h3 class="m-0">Learning to fly a glider</h3>
                 <div class="col-lg-9 col-xl-8 p-0">
-                  <p class="py-4 m-0 text-muted">If you’ve ever spotted a hawk gracefully gliding high overhead, effortlessly floating along on air currents, <br>
-                    and wondered what that must feel like, now you can know!</p>
-                  <p class="pb-2 font-weight-medium text-muted">Eagleville Soaring club offers glider rides and pilot lessons at Puckett Gliderport, our home airfield just a half-hour drive from Nashville.</p>
+                  <p class="py-4 m-0 text-muted">Flying a glider can be an incredibly rewarding pursuit. Many of our members started their
+                  journey as a glider pilot with no prior experience. Our instructors are experts in taking absolute beginners through the learning process and
+                  preparing them for first solo and beyond. <br>
+                  </p>
+                  <p class="pb-2 font-weight-medium text-muted">To learn more about flight training at Eagleville Soaring Club, contact us via this form.</p>
                 </div>
-                <button class="btn btn-info">Contact Us</button>
+                <button class="btn btn-info">Learn about flight training</button>
               </div>
             </div>
             <div class="row align-items-center" id="become-a-member">
-              <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right">
+              <div class="col-12 col-lg-7 grid-margin" data-aos="fade-right">
                 <h3 class="m-0">Join the Eagleville Soaring Club</h3>
                 <div class="col-lg-7 col-xl-6 p-0">
-                  <p class="py-4 m-0 text-muted">text about weekend operations and what not</p>
-                  <p class="font-weight-medium text-muted">We have been flying gliders in Eagleville, TN since the 1950s.</p>
+                  <p class="py-4 m-0 text-muted">Membership in the Eagleville Soaring Club has multiple benefits. Members are granted usage
+                  privileges in our club gliders based on experience and training, as well as an annual membership in the Soaring Society of America. 
+                  </p>
+                  <p class="font-weight-medium text-muted">We have <%= MembershipUser.where(active_flag: true).count %> active members in our club across a wide range of experience and age groups. You could be the next!</p>
                 </div> 
-                <button class="btn btn-info">Request a ride</button>
+                <button class="btn btn-info">Inquire about membership</button>
       
               </div>
-              <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
+              <div class="col-12 col-lg-5 p-0 img-digital grid-margin" data-aos="fade-left">
                 <img src="../simple_landing_page/images/1690722449753blob.jpg" alt="" class="img-fluid">
               </div>
             </div>
@@ -270,10 +282,10 @@
                 <h5 class="pb-2">Our address</h5>
                 <p class="text-muted">4689 Highway 41A<br>Eagleville, Tennessee 37060</p>
                 <div class="d-flex justify-content-center justify-content-md-start">
-                  <a href="#"><span class="mdi mdi-facebook"></span></a>
-                  <a href="#"><span class="mdi mdi-twitter"></span></a>
+                  <a href="https://www.facebook.com/EaglevilleSC"><span class="mdi mdi-facebook"></span></a>
+                  <!-- <a href="#"><span class="mdi mdi-twitter"></span></a>
                   <a href="#"><span class="mdi mdi-instagram"></span></a>
-                  <a href="#"><span class="mdi mdi-linkedin"></span></a>
+                  <a href="#"><span class="mdi mdi-linkedin"></span></a> -->
                 </div>
             </div>
           </div>
