@@ -1,7 +1,9 @@
 <div class="container mt-2 mb-5 pb-5">
 	<div class="row">
-		<div class="col justify-content-center">
+		<div class="col-7 justify-content-center">
 			<h4>Availability for: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
+			<p>Check open slots by selecting date and clicking Check Reservations <br>
+			Click on red dot to see reservation details. Click on open green dot to reserve a slot.</p> 
 		</div>
 		<div class="col input-group justify-content-end align-middle">
 			<%= form_tag(reservations_path, method: :get) do %>
@@ -9,27 +11,23 @@
 				<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day', 'day'),{class: "form-select append"}) %>
 			<% end %>
 		</div>
-		<div>
-			<p>Check open slots by selecting date and clicking Check Reservations </p>
-		</div>
 		<div class="table-responsive">
 			<%= render 'grid' %>
-			<p>Click on red (booked) dot to see reservation details</p> 
 		</div>
 	</div>
 	<div class="row">
 		<div class="col justify-content-end">	
-			<h4><%= current_user.username %>'s reservations</h4>
+			<h4><%= current_user.username %>'s&nbsp;reservations</h4>
+		</div>
+		
+		<div class="col input-group justify-content-end align-middle">
+			<%= link_to 'Paid reservations', new_reservation_path, :class => "btn btn-success" %> 
 		</div>
 		<div class="col input-group justify-content-end align-middle">
-			<% if has_membership == true %>
-				<%= link_to 'Add Reservation', new_reservation_path, :class => "btn btn-success" %> 
-			<% else %>
-				<div class="badge text-bg-warning">Membership has expired, user has no reservation privileges</div>
-			<% end %>
+			<%= link_to 'Past due reservations', new_reservation_path, :class => "btn btn-success" %> 
 		</div>
 		<div>
-			<p>Past 30 days through next 30 days. Reservations are past due if unpaid 5 days after flight</p>
+			<p>Upcoming through next 30 days. Reservations are past due if unpaid 5 days after flight</p>
 		</div>
 	</div>
 
@@ -78,6 +76,7 @@
 			</div>
 		</div>
 	<% end %>
+	
 
 
 
