@@ -1,36 +1,45 @@
-<div class="mt-2 mx-2 mb-5">
-<h4>User Permissions</h4>
-<div class="table-responsive">
-<table class="table table-striped w-50">
-	<thead>
-		<tr>
-			<th>Username</th>
-			<th>Email</th>
-			<th>Instructor</th>
-      <th>User Admin</th>
-      <th>Club Admin</th>
-      <th>Site Admin</th>
-      <th>Global Admin</th>
-      <th>Modify	</th>
-		</tr>
-	</thead>
-		<tbody>
-			<% @permissions.each do |permission| %>
-				<tr>
-					<td><%= permission.user.username %></td>
-          <td><%= permission.user.email %></td>
-					<td><%= permission.instructor.humanize %></td>
-          <td><%= permission.user_admin.humanize %></td>
-          <td><%= permission.club_admin.humanize %></td>
-					<td><%= permission.site_admin.humanize %></td>
-          <td><%= permission.global_admin.humanize %></td>
-					<td><%= link_to 'Edit', edit_permission_path(permission), class: "btn btn-primary btn-sm"%></td>
-				</tr>
-			<% end %>
-		</tbody>
-</table>
-</div>
-<div class="mb-5 pb-5">
-	<%= link_to 'Go back to users list', users_path, :class => "btn btn-primary btn-sm mb-5" %>
-</div>
+<div class="container">
+  <div class="row text-center">
+    <div class="col justify-content-start">
+      <div class="row justify-content-center">
+				<h4>User Permissions</h4>
+        <div class="col-sm-12 col-md-10 table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Username</th>
+								<th>Email</th>
+								<th>Instructor</th>
+								<th>User Admin</th>
+								<th>Club Admin</th>
+								<th>Site Admin</th>
+								<th>Global Admin</th>
+								<th>Modify	</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @permissions.each do |permission| %>
+								<tr>
+									<td><%= permission.user.username %></td>
+									<td><%= permission.user.email %></td>
+									<td><%= permission.instructor.humanize %></td>
+									<td><%= permission.user_admin.humanize %></td>
+									<td><%= permission.club_admin.humanize %></td>
+									<td><%= permission.site_admin.humanize %></td>
+									<td><%= permission.global_admin.humanize %></td>
+									<td><%= link_to 'Edit', edit_permission_path(permission), class: "btn btn-primary btn-sm"%></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+					<div class="row text-start">
+						<div class="col justify-content-start">
+							<%= link_to 'Go back to users list', users_path, :class => "btn btn-primary" %>
+						</div>
+					</div>
+				</div>
+				</div>		
+			</div>
+		</div>	
+	</div>
 </div>

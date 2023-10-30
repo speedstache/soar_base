@@ -1,5 +1,6 @@
 class DaysController < ApplicationController
   before_action :require_user
+  before_action :require_site_admin
 
   def new
     @day = Day.new

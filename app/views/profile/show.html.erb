@@ -1,0 +1,76 @@
+<div class="container">
+	<div class="row justify-content-center">
+    <div class="col-sm-10 col-md-6">
+      <div class="card shadow p-3 mb-5 bg-white rounded">
+        <div class="card-header fst-italic">
+          <div class="row">
+            <div class="col ps-0 justify-content-start">
+              <%= gravatar_for current_user, size: 100 %>
+            </div>
+            <div class="col pt-3 justify-content-end">
+              <%= link_to 'Update Personal Info', edit_profile_path, class: "btn btn-primary btn-sm"%>
+            </div>
+          </div>  
+        </div>
+        <div class="card-body" style="padding: 10px 10px">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item lead pb-3">Personal Info</li>
+              <d1 class="row">
+                <dt class="col-sm-4 ps-4 pt-2">Username</dt>
+                  <dd class="col-sm-8 pt-2"><%= @user.username %></dd>
+                <dt class="col-sm-4 ps-4 pt-2">Email</dt>
+                  <dd class="col-sm-8 pt-2"><%= @user.email %></dd>
+                <dt class="col-sm-4 ps-4 pt-2">Phone Number</dt>
+                  <dd class="col-sm-8 pt-2"></dd>
+                <dt class="col-sm-4 ps-4 pt-2">Date of Birth</dt>
+                  <dd class="col-sm-8 pt-2"></dd>
+                <dt class="col-sm-4 ps-4 pt-2">Address</dt>
+                  <dd class="col-sm-8 pt-2"></dd>
+                <dt class="col-sm-4 ps-4 pt-2">Address 2</dt>
+                  <dd class="col-sm-8 pt-2">&nbsp;</dd>
+                <dt class="col-sm-4 ps-4 pt-2">City</dt>
+                  <dd class="col-sm-8 pt-2"></dd>
+                <dt class="col-sm-4 ps-4 pt-2">State</dt>
+                  <dd class="col-sm-8 pt-2"></dd>
+                <dt class="col-sm-4 ps-4 pt-2">Zip Code</dt>
+                  <dd class="col-sm-8 pt-2"></dd>
+                <dt class="col-sm-4 ps-4 pt-2">Emergency Contact</dt>
+                  <dd class="col-sm-8 pt-2"></dd>
+                <dt class="col-sm-4 ps-4 pt-2">Emergency Phone</dt>
+                  <dd class="col-sm-8 pt-2"></dd>  
+              
+            </d1> 
+          </ul>  
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item lead">Club Info</li>
+              <d1 class="row">
+                <dt class="col-sm-4 ps-4 pt-2">Current Membership</dt>
+                  <dd class="col-sm-8 pt-2">
+                  <% if @user.membership_users.blank? %>
+                    No current membership 
+                  <% else %>   
+                    <%= @membership.membership_type %> member: renews on <%= @renewal_date.strftime("%a, %b %d, %Y") %>
+                  <% end %>  
+                    </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Aircraft Privileges</dt>
+                  <dd class="col-sm-8 pt-2"><%= @user.privileges_in.map {|x| x.values[1]} %></dd>
+                <dt class="col-sm-4 ps-4 pt-2">Site Permissions</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Instructor: <%= @user.permission.instructor.humanize %></p>
+                    <p>User admin: <%= @user.permission.user_admin.humanize %></p>
+                    <p>Club admin: <%= @user.permission.club_admin.humanize %></p>
+                    <p>Site admin: <%= @user.permission.site_admin.humanize %></p>
+                    <p>Global admin: <%= @user.permission.global_admin.humanize %></p>
+                  </dd>
+                  <dd class="col-sm-6 pt-2">
+                </d1>
+              </ul>
+            </div>   
+            <div class="row card-footer text-body-secondary">
+            </div>
+          </div>
+        </div>    
+      </div>
+    </div>    
+   </div>
+ </div>   

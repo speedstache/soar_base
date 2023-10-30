@@ -1,31 +1,39 @@
-<div class="mt-2 mx-2 mb-5">
-<h4>List of Users</h4>
-<h8>Removed the ability to delete users until null user error handling is built</h8>
-<div class="table-responsive">
-<table class="table table-striped w-50">
-	<thead>
-		<tr>
-			<th>Profile&nbsp;Pic</th>
-			<th>Username</th>
-			<th>Email</th>
-      <th>Activated</th>
-      <th colspan="2">Edit User</th>
-		</tr>
-	</thead>
-		<tbody>
-			<% @users.each do |user| %>
-				<tr>
-					<td><%= gravatar_for user, size: 50 %></td>
-					<td><%= user.username %></td>
-          <td><%= user.email %></td>
-					<td><%= user.activated.humanize %></td>
-					<td><%= link_to 'Details', user_path(user), class: "btn btn-info btn-sm"%></td>
-					<td><%= link_to 'Edit', edit_user_path(user), class: "btn btn-primary btn-sm"%></td>
-          <!-- <td><%= link_to "Delete", user_path(user),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td> -->
-				</tr>
-			<% end %>
-		</tbody>
-</table>
-</div>
-<%= link_to 'Add a new user', new_user_path, :class => "btn btn-primary btn-sm mb-5" %>
+<div class="container">
+  <div class="row text-center">
+    <div class="col justify-content-start">
+      <div class="row justify-content-center">
+				<h4>List of Users</h4>
+				<p class="text-muted">This user list used primarily to check if users profiles have been activated</p>
+        <div class="col-sm-12 col-md-10 table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Profile&nbsp;Pic</th>
+								<th>Username</th>
+								<th>Email</th>
+								<th>Activated</th>
+								<th colspan="1">Edit User</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @users.each do |user| %>
+								<tr>
+									<td><%= gravatar_for user, size: 50 %></td>
+									<td><%= user.username %></td>
+									<td><%= user.email %></td>
+									<td><%= user.activated.humanize %></td>
+									<td><%= link_to 'Edit', edit_user_path(user), class: "btn btn-primary btn-sm"%></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+					<div class="row text-start">
+						<div class="col justify-content-start">
+							<%= link_to 'Add a new user', new_user_path, :class => "btn btn-primary" %>		
+						</div>	
+					</div>
+				</div>
+			</div>		
+		</div>
+	</div>	
 </div>

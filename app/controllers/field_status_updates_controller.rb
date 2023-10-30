@@ -1,6 +1,8 @@
 class FieldStatusUpdatesController < ApplicationController
   before_action :set_field_status_update, only: %i[ show edit update destroy ]
   before_action :require_user
+  # need to set before action for instructor or club admin
+  before_action :require_club_admin 
 
   # GET /field_status_updates or /field_status_updates.json
   def index

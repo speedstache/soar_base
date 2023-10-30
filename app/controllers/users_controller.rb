@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_user
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :require_user_admin
 
   # GET /users or /users.json
   def index
@@ -45,7 +46,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
+        format.html { redirect_to profile_path(@user), notice: "Profile info successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -75,4 +76,6 @@ class UsersController < ApplicationController
       params.require(:user).permit(:username, :email, :password,
                                    :password_confirmation)
     end
+
+
 end

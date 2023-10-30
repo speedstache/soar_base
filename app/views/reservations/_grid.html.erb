@@ -1,72 +1,99 @@
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th >Aircraft</th>
-			<% @avail_hours.each do |hour| %>
-				<th><%= hour.hour %></th>
+<div class="row">
+	<div class="col-7 justify-content-center">
+		<h4>Availability for: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
+		<p class="text-muted">Check open slots by selecting date and clicking Check Reservations <br>
+		Click on red dot to see reservation details. Click on open green dot to reserve a slot.</p> 
+	</div>
+	<div class="col input-group justify-content-end align-middle">
+		<%= form_tag(reservations_path, method: :get) do %>
+			<%= submit_tag ("Check Reservations"), {class: "btn btn-info btn-sm"} %>
+			<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day','day', @res_show),{class: "form-select append"}) %>
+		<% end %>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th >Aircraft</th>
+					<% @avail_hours.each do |hour| %>
+						<th><%= hour.hour %></th>
+						<% end %>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				<td>21A</td>
+				<% @avail_hours.each do |hour| %>
+					<td >
+						<% if has_membership == true && @res_show >= Date.today %>
+							<% if @view_21a.where(reservation_time: hour.hour).exists? %>
+								<%= link_to '', reservation_path(@view_21a.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
+							<% else %>
+								<%= link_to '', new_reservation_path(:date => @res_show.strftime("%a, %b %d, %Y"), :time => hour.hour, :aircraft => 1), :class=>"open_dot" %>
+							<% end %>
+						<% else %>	
+							<% if @view_21a.where(reservation_time: hour.hour).exists? %>
+								<%= link_to '', reservation_path(@view_21a.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
+							<% else %>
+								<% if @res_show < Date.today %>
+									<span class="gray_dot" title="Reservations cannot be created for dates in the past"></span>
+								<% else %>
+									<span class="gray_dot" title="Reservation privileges only for active memberships"></span>
+								<% end %>
+							<% end %>
+						<% end %>	
+					</td>
 				<% end %>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-		<td>21A</td>
-		<% @avail_hours.each do |hour| %>
-			<td >
-				<% if has_membership == true %>
-					<% if @view_21a.where(reservation_time: hour.hour).exists? %>
-						<%= link_to '', reservation_path(@view_21a.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
-					<% else %>
-						<%= link_to '', new_reservation_path(:date => @res_show.strftime("%a, %b %d, %Y"), :time => hour.hour, :aircraft => 1), :class=>"open_dot" %>
-					<% end %>
-				<% else %>	
-					<% if @view_21a.where(reservation_time: hour.hour).exists? %>
-						<%= link_to '', reservation_path(@view_21a.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
-					<% else %>
-						<span class="oprn_dot" title="Reservation privileges only for active memberships"></span>
-					<% end %>
-				<% end %>	
-			</td>
-		<% end %>
-		</tr>
-		<tr>
-		<td>21B</td>
-		<% @avail_hours.each do |hour| %>
-			<td >
-				<% if has_membership == true %>
-					<% if @view_21b.where(reservation_time: hour.hour).exists? %>
-						<%= link_to '', reservation_path(@view_21b.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
-					<% else %>
-						<%= link_to '', new_reservation_path(:date => @res_show.strftime("%a, %b %d, %Y"), :time => hour.hour, :aircraft => 2), :class=>"open_dot" %>
-					<% end %>
-				<% else %>	
-					<% if @view_21b.where(reservation_time: hour.hour).exists? %>
-						<%= link_to '', reservation_path(@view_21b.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
-					<% else %>
-						<span class="open_dot" title="Reservation privileges only for active memberships"></span>
-					<% end %>
-				<% end %>	
-			</td>
-		<% end %>
-		</tr>
-		<tr>
-		<td>ASK-23</td>
-		<% @avail_hours.each do |hour| %>
-			<td >
-				<% if has_membership == true %>
-					<% if @view_23.where(reservation_time: hour.hour).exists? %>
-						<%= link_to '', reservation_path(@view_23.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
-					<% else %>
-						<%= link_to '', new_reservation_path(:date => @res_show.strftime("%a, %b %d, %Y"), :time => hour.hour, :aircraft => 3), :class=>"open_dot" %>
-					<% end %>
-				<% else %>	
-					<% if @view_23.where(reservation_time: hour.hour).exists? %>
-						<%= link_to '', reservation_path(@view_23.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
-					<% else %>
-						<span class="open_dot" title="Reservation privileges only for active memberships"></span>
-					<% end %>
-				<% end %>	
-			</td>
-		<% end %>
-		</tr>
-</tbody>
-</table>
+				</tr>
+				<tr>
+				<td>21B</td>
+				<% @avail_hours.each do |hour| %>
+					<td >
+						<% if has_membership == true && @res_show >= Date.today  %>
+							<% if @view_21b.where(reservation_time: hour.hour).exists? %>
+								<%= link_to '', reservation_path(@view_21b.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
+							<% else %>
+								<%= link_to '', new_reservation_path(:date => @res_show.strftime("%a, %b %d, %Y"), :time => hour.hour, :aircraft => 2), :class=>"open_dot" %>
+							<% end %>
+						<% else %>	
+							<% if @view_21b.where(reservation_time: hour.hour).exists? %>
+								<%= link_to '', reservation_path(@view_21b.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
+							<% else %>
+								<% if @res_show < Date.today %>
+									<span class="gray_dot" title="Reservations cannot be created for dates in the past"></span>
+								<% else %>
+									<span class="gray_dot" title="Reservation privileges only for active memberships"></span>
+								<% end %>
+							<% end %>
+						<% end %>	
+					</td>
+				<% end %>
+				</tr>
+				<tr>
+				<td>ASK-23</td>
+				<% @avail_hours.each do |hour| %>
+					<td >
+						<% if has_membership == true && @res_show >= Date.today  %>
+							<% if @view_23.where(reservation_time: hour.hour).exists? %>
+								<%= link_to '', reservation_path(@view_23.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
+							<% else %>
+								<%= link_to '', new_reservation_path(:date => @res_show.strftime("%a, %b %d, %Y"), :time => hour.hour, :aircraft => 3), :class=>"open_dot" %>
+							<% end %>
+						<% else %>	
+							<% if @view_23.where(reservation_time: hour.hour).exists? %>
+								<%= link_to '', reservation_path(@view_23.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
+							<% else %>
+								<% if @res_show < Date.today %>
+									<span class="gray_dot" title="Reservations cannot be created for dates in the past"></span>
+								<% else %>
+									<span class="gray_dot" title="Reservation privileges only for active memberships"></span>
+								<% end %>
+							<% end %>
+						<% end %>	
+					</td>
+				<% end %>
+				</tr>
+		</tbody>
+		</table>
+	</div>
+</div>		

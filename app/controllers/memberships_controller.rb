@@ -1,6 +1,7 @@
 class MembershipsController < ApplicationController
   before_action :require_user
   before_action :set_membership, only: %i[ show edit update destroy ]
+  before_action :require_club_admin
 
   # GET /memberships or /memberships.json
   def index

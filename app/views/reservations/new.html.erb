@@ -1,42 +1,13 @@
 <div class="container mx-2 my-2">
-
 	<div class="row text-center justify-content-center" >
   <h4>Create a new reservation</h4>
   <h8>Aircraft are limited to those the current user has flight privileges in</h8>
     <div class="col-sm-10 col-md-6">
       <%= render 'shared/errors', obj: @reservation %>
-        <%= form_with scope: :reservation, url: reservations_path(:date, :time, :aircraft), class: "shadow p-3 m-3 bg-info rounded", data: { turbo: false }, local: true do |f| %>
-            <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= f.hidden_field :reservation_date, value: @date %>
-            <%= f.hidden_field :reservation_time, value: @time %>
-            <%= f.hidden_field :aircraft_id, value: @aircraft %>
-          <div class="form-group row m-3" >
-            <%= f.label :date, class: "col-4 col-form-label " %>
-            <div class="col form-control">
-              <%= @date %>
-            </div>
-          </div>	
-          <div class="form-group row m-3">
-            <%= f.label :start_time, class: "col-4 col-form-label " %>
-            <div class="col form-control"> 
-            <%= @time %>
-            </div>
-          </div>
-            <%= f.hidden_field :reservation_duration %>
-          <div class="form-group row m-3" >
-            <%= f.label :aircraft, class: "col-4 col-form-label" %>
-            <div class="col form-control">  
-              <%= Aircraft.find(@aircraft).short_name %>
-            </div>
-          </div>
-          <div class="form-group row m-3" >
-            <%= f.label :instructor_flag, class: "col-4 col-form-label " %>
-            <div class="col">
-              <%= f.check_box :instructor_flag, class: "form-check-label" %>
-            </div>
-          </div>
-          <%= link_to "close", reservations_path, :class => "btn btn-light" %>
-        <%= f.submit class:"btn btn-primary" %>
+      <% if @date.blank? || @time.blank? || @aircraft.blank? %>
+        <%= render 'form' %>
+      <% else %>  
+        <%= render 'form_with_params' %>
       <% end %>
     </div>
   </div>

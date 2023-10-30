@@ -1,14 +1,15 @@
 <%= form_with(model: @membership_user, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
   <div class="form-group row m-3" >
+    <%= f.hidden_field :user_id, value: @unassigned_user_id %>
       <%= f.label :user_id, class: "col-4 col-form-label" %>
-    <div class="col">
-      <%= f.collection_select(:user_id, User.all, 'id', 'username', {}, {class: "input-group-text form-control"}) %>
+    <div class="col form-control">
+      <%= User.find(@unassigned_user_id).username %>
     </div>
   </div>
   <div class="form-group row m-3" >
       <%= f.label :membership_type, class: "col-4 col-form-label" %>
     <div class="col">
-    <%= f.collection_select(:membership_id, Membership.all, 'id', 'membership_type', {}, {class: "input-group-text form-control"}) %>
+    <%= f.collection_select(:membership_id, Membership.where(active_flag: true), 'id', 'membership_type', {}, {class: "input-group-text form-control"}) %>
     </div>
   </div>
   <div class="form-group row m-3" >
@@ -20,7 +21,7 @@
   <div class="form-group row m-3" >
       <%= f.label :active_flag, class: "col-4 col-form-label" %>
     <div class="col">
-    <%= f.check_box :active_flag, class: "check_box_label" %>
+    <%= f.check_box :active_flag, class: "form-check-label" %>
     </div>
   </div>
   <%= link_to "Close", membership_users_path, :class => "btn btn-light" %>

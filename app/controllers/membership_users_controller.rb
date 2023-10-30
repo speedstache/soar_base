@@ -1,10 +1,15 @@
 class MembershipUsersController < ApplicationController
   before_action :require_user
   before_action :set_membership_user, only: %i[ show edit update destroy ]
+  before_action :require_user_admin
 
   # GET /membership_users or /membership_users.json
   def index
     @membership_users = MembershipUser.all
+    @unassigned_users = User.where.not(id: MembershipUser.all.pluck(:user_id))
+
+    @unassigned_user_id = params[:id]
+
   end
 
   # GET /membership_users/1 or /membership_users/1.json
@@ -14,6 +19,9 @@ class MembershipUsersController < ApplicationController
   # GET /membership_users/new
   def new
     @membership_user = MembershipUser.new
+
+    @unassigned_user_id = params[:id]
+
   end
 
   # GET /membership_users/1/edit

@@ -78,5 +78,26 @@ module SessionsHelper
     session.delete(:user_id)
     @current_user = nil
   end
+
+  def require_user_admin
+    if !current_user.permission.user_admin?
+    flash[:alert] = "That area requires user admin rights"
+    redirect_to reservations_url
+    end
+  end
+
+  def require_club_admin
+    if !current_user.permission.club_admin?
+    flash[:alert] = "That area requires club admin rights"
+    redirect_to reservations_url
+    end
+  end
+
+  def require_site_admin
+    if !current_user.permission.site_admin?
+    flash[:alert] = "That area requires site admin rights"
+    redirect_to reservations_url
+    end
+  end
   
 end

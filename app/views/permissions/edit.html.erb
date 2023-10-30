@@ -1,15 +1,10 @@
 <div class="container mx-2 my-2">
-	<div class="row justify-content-start" >
-  <h4>Edit Permissions</h4>
+	<div class="row text-center justify-content-center" >
+    <h4>Edit Permissions</h4>
     <div class="col-sm-10 col-md-6">
-      <%= render 'shared/errors', obj: @permission %>
-        
+      <%= render 'shared/errors', obj: @permission %> 
       <%= render 'form' %>
-
     </div>
   </div>
-  <%= link_to "Back to permission list", permissions_path, :class => "btn btn-primary mb-5" %>
+</div>
 
-</div>
-<div>
-</div>

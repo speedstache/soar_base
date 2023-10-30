@@ -1,14 +1,11 @@
 class PermissionsController < ApplicationController
   before_action :require_user
-  before_action :set_permission, only: %i[ show edit update ]
+  before_action :set_permission, only: %i[ edit update ]
+  before_action :require_user_admin
 
   # GET /permissions or /permissions.json
   def index
     @permissions = Permission.all
-  end
-
-  # GET /permissions/1 or /permissions/1.json
-  def show
   end
 
   # GET /permissions/new

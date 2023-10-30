@@ -1,15 +1,14 @@
 <div class="container mx-2 my-2">
-	<div class="row justify-content-start ml-2 my-2 w-50" >
+	<div class="row text-center justify-content-center" >
   <h4>Associate Membership with user </h4>
-    <div class="col">
+    <div class="col-sm-10 col-md-6">
       <%= render 'shared/errors', obj: @membership_user %>
-        
+      <% if @unassigned_user_id.blank? %>
         <%= render 'form' %>
-
-        <%= link_to "Back to Membership User list", membership_users_path, :class => "btn btn-secondary btn-sm" %>
-
+      <% else %>  
+        <%= render 'form_with_params' %>
+      <% end %>
     </div>
   </div>
 </div>
-<div>
-</div>
+

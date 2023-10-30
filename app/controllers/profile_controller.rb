@@ -1,23 +1,35 @@
 class ProfileController < ApplicationController
+  before_action :require_user
+  before_action :require_same_user, only: [:show, :edit, :update, :destroy]
 
 def show
-  @membership_info = current_user.memberships.last
-  @my_membership = current_user.membership_users.last
+  @user = User.find(params[:id])
+
+  #If @user doesn't have a membership, return any value. The show template doesn't display this data anyway
+  if @user.membership_users.blank?
+    @membership_info = MembershipUser.find(3)
+    @membership = Membership.find_by(id: @membership_info.membership_id)
+    @renewal_date = @membership_info.renewal_date + @membership.renewal_period
+  else
+    @membership_info = MembershipUser.find_by(user_id: @user.id)
+    @membership = Membership.find_by(id: @membership_info.membership_id)
+    @renewal_date = @membership_info.renewal_date + @membership.renewal_period
+  end
+
 end
 
 def index
-  @membership_info = current_user.memberships.last
-  @my_membership = current_user.membership_users.last
-  @my_renewal_date = @my_membership.renewal_date + @membership_info.renewal_period
+
+  @users = User.all
 
 end
 
 def edit
-
+ 
 end
 
 def update
-  @user = current_user
+  @user = User.find(params[:id])
 
   respond_to do |format|
     if @user.update(user_params)
@@ -36,5 +48,15 @@ private
 def user_params
   params.require(current_user).permit(:username, :email)
 end
+
+def require_same_user
+  @user = User.find(params[:id])
+
+  if current_user.id != @user.id && !current_user.permission.club_admin?
+  flash[:alert] = "You can only view or edit your own profile"
+  redirect_to profile_index_path
+  end
+end
+
 
 end

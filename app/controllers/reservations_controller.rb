@@ -6,6 +6,8 @@ class ReservationsController < ApplicationController
   # GET /reservations or /reservations.json
   def index
   
+    @status = params[:status]
+
     @res_date = Reservation.search(params[:search])
 
     if params[:search] != nil
@@ -16,16 +18,33 @@ class ReservationsController < ApplicationController
       flash[:notice] = "search grid set to next flying date"
     end
 
-    @avail_days = Day.where(day: Date.today .. 60.days.from_now, active_flag: 1).order('days.day ASC')
+    @avail_days = Day.where(day: 10.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
     @avail_hours = Hour.where(active_flag: 1)
     @view_21a = @res_date.where(aircraft_id: 1)
     @view_21b = @res_date.where(aircraft_id: 2)
     @view_23 = @res_date.where(aircraft_id: 3)
-    @myreservations = current_user.reservations.where(reservation_date: 30.days.from_now, status: 'open').order('reservation_date DESC')
+    @myreservations = current_user.reservations.where(reservation_date: Date.today..30.days.from_now, status: 'open').order('reservation_date DESC')
+    @pastduereservations = current_user.reservations.where(reservation_date: 100.days.ago..5.days.ago, status: 'open').order('reservation_date DESC')
+    @paidreservations = current_user.reservations.where(status: 'paid').order('reservation_date DESC')
+    @upcomingreservations = current_user.reservations.where(reservation_date: Date.today..60.days.from_now, status: 'open').order('reservation_date DESC')
+
+
+    if @status.blank?
+      @displayreservations = @myreservations
+    elsif @status == 'past_due'
+      @displayreservations = @pastduereservations
+    elsif @status == 'paid'
+      @displayreservations  = @paidreservations
+    elsif @status == 'upcoming'
+      @displayreservations = @upcomingreservations
+    else 
+      @displayreservations = @myreservations
+    end      
+
   end
 
   def club
-  
+
     @res_date = Reservation.search(params[:search])
 
     if params[:search] != nil
@@ -36,7 +55,7 @@ class ReservationsController < ApplicationController
       flash[:notice] = "search grid set to next flying date"
     end
 
-    @avail_days = Day.where(day: Date.today .. 60.days.from_now, active_flag: 1).order('days.day ASC')
+    @avail_days = Day.where(day: 10.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
     @avail_hours = Hour.where(active_flag: 1)
     @view_21a = @res_date.where(aircraft_id: 1)
     @view_21b = @res_date.where(aircraft_id: 2)
@@ -56,11 +75,10 @@ class ReservationsController < ApplicationController
     @avail_hours = Hour.where(active_flag: 1)
     @reservation = Reservation.new
 
+
     @date = params[:date]
     @time = params[:time]
     @aircraft = params[:aircraft]
-
-    @aircraft_name = Aircraft.where(id: @aircraft)
     
   end
 
@@ -126,8 +144,6 @@ class ReservationsController < ApplicationController
       flash[:alert] = "You can only edit or delete your own reservations"
       redirect_to @reservation
       end
-    end	
-
-    
+    end
 
 end

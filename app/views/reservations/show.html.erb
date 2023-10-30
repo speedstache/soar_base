@@ -1,47 +1,65 @@
 <div class="container">
-	<div class="row">
-		<div class="col justify-content-start mt-2">
-			<h4><%= @reservation.user.username %>'s reservation on <%= @reservation.reservation_date.strftime("%m/%d/%y") %> </h4>
-		</div>
-		<div class="col justify-content-end mt-2">
-			<h4>Status: <%= @reservation.status %></h4>
-		</div>
-	</div>	
-	<div class="row">
-		<div class="col-sm-10 col-md-8">
+	<div class="row justify-content-center">
+		<div class="col-sm-10 col-md-6">
 			<div class="card shadow p-3 mb-5 bg-white rounded">
-				<div class="row card-header fst-italic">
+				<div class="card-header fst-italic">
 					<div class="row">
-						<div class="col text-start justify-content-start">
-							<strong><%= @reservation.reservation_date.strftime("%m/%d/%y") %></strong>
+						<div class="col input-group justify-content-start">
+							<% if @reservation.status == 'open' %>
+								<%= link_to "Edit", edit_reservation_path(@reservation), class: "btn btn-primary btn-sm" %>
+							<% else %>
+								<%= link_to "Edit", edit_reservation_path(@reservation), class: "btn btn-primary btn-sm disabled" %>
+							<% end %>
+						</div>	
+						
+						<div class="col input-group justify-content-end">	
+							<% if @reservation.flights.count == 0 && @reservation.status == 'open' %>
+								<%= link_to "Delete", reservation_path(@reservation), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
+							<% else %>	
+								<%= link_to "Delete", reservation_path(@reservation), class: "btn btn-warning btn-sm disabled", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
+							<% end %>
 						</div>
-						<div class="col text-center justify-content-center">
-							<%= @reservation.reservation_time %>
+					</div>	
+				<div class="row pt-3">
+						<div class="col text-start">
+							<strong>Reservation&nbsp;details </strong>
 						</div>
 						<div class="col text-end justify-content-end">
+							<strong>
+								<% if @reservation.status == 'open' && @reservation.reservation_date > Date.today %>
+									Upcoming
+								<% elsif @reservation.status == 'open' && @reservation.reservation_date < 5.days.ago %>
+									Payment Past Due
+								<% else %>
+									<%= @reservation.status %> 
+								<% end %>
+							</strong>	
+						</div>
+					</div>
+					
+					
+				<div class="card-body" style="padding: 20px 20px">
+				<div class="row pb-3">
+						<div class="col text-start">
+							<strong>Pilot:</strong></strong><br>
+							<%= @reservation.user.username %></strong>
+						</div>
+						<div class="col text-start">
+							<strong>Date:</strong></strong><br>
+							<%= @reservation.reservation_date.strftime("%m/%d/%y") %></strong>
+						</div>
+						<div class="col text-center">
+							<strong>Time:</strong></strong><br>
+							<%= @reservation.reservation_time %>
+						</div>
+						<div class="col text-end">
+							<strong>Aircraft:</strong></strong><br>
 							 <%= @reservation.aircraft.short_name %>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col input-group justify-content-start">
-							<% if @reservation.status == 'open' %>
-								<%= link_to "Edit reservation", edit_reservation_path(@reservation), class: "btn btn-primary btn-sm" %>
-							<% else %>
-								<%= link_to "Edit reservation", edit_reservation_path(@reservation), class: "btn btn-primary btn-sm disabled" %>
-							<% end %>
-						</div>	
-						<div class="col input-group justify-content-end">	
-							<% if @reservation.flights.count == 0 && @reservation.status == 'open' %>
-								<%= link_to "Delete reservation", reservation_path(@reservation), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
-							<% else %>	
-								<%= link_to "Delete reservation", reservation_path(@reservation), class: "btn btn-warning btn-sm disabled", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
-							<% end %>
-						</div>
-					</div>
-				<div class="card-body">
-					<div class="row">
-						<p class="p-0">Logged <%= @reservation.flights.count %> flight(s) with <%= number_to_currency(@reservation.flights.pluck(:fees).sum) %> in tow fees</p>
-						<p class="p-0">Verify flight glider matches glider used</p>
+						<p class="p-0 text-muted">Logged <%= @reservation.flights.count %> flight(s) with <%= number_to_currency(@reservation.flights.pluck(:fees).sum) %> in tow fees</p>
+						<p class="p-0 text-muted">Verify flight glider matches glider used</p>
 					</div>
 					<div class="row">
 					<div class="table-responsive p-0">
@@ -81,25 +99,35 @@
 							</tbody>
 						</table>
 					</div>
-					<div class="row card-footer text-body-secondary px-1" >
-						<div class="col p-0 input-group justify-content-start">
-							<%= link_to 'Reservations', reservations_path, :class => "btn btn-primary btn-sm" %>
-						</div>
-						<div class="col p-0 input-group justify-content-center">
-						<% if @reservation.reservation_date <= Date.today && @reservation.status == 'open' %>
-							<%= link_to "Add flights", new_reservation_flight_path(@reservation), :class => "btn btn-secondary btn-sm" %>
-						<% else %>
-							<%= link_to "Add flights", new_reservation_flight_path(@reservation), :class => "btn btn-secondary btn-sm disabled" %>
-						<% end %>
-						</div>
-						<div class="col p-0 input-group justify-content-end">
-						<% if @reservation.reservation_date <= Date.today && @reservation.flights.count > 0 && @reservation.status == 'open' %>
-							<%= link_to "Pay for Flights", checkout_path(:id => @reservation.id), class: "btn btn-success btn-sm" %>
-						<% else %>
-							<%= link_to "Pay for Flights", checkout_path(:id => @reservation.id), class: "btn btn-success btn-sm disabled" %>
-						<% end %>	
-						</div>
+					<div class="card-footer text-body-secondary" >
+						<div class="row">
+							<div class="col input-group justify-content-start">
+							<% if @reservation.reservation_date <= Date.today && @reservation.status == 'open' %>
+								<%= link_to "Add flight", new_reservation_flight_path(@reservation), :class => "btn btn-secondary btn-sm" %>
+							<% else %>
+								<%= link_to "Add flight", new_reservation_flight_path(@reservation), :class => "btn btn-secondary btn-sm disabled" %>
+							<% end %>
+							</div>
+							<div class="col input-group justify-content-end">
+							<% if @reservation.reservation_date <= Date.today && @reservation.flights.count > 0 && @reservation.status == 'open' %>
+								<%= link_to "Checkout", checkout_path(:id => @reservation.id), class: "btn btn-success btn-sm" %>
+							<% else %>
+								<%= link_to "Checkout", checkout_path(:id => @reservation.id), class: "btn btn-success btn-sm disabled" %>
+							<% end %>	
+							</div>
+						</div>	
 					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row pt-3">		
+			<div class="col justify-content-start">
+				<%= link_to 'Close', reservations_path, :class => "btn btn-primary btn-sm" %>
+			</div>	
+		</div>
+
+		</div>
+					
 
 
 	<!-- Old design showing reservation and flight details as tables instead of cards

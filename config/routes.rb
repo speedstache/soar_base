@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :towfees
   resources :membership_users
   resources :memberships,     except: [:destroy]
-  resources :permissions,     except: [:destroy]
+  resources :permissions,     except: [:show, :destroy]
   resources :aircraft_users
   resources :users,     except: [:destroy]
   resources :hours,     except: [:destroy]
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   get "pages/index", to: 'pages#index'
 
-  resources :profile, only: [:index, :edit, :update]
+  resources :profile, only: [:index, :show, :edit, :update]
   resources :members, only: [:index]
 
   get 'login', to: 'sessions#new'

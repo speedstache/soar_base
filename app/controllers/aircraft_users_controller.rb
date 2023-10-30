@@ -1,6 +1,7 @@
 class AircraftUsersController < ApplicationController
   before_action :require_user
   before_action :set_aircraft_user, only: %i[ show edit update destroy ]
+  before_action :require_user_admin
 
   # GET /aircraft_users or /aircraft_users.json
   def index
