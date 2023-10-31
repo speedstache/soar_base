@@ -6,11 +6,21 @@ class AircraftsController < ApplicationController
   # GET /aircrafts or /aircrafts.json
   def index
     @aircrafts = Aircraft.all
+    
   end
 
   # GET /aircrafts/1 or /aircrafts/1.json
   def show
-    @sumhours = Flight.where(aircraft_id: @aircraft, flight_date: @aircraft.last_maintenance..Date.today )
+
+    if Flight.where(aircraft_id: @aircraft).blank?
+      @flighthours = 0
+      @flightcount = 0
+    else
+      @sumhours = Flight.where(aircraft_id: @aircraft, flight_date: @aircraft.last_maintenance..Date.today )
+      @flightcount = @sumhours.count
+      @flighthours = @sumhours.sum(:flight_time)
+    end  
+
   end
 
   # GET /aircrafts/new

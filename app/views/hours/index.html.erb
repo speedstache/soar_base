@@ -1,23 +1,31 @@
-<div class="container mt-2 mx-2">
-	<h4>Hours available for scheduling</h4>
-	<div class="table-responsive col-sm-10 col-md-5">
-		<table class="table table-striped mb-5 pb-5">
-			<thead>
-				<tr>
-					<th>Hour</th>
-					<th>Active</th>
-					<th>Edit</th>
-				</tr>
-			</thead>
-				<tbody>
-					<% @hours.order(:id).each do |hour| %>
-						<tr>
-							<td><%= hour.hour %></td>
-							<td><%=  hour.active_flag.humanize %></td>
-							<td><%= link_to 'Edit', edit_hour_path(hour), class: "btn btn-primary btn-sm"%></td>
-						</tr>
-					<% end %>
-				</tbody>
-		</table>
-	</div>
+<div class="container">
+  <div class="row text-center justify-content-center">
+    <div class="col col-sm-10 col-md-8">
+      <div class="row justify-content-center">
+				<div class="col">
+					<h4>Hours available for scheduling</h4>
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Hour</th>
+									<th>Active</th>
+									<th>Edit</th>
+								</tr>
+							</thead>
+								<tbody>
+									<% @hours.order(:id).each do |hour| %>
+										<tr>
+											<td><%= hour.hour %></td>
+											<td><%=  hour.active_flag.humanize %></td>
+											<td><%= link_to 'Edit', edit_hour_path(hour), class: "btn btn-primary btn-sm"%></td>
+										</tr>
+									<% end %>
+								</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>				
 </div>

@@ -1,33 +1,45 @@
-<div class="mt-2 mx-2 mb-5">
-<h4>Aircraft managed by this club</h4>
-<div class="table-responsive">
-<table class="table table-striped w-75">
-	<thead>
-		<tr>
-			<th>Aircraft Name</th>
-			<th>Short Name </th>
-			<th>Group</th>
-      <th>Last Maintenance</th>
-      <th>Active flag</th>
-      <th colspan="2">Modify Aircraft</th>
-		</tr>
-	</thead>
-		<tbody>
-			<% @aircrafts.each do |aircraft| %>
-				<tr>
-					<td><%= aircraft.name %></td>
-          <td><%= aircraft.short_name %></td>
-          <td><%= aircraft.group %></td>
-          <td><%= aircraft.last_maintenance %></td>
-					<td><%= aircraft.active_flag.humanize %></td>
-					<td><%= link_to 'Details', aircraft_path(aircraft), class: "btn btn-info btn-sm"%></td>
-					<td><%= link_to 'Edit', edit_aircraft_path(aircraft), class: "btn btn-primary btn-sm"%></td>
-				</tr>
-			<% end %>
-		</tbody>
-</table>
+<div class="container">
+  <div class="row text-center justify-content-center">
+    <div class="col col-sm-12 col-md-10">
+      <div class="row justify-content-center">
+				<div class="col">
+					<h4>Aircraft managed by this club</h4>
+					<p class="text-muted">Private aircraft are managed here but assigned only to the owner in Aircraft Users</p>
+				</div>
+				<div class="col align-text-middle">
+					<%= link_to 'Add aircraft', new_aircraft_path, :class => "btn btn-primary btn-sm mb-5" %>
+				</div>	
+			<div class="row">
+				<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Aircraft Name</th>
+							<th>Short Name </th>
+							<th>Group</th>
+							<th>Last Maint.</th>
+							<th>Hours Flown</th>
+							<th>Active</th>
+							<th colspan="2">Modify Aircraft</th>
+						</tr>
+					</thead>
+						<tbody>
+							<% @aircrafts.each do |aircraft| %>
+								<tr>
+									<td><%= aircraft.name %></td>
+									<td><%= aircraft.short_name %></td>
+									<td><%= aircraft.group %></td>
+									<td><%= aircraft.last_maintenance %></td>
+									<td><%= Flight.where(aircraft_id: aircraft, flight_date: aircraft.last_maintenance..Date.today ).sum(:flight_time)/60 %>.<%= Flight.where(aircraft_id: aircraft, flight_date: aircraft.last_maintenance..Date.today ).sum(:flight_time)%60%10 %></td>
+									<td><%= aircraft.active_flag.humanize %></td>
+									<td><%= link_to 'Details', aircraft_path(aircraft), class: "btn btn-info btn-sm"%></td>
+									<td><%= link_to 'Edit', edit_aircraft_path(aircraft), class: "btn btn-primary btn-sm"%></td>
+								</tr>
+							<% end %>
+						</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
-<div class="mb-5 pb-5">
-	<%= link_to 'Add another aircraft', new_aircraft_path, :class => "btn btn-primary btn-sm mb-5" %>
-</div>
-</div>
+

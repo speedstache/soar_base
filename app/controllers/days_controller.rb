@@ -7,7 +7,7 @@ class DaysController < ApplicationController
   end
   
   def index
-    @days = Day.order('days.day ASC').all
+    @days = Day.where(day: 30.days.ago..90.days.from_now).order('days.day DESC')
   end
 
   def show

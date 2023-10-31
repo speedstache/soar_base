@@ -1,61 +1,69 @@
 <div class="container">
-	<div class="mt-2">
-		<h4>Show Aircraft details</h4>
-		<div class="table-responsive">
-		<table class="table table-striped w-75">
-			<thead>
-				<tr>
-					<th>Aircraft Name</th>
-					<th>Short Name </th>
-					<th>Group</th>
-					<th>Last Maintenance</th>
-					<th>Active flag</th>
-					<th colspan="2">Modify</th>
-				</tr>
-			</thead>
-      <tbody>
-				<tr>
-					<td><%= @aircraft.name %></td>
-          <td><%= @aircraft.short_name %></td>
-          <td><%= @aircraft.group %></td>
-          <td><%= @aircraft.last_maintenance %></td>
-					<td><%=  @aircraft.active_flag.humanize %></td>
-					<td><%= link_to 'Edit', edit_aircraft_path(@aircraft), class: "btn btn-primary btn-sm"%></td>
-				</tr>
-		</tbody>
-		</table>
-		<%= link_to 'Go back to aircraft', aircrafts_path, :class => "btn btn-primary" %>
+  <div class="row text-center justify-content-center">
+    <div class="col col-sm-12 col-md-10">
+      <div class="row justify-content-center">
+				<div class="col mt-2">
+					<h4>Show Aircraft details</h4>
+				</div>
+				<div class="col mt-2">
+					<%= link_to 'Back to aircraft list', aircrafts_path, :class => "btn btn-primary btn-sm mb-5" %>
+				</div>
+				<div class="row">
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Aircraft Name</th>
+									<th>Short Name </th>
+									<th>Group</th>
+									<th>Last Maintenance</th>
+									<th>Active flag</th>
+									<th colspan="2">Modify</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><%= @aircraft.name %></td>
+									<td><%= @aircraft.short_name %></td>
+									<td><%= @aircraft.group %></td>
+									<td><%= @aircraft.last_maintenance %></td>
+									<td><%=  @aircraft.active_flag.humanize %></td>
+									<td><%= link_to 'Edit', edit_aircraft_path(@aircraft), class: "btn btn-primary btn-sm"%></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="mt-4">
+					<h6>This aircraft has flown <%= @flightcount %> flights, and <%= @flighthours/60 %>.<%= @flighthours%60%10 %> hours of flight time since last maintenance</h6>
+					</div>
+					<div class="mt-4 col">
+					<h6>The following flights have been logged on this aircraft</h6>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Date of Flight</th>
+								<th>Username</th>
+								<th>Aircraft</th>
+								<th>Tow Height  </th>
+								<th>Flight Time  </th>
+								<th>Rope Break  </th>
+							</tr>
+						</thead>
+							<tbody>
+								<% @aircraft.flights.each do |flight| %>
+									<tr>
+										<td><%= flight.reservation.reservation_date %></td>
+										<td><%= flight.user.username %></td>
+										<td><%= flight.aircraft.short_name %></td>
+										<td><%= flight.tow_height %></td>
+										<td><%= flight.flight_time %></td>
+										<td><%= flight.rope_break.humanize %></td>
+									</tr>
+									<% end %>
+							</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
-    <div class="mt-4">
-    <h6>This aircraft has flown <%= @sumhours.count %> flights, and <%= @sumhours.sum(:flight_time)/60 %>.<%= @sumhours.sum(:flight_time)%60 %> hours of flight time since last maintenance</h6>
-    </div>
-		<div class="mt-4 col">
-		<h6>The following flights have been logged on this aircraft</h6>
-		<table class="table table-striped w-50">
-			<thead>
-				<tr>
-          <th>Date of Flight</th>
-          <th>Username</th>
-          <th>Aircraft</th>
-					<th>Tow Height  </th>
-					<th>Flight Time  </th>
-					<th>Rope Break  </th>
-				</tr>
-			</thead>
-				<tbody>
-					<% @aircraft.flights.each do |flight| %>
-						<tr>
-              <td><%= flight.reservation.reservation_date %></td>
-              <td><%= flight.user.username %></td>
-              <td><%= flight.aircraft.short_name %></td>
-							<td><%= flight.tow_height %></td>
-							<td><%= flight.flight_time %></td>
-							<td><%= flight.rope_break.humanize %></td>
-						</tr>
-						<% end %>
-				</tbody>
-		</table>
-	</div>
-	<%= link_to 'Back to aircraft list', aircrafts_path, :class => "btn btn-primary btn-sm mb-5" %>
-</div>
+	</div>		
 </div>

@@ -1,27 +1,27 @@
 <div class="container">
-<h4>Add a flight</h4>
-	<div class="row justify-content-center"  >
+	<div class="row text-center justify-content-center">
+  <h4>Add a flight</h4>
     <div class="col-sm-10 col-md-6">
       <%= render 'shared/errors', obj: @flight %>
         <%= form_for [@reservation, @flight], html: {class: "shadow p-3 mb-3 bg-info rounded", data: { turbo: false }, local: true}  do |f| %>
             <%= f.hidden_field :user_id, value: @flight.user_id %>
 						<%= f.hidden_field :flight_Date, value: @flight.flight_date %>
 						<%= f.hidden_field :aircraft_id, value: @flight.aircraft_id %>
-          <div class="form-group row p-2" >
-            <%= f.label :tow_height, class: "col col-form-label text-light" %>
+          <div class="form-group row m-3" >
+            <%= f.label :tow_height, class: "col-4 col-form-label" %>
             <div class="col">
-              <%= f.number_field :tow_height, class: "input-group-text" %>
+              <%= f.number_field :tow_height, class: "input-group-text form-control" %>
             </div>
           </div>	
-          <div class="form-group row p-2" >
-            <%= f.label :flight_time, class: "col col-form-label text-light" %>
+          <div class="form-group row m-3" >
+            <%= f.label :flight_time, class: "col-4 col-form-label" %>
             <div class="col">
-              <%= f.number_field :flight_time, class: "input-group-text" %>
+              <%= f.number_field :flight_time, class: "input-group-text form-control" %>
             </div>
           </div>	
           <!-- Remove rope break for now
-          <div class="form-group row p-2" >
-            <%= f.label :rope_break, class: "col col-form-label text-light" %>
+          <div class="form-group row m-3" >
+            <%= f.label :rope_break, class: "col-4 col-form-label" %>
             <div class="col">
               <%= f.check_box :rope_break, class: "form-check-label" %>
             </div>
@@ -29,18 +29,18 @@
           -->
           <!-- only bring up instructor list if instructor was selected in reservation -->
           <% if @reservation.instructor_flag == true %>
-          <div class="form-group row p-2" >
-            <%= f.label :instructor, class: "col col-form-label text-light" %>
+          <div class="form-group row m-3" >
+            <%= f.label :instructor, class: "col-4 col-form-label" %>
             <div class="col">
-              <%= f.collection_select(:instructor_id, User.where(id: Permission.where(instructor: true).ids), 'id', 'username', {}, {class: "input-group-text"}) %>
+              <%= f.collection_select(:instructor_id, User.where(id: Permission.where(instructor: true).ids), 'id', 'username', {}, {class: "input-group-text form-control"}) %>
             </div>
           </div>
           <% else %>
           <div></div>
           <% end %>
-        <%= f.submit class:"btn btn-outline-light btn-lg col" %>
+          <%= link_to "Close", reservation_path(@reservation), :class => "btn btn-secondary" %>
+          <%= f.submit class:"btn btn-primary" %>
       <% end %>
-      <%= link_to "Cancel and return to reservation", reservation_path(@reservation), :class => "btn btn-secondary" %>
     </div>
   </div>
 </div>
