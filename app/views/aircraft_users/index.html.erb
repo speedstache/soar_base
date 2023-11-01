@@ -21,7 +21,7 @@
               <tbody>
                 <% @unassigned_users.each do |user| %>
                   <tr>
-                    <td><%= link_to 'Add aircraft', new_aircraft_user_path(user), :class => "btn btn-primary btn-sm" %>
+                    <td><%= link_to 'Add aircraft', new_aircraft_user_path(:id => user.id), :class => "btn btn-primary btn-sm" %>
                     <td><%= gravatar_for user, size: 50 %></td>
                     <td><%= user.username %></td>
                     <td>No privileges assigned</td>  
