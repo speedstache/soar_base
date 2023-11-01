@@ -1,31 +1,75 @@
-<div class="mt-2 mx-2 mb-5">
-  <h4>Matrix of Aircraft Users</h4>
-  <h8>User privileges on aircraft are edited within the user profiles, not here.<br>
-   This is just for reporting purposes</h8>
-    <div class="table-responsive">
-      <table class="table table-striped w-50">
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th >Has reservation privileges in</th>
-            <!-- <th>Modify Privileges</th> -->
-          </tr>
-        </thead>
-          <tbody>
-              <% @users = User.all %>
-              <% @users.each do |user| %>
+<div class="container">
+  <div class="row text-center justify-content-center">
+    <div class="col col-sm-12 col-md-10">
+      <div class="row justify-content-center m-3">
+				<div class="col">
+          <h4>Users with no aircraft privileges</h4>
+        </div>
+        
+        <div class="row m-2">
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
                 <tr>
-                  <td><%= user.username %></td>
-                  <td><%= user.email %></td>
-                  <td ><%= user.privileges_in.map {|x| x.values[1]} %></td> 
-                  <!-- <td><%= link_to 'Edit Associations', edit_aircraft_user_path(user), :class => "btn btn-primary btn-sm" %></td> -->
+                  <th>Add Aircraft</th>
+                  <th>Profile pic</th>
+                  <th>Username</th>
+                  <th colspan="2">Allowed to reserve</th>
                 </tr>
-              <% end %>
-          </tbody>
-      </table>
-  </div>
-  <div class="mb-5 pb-5">
-    <%= link_to 'Create another aircraft user association', new_aircraft_user_path, :class => "btn btn-primary btn-sm mb-5" %>
-  </div>
+              </thead>
+              <tbody>
+                <% @unassigned_users.each do |user| %>
+                  <tr>
+                    <td><%= link_to 'Add aircraft', new_aircraft_user_path(user), :class => "btn btn-primary btn-sm" %>
+                    <td><%= gravatar_for user, size: 50 %></td>
+                    <td><%= user.username %></td>
+                    <td>No privileges assigned</td>  
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row m-2">
+        <div class="col">
+          <h4>Users with aircraft privileges</h4>
+        </div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Add aircraft</th>
+                  <th>Profile pic</th>
+                  <th>Username</th>
+                  <th colspan="2">Allowed to reserve</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @assigned_users.each do |user| %>
+                  <tr>
+                    <td><%= link_to 'Add aircraft', new_aircraft_user_path(:id => user.id), :class => "btn btn-primary btn-sm" %>
+                    <td><%= gravatar_for user, size: 50 %></td>
+                    <td><%= user.username %></td>
+                    <td>
+                      <% AircraftUser.where(user_id: user.id).each do |aircraftuser| %>
+                      <div class="row">
+                        <div class="col p-1">
+                          <%= Aircraft.find(aircraftuser.aircraft_id).short_name %>
+                        </div>
+                        <div class="col p-1">  
+                          <%= button_to "delete", aircraftuser, method: :delete, :class => "btn btn-warning btn-sm" %>
+                        </div>
+                      </div>
+                      <% end %>
+                    </td>  
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>        
 </div>

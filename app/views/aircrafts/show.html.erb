@@ -38,30 +38,32 @@
 					</div>
 					<div class="mt-4 col">
 					<h6>The following flights have been logged on this aircraft</h6>
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Date of Flight</th>
-								<th>Username</th>
-								<th>Aircraft</th>
-								<th>Tow Height  </th>
-								<th>Flight Time  </th>
-								<th>Rope Break  </th>
-							</tr>
-						</thead>
-							<tbody>
-								<% @aircraft.flights.each do |flight| %>
-									<tr>
-										<td><%= flight.reservation.reservation_date %></td>
-										<td><%= flight.user.username %></td>
-										<td><%= flight.aircraft.short_name %></td>
-										<td><%= flight.tow_height %></td>
-										<td><%= flight.flight_time %></td>
-										<td><%= flight.rope_break.humanize %></td>
-									</tr>
-									<% end %>
-							</tbody>
-					</table>
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Date of Flight</th>
+									<th>Username</th>
+									<th>Aircraft</th>
+									<th>Tow Height  </th>
+									<th>Flight Time  </th>
+									<th>Rope Break  </th>
+								</tr>
+							</thead>
+								<tbody>
+									<% @aircraft.flights.each do |flight| %>
+										<tr>
+											<td><%= flight.reservation.reservation_date %></td>
+											<td><%= flight.user.username %></td>
+											<td><%= flight.aircraft.short_name %></td>
+											<td><%= flight.tow_height %></td>
+											<td><%= flight.flight_time %></td>
+											<td><%= flight.rope_break.humanize %></td>
+										</tr>
+										<% end %>
+								</tbody>
+						</table>
+					</div>	
 				</div>
 			</div>
 		</div>

@@ -1,28 +1,28 @@
 <%= form_with(model: @membership, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
-  <div class="form-group row p-2" >
-      <%= f.label :membership_type, class: "col col-form-label text-light" %>
+  <div class="form-group row m-3" >
+      <%= f.label :membership_type, class: "col-4 col-form-label" %>
       <div class="col">
-      <%= f.text_field :membership_type, class: "input-group-text" %>
+      <%= f.text_field :membership_type, class: "input-group-text form-control" %>
     </div>
   </div>
-  <div class="form-group row p-2" >
-      <%= f.label :renewal_period, class: "col col-form-label text-light" %>
+  <div class="form-group row m-3" >
+      <%= f.label :renewal_period, class: "col-4 col-form-label" %>
       <div class="col">
-      <%= f.number_field :renewal_period, class: "input-group-text" %>
+      <%= f.number_field :renewal_period, class: "input-group-text form-control" %>
     </div>
   </div>
-  <div class="form-group row p-2" >
-      <%= f.label :renewal_price, class: "col col-form-label text-light" %>
+  <div class="form-group row m-3" >
+      <%= f.label :renewal_price, class: "col-4 col-form-label" %>
       <div class="col">
-      <%= f.number_field :renewal_price, class: "input-group-text" %>
+      <%= f.number_field :renewal_price, class: "input-group-text form-control" %>
     </div>
   </div>
-  <div class="form-group row p-2" >
-      <%= f.label :active_flag, class: "col col-form-label text-light" %>
+  <div class="form-group row m-3" >
+      <%= f.label :active_flag, class: "col-4 col-form-label" %>
       <div class="col">
-      <%= f.check_box :active_flag, class: "input-group-text" %>
+      <%= f.check_box :active_flag, class: "form-check-label" %>
     </div>
   </div>
-    
-<%= f.submit class:"btn btn-outline-light col" %>
+  <%= link_to "Close", memberships_path, :class => "btn btn-secondary" %>
+  <%= f.submit class:"btn btn-primary" %>
 <% end %>

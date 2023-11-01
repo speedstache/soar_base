@@ -1,16 +1,17 @@
 <%= form_with(model: @aircraft_user, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
-  <div class="form-group row p-2" >
-      <%= f.label :user_id, class: "col col-form-label text-light" %>
-    <div class="col">
-      <%= f.collection_select(:user_id, User.all, 'id', 'username', {}, {class: "input-group-text"}) %>
+  <div class="form-group row m-3" >
+  <%= f.hidden_field :user_id, value: @id %>
+      <%= f.label :user_id, class: "col-4 col-form-label" %>
+    <div class="col form-control">
+      <%= User.find(@id).username %>
     </div>
   </div>
-  <div class="form-group row p-2" >
-      <%= f.label :aircraft, class: "col col-form-label text-light" %>
+  <div class="form-group row m-3" >
+      <%= f.label :aircraft, class: "col-4 col-form-label" %>
     <div class="col">
-    <%= f.collection_select(:aircraft_id, Aircraft.all, :id, :short_name, {:include_hidden => false}, {multiple: false, size: 4, class: "form-select shadow rounded"}) %>
+    <%= f.collection_select(:aircraft_id, Aircraft.all, :id, :short_name, {:include_hidden => false}, {multiple: false, size: 4, class: "input-group-text form-control"}) %>
     </div>
   </div>
-    
-<%= f.submit class:"btn btn-outline-light col" %>
+  <%= link_to "Close", aircraft_users_path, :class => "btn btn-secondary" %>
+  <%= f.submit class:"btn btn-primary" %>
 <% end %>

@@ -1,22 +1,22 @@
 <%= form_with(model: @towfee, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
   <div class="form-group row p-2" >
-      <%= f.label :min_height, class: "col col-form-label text-light" %>
+      <%= f.label :min_height, class: "col-4 col-form-label" %>
     <div class="col">
-      <%= f.number_field :min_height, class: "input-group-text" %>
+      <%= f.number_field :min_height, class: "input-group-text form-control" %>
     </div>
   </div>
   <div class="form-group row p-2" >
-      <%= f.label :max_height, class: "col col-form-label text-light" %>
+      <%= f.label :max_height, class: "col-4 col-form-label" %>
     <div class="col">
-      <%= f.number_field :max_height, class: "input-group-text" %>
+      <%= f.number_field :max_height, class: "input-group-text form-control" %>
     </div>
   </div>	
   <div class="form-group row p-2" >
-      <%= f.label :price_per, class: "col col-form-label text-light" %>
+      <%= f.label :price_per, class: "col-4 col-form-label" %>
     <div class="col">
-      <%= f.number_field :price_per, step: 0.1, class: "input-group-text" %>
+      <%= f.number_field :price_per, step: 0.1, class: "input-group-text form-control" %>
     </div>
     </div>
-    
-<%= f.submit class:"btn btn-outline-light col" %>
+    <%= link_to "Close", towfees_path, class:"btn btn-secondary" %>
+    <%= f.submit class:"btn btn-primary" %>
 <% end %>

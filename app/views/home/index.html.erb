@@ -1,180 +1,191 @@
-<div class="container mx-2 my-2 mb-5 pb-5"
-  <div class="card align-start" style="width: auto;">
-  <ul class="list-group list-group-flush ">
-    <li class="list-group-item lead pb-3">Release Notes</li>
-      <d1 class="row">
-      <dt class="col-sm-2 ps-4 pt-2">10/30/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p>Hide all buttons that should not work when users do not have access to them</p>
-            <p>Updated aircraft hours count to total in tenths of an hour</p>
-            <p>improvements to reservation pages</p>
-            <p>re-styled hours, days, aircraft pages</p>
-          </dd>
-      <dt class="col-sm-2 ps-4 pt-2">10/29/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p>Added link to release notes under Profile</p>
-            <p>Added link to How to use site under profile - will build page</p>
-            <p>Templates for instruction, Red Tail Hawk Flight, and Membership info created - not filled out</p>
-            <p>Emailer for successful flight payment created and triggered within checkout controller - deferred</p>
-            <p>Admin page for flight records and statuses</p>
-            <p>Admin page for instructor flight totals - build this</p>
-            <p>Countless css updates and first pass through route access limits based on permissions</p>
-            <p> Reservations grids are now interactive </p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col justify-content-center">
+      <div class="row justify-content-center">
+        <div class="card align-start" style="width: auto;">
+        <ul class="list-group list-group-flush ">
+          <li class="list-group-item lead pb-3">Release Notes</li>
+            <d1 class="row">
+            <dt class="col-sm-4 ps-4 pt-2">10/31/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Updated the last of the existing views to center text</p>
+                  <p>Made Aircraft-User associations easier to manage</p>
+                  <p>Added 30,60,90, Year to date totals to profiles</p>
+                  <p>redirected on password reset to login page instead of auto-login</p>
+                </dd>
+            <dt class="col-sm-4 ps-4 pt-2">10/30/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Hide all buttons that should not work when users do not have access to them</p>
+                  <p>Updated aircraft hours count to total in tenths of an hour</p>
+                  <p>improvements to reservation pages</p>
+                  <p>re-styled hours, days, aircraft pages</p>
+                </dd>
+            <dt class="col-sm-4 ps-4 pt-2">10/29/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Added link to release notes under Profile</p>
+                  <p>Added link to How to use site under profile - will build page</p>
+                  <p>Templates for instruction, Red Tail Hawk Flight, and Membership info created - not filled out</p>
+                  <p>Emailer for successful flight payment created and triggered within checkout controller - deferred</p>
+                  <p>Admin page for flight records and statuses</p>
+                  <p>Admin page for instructor flight totals - build this</p>
+                  <p>Countless css updates and first pass through route access limits based on permissions</p>
+                  <p> Reservations grids are now interactive </p>
 
 
-          </dd>
-      <dt class="col-sm-2 ps-4 pt-2">10/28/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p>added gravatar images back in</p>
-            <p>Completed initial styling of landing page and restyled member login area</p>
-          </dd>
-      <dt class="col-sm-2 ps-4 pt-2">10/24/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p>added in gravatar images to user profiles and member list (currently turned off)</p>
-            <p>Imported Bootstrap theme "Simple Landing Page"</p>
-            <p>Styled new pages/index page as root and started adding content</p>
-            <p>if then statement to switch navigation when logged in</p>
-          </dd>
-      <dt class="col-sm-2 ps-4 pt-2">10/15/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p>Added instructor ID to flight, triggered only if instructor was selected as a param in the reservation</p>
-            <p>removed rope break from flight params, can add it back in if needed</p>
-            <p>Added instructor as another permission type</p>
-            <p>Added past due and upcoming flags to reservation statuses</p>
-          </dd>
-      <dt class="col-sm-2 ps-4 pt-2">10/7/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p>Changed server time zone to Central time</p>
-          </dd>
-      <dt class="col-sm-2 ps-4 pt-2">10/6/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p>Updated account activation and reset email templates</p>
-            <p>Created first pass at Field Ops Status email</p>
-          </dd>
-      <dt class="col-sm-2 ps-4 pt-2">10/4/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p>Reservation status now changes when payment is completed.</p>
-            <p>Paid reservations can no longer be edited, but can still be viewed</p>
-            <p>Flights cannot be added until the day of the flight, and payment can not be attempted until flights are added</p>
-            <p>All relevant routes now require login in order to view them</p>
+                </dd>
+            <dt class="col-sm-4 ps-4 pt-2">10/28/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>added gravatar images back in</p>
+                  <p>Completed initial styling of landing page and restyled member login area</p>
+                </dd>
+            <dt class="col-sm-4 ps-4 pt-2">10/24/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>added in gravatar images to user profiles and member list (currently turned off)</p>
+                  <p>Imported Bootstrap theme "Simple Landing Page"</p>
+                  <p>Styled new pages/index page as root and started adding content</p>
+                  <p>if then statement to switch navigation when logged in</p>
+                </dd>
+            <dt class="col-sm-4 ps-4 pt-2">10/15/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Added instructor ID to flight, triggered only if instructor was selected as a param in the reservation</p>
+                  <p>removed rope break from flight params, can add it back in if needed</p>
+                  <p>Added instructor as another permission type</p>
+                  <p>Added past due and upcoming flags to reservation statuses</p>
+                </dd>
+            <dt class="col-sm-4 ps-4 pt-2">10/7/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Changed server time zone to Central time</p>
+                </dd>
+            <dt class="col-sm-4 ps-4 pt-2">10/6/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Updated account activation and reset email templates</p>
+                  <p>Created first pass at Field Ops Status email</p>
+                </dd>
+            <dt class="col-sm-4 ps-4 pt-2">10/4/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Reservation status now changes when payment is completed.</p>
+                  <p>Paid reservations can no longer be edited, but can still be viewed</p>
+                  <p>Flights cannot be added until the day of the flight, and payment can not be attempted until flights are added</p>
+                  <p>All relevant routes now require login in order to view them</p>
 
-          </dd>
-      <dt class="col-sm-2 ps-4 pt-2">10/3/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p><strong>Heroku v113</strong></p>
-            <p>Stripe webhooks running, listening for payment_intent.succeeded</p>
-            <p>Next up is the reservation handling matrix that updates based on date, webhook status, etc</p>
-          </dd>
-      <dt class="col-sm-2 ps-4 pt-2">10/1/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p>Stripe payments pushed to heroku for testing</p>
-          </dd>
-        <dt class="col-sm-2 ps-4 pt-2">9/30/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p>Started Stripe integration using Stripe and Pay gems</p>
-            <p>Stripe CLI installed and tested via localhost</p>
-          </dd>
-        <dt class="col-sm-2 ps-4 pt-2">9/17/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p>Changed Reservation details from table to card view to help with responsive design</p>
-          </dd>
-        <dt class="col-sm-2 ps-4 pt-2">9/12/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p>Heroku deployed v36, lots of small commits testing CSS</p>
-            <p>Made all tables responsive by allowing scrolling, and standardized forms for multiple page widths<p>
-          </dd>
-        <dt class="col-sm-2 ps-4 pt-2">9/11/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p>Switched default day for schedule grid views from 'today' to next flying day<p>
-          </dd>
-        <dt class="col-sm-2 ps-4 pt-2">9/10/23</dt>
-          <dd class="col-sm-9 pt-2">
-            <p>Fixed minor issue preventing users from modifying or deleting their own flights and reservations.</p>
-            <p><strong>Heroku deployed V20</strong></p>
-            <p>Users require an active membership in order to create any new reservation</p>
-            <p>Add membership types under Manage Club dropdown</p>
-            <p><strong>Heroku deployed V17</strong></p>
-            <p>Seeded production database with hours, days, aircraft, permisions for first user</p>
-            <p>Reservations now limited to only aircraft that user has privileges in</p>
-          </dd>
-        <dt class="col-sm-2 ps-4 pt-2">9/9/23</dt>
-          <dd class="col-sm-9 pt-2"> 
-            <p>Email server fully provisioned! tested with user activation and user password recovery in production!</p>
-          </dd>
-        <dt class="col-sm-2 ps-4 pt-2">9/8/23</dt>
-          <dd class="col-sm-9 pt-2"> 
-            <p>next up is user profiles and additional user details, as well as limiting reservation capabilities by 'has_privileges_in' method </p>
-            <p>Created 'has_privileges_in' method in '/models/users.rb' to show which aircraft(s) a given user has reservation
-            privileges on. This will be managed within user profiles. View this under Manage Aircraft </p>
-            <p>Added user permissions to Manage Users dropdown. Confirmed working </p>
-            <p>Added user account activation via email, password recovery via email, account_activation 
-            generation of permissions table (default to no permissions), remember me cookie for sessions control </p>
-            <p>Requested SendGrid add-on for Heroku to enable sending of email from the server</p>
-          </dd> 
-        <dt class="col-sm-2 ps-4 pt-2">9/7/23</dt>
-          <dd class="col-sm-9 pt-2"> 
-            <p>Completed most of password reset and email notification
-            for account activation and password recovery. Not deployed. Testing needs to be cleaned up first. </p>
-          </dd>  
-        <dt class="col-sm-2 ps-4 pt-2">9/6/23</dt>
-          <dd class="col-sm-9 pt-2"> 
-            <p><strong>Heroku deployment V10 </strong></p>
-            <p>Added data table to control tow height values 
-            and wrote 'calcfees' method to calculate tow heights and save them to flights table </p>
-            <p>Initial deployment to production server on Heroku. Database migrated 
-            and is ready to accept test data once a few more features are added</p>
-          </dd> 
-        <dt class="col-sm-2 ps-4 pt-2">9/5/23</dt>
-          <dd class="col-sm-9 pt-2"> 
-            <p>Built functionality to add flights to reservations, keeping user_id, reservation_id,
-            date, and other items as hidden entries. Aircraft is still selectable for edge cases.</p>
-          </dd>
-        <dt class="col-sm-2 ps-4 pt-2">9/4/23</dt>
-          <dd class="col-sm-9 pt-2"> 
-            <p>Manage aircraft tables built and index, show, edit, destroy paths enabled. 
-            Additional functionality coming once AircraftUsers are built out.</p>
-          </dd>
-        <dt class="col-sm-2 ps-4 pt-2">9/3/23</dt>
-          <dd class="col-sm-9 pt-2"> 
-            <p>Dropdown search enabled for updating the reservations grid </p>
-          </dd>
-        <dt class="col-sm-2 ps-4 pt-2">9/2/23</dt>
-          <dd class="col-sm-9 pt-2"> 
-          </dd>
-        <dt class="col-sm-2 ps-4 pt-2">9/1/23</dt>
-          <dd class="col-sm-9 pt-2"> 
-            <p>Built 'view reservations' grid. Workable, if messy solution </p>
-            <p>Added hours and days of operation and dependent routes</p>
-          </dd>
-        <dt class="col-sm-2 ps-4 pt-2">8/31/23</dt>
-          <dd class="col-sm-9 pt-2"> 
-            <p>Added capability for multiple admin levels within navigation and controllers (user admin, club admin, site admin) </p>
-            <p>Added simple login/logout functions using has_secure_password </p>
-            <p>Rails app created, git repository set up, Bootstrap and app dependencies intstalled </p>
-          </dd> 
-    </d1>  
-   
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item lead">Resources</li>
-      <d1 class="row">
-        <dt class="col-sm-2 ps-4 pt-2">Online Books</dt>
-          <dd class="col-sm-9 pt-2">
-            <p><a href="https://www.softcover.io/read/28fdb94f/ruby_on_rails_tutorial_3rd_edition">Ruby on Rails Tutorial 3rd edition</a></p>
+                </dd>
+            <dt class="col-sm-4 ps-4 pt-2">10/3/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p><strong>Heroku v113</strong></p>
+                  <p>Stripe webhooks running, listening for payment_intent.succeeded</p>
+                  <p>Next up is the reservation handling matrix that updates based on date, webhook status, etc</p>
+                </dd>
+            <dt class="col-sm-4 ps-4 pt-2">10/1/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Stripe payments pushed to heroku for testing</p>
+                </dd>
+              <dt class="col-sm-4 ps-4 pt-2">9/30/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Started Stripe integration using Stripe and Pay gems</p>
+                  <p>Stripe CLI installed and tested via localhost</p>
+                </dd>
+              <dt class="col-sm-4 ps-4 pt-2">9/17/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Changed Reservation details from table to card view to help with responsive design</p>
+                </dd>
+              <dt class="col-sm-4 ps-4 pt-2">9/12/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Heroku deployed v36, lots of small commits testing CSS</p>
+                  <p>Made all tables responsive by allowing scrolling, and standardized forms for multiple page widths<p>
+                </dd>
+              <dt class="col-sm-4 ps-4 pt-2">9/11/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Switched default day for schedule grid views from 'today' to next flying day<p>
+                </dd>
+              <dt class="col-sm-4 ps-4 pt-2">9/10/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Fixed minor issue preventing users from modifying or deleting their own flights and reservations.</p>
+                  <p><strong>Heroku deployed V20</strong></p>
+                  <p>Users require an active membership in order to create any new reservation</p>
+                  <p>Add membership types under Manage Club dropdown</p>
+                  <p><strong>Heroku deployed V17</strong></p>
+                  <p>Seeded production database with hours, days, aircraft, permisions for first user</p>
+                  <p>Reservations now limited to only aircraft that user has privileges in</p>
+                </dd>
+              <dt class="col-sm-4 ps-4 pt-2">9/9/23</dt>
+                <dd class="col-sm-8 pt-2"> 
+                  <p>Email server fully provisioned! tested with user activation and user password recovery in production!</p>
+                </dd>
+              <dt class="col-sm-4 ps-4 pt-2">9/8/23</dt>
+                <dd class="col-sm-8 pt-2"> 
+                  <p>next up is user profiles and additional user details, as well as limiting reservation capabilities by 'has_privileges_in' method </p>
+                  <p>Created 'has_privileges_in' method in '/models/users.rb' to show which aircraft(s) a given user has reservation
+                  privileges on. This will be managed within user profiles. View this under Manage Aircraft </p>
+                  <p>Added user permissions to Manage Users dropdown. Confirmed working </p>
+                  <p>Added user account activation via email, password recovery via email, account_activation 
+                  generation of permissions table (default to no permissions), remember me cookie for sessions control </p>
+                  <p>Requested SendGrid add-on for Heroku to enable sending of email from the server</p>
+                </dd> 
+              <dt class="col-sm-4 ps-4 pt-2">9/7/23</dt>
+                <dd class="col-sm-8 pt-2"> 
+                  <p>Completed most of password reset and email notification
+                  for account activation and password recovery. Not deployed. Testing needs to be cleaned up first. </p>
+                </dd>  
+              <dt class="col-sm-4 ps-4 pt-2">9/6/23</dt>
+                <dd class="col-sm-8 pt-2"> 
+                  <p><strong>Heroku deployment V10 </strong></p>
+                  <p>Added data table to control tow height values 
+                  and wrote 'calcfees' method to calculate tow heights and save them to flights table </p>
+                  <p>Initial deployment to production server on Heroku. Database migrated 
+                  and is ready to accept test data once a few more features are added</p>
+                </dd> 
+              <dt class="col-sm-4 ps-4 pt-2">9/5/23</dt>
+                <dd class="col-sm-8 pt-2"> 
+                  <p>Built functionality to add flights to reservations, keeping user_id, reservation_id,
+                  date, and other items as hidden entries. Aircraft is still selectable for edge cases.</p>
+                </dd>
+              <dt class="col-sm-4 ps-4 pt-2">9/4/23</dt>
+                <dd class="col-sm-8 pt-2"> 
+                  <p>Manage aircraft tables built and index, show, edit, destroy paths enabled. 
+                  Additional functionality coming once AircraftUsers are built out.</p>
+                </dd>
+              <dt class="col-sm-4 ps-4 pt-2">9/3/23</dt>
+                <dd class="col-sm-8 pt-2"> 
+                  <p>Dropdown search enabled for updating the reservations grid </p>
+                </dd>
+              <dt class="col-sm-4 ps-4 pt-2">9/2/23</dt>
+                <dd class="col-sm-8 pt-2"> 
+                </dd>
+              <dt class="col-sm-4 ps-4 pt-2">9/1/23</dt>
+                <dd class="col-sm-8 pt-2"> 
+                  <p>Built 'view reservations' grid. Workable, if messy solution </p>
+                  <p>Added hours and days of operation and dependent routes</p>
+                </dd>
+              <dt class="col-sm-4 ps-4 pt-2">8/31/23</dt>
+                <dd class="col-sm-8 pt-2"> 
+                  <p>Added capability for multiple admin levels within navigation and controllers (user admin, club admin, site admin) </p>
+                  <p>Added simple login/logout functions using has_secure_password </p>
+                  <p>Rails app created, git repository set up, Bootstrap and app dependencies intstalled </p>
+                </dd> 
+          </d1>  
+        
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item lead">Resources</li>
+            <d1 class="row">
+              <dt class="col-sm-4 ps-4 pt-2">Online Books</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p><a href="https://www.softcover.io/read/28fdb94f/ruby_on_rails_tutorial_3rd_edition">Ruby on Rails Tutorial 3rd edition</a></p>
 
-          </dd>
-        <dt class="col-sm-2 ps-4 pt-2">Classes</dt> 
-          <dd class="col-sm-9 pt-2">
-            <p>Link to Udemy class I took</p>
-          </dd>
-        <dt class="col-sm-2 ps-4 pt-2">Links</dt> 
-            <dd class="col-sm-9 pt-2"> 
-              <a href="https://github.com/speedstache/soar_base">Github repository for SoarBase</a><br>
-              <a href="https://sloboda-studio.com/blog/how-to-use-stripe-in-ruby-on-rails-app/">How to use Stripe in Rails app</a><br>
-              <a href="https://www.honeybadger.io/blog/sell-a-one-time-purchase-in-rails-with-stripe/">Another stripe implementation walkthrough</a><br>
-              <a href="https://github.com/pay-rails/pay">Pay Gem github</a>
-            </dd>
-      </d1>
-    </ul>
-  </div>
+                </dd>
+              <dt class="col-sm-4 ps-4 pt-2">Classes</dt> 
+                <dd class="col-sm-8 pt-2">
+                  <p>Link to Udemy class I took</p>
+                </dd>
+              <dt class="col-sm-4 ps-4 pt-2">Links</dt> 
+                  <dd class="col-sm-8 pt-2"> 
+                    <a href="https://github.com/speedstache/soar_base">Github repository for SoarBase</a><br>
+                    <a href="https://sloboda-studio.com/blog/how-to-use-stripe-in-ruby-on-rails-app/">How to use Stripe in Rails app</a><br>
+                    <a href="https://www.honeybadger.io/blog/sell-a-one-time-purchase-in-rails-with-stripe/">Another stripe implementation walkthrough</a><br>
+                    <a href="https://github.com/pay-rails/pay">Pay Gem github</a>
+                    <a href="https://testsuite.io/build-export-to-csv-with-rails">Exporting to csv in rails</a>
+                  </dd>
+            </d1>
+          </ul>
+        </div>
 
 <div>

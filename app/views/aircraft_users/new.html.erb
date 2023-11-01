@@ -1,12 +1,11 @@
-<div class="container mx-2 my-2">
-	<div class="row justify-content-start ml-2 my-2" >
+<div class="container ">
+	<div class="row text-center justify-content-center" >
   <h4>Associate user with aircraft(s) </h4>
     <div class="col-sm-10 col-md-5">
       <%= render 'shared/errors', obj: @aircraft_user %>
         
         <%= render 'form' %>
 
-        <%= link_to "Back to Aircraft User list", aircraft_users_path, :class => "btn btn-secondary btn-sm" %>
     </div>
   </div>
 </div>

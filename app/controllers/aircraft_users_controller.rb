@@ -5,9 +5,16 @@ class AircraftUsersController < ApplicationController
 
   # GET /aircraft_users or /aircraft_users.json
   def index
+
+    @id = params[:id]
+
     @aircraft_users = AircraftUser.all
     @aircrafts = Aircraft.where(group: "club")
     @users = User.all
+
+    @assigned_users = User.where(id: AircraftUser.all.pluck(:user_id))
+
+    @unassigned_users = User.where.not(id: AircraftUser.all.pluck(:user_id))
   end
 
   # GET /aircraft_users/1 or /aircraft_users/1.json
@@ -17,6 +24,8 @@ class AircraftUsersController < ApplicationController
   # GET /aircraft_users/new
   def new
     @aircraft_user = AircraftUser.new
+
+    @id = params[:id]
   end
 
   # GET /aircraft_users/1/edit

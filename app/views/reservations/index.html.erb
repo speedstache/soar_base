@@ -1,4 +1,17 @@
 <div class="container mt-2 mb-5 pb-5">
+<div class="row">
+	<div class="col justify-content-center">
+		<h4>Availability for: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
+		<p class="text-muted">Check availability by selecting date and clicking Check Reservations <br>
+		Click on red dot to see reservation details.<br> 
+		Click on open green dot to reserve a slot.</p>
+	</div>
+	<div class="col input-group align-start">
+		<%= form_tag(reservations_path, method: :get) do %>
+			<%= submit_tag ("Check Reservations"), {class: "btn btn-info btn-sm"} %>
+			<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day','day', @res_show),{class: "form-select append"}) %>
+		<% end %>
+	</div>
 	<% if @status.blank? %>	
 		<%= render 'grid' %>
 	<% else %>	

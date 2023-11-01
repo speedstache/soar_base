@@ -1,34 +1,42 @@
-<div class="container mt-2 mx-2">
-	<h4>Tow fee increment schedule</h4>
-  <h8>Prices calculated in 100 foot increments</h8>
-	<div class="table-responsive">
-		<table class="table table-striped w-50">
-			<thead>
-				<tr>
-					<th>Min Height</th>
-					<th>Max Height</th>
-					<th>Price increment</th>
-          <th>Created</th>
-          <th>Modified</th>
-          <th colspan="2">Modify Fees</th>
-				</tr>
-			</thead>
-				<tbody>
-					<% @towfees.each do |towfee| %>
-						<tr>
-							<td><%= towfee.min_height %></td>
-							<td><%= towfee.max_height %></td>
-              <td><%= number_to_currency(towfee.price_per) %></td>
-              <td><%= towfee.created_at.strftime("%m/%d/%y") %></td>
-              <td><%= towfee.updated_at.strftime("%m/%d/%y") %></td>
-							<td><%= link_to 'Edit', edit_towfee_path(towfee), class: "btn btn-primary btn-sm"%></td>
-              <td><%= link_to "Delete", towfee_path(towfee),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
-            </tr>
-					<% end %>
-				</tbody>
-		</table>
-	</div>
-	<div class="mb-5 pb-5">
-		<%= link_to 'Add another row', new_towfee_path, :class => "btn btn-secondary btn-sm" %>
-	</div>
+<div class="container">
+  <div class="row text-center justify-content-center">
+    <div class="col col-sm-12 col-md-10">
+      <div class="row justify-content-center">
+				<div class="col m-2">
+					<h4>Tow fee increment schedule</h4>
+					<p class="text-muted">Prices calculated in 100 foot increments</p>
+				</div>
+				<div class="col m-2">
+					<%= link_to 'Add another row', new_towfee_path, :class => "btn btn-secondary btn-sm" %>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Min Height</th>
+								<th>Max Height</th>
+								<th>Price increment</th>
+								<th>Created</th>
+								<th>Modified</th>
+								<th colspan="2">Modify Fees</th>
+							</tr>
+						</thead>
+							<tbody>
+								<% @towfees.each do |towfee| %>
+									<tr>
+										<td><%= towfee.min_height %></td>
+										<td><%= towfee.max_height %></td>
+										<td><%= number_to_currency(towfee.price_per) %></td>
+										<td><%= towfee.created_at.strftime("%m/%d/%y") %></td>
+										<td><%= towfee.updated_at.strftime("%m/%d/%y") %></td>
+										<td><%= link_to 'Edit', edit_towfee_path(towfee), class: "btn btn-primary btn-sm"%></td>
+										<td><%= link_to "Delete", towfee_path(towfee),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+									</tr>
+								<% end %>
+							</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>	
 </div>
