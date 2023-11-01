@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row text-center justify-content-center">
+    <div class="col col-sm-12 col-md-12">
+      <div class="row justify-content-center">
+				<div class="col">
+					<h4>Reservations list</h4>
+					<p class="text-muted">Search and date picker functions to be added later</p>
+				</div>
+				<div class="col align-text-middle">
+					<%= link_to 'Export to CSV', '/admin/reservations.csv', :class => "btn btn-primary" %>
+				</div>	
+			<div class="row">
+				<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Date</th>
+							<th>Name</th>
+							<th>Aircraft</th>
+              <th>Instructor</th>
+							<th>Flight Count</th>
+              <th>Flight Minutes</th>
+              <th>Tow Fees</th>
+              <th>Status</th>
+              <th>Payment Method</th>
+              <th>Description</th>
+							<th colspan="2">Update Status</th>
+						</tr>
+					</thead>
+						<tbody>
+							<% @reservations.each do |reservation| %>
+								<tr>
+									<td><%= reservation.id %></td>
+									<td><%= reservation.reservation_date %></td>
+									<td><%= reservation.user.username %></td>
+									<td><%= reservation.aircraft.short_name %></td>
+									<td><%= reservation.instructor_flag.humanize %></td>
+                  <td><%= reservation.flights.count %></td>
+                  <td><%= reservation.flights.pluck(:flight_time).sum %></td>
+                  <td><%= number_to_currency(reservation.flights.pluck(:fees).sum) %></td>
+									<td><%= reservation.status %></td>
+									<td><%= reservation.method %></td>
+									<td><%= reservation.description %></td>
+									<td><%= link_to 'Edit', edit_reservation_path(reservation), class: "btn btn-primary btn-sm disabled"%></td>
+								</tr>
+							<% end %>
+						</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+

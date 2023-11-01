@@ -27,4 +27,29 @@ class Reservation < ApplicationRecord
     end
   end
 
+  def self.to_csv
+    attributes = %w{id date name aircraft instructor flight_count flight_minutes tow_fees status payment_method description}
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      @reservations = Reservation.all
+      @reservations.each do |reservation|
+          id = reservation.id
+          date = reservation.reservation_date
+          name = reservation.user.username
+          aircraft = reservation.aircraft.short_name
+          instructor = reservation.instructor_flag.humanize
+          flight_count = reservation.flights.count
+          flight_minutes = reservation.flights.pluck(:flight_time).sum
+          tow_fees = reservation.flights.pluck(:fees).sum
+          status = reservation.status
+          payment_method = reservation.method
+          description = reservation.description
+          csv << [id, date, name, aircraft, instructor, flight_count, flight_minutes, tow_fees, status, payment_method, description]
+      end
+    end
+
+  end
+    
+
 end

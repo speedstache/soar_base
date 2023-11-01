@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   resources :users,     except: [:destroy]
   resources :hours,     except: [:destroy]
   resources :days,     except: [:destroy]
-  get 'reservations/club', to: 'reservations#club'
   resources :reservations do
     resources :flights
   end
@@ -19,6 +18,13 @@ Rails.application.routes.draw do
   root to: "pages#index"
 
   get "pages/index", to: 'pages#index'
+
+  get 'reservations/club', to: 'reservations#club'
+
+  get 'admin/reservations', to: 'admin#reservations'
+  get 'admin/aircrafts', to: 'admin#aircrafts'
+  get 'admin/instructors', to: 'admin#instructors'
+
 
   resources :profile, only: [:index, :show, :edit, :update]
   resources :members, only: [:index]

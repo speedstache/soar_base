@@ -1,152 +1,163 @@
-<div class="container mt-2 mb-5 pb-5">
-<div class="row">
-	<div class="col justify-content-center">
-	<% if @status.blank? %>
-		<h4>Availability for: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
-		<p class="text-muted">Check availability by selecting date and clicking Check Reservations <br>
-		Click on red dot to see reservation details.<br> 
-		Click on open green dot to reserve a slot.</p>
-	</div>
-	<div class="col input-group align-start">
-		<%= form_tag(reservations_path, method: :get) do %>
-			<%= submit_tag ("Check Reservations"), {class: "btn btn-info btn-sm"} %>
-			<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day','day', @res_show),{class: "form-select append"}) %>
-		<% end %>
-	</div>
-		<%= render 'grid' %>
-	<% else %>	
-	<% end %>	
-	<div class="row text-center">
-		<div class="col-sm-12 col-md-8">	
-			<h4><%= current_user.username %>'s <%= @status %> reservations</h4>
-		</div>
-			<p class="text-muted">Today and Upcoming next 30 days.
-			Reservations are past due if unpaid 5 days after flight</p>
-	</div>
-	<div class="row justify-content-center">
-		<div class="col-sm-12 col-md-8">	
-			<!-- replace table with card for upcoming reservations -->
+<div class="container">
+  <div class="row text-center justify-content-center">
+		<div class="col col-sm-12 col-md-10">
+			<div class="row">
+				<div class="col text-start">
+					<% if @status.blank? %>
+					<h4>Availability for: <%= @res_show.strftime("%a, %b %d, %Y") %></h4>
+					<p class="text-muted">Select date and click Check Reservations <br>
+					Click on red dot to see reservation details.<br> 
+					Click on open green dot to reserve a slot.</p>
+				</div>
+				<div class="col input-group align-start">
+					<%= form_tag(reservations_path, method: :get) do %>
+						<%= submit_tag ("Check Reservations"), {class: "btn btn-info btn-sm"} %>
+						<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day','day', @res_show),{class: "form-select append"}) %>
+					<% end %>
+				</div>
+			</div>	
+				<%= render 'grid' %>
+				<% else %>	
+				<% end %>
+			<div class="row text-center justify-content-center">
+				<div class="col">	
+					<h4><%= current_user.username %>'s <%= @status %> reservations</h4>
+					<% if @status == 'upcoming' %><p class="text-muted">Today and Upcoming next 30 days.</p>
+					<% elsif @status == 'past_due' %><p class="text-muted">Reservations are flagged as past due if unpaid after 30 days.<br>
+						Please submit payment for flights, or if the reservation was not used, delete it.</p>
+					<% elsif @status == 'pending' %><p class="text-muted">Reservations flagged as Pending have had payment submitted <br> via check or cash 
+						or were Red Tail Hawk flights paid for by a guest.<br> Pending status will change to Paid status once the treasurer has reconciled payment.</p>
+					<% elsif @status == 'paid' %><p class="text-muted">Reservations showing as Paid have a completed payment. Stripe payments usually show this immediately.</p>
+					<% else %><p class="text-muted">Today and Upcoming next 30 days.</p>
+					<% end %>
+				</div>
+			</div>	
+			<div class="row text-start justify-content-center">
+				<div class="col">	
+					<!-- replace table with card for upcoming reservations -->
 
-			<% @displayreservations.each do |reservation| %>
-				<div class="card shadow p-3 mb-5 bg-white rounded">
-					<div class="card-header fst-italic">
-						<div class="row">
-							<div class="col input-group justify-content-start">
-								<% if reservation.status == 'open' %>
-									<%= link_to "Edit", edit_reservation_path(reservation), class: "btn btn-primary btn-sm" %>
-								<% else %>
-								<% end %>
-							</div>	
-							<div class="col input-group justify-content-end">	
-								<% if reservation.flights.count == 0 && reservation.status == 'open' %>
-									<%= link_to "Delete", reservation_path(reservation), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
-								<% else %>	
-								<% end %>
-							</div>
-						</div>
-						<div class="row pt-3">
-						<div class="col text-start">
-							<strong>Reservation details </strong>
-						</div>
-						<div class="col text-end justify-content-end">
-							<strong>
-								<% if reservation.status == 'open' && reservation.reservation_date > Date.today %>
-									Upcoming
-								<% elsif reservation.status == 'open' && reservation.reservation_date < 5.days.ago %>
-									Payment Past Due
-								<% else %>
-									<%= reservation.status %> 
-								<% end %>
-							</strong>	
-						</div>
-					</div>		
-					</div>	
-					<div class="card-body" style="padding: 20px 20px">
-						<div class="row pb-3">
-							<div class="col ">
-								<strong>Pilot:</strong></strong><br>
-								<%= reservation.user.username %></strong>
-							</div>
-							<div class="col ">
-								<strong>Date:</strong></strong><br>
-								<%= reservation.reservation_date.strftime("%m/%d/%y") %></strong>
-							</div>
-							<div class="col ">
-								<strong>Time:</strong></strong><br>
-								<%= reservation.reservation_time %>
-							</div>
-							<div class="col ">
-								<strong>Aircraft:</strong></strong><br>
-									<%= reservation.aircraft.short_name %>
-							</div>
-						</div>
-						<div class="row">
-							<p class="p-0 text-muted">Requires instructor: <%= reservation.instructor_flag.humanize %></p>	
-							<p class="p-0 text-muted">You flew <%= reservation.flights.count %> flights with <%= number_to_currency(reservation.flights.pluck(:fees).sum) %> in tow fees. </p>
-							<% if reservation.status != 'open' %>
-							<p class="p-0 text-muted">Reservation paid via <%= reservation.method %></p>
-							<% else %>
-							<% end %>
-						</div>
-						<% if reservation.flights.blank? %>
-						<% else %>
-						<div class="row">
-							<div class="table-responsive p-0">
-								<table class="table table-striped">
-									<thead>
-										<tr>
-											<th>Glider</th>
-											<th>Tow Height</th>
-											<th>Flight Time</th>
-											<th>Tow Fee</th>
-											<th colspan="2">Modify Flights</th>
-										</tr>
-									</thead>
-									<tbody>
-										<% reservation.flights.each do |flight| %>
-										<tr>
-											<td><%= flight.aircraft.short_name %></td>
-											<td><%= flight.tow_height %></td>
-											<td><%= flight.flight_time %></td>
-											<td><%= number_to_currency(flight.fees) %></td>
-											<td>
-												<% if reservation.status == 'open' %>
-													<%= link_to 'Modify', edit_reservation_flight_path(reservation, flight), class: "btn btn-primary btn-sm"  %>
-												<% else %>
-												<% end %>
-											</td>
-											<td>
-												<% if reservation.status == 'open' %>
-													<%= link_to "Delete", [reservation, flight], class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
-												<% else %>
-												<% end %>
-											</td>
-										</tr>
+					<% @displayreservations.each do |reservation| %>
+						<div class="card shadow p-3 mb-5 bg-white rounded">
+							<div class="card-header fst-italic">
+								<div class="row">
+									<div class="col input-group justify-content-start">
+										<% if reservation.status == 'open' %>
+											<%= link_to "Edit", edit_reservation_path(reservation), class: "btn btn-primary btn-sm" %>
+										<% else %>
 										<% end %>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					<% end %>	
-					</div>
-					<div class="card-footer text-body-secondary" >
-						<div class="row">
-							<div class="col input-group justify-content-start">
-							<% if reservation.reservation_date <= Date.today && reservation.status == 'open' %>
-								<%= link_to "Add flight", new_reservation_flight_path(reservation), :class => "btn btn-secondary btn-sm" %>
-							<% else %>
-							<% end %>
-							</div>
-							<div class="col input-group justify-content-end">
-							<% if reservation.reservation_date <= Date.today && reservation.flights.count > 0 && reservation.status == 'open' %>
-								<%= link_to "Checkout", checkout_path(:id => reservation.id), class: "btn btn-info btn-sm" %>
-							<% else %>
+									</div>	
+									<div class="col input-group justify-content-end">	
+										<% if reservation.flights.count == 0 && reservation.status == 'open' %>
+											<%= link_to "Delete", reservation_path(reservation), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
+										<% else %>	
+										<% end %>
+									</div>
+								</div>
+								<div class="row pt-3">
+								<div class="col text-start">
+									<strong>Reservation details </strong>
+								</div>
+								<div class="col text-end justify-content-end">
+									<strong>
+										<% if reservation.status == 'open' && reservation.reservation_date > Date.today %>
+											Upcoming
+										<% elsif reservation.status == 'open' && reservation.reservation_date < 5.days.ago %>
+											Payment Past Due
+										<% else %>
+											<%= reservation.status %> 
+										<% end %>
+									</strong>	
+								</div>
+							</div>		
+							</div>	
+							<div class="card-body" style="padding: 20px 20px">
+								<div class="row pb-3">
+									<div class="col ">
+										<strong>Pilot:</strong></strong><br>
+										<%= reservation.user.username %></strong>
+									</div>
+									<div class="col ">
+										<strong>Date:</strong></strong><br>
+										<%= reservation.reservation_date.strftime("%m/%d/%y") %></strong>
+									</div>
+									<div class="col ">
+										<strong>Time:</strong></strong><br>
+										<%= reservation.reservation_time %>
+									</div>
+									<div class="col ">
+										<strong>Aircraft:</strong></strong><br>
+											<%= reservation.aircraft.short_name %>
+									</div>
+								</div>
+								<div class="row">
+									<p class="p-0 text-muted">Requires instructor: <%= reservation.instructor_flag.humanize %></p>	
+									<p class="p-0 text-muted">You flew <%= reservation.flights.count %> flights with <%= number_to_currency(reservation.flights.pluck(:fees).sum) %> in tow fees. </p>
+									<% if reservation.status != 'open' %>
+									<p class="p-0 text-muted">Reservation paid via <%= reservation.method %></p>
+									<% else %>
+									<% end %>
+								</div>
+								<% if reservation.flights.blank? %>
+								<% else %>
+								<div class="row">
+									<div class="table-responsive p-0">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th>Glider</th>
+													<th>Tow Height</th>
+													<th>Flight Time</th>
+													<th>Tow Fee</th>
+													<th colspan="2">Modify Flights</th>
+												</tr>
+											</thead>
+											<tbody>
+												<% reservation.flights.each do |flight| %>
+												<tr>
+													<td><%= flight.aircraft.short_name %></td>
+													<td><%= flight.tow_height %></td>
+													<td><%= flight.flight_time %></td>
+													<td><%= number_to_currency(flight.fees) %></td>
+													<td>
+														<% if reservation.status == 'open' %>
+															<%= link_to 'Modify', edit_reservation_flight_path(reservation, flight), class: "btn btn-primary btn-sm"  %>
+														<% else %>
+														<% end %>
+													</td>
+													<td>
+														<% if reservation.status == 'open' %>
+															<%= link_to "Delete", [reservation, flight], class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
+														<% else %>
+														<% end %>
+													</td>
+												</tr>
+												<% end %>
+											</tbody>
+										</table>
+									</div>
+								</div>
 							<% end %>	
 							</div>
+							<div class="card-footer text-body-secondary" >
+								<div class="row">
+									<div class="col input-group justify-content-start">
+									<% if reservation.reservation_date <= Date.today && reservation.status == 'open' %>
+										<%= link_to "Add flight", new_reservation_flight_path(reservation), :class => "btn btn-secondary btn-sm" %>
+									<% else %>
+									<% end %>
+									</div>
+									<div class="col input-group justify-content-end">
+									<% if reservation.reservation_date <= Date.today && reservation.flights.count > 0 && reservation.status == 'open' %>
+										<%= link_to "Checkout", checkout_path(:id => reservation.id), class: "btn btn-info btn-sm" %>
+									<% else %>
+									<% end %>	
+									</div>
+								</div>	
+							</div>
 						</div>	
-					</div>
-				</div>	
-			<% end %>
+					<% end %>
+				</div>
+			</div>	
 		</div>
-	</div>	
+	</div>		
 </div>	
