@@ -28,10 +28,8 @@
 
   <% if logged_in? %>
     <%= render 'layouts/navigation' %>
-    <div id="page-content">
-      <%= render 'layouts/messages' %>
-      <%= yield %>
-    </div>
+    <%= render 'layouts/messages' %>
+    <%= yield %>
   <% else %>
       <%= render 'layouts/messages' %>
       <%= yield %>

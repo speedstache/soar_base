@@ -20,7 +20,7 @@
 											<% elsif @reservation.status == 'open' && @reservation.reservation_date < 5.days.ago %>
 												Payment Past Due
 											<% else %>
-												<%= reservation.status %> 
+												<%= @reservation.status %> 
 											<% end %>
 										</strong>	
 									</div>
