@@ -46,21 +46,21 @@
               <d1 class="row">
                 <dt class="col-sm-4 ps-4 pt-2">Flights last 30 days</dt>
                   <dd class="col-sm-8 pt-2">
-                    <%= Flight.where(user_id: @user.id, flight_date: 30.days.ago..Date.today).count %> Flights and <%= Flight.where(user_id: @user.id, flight_date: 30.days.ago..Date.today).sum(:flight_time)/60 %>.<%= Flight.where(user_id: @user.id, flight_date: 30.days.ago..Date.today).sum(:flight_time)%60%10 %> Hours of flight time
+                    <%= Flight.where(user_id: @user.id, flight_date: 30.days.ago..Date.today).count %> Flights and <%= Flight.where(user_id: @user.id, flight_date: 30.days.ago..Date.today).sum(:flight_time)/60 %>.<%= Flight.where(user_id: @user.id, flight_date: 30.days.ago..Date.today).sum(:flight_time)%60/6 %> Hours of flight time
                   </dd>
                 <dt class="col-sm-4 ps-4 pt-2">Flights last 60 days</dt>
                   <dd class="col-sm-8 pt-2">
-                  <%= Flight.where(user_id: @user.id, flight_date: 60.days.ago..Date.today).count %> Flights and <%= Flight.where(user_id: @user.id, flight_date: 60.days.ago..Date.today).sum(:flight_time)/60 %>.<%= Flight.where(user_id: @user.id, flight_date: 60.days.ago..Date.today).sum(:flight_time)%60%10 %> Hours of flight time
+                  <%= Flight.where(user_id: @user.id, flight_date: 60.days.ago..Date.today).count %> Flights and <%= Flight.where(user_id: @user.id, flight_date: 60.days.ago..Date.today).sum(:flight_time)/60 %>.<%= Flight.where(user_id: @user.id, flight_date: 60.days.ago..Date.today).sum(:flight_time)%60/6 %> Hours of flight time
 
                   </dd>
                 <dt class="col-sm-4 ps-4 pt-2">Flights last 90 days</dt>
                   <dd class="col-sm-8 pt-2">
-                  <%= Flight.where(user_id: @user.id, flight_date: 90.days.ago..Date.today).count %> Flights and <%= Flight.where(user_id: @user.id, flight_date: 90.days.ago..Date.today).sum(:flight_time)/60 %>.<%= Flight.where(user_id: @user.id, flight_date: 90.days.ago..Date.today).sum(:flight_time)%60%10 %> Hours of flight time
+                  <%= Flight.where(user_id: @user.id, flight_date: 90.days.ago..Date.today).count %> Flights and <%= Flight.where(user_id: @user.id, flight_date: 90.days.ago..Date.today).sum(:flight_time)/60 %>.<%= Flight.where(user_id: @user.id, flight_date: 90.days.ago..Date.today).sum(:flight_time)%60/6 %> Hours of flight time
 
                   </dd> 
                 <dt class="col-sm-4 ps-4 pt-2">Flights year to date</dt>
                   <dd class="col-sm-8 pt-2">
-                  <%= Flight.where(user_id: @user.id, flight_date: Date.today.beginning_of_year..Date.today).count %> Flights and <%= Flight.where(user_id: @user.id, flight_date: Date.today.beginning_of_year..Date.today).sum(:flight_time)/60 %>.<%= Flight.where(user_id: @user.id, flight_date: Date.today.beginning_of_year..Date.today).sum(:flight_time)%60%10 %> Hours of flight time
+                  <%= Flight.where(user_id: @user.id, flight_date: Date.today.beginning_of_year..Date.today).count %> Flights and <%= Flight.where(user_id: @user.id, flight_date: Date.today.beginning_of_year..Date.today).sum(:flight_time)/60 %>.<%= Flight.where(user_id: @user.id, flight_date: Date.today.beginning_of_year..Date.today).sum(:flight_time)%60/6 %> Hours of flight time
 
                   </dd>    
               </d1>
