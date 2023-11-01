@@ -3,7 +3,7 @@
     <div class="col col-sm-12 col-md-10">
       <div class="row justify-content-center">
 				<div class="col">
-					<h4>Thank You! Payment completed for <%= @reservation.user.username %>'s reservation on <%= @reservation.reservation_date.strftime("%m/%d/%y") %> </h4>
+					<h4>Thank You! Payment method logged for <%= @reservation.user.username %>'s reservation on <%= @reservation.reservation_date.strftime("%m/%d/%y") %> </h4>
 				</div>
 				<div class="row">
 					<div class="col">
@@ -79,7 +79,7 @@
 								</div>
 							</div>
 							<div class="row card-footer text-body-secondary">
-								<div class="col input-group justify-content-start m-2">
+								<div class="col input-group justify-content-center m-2">
 									<%= link_to 'Back to Reservation', reservation_path(@reservation), :class => "btn btn-primary" %>
 								</div>
 						</div>

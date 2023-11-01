@@ -1,70 +1,102 @@
 <div class="container">
-	<div class="row">
-		<div class="col justify-content-start mt-2">
-			<h4>Ready to check out and pay for <%= @reservation.user.username %>'s reservation on <%= @reservation.reservation_date.strftime("%m/%d/%y") %> </h4>
+  <div class="row text-center justify-content-center">
+    <div class="col col-sm-12 col-md-10">
+      <div class="row justify-content-center">
+				<div class="col">
+					<h4>Confirm checkout details for <%= @reservation.user.username %>'s reservation on <%= @reservation.reservation_date.strftime("%m/%d/%y") %> </h4>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="card shadow p-3 mb-5 bg-white rounded">
+							<div class="row card-header fst-italic">
+								<div class="row pt-3">
+									<div class="col text-start">
+										<strong>Reservation details </strong>
+									</div>
+									<div class="col text-end justify-content-end">
+										<strong>
+											<% if @reservation.status == 'open' && @reservation.reservation_date > Date.today %>
+												Upcoming
+											<% elsif @reservation.status == 'open' && @reservation.reservation_date < 5.days.ago %>
+												Payment Past Due
+											<% else %>
+												<%= reservation.status %> 
+											<% end %>
+										</strong>	
+									</div>
+								</div>		
+							</div>	
+							<div class="row">
+								<div class="col input-group justify-content-start">
+								</div>	
+								<div class="col input-group justify-content-end">	
+								</div>
+							</div>
+							<div class="card-body" style="padding: 20px 20px">
+								<div class="row pb-3">
+									<div class="col ">
+										<strong>Pilot:</strong></strong><br>
+										<%= @reservation.user.username %></strong>
+									</div>
+								<div class="col ">
+									<strong>Date:</strong></strong><br>
+									<%= @reservation.reservation_date.strftime("%m/%d/%y") %></strong>
+								</div>
+								<div class="col ">
+									<strong>Time:</strong></strong><br>
+									<%= @reservation.reservation_time %>
+								</div>
+								<div class="col ">
+									<strong>Aircraft:</strong></strong><br>
+									<%= @reservation.aircraft.short_name %>
+								</div>
+							</div>
+							<div class="row">
+								<h8>You flew <%= @reservation.flights.count %> flight(s) with <%= number_to_currency(@reservation.flights.pluck(:fees).sum) %> in tow fees</h8>
+							</div>
+							<div class="row">
+								<div class="table-responsive">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>Glider</th>
+												<th>Tow Height  </th>
+												<th>Flight Time  </th>
+												<th>Tow Fee</th>
+											</tr>
+										</thead>
+										<tbody>
+											<% @reservation.flights.each do |flight| %>
+											<tr>
+												<td><%= flight.aircraft.short_name %></td>
+												<td><%= flight.tow_height %></td>
+												<td><%= flight.flight_time %></td>
+												<td><%= number_to_currency(flight.fees) %></td>
+											</tr>
+											<% end %>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="row card-footer text-body-secondary">
+								<div class="col input-group justify-content-center m-2">
+									<%= link_to 'Back to Reservation', reservation_path(@reservation), :class => "btn btn-primary" %>
+								</div>
+								<div class="col input-group justify-content-center m-2">
+									<%= link_to 'Pay via RTH/Cash/Check', edit_checkout_path(id: @reservation.id), :class => "btn btn-primary" %>
+							</div>
+							<div class="col input-group justify-content-end m-2">
+								<%= render partial: 'pay/stripe/checkout_button', locals: {
+									session: @checkout_session,
+									title: 'Stripe Checkout'
+								} %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>	
-	<div class="row">
-		<div class="col-sm-10 col-md-8">
-			<div class="card shadow p-3 mb-5 bg-white rounded">
-				<div class="row card-header fst-italic">
-					<div class="row">
-						<div class="col text-start justify-content-start">
-							<strong><%= @reservation.reservation_date.strftime("%m/%d/%y") %></strong>
-						</div>
-						<div class="col text-center justify-content-center">
-							<%= @reservation.reservation_time %>
-						</div>
-						<div class="col text-end justify-content-end">
-							Glider: <%= @reservation.aircraft.short_name %>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col input-group justify-content-start">
-						</div>	
-						<div class="col input-group justify-content-end">	
-						</div>
-					</div>
-				<div class="card-body justify-content-start">
-					<div class="row">
-						<h8>You flew <%= @reservation.flights.count %> flight(s) with <%= number_to_currency(@reservation.flights.pluck(:fees).sum) %> in tow fees</h8>
-					</div>
-					<div class="row">
-					<div class="table-responsive">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Glider</th>
-								<th>Tow Height  </th>
-								<th>Flight Time  </th>
-								<th>Rope Break  </th>
-								<th>Tow Fee</th>
-							</tr>
-						</thead>
-						<tbody>
-							<% @reservation.flights.each do |flight| %>
-								<tr>
-									<td><%= flight.aircraft.short_name %></td>
-									<td><%= flight.tow_height %></td>
-									<td><%= flight.flight_time %></td>
-									<td><%= flight.rope_break.humanize %></td>
-									<td><%= number_to_currency(flight.fees) %></td>
-								</tr>
-								<% end %>
-							</tbody>
-						</table>
-					</div>
-					<div class="row card-footer text-body-secondary">
-						<div class="col input-group justify-content-start">
-							<%= link_to 'Go back to reservation', reservation_path(@reservation), :class => "btn btn-primary" %>
-						</div>
-						<div class="col input-group justify-content-center">
-						</div>
-						<div class="col input-group justify-content-end">
-              <%= render partial: 'pay/stripe/checkout_button', locals: {
-                session: @checkout_session,
-                title: 'Checkout'
-              } %>
-						</div>
-					</div>
+	</div>
+</div>									
+									
 

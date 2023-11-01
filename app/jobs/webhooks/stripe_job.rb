@@ -13,6 +13,8 @@ class Webhooks::StripeJob < ApplicationJob
         inbound_webhook.update!(status: :processed)
         #update! status column to paid when checkout session is completed
         Reservation.find(json[:data][:object][:client_reference_id]).update!(status: :paid)
+        Reservation.find(json[:data][:object][:client_reference_id]).update!(method: :stripe)
+        
       else
         inbound_webhook.update!(status: :skipped)
     end

@@ -27,6 +27,7 @@ class ReservationsController < ApplicationController
     @pastduereservations = current_user.reservations.where(reservation_date: 100.days.ago..5.days.ago, status: 'open').order('reservation_date DESC')
     @paidreservations = current_user.reservations.where(status: 'paid').order('reservation_date DESC')
     @upcomingreservations = current_user.reservations.where(reservation_date: Date.today..60.days.from_now, status: 'open').order('reservation_date DESC')
+    @pendingreservations = current_user.reservations.where( status: 'pending').order('reservation_date DESC')
 
 
     if @status.blank?
@@ -37,7 +38,9 @@ class ReservationsController < ApplicationController
       @displayreservations  = @paidreservations
     elsif @status == 'upcoming'
       @displayreservations = @upcomingreservations
-    else 
+    elsif @status == 'pending'
+      @displayreservations = @pendingreservations
+    else
       @displayreservations = @myreservations
     end      
 
@@ -123,7 +126,7 @@ class ReservationsController < ApplicationController
     @reservation.destroy
 
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: "Reservation was successfully destroyed." }
+      format.html { redirect_to reservations_url, notice: "Reservation was successfully deleted." }
       format.json { head :no_content }
     end
   end
@@ -136,7 +139,7 @@ class ReservationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reservation_params
-      params.require(:reservation).permit(:user_id, :reservation_date, :reservation_time, :reservation_duration, :aircraft_id, :instructor_flag)
+      params.require(:reservation).permit(:user_id, :reservation_date, :reservation_time, :reservation_duration, :aircraft_id, :instructor_flag, :status, :method, :description )
     end
 
     def require_same_user

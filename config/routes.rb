@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   get 'checkout', to: 'checkouts#show'
   get 'checkout/success', to: 'checkouts#success'
   get 'checkout/failure', to: 'checkouts#failure'
+  match 'checkout/:id/update', to: 'checkouts#update', via: [:patch, :put]
+  match 'checkout/:id/edit', to: 'checkouts#edit', as: 'edit_checkout', via: [:get, :post]
+  get 'checkout/pending_success', to: 'checkouts#pending_success'
   get 'billing', to: 'billing#show'
 
   namespace :webhooks do

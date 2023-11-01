@@ -1,9 +1,24 @@
 class CheckoutsController < ApplicationController
   #before_action :authenticate_user!
   before_action :require_user
+  before_action :set_reservation, only: [:edit, :update, :show]
+
+  def edit
+
+  end
+  
+  def update
+
+    if @reservation.update(reservation_params)
+      flash[:notice] = "Pending payment was successfully logged."
+      redirect_to checkout_edit_success_path(@reservation)
+    else
+      render :new, status: :unprocessable_entity
+    end
+
+  end
 
   def show
-    @reservation = Reservation.find(params[:id])
 
     current_user.set_payment_processor :stripe
     current_user.payment_processor.customer
@@ -14,6 +29,10 @@ class CheckoutsController < ApplicationController
         mode: 'payment',
         payment_method_configuration: 'pmc_1NxNOeHnDxnfrk7n8dp8f8yB',
         client_reference_id: @reservation.id,
+        payment_intent_data: {
+          description: "Eagleville Soaring Club - Order " + @reservation.id.to_s
+
+        },
         line_items: [
           {
             price_data: {
@@ -44,6 +63,10 @@ class CheckoutsController < ApplicationController
     # not currently using this method
     def set_reservation
       @reservation = Reservation.find(params[:id])
+    end
+
+    def reservation_params
+      params.require(@reservation).permit(:status, :method, :description)
     end
 
 end

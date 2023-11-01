@@ -1,0 +1,34 @@
+<div class="container">
+	<div class="row text-center justify-content-center" >
+  <h4>Pay via check or cash</h4>
+  <p class="text-muted">If logging a Red Tail Hawk Flight, select that Guest Ride and add the guest name in description field</p>
+    <div class="col col-sm-10 col-md-6">
+      <%= render 'shared/errors', obj: @reservation %>
+      <%= form_with(model: @reservation, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>          
+        <%= f.hidden_field :status, value: "pending" %>
+        <div class="form-group row m-3" >
+            <%= f.label :Date, class: "col col-form-label" %>
+          <div class="col form-control">
+            <%= @reservation.reservation_date %>
+          </div>
+        </div>
+        <div class="form-group row m-3" >
+            <%= f.label :Payment_method, class: "col col-form-label" %>
+          <div class="col">
+            <%= f.select :method, options_for_select(["Guest Ride", "Cash", "Check"]),{}, {class: "input-group-text form-control"} %>
+          </div>
+        </div>	
+        <div class="form-group row m-3" >
+            <%= f.label :Guest_or_Notes, class: "col col-form-label" %><br>
+            <p class="text-muted">For cash or check, add in payment location<br> (mail, lockbox, etc)</p>
+          <div class="col">
+            <%= f.text_field :description, class: "input-group-text form-control" %>
+          </div>
+        </div>
+        <%= link_to "Close", checkout_path(:id => @reservation.id), class:"btn btn-secondary" %>
+        <%= f.submit class:"btn btn-primary" %>
+      <% end %>
+      </div>
+    </div>
+  </div>  
+</div>

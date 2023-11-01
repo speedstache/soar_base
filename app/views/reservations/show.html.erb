@@ -55,8 +55,12 @@
 						</div>
 					</div>
 					<div class="row">
+						<p class="p-0 text-muted">Requires instructor: <%= @reservation.instructor_flag.humanize %></p>
 						<p class="p-0 text-muted">Logged <%= @reservation.flights.count %> flight(s) with <%= number_to_currency(@reservation.flights.pluck(:fees).sum) %> in tow fees</p>
-						<p class="p-0 text-muted">Verify flight glider matches glider used</p>
+						<% if @reservation.status != 'open' %>
+							<p class="p-0 text-muted">Reservation paid via <%= @reservation.method %></p>
+						<% else %>
+						<% end %>	
 					</div>
 					<div class="row">
 						<div class="table-responsive p-0">
@@ -99,31 +103,29 @@
 
 				<div class="card-footer text-body-secondary" >
 					<div class="row">
-						<div class="col input-group justify-content-start">
 						<% if @reservation.reservation_date <= Date.today && @reservation.status == 'open' %>
-							<%= link_to "Add flight", new_reservation_flight_path(@reservation), :class => "btn btn-secondary btn-sm" %>
+							<div class="col input-group justify-content-start">
+								<%= link_to "Add flight", new_reservation_flight_path(@reservation), :class => "btn btn-secondary btn-sm" %>
+							</div>
 						<% else %>
 						<% end %>
-						</div>
-						<div class="col input-group justify-content-end">
 						<% if @reservation.reservation_date <= Date.today && @reservation.flights.count > 0 && @reservation.status == 'open' %>
-							<%= link_to "Checkout", checkout_path(:id => @reservation.id), class: "btn btn-info btn-sm" %>
+							<div class="col input-group justify-content-end">
+								<%= link_to "Checkout", checkout_path(:id => @reservation.id), class: "btn btn-info btn-sm" %>
+							</div>
 						<% else %>
-						<% end %>	
-						</div>
+						<% end %>
 					</div>	
 				</div>
 				<div class="row pt-3">		
-				<div class="col justify-content-start">
-					<%= link_to 'Close', reservations_path, :class => "btn btn-primary btn-sm" %>
-				</div>	
+					<div class="col justify-content-start">
+						<%= link_to 'Close', reservations_path, :class => "btn btn-primary btn-sm" %>
+					</div>	
+				</div>
 			</div>
-			</div>
-			
 		</div>
-		
-
-		</div>
+	</div>	
+</div>
 					
 
 
