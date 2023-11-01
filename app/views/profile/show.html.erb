@@ -5,7 +5,7 @@
         <div class="card-header fst-italic">
           <div class="row">
             <div class="col ps-0 justify-content-start">
-              <%= gravatar_for current_user, size: 100 %>
+              <%= gravatar_for @user, size: 100 %>
             </div>
             <div class="col pt-3 justify-content-end">
               <%= link_to 'Update Personal Info', edit_profile_path, class: "btn btn-primary btn-sm"%>
