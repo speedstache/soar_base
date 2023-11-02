@@ -3,7 +3,11 @@
     <div class="col col-sm-12 col-md-10">
       <div class="row justify-content-center">
 				<div class="col">
-					<h4>Confirm checkout details for <%= @reservation.user.username %>'s reservation on <%= @reservation.reservation_date.strftime("%m/%d/%y") %> </h4>
+					<% if @reservation.status == 'open' %>
+						<h4>Confirm checkout details for <%= @reservation.user.username %>'s reservation on <%= @reservation.reservation_date.strftime("%m/%d/%y") %> </h4>
+					<% else %>
+						<h4>Checkout already submitted for <%= @reservation.user.username %>'s reservation on <%= @reservation.reservation_date.strftime("%m/%d/%y") %> </h4>
+					<% end %>
 				</div>
 				<div class="row">
 					<div class="col">
@@ -20,7 +24,7 @@
 											<% elsif @reservation.status == 'open' && @reservation.reservation_date < 5.days.ago %>
 												Payment Past Due
 											<% else %>
-												<%= reservation.status %> 
+												<%= @reservation.status %> 
 											<% end %>
 										</strong>	
 									</div>
@@ -83,13 +87,19 @@
 									<%= link_to 'Back to Reservation', reservation_path(@reservation), :class => "btn btn-primary" %>
 								</div>
 								<div class="col input-group justify-content-center m-2">
+								<% if @reservation.status == 'open' %>
 									<%= link_to 'Pay via RTH/Cash/Check', edit_checkout_path(id: @reservation.id), :class => "btn btn-primary" %>
+								<% else %>
+								<% end %>
 							</div>
 							<div class="col input-group justify-content-end m-2">
-								<%= render partial: 'pay/stripe/checkout_button', locals: {
-									session: @checkout_session,
-									title: 'Stripe Checkout'
-								} %>
+								<% if @reservation.status == 'open' %>
+									<%= render partial: 'pay/stripe/checkout_button', locals: {
+										session: @checkout_session,
+										title: 'Stripe Checkout'
+									} %>
+								<% else %>
+								<% end %>	
 							</div>
 						</div>
 					</div>

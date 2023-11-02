@@ -27,12 +27,13 @@ class Reservation < ApplicationRecord
     end
   end
 
+  #define the csv export format for the reservations grid and iterate through the model for each value
   def self.to_csv
     attributes = %w{id date name aircraft instructor flight_count flight_minutes tow_fees status payment_method description}
     CSV.generate(headers: true) do |csv|
       csv << attributes
 
-      @reservations = Reservation.all
+      @reservations = Reservation.where(reservation_date: Date.today.beginning_of_year..Date.today)
       @reservations.each do |reservation|
           id = reservation.id
           date = reservation.reservation_date
@@ -42,14 +43,26 @@ class Reservation < ApplicationRecord
           flight_count = reservation.flights.count
           flight_minutes = reservation.flights.pluck(:flight_time).sum
           tow_fees = reservation.flights.pluck(:fees).sum
-          status = reservation.status
+          status = reservation.status 
           payment_method = reservation.method
           description = reservation.description
           csv << [id, date, name, aircraft, instructor, flight_count, flight_minutes, tow_fees, status, payment_method, description]
       end
     end
 
-  end
     
+  end
+
+  def reservation_status
+    if reservation.status == 'open' && reservation.reservation_date > Date.today
+      reservation_status = 'Upcoming'
+    elsif reservation.status == 'open' && reservation.reservation_date < 5.days.ago 
+      reservation_status = 'Past_Due'
+    else
+      reservation_status = reservation.status
+    end
+    return reservation_status 
+  end
+
 
 end

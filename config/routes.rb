@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get "pages/index", to: 'pages#index'
 
   get 'admin/reservations', to: 'admin#reservations'
+  match 'admin/reservations/:id/edit', to: 'admin#edit', as: 'edit_admin_reservation', via: [:get, :post]
+
   get 'admin/aircrafts', to: 'admin#aircrafts'
   get 'admin/instructors', to: 'admin#instructors'
 

@@ -112,7 +112,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to reservation_path(@reservation), notice: "Reservation was successfully updated." }
+        format.html { redirect_to params[:previous_request], notice: "Reservation was successfully updated." }
         format.json { render :show, status: :ok, location: reservation_path(@reservation) }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -139,7 +139,7 @@ class ReservationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reservation_params
-      params.require(:reservation).permit(:user_id, :reservation_date, :reservation_time, :reservation_duration, :aircraft_id, :instructor_flag, :status, :method, :description )
+      params.require(:reservation).permit(:user_id, :reservation_date, :reservation_time, :reservation_duration, :aircraft_id, :instructor_flag, :status, :method, :description, :previous_request)
     end
 
     def require_same_user

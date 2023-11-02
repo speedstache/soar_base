@@ -38,7 +38,7 @@ class AircraftUsersController < ApplicationController
    
     if @aircraft_user.save
       flash[:notice] = "Aircraft and User map was successfully created."
-      redirect_to aircraft_users_path
+      redirect_back fallback_location: aircraft_users_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -48,7 +48,7 @@ class AircraftUsersController < ApplicationController
   def update
     respond_to do |format|
       if @aircraft_user.update(aircraft_user_params)
-        format.html { redirect_to aircraft_user_url(@aircraft_user), notice: "Aircraft user was successfully updated." }
+        format.html { redirect_back fallback_location: aircraft_user_url(@aircraft_user), notice: "Aircraft user was successfully updated." }
         format.json { render :show, status: :ok, location: @aircraft_user }
       else
         format.html { render :edit, status: :unprocessable_entity }

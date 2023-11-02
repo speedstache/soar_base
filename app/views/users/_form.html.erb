@@ -1,4 +1,5 @@
 <%= form_with(model: @user, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+  <%= hidden_field_tag :previous_request, request.referer %>
   <div class="form-group row m-3">
       <%= f.label :username, class: "col-3 col-form-label" %>
     <div class="col">
