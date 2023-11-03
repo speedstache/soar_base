@@ -27,10 +27,11 @@
   <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
 
   <% if logged_in? %>
-    <%= render 'layouts/navigation' %>
+    <%= render 'layouts/in_nav' %>
     <%= render 'layouts/messages' %>
     <%= yield %>
   <% else %>
+    <%= render 'layouts/out_nav' %>
     <%= render 'layouts/messages' %>
     <%= yield %>
   <% end %>
