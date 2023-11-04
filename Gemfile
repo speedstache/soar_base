@@ -12,6 +12,9 @@ gem "sprockets-rails"
 # Time of Day gem for schedule data handling
 gem "tod"
 
+# Add Will_paginate to reduce load times
+gem "will_paginate", "~> 4.0.0"
+
 # Humanize gem for boolean values
 gem "humanize_boolean"
 

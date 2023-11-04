@@ -31,17 +31,17 @@ class ReservationsController < ApplicationController
 
 
     if @status.blank?
-      @displayreservations = @myreservations
+      @displayreservations = @myreservations.paginate(page: params[:page], per_page: 5)
     elsif @status == 'past_due'
-      @displayreservations = @pastduereservations
+      @displayreservations = @pastduereservations.paginate(page: params[:page], per_page: 5)
     elsif @status == 'paid'
-      @displayreservations  = @paidreservations
+      @displayreservations  = @paidreservations.paginate(page: params[:page], per_page: 5)
     elsif @status == 'upcoming'
-      @displayreservations = @upcomingreservations
+      @displayreservations = @upcomingreservations.paginate(page: params[:page], per_page: 5)
     elsif @status == 'pending'
-      @displayreservations = @pendingreservations
+      @displayreservations = @pendingreservations.paginate(page: params[:page], per_page: 5)
     else
-      @displayreservations = @myreservations
+      @displayreservations = @myreservations.paginate(page: params[:page], per_page: 5)
     end      
 
   end

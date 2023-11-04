@@ -19,23 +19,25 @@
 				<%= render 'grid' %>
 				<% else %>	
 				<% end %>
-			<div class="row text-center justify-content-center">
+			<div class="row text-start justify-content-center">
 				<div class="col">	
 					<h4><%= current_user.username %>'s <%= @status %> reservations</h4>
 					<% if @status == 'upcoming' %><p class="text-muted">Today and Upcoming next 30 days.</p>
-					<% elsif @status == 'past_due' %><p class="text-muted">Reservations are flagged as past due if unpaid after 30 days.<br>
-						Please submit payment for flights, or if the reservation was not used, delete it.</p>
-					<% elsif @status == 'pending' %><p class="text-muted">Reservations flagged as Pending have had payment submitted <br> via check or cash 
-						or were Red Tail Hawk flights paid for by a guest.<br> Pending status will change to Paid status once the treasurer has reconciled payment.</p>
-					<% elsif @status == 'paid' %><p class="text-muted">Reservations showing as Paid have a completed payment. Stripe payments usually show this immediately.</p>
+					<% elsif @status == 'past_due' %><p class="text-muted">Reservations are past due if unpaid after 5 days.<br>
+						Please submit payment for flights, or delete if reservation was not used.</p>
+					<% elsif @status == 'pending' %><p class="text-muted">Reservations flagged as Pending have payment submitted <br> via check or cash 
+						or were Red Tail Hawk flights.<br> Pending status will update to Paid once treasurer has reconciled payment.</p>
+					<% elsif @status == 'paid' %><p class="text-muted">Reservations showing as Paid have completed payment. Stripe payments usually show this immediately.</p>
 					<% else %><p class="text-muted">Today and Upcoming next 30 days.</p>
 					<% end %>
 				</div>
+				<div class="col flickr_pagination">
+  					<%= will_paginate @displayreservations, :container => false %>
+					</div>
 			</div>	
 			<div class="row text-start justify-content-center">
 				<div class="col">	
 					<!-- replace table with card for upcoming reservations -->
-
 					<% @displayreservations.each do |reservation| %>
 						<div class="card shadow p-3 mb-5 bg-white rounded">
 							<div class="card-header fst-italic">
