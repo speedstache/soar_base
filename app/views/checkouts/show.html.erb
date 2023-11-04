@@ -56,8 +56,38 @@
 								</div>
 							</div>
 							<div class="row">
-								<h8>You flew <%= @reservation.flights.count %> flight(s) with <%= number_to_currency(@reservation.flights.pluck(:fees).sum) %> in tow fees</h8>
-							</div>
+									<div class="col text-start justify-content-start">
+										<% if @reservation.instructor_flag == true %>
+											<button type="button" class="btn btn-success m-1">Instructor?
+												<span class="badge badge-primary">
+													<%= @reservation.instructor_flag.humanize %>
+												</span>
+											</button>
+										<% else %>
+										<% end %>
+										<% if @reservation.flights.count != 0 %>
+											<button type="button" class="btn btn-success m-1">Flights 
+												<span class="badge badge-primary">
+													<%= @reservation.flights.count %>
+												</span>
+											</button>
+											<button type="button" class="btn btn-secondary m-1">Tow Fees 
+												<span class="badge badge-primary">
+													<%= number_to_currency(@reservation.flights.pluck(:fees).sum) %>
+												</span>
+											</button>
+										<% else %>
+										<% end %>		
+										<% if @reservation.status != 'open' %>
+											<button type="button" class="btn btn-secondary m-1">Payment Method 
+												<span class="badge badge-primary">
+													<%= @reservation.method %>
+												</span>
+											</button>	
+										<% else %>
+										<% end %>
+									</div>
+								</div>
 							<div class="row">
 								<div class="table-responsive">
 									<table class="table table-striped">
@@ -96,7 +126,7 @@
 								<% if @reservation.status == 'open' %>
 									<%= render partial: 'pay/stripe/checkout_button', locals: {
 										session: @checkout_session,
-										title: 'Stripe Checkout'
+										title: 'Stripe Checkout', class: "btn btn-primary"
 									} %>
 								<% else %>
 								<% end %>	

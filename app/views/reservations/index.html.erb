@@ -90,12 +90,37 @@
 									</div>
 								</div>
 								<div class="row">
-									<p class="p-0 text-muted">Requires instructor: <%= reservation.instructor_flag.humanize %></p>	
-									<p class="p-0 text-muted">You flew <%= reservation.flights.count %> flights with <%= number_to_currency(reservation.flights.pluck(:fees).sum) %> in tow fees. </p>
-									<% if reservation.status != 'open' %>
-									<p class="p-0 text-muted">Reservation paid via <%= reservation.method %></p>
-									<% else %>
-									<% end %>
+									<div class="col">
+										<% if reservation.instructor_flag == true %>
+											<button type="button" class="btn btn-success m-1">Instructor?
+												<span class="badge badge-primary">
+													<%= reservation.instructor_flag.humanize %>
+												</span>
+											</button>
+										<% else %>
+										<% end %>
+										<% if reservation.flights.count != 0 %>
+											<button type="button" class="btn btn-success m-1">Flights 
+												<span class="badge badge-primary">
+													<%= reservation.flights.count %>
+												</span>
+											</button>
+											<button type="button" class="btn btn-secondary m-1">Tow Fees 
+												<span class="badge badge-primary">
+													<%= number_to_currency(reservation.flights.pluck(:fees).sum) %>
+												</span>
+											</button>
+										<% else %>
+										<% end %>		
+										<% if reservation.status != 'open' %>
+											<button type="button" class="btn btn-secondary m-1">Payment Method 
+												<span class="badge badge-primary">
+													<%= reservation.method %>
+												</span>
+											</button>	
+										<% else %>
+										<% end %>
+									</div>
 								</div>
 								<% if reservation.flights.blank? %>
 								<% else %>
@@ -142,7 +167,7 @@
 								<div class="row">
 									<div class="col input-group justify-content-start">
 									<% if reservation.reservation_date <= Date.today && reservation.status == 'open' %>
-										<%= link_to "Add flight", new_reservation_flight_path(reservation), :class => "btn btn-secondary btn-sm" %>
+										<%= link_to "Add flight", new_reservation_flight_path(reservation), :class => "btn btn-primary btn-sm" %>
 									<% else %>
 									<% end %>
 									</div>
