@@ -5,7 +5,7 @@ class MembershipUsersController < ApplicationController
 
   # GET /membership_users or /membership_users.json
   def index
-    @membership_users = MembershipUser.all
+    @membership_users = MembershipUser.all.paginate(page: params[:page], per_page: 10)
     @unassigned_users = User.where.not(id: MembershipUser.all.pluck(:user_id))
 
     @unassigned_user_id = params[:id]
@@ -59,7 +59,7 @@ class MembershipUsersController < ApplicationController
     @membership_user.destroy
 
     respond_to do |format|
-      format.html { redirect_to membership_users_url, notice: "Membership user was successfully destroyed." }
+      format.html { redirect_to membership_users_url, notice: "Membership user was successfully deleted." }
       format.json { head :no_content }
     end
   end

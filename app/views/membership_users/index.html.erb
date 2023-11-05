@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row text-center">
     <div class="col justify-content-start">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center mt-2">
 				<h4>Unassigned Users</h4>
         <div class="col-sm-12 col-md-12 table-responsive">
 					<table class="table table-striped">
@@ -25,42 +25,56 @@
             </tbody>
           </table>
         </div>
-        <h4 class="mt-5">Users with Memberships Assigned</h4>
-
-        <div class="col-sm-12 col-md-12 table-responsive">
-					<table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Membership</th>
-                <th>Renews on</th>
-                <th>Time left </th>
-                <th>Next Renewal</th>
-                <th>Notify user on</th>
-                <th>Active Flag</th>
-                <th colspan="2">Modify</th>
-              </tr>
-            </thead>
-            <tbody>
-                <% @membership_users.each do |membership_user| %>
+        
+      <div class="row justify-content-center">
+				<div class="col mt-3">
+					<h4>Users with Memberships</h4>
+				</div>
+				<div class="col">
+					<div class="row mt-2">
+						<div class="col flickr_pagination">	
+							<%= will_paginate @membership_users, :container => false %>
+						</div>	
+					</div>		
+				</div>
+        <div class="row">
+          <div class="col">	
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
                   <tr>
-                    <td><%= membership_user.user.username %></td>
-                    <td><%= membership_user.user.email %></td>
-                    <td><%= membership_user.membership.membership_type %></td>
-                    <td><%= membership_user.renewal_date.strftime("%m/%d/%y") %></td>
-                    <td><%= (Date.today..(membership_user.renewal_date + membership_user.membership.renewal_period)).to_a.size %> days</td>
-                      <% next_renewal_date = membership_user.renewal_date + membership_user.membership.renewal_period %>
-                    <td><%= next_renewal_date.strftime("%m/%d/%y") %></td>
-                      <% renewal_notification_date = membership_user.renewal_date + (membership_user.membership.renewal_period - 30) %>
-                    <td><%= renewal_notification_date.strftime("%m/%d/%y") %></td>
-                    <td><%= membership_user.active_flag %></td>
-                    <td><%= link_to 'Edit', edit_membership_user_path(membership_user), :class => "btn btn-primary btn-sm" %></td>
-                    <td><%= link_to 'Delete', membership_user_path(membership_user),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Membership</th>
+                    <th>Renews on</th>
+                    <th>Time left </th>
+                    <th>Next Renewal</th>
+                    <th>Notify user on</th>
+                    <th>Active Flag</th>
+                    <th colspan="2">Modify</th>
                   </tr>
-                <% end %>
-            </tbody>
-          </table>
+                </thead>
+                <tbody>
+                    <% @membership_users.each do |membership_user| %>
+                      <tr>
+                        <td><%= membership_user.user.username %></td>
+                        <td><%= membership_user.user.email %></td>
+                        <td><%= membership_user.membership.membership_type %></td>
+                        <td><%= membership_user.renewal_date.strftime("%m/%d/%y") %></td>
+                        <td><%= (Date.today..(membership_user.renewal_date + membership_user.membership.renewal_period)).to_a.size %> days</td>
+                          <% next_renewal_date = membership_user.renewal_date + membership_user.membership.renewal_period %>
+                        <td><%= next_renewal_date.strftime("%m/%d/%y") %></td>
+                          <% renewal_notification_date = membership_user.renewal_date + (membership_user.membership.renewal_period - 30) %>
+                        <td><%= renewal_notification_date.strftime("%m/%d/%y") %></td>
+                        <td><%= membership_user.active_flag %></td>
+                        <td><%= link_to 'Edit', edit_membership_user_path(membership_user), :class => "btn btn-primary btn-sm" %></td>
+                        <td><%= link_to 'Delete', membership_user_path(membership_user),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+                      </tr>
+                    <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>    
         </div>
       </div>
     </div>

@@ -7,8 +7,18 @@
 					<p class="text-muted">This user list used primarily to check if users profiles have been activated</p>
 				</div>
 				<div class="col align-text-middle">
-					<%= link_to 'Add new user', new_user_path, :class => "btn btn-primary" %>		
+					<div class="row">
+						<div class="col">
+							<%= link_to 'Add new user', new_user_path, :class => "btn btn-primary" %>
+						</div>
+					</div>
+					<div class="row mt-2">	
+						<div class="col flickr_pagination">	
+							<%= will_paginate @users, :container => false %>
+						</div>
+					</div>
 				</div>
+
 			</div>	
 			<div class="row">
 				<div class="col">
