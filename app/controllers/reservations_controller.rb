@@ -19,7 +19,7 @@ class ReservationsController < ApplicationController
     end
 
     @avail_days = Day.where(day: 10.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
-    @avail_hours = Hour.where(active_flag: 1)
+    @avail_hours = Hour.where(active_flag: 1).order('hours.id ASC')
     @view_21a = @res_date.where(aircraft_id: 1)
     @view_21b = @res_date.where(aircraft_id: 2)
     @view_23 = @res_date.where(aircraft_id: 3)
@@ -59,7 +59,7 @@ class ReservationsController < ApplicationController
     end
 
     @avail_days = Day.where(day: 10.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
-    @avail_hours = Hour.where(active_flag: 1)
+    @avail_hours = Hour.where(active_flag: 1).order('hours.id ASC')
     @view_21a = @res_date.where(aircraft_id: 1)
     @view_21b = @res_date.where(aircraft_id: 2)
     @view_23 = @res_date.where(aircraft_id: 3)
