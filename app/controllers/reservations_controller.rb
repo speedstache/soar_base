@@ -12,10 +12,10 @@ class ReservationsController < ApplicationController
 
     if params[:search] != nil
       @res_show = Day.find_by(day: params[:search]).day
-      flash[:notice] = "search date applied"
+      flash.now[:notice] = "search date applied"
     elsif
       @res_show = next_flying_day
-      flash[:notice] = "search grid set to next flying date"
+      flash.now[:notice] = "search grid set to next flying date"
     end
 
     @avail_days = Day.where(day: 10.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
@@ -52,10 +52,10 @@ class ReservationsController < ApplicationController
 
     if params[:search] != nil
       @res_show = Day.find_by(day: params[:search]).day
-      flash[:notice] = "search date applied"
+      flash.now[:notice] = "search date applied"
     elsif
       @res_show = next_flying_day
-      flash[:notice] = "search grid set to next flying date"
+      flash.now[:notice] = "search grid set to next flying date"
     end
 
     @avail_days = Day.where(day: 10.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
