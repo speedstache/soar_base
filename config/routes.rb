@@ -11,14 +11,15 @@ Rails.application.routes.draw do
 
   resources :hours,     except: [:destroy]
   resources :days,     except: [:destroy]
-  get 'reservations/club', to: 'reservations#club'
+  get 'reservations/club', to: 'reservations#club', as: 'reservations_club'
   resources :reservations do
     resources :flights
   end
   resources :flights
   resources :aircrafts,     except: [:destroy]
   
-  get "home/index"  
+  get "home/index", to: "home#index"
+  get "home/how_to", to: "home#how_to", as: 'how_to'
   root to: "pages#index"
 
   get "pages/index", to: 'pages#index'

@@ -1,0 +1,264 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col justify-content-center">
+      <div class="row justify-content-center">
+        <div class="col mt-2 mb-4" id='top'>
+        <a class="btn btn-primary mt-2" href="#about">About this site</a>
+        <a class="btn btn-primary mt-2" href="#capabilities">Capabilities</a>
+        <a class="btn btn-primary mt-2" href="#reservations">Reservations</a>
+        <a class="btn btn-primary mt-2" href="#aircraft">Aircraft</a>
+        <a class="btn btn-primary mt-2" href="#memberships">Memberships</a>
+        <a class="btn btn-primary mt-2" href="#operating-days-hours">Operating Hours</a>
+        <a class="btn btn-primary mt-2" href="#faq">FAQs</a>
+        </div>
+        <div class="card align-start" style="width: auto;">
+          <ul class="list-group list-group-flush ">
+            <li class="list-group-item lead pb-3" id='about'>About This Site
+            <a class="btn btn-secondary" href="#top">Back to top</a></li>
+              
+              <d1 class="row">
+                <dt class="col-sm-4 ps-4 pt-2">General Info</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Soar Base (this app) is built on Ruby on Rails 7 with a PostgreSQL database and Bootstrap 
+                    5 CSS styling framework and is deployed on a single dyno in Heroku. Ruby on Rails (Rails) 
+                    provides a highly customizable technology stack with far more flexibility than Wordpress 
+                    or "off the shelf" solutions.<p>
+                    <p>The primary goal of Soar Base is to connect the various user-generated data related to 
+                    glider operations into workflows, minimizing redundant data entry and making logging flights 
+                    and aircraft reservations as quick and easy as possible. The secondary goal of Soar Base is 
+                    to provide all of the settings and analytics needed to run a glider club via a single user 
+                    experience, limited by the permission level of the user. </p>
+
+                    <p>Soar Base was developed by Nathan Taylor and is used by the Eagleville Soaring Club under a 
+                    perpetual general use license. All rights reserved. </p>
+                    <p>Current version 1.0, Heroku deployment 142</p>
+                  </dd>
+                </d1> 
+            </ul>     
+            <ul class="list-group list-group-flush ">
+            <li class="list-group-item lead pb-3" id='capabilities'>Capabilities
+            <a class="btn btn-secondary" href="#top">Back to top</a></li>
+              
+              <d1 class="row">
+                <dt class="col-sm-4 ps-4 pt-2">User Capabilities</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Users can reserve aircraft for a specific hour and date, and specify whether an instructor is needed.<br>
+                    Users can edit the personal information in their profile.<br>
+                    Users can add "flights" to a reservation on or after the day of the flight and checkout via Stripe, cash, or check.<br>
+                    Users cannot edit another member's flights or reservations.</p>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Instructor Capabilities</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Instructors can edit or delete another member's flights or reservations.<br>
+                    Instructors can view their total flight time as an instructor and view the flight totals of other instructors.<br>
+                    Instructors can send a 'Field Status Update' to the ESC google group.</p>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">User Admin Capabilities</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>User Admins can edit or delete another member's flights or reservations
+                    User Admins can edit another member's profile information.<br>
+                    User Admins can assign and edit memberships for users.<br>
+                    User Admins can assign and edit the aircraft that members are allowed to reserve.</p>
+                  </dd>
+                  <dt class="col-sm-4 ps-4 pt-2">Club Admin Capabilities</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Club Admins can edit and add days and hours of operation.<br>
+                    Club Admins can send a 'Field Status Update' to the ESC google group.<br>
+                    Club Admins can download full flight logs to reconcile with payment portal and edit payment status for reconciliation</p>
+                  </dd>
+                  <dt class="col-sm-4 ps-4 pt-2">Site Admin Capabilities</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Site Admins can edit and add aircraft managed within the club.<br>
+                    Site Admins can edit the tow fee pricing schedule.<br>
+                    Site Admins can edit or add different membership types and pricing</p>
+                  </dd>
+                </d1> 
+            </ul> 
+            <ul class="list-group list-group-flush ">
+            <li class="list-group-item lead pb-3" id='reservations'>Reservations
+            <a class="btn btn-secondary" href="#top">Back to top</a></li>
+              
+              <d1 class="row">
+                <dt class="col-sm-4 ps-4 pt-2">How to reserve an aircraft, add flights, and pay for flights<br> (Users, Instructors, User Admins)</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Soar base handles flights and reservations differently than our old site. 
+                    Reservations are meant to signal that an aircraft will be occupied for a specific time slot on 
+                    a specific date. Flights are added to a reservation on or after the reservation date. 
+                    Logging flights "inside" of a reservation reduces data entry for users as well as organizing all 
+                    flight information and payment status into one place for club leadership. </p>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Adding a reservation</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Upon login, each user is redirected to the View My Schedule page. This page shows an availability 
+                    grid for the next upcoming flying date (typically Saturdays and Sundays). 
+                    Other dates can be selected from the dropdown list and checked by clicking 'Check Reservations' 
+                    to repopulate the grid. </p>
+
+                    <p>The availability grid shows open green circles for available times and closed red circles for 
+                    unavailable (booked) times. Clicking a green dot opens a form to schedule that selection. User 
+                    only needs to select whether they need an instructor and save the reservation.</p>
+                    
+                    <p>Each reservation shows up below the grid as a card with all relevant info, sorted with 
+                    latest date on top. Reservation details can be edited if needed, or the reservation can be 
+                    deleted if it is not required or was not flown.</p>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Adding a reservation for a private glider</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Private glider reservations do not show up in the grid. Users with private gliders can 
+                      add a reservation for a private glider by selecting "Add Reservation" in the navigation 
+                      menu and selecting all appropriate information for the reservation. These reservations 
+                      will show up in View My Schedule and View Club Schedule and be handled in the same 
+                      manner as a normal club reservation.</p>
+                  </dd>
+                  <dt class="col-sm-4 ps-4 pt-2">Adding a flight to a reservation</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>On or after the date of the reservation, a button will display to "add flights". This 
+                    button will not display for "upcoming" reservations. Clicking this button will open a form 
+                    to add a flight to the reservation. Users are asked to provide the tow height, flight 
+                    time, confirm the aircraft used, and if needed add the instructor name. Soar Base will 
+                    calculate the tow fee using the club's tow pricing schedule. </p>
+                    
+                    <p>Multiple flights can be 
+                    added to a reservation. Once flights have been added to a reservation the reservation 
+                    can no longer be deleted. In order to delete the reservation, all flights inside that 
+                    reservation must first be deleted. </p>
+                  </dd>
+                  <dt class="col-sm-4 ps-4 pt-2">Checkout and payment</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Once flights are added to a reservation, a button will display to "checkout". 
+                    This will allow users to checkout and pay via Stripe portal if using credit, debit, 
+                    or bank transfer. There is also a selection or payment by check or cash, or logging 
+                    that the flight was a Red Tail Hawk flight (to be paid by the paying guest).</p>
+
+                    Payments completed via Stripe show the status as "paid" when completed. Payments 
+                    <p>logged as Cash or Check show the status as "pending" until the club treasurer reconciles 
+                    the payment method. Flights not paid or pending within 5 days of the reservation date 
+                    will be shown as "Past Due". Users are responsible for submitting payment as soon as 
+                    possible after flying. </p>
+                  </dd>
+                  <dt class="col-sm-4 ps-4 pt-2">Checking the club schedule</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Selecting View Club Schedule from the navigation menu and selecting a specific 
+                    date shows all flights reserved for that date by all club members. This view is 
+                    useful for instructors and two pilots to see how busy the day is going to be. </p>
+                  </dd>
+                </d1> 
+            </ul> 
+            <ul class="list-group list-group-flush ">
+            <li class="list-group-item lead pb-3" id='aircraft'>Aircraft
+            <a class="btn btn-secondary" href="#top">Back to top</a></li>
+              
+              <d1 class="row">
+                <dt class="col-sm-4 ps-4 pt-2">How to manage aircraft and aircraft users</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Soar Base manages both club aircraft and private aircraft as resources that can 
+                    be scheduled. Since club aircraft are shared by all members with the required privileges, 
+                    these are shown in the grid view to make reservations simple. Private aircraft are 
+                    typically reserved by only one or two people and are not shown in the grid view. </p>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Adding or editing an aircraft<br> (Site Admins)</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Aircraft can be added by selecting Aircraft List from the navigation menu and then 
+                    selecting Add Aircraft. Populate all required fields and save. This is step 1 of 2 
+                    to allow the aircraft to be reserved. Aircraft can also be made "Inactive" by editing 
+                    and unselecting the Active Flag. This is important for maintenance or to take an aircraft 
+                    offline for a period of time. </p>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Adding or editing aircraft users<br> (Site Admins, User Admins)</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Users can only reserve aircraft that they are granted privileges in. For example, a 
+                    pre-solo student should not be granted reservation privileges in the ASK-23. Users with 
+                    no privileges at all are shown in a separate table at the top. This is step 2 of 2 to 
+                    allow an aircraft to be reserved. Adding an aircraft to a user allows them to reserve 
+                    that aircraft, private aircraft included. </p>
+                  </dd>
+                </d1> 
+            </ul>
+            <ul class="list-group list-group-flush ">
+            <li class="list-group-item lead pb-3" id='memberships'>Memberships
+            <a class="btn btn-secondary" href="#top">Back to top</a></li>
+              
+              <d1 class="row">
+                <dt class="col-sm-4 ps-4 pt-2">How to manage user permissions and memberships<br> (User Admins)</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Users are set up at creation with no permissions above the level of users. 
+                    Advanced permissions can be added for specific users if they need more capabilities 
+                    and functions. Users must also have a valid and current membership in ESC to create 
+                    reservations.</p>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Adding or editing user permissions </dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>User permissions can be added or edited by selecting Users -> User 
+                    Permissions from the navigation menu.</p>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Adding or editing User Memberships </dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>User memberships can be added or edited by selecting Users -> User Memberships 
+                    from the navigation menu. Users with no membership are listed in a separate table
+                     at the top so they can be added. User Memberships must be given a renewal date and 
+                     membership type. At the moment membership payments are not handled via Stripe, 
+                     but we will likely add this in the future. A user must have an active and not 
+                     lapsed membership in order to reserve aircraft or log flights. Grace period on 
+                     memberships lapsing is set to zero days after expiration. </p>
+                  </dd>
+                </d1> 
+            </ul>
+            <ul class="list-group list-group-flush ">
+            <li class="list-group-item lead pb-3" id='oerating-days-hours'>Operating Days and Hours
+            <a class="btn btn-secondary" href="#top">Back to top</a></li>
+              
+              <d1 class="row">
+                <dt class="col-sm-4 ps-4 pt-2">How to manage club hours and days of operations<br> (Club Admin)
+                </dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Eagleville Soaring Club typically operates on weekend days only, but any other days 
+                    can be added as operating days. Hours of operations will fluctuate throughout the season 
+                    based on daylight savings time and sunset times. </p>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Adding or editing Days of Operation</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Additional flying days can be added to the schedule by selecting Site -> Days of 
+                    Operation and adding a new date. In order for a date to show up as a reservation date 
+                    it must have the Active Flag selected.</p>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Adding or editing Hours of Operation</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Hours of operation can be flagged as active or inactive by editing the Active Flag 
+                    for any specific hour. Updating an hour from inactive to active will allow reservations 
+                      to be made for that hour and will dynamically render the availability grid with the 
+                      new hour. </p>
+                  </dd>
+                </d1> 
+            </ul>
+            <ul class="list-group list-group-flush ">
+            <li class="list-group-item lead pb-3" id='faq'>Frequently Asked Questions
+            <a class="btn btn-secondary" href="#top">Back to top</a></li>
+              
+              <d1 class="row">
+                <dt class="col-sm-4 ps-4 pt-2">Why can I not add flights to a reservation I just made?</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Check the status in the upper right corner of the reservation card, or the reservation 
+                    date. If the reservation is in the future no flights can be added yet. 
+                    Status will update to "open" on the day of the reservation.</p>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Why can't I delete a reservation?</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Check to see if any flights have been added to a reservation. 
+                    If a reservation has flights it cannot be deleted. If you need to delete the 
+                    reservation, delete the flights first.</p>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">I want to pre-pay my reservation for next week but don't see a checkout button</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Checkout is not available until the day of the reservation and is also not available 
+                    unless flights have been added, which also requires that the reservation date is at least 
+                      today. </p>
+                  </dd>
+                </d1> 
+            </ul>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>        
+<div>

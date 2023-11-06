@@ -9,7 +9,7 @@
 					Click on open green dot to reserve a slot.</p>
 				</div>
 				<div class="col input-group align-start">
-					<%= form_tag(reservations_path, method: :get) do %>
+					<%= form_tag(reservations_club_path, method: :get) do %>
 						<%= submit_tag ("Check Reservations"), {class: "btn btn-info btn-sm"} %>
 						<%= select_tag(:search, options_from_collection_for_select(@avail_days, 'day','day', @res_show),{class: "form-select append"}) %>
 					<% end %>
