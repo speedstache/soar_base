@@ -1,16 +1,18 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col justify-content-center">
-      <div class="row justify-content-center">
+      <div class="row text-center justify-content-center">
         <div class="col mt-2 mb-4" id='top'>
-        <a class="btn btn-primary mt-2" href="#about">About this site</a>
-        <a class="btn btn-primary mt-2" href="#capabilities">Capabilities</a>
-        <a class="btn btn-primary mt-2" href="#reservations">Reservations</a>
-        <a class="btn btn-primary mt-2" href="#aircraft">Aircraft</a>
-        <a class="btn btn-primary mt-2" href="#memberships">Memberships</a>
-        <a class="btn btn-primary mt-2" href="#operating-days-hours">Operating Hours</a>
-        <a class="btn btn-primary mt-2" href="#faq">FAQs</a>
+          <a class="btn btn-primary mt-2" href="#about">About this site</a>
+          <a class="btn btn-primary mt-2" href="#capabilities">Capabilities</a>
+          <a class="btn btn-primary mt-2" href="#reservations">Reservations</a>
+          <a class="btn btn-primary mt-2" href="#aircraft">Aircraft</a>
+          <a class="btn btn-primary mt-2" href="#memberships">Memberships</a>
+          <a class="btn btn-primary mt-2" href="#operating-days-hours">Operating Hours</a>
+          <a class="btn btn-primary mt-2" href="#faq">FAQs</a>
         </div>
+      </div>
+      <div class="row">
         <div class="card align-start" style="width: auto;">
           <ul class="list-group list-group-flush ">
             <li class="list-group-item lead pb-3" id='about'>About This Site
@@ -31,7 +33,10 @@
 
                     <p>Soar Base was developed by Nathan Taylor and is used by the Eagleville Soaring Club under a 
                     perpetual general use license. All rights reserved. </p>
-                    <p>Current version 1.0, Heroku deployment 142</p>
+
+                    <p>Read release notes related to the current version here <a class="btn btn-secondary" href="/home/index">Release Notes</a></p>
+                    
+                    <strong><p>Current version 1.0</p></strong>
                   </dd>
                 </d1> 
             </ul>     
@@ -204,7 +209,7 @@
                 </d1> 
             </ul>
             <ul class="list-group list-group-flush ">
-            <li class="list-group-item lead pb-3" id='oerating-days-hours'>Operating Days and Hours
+            <li class="list-group-item lead pb-3" id='operating-days-hours'>Operating Days and Hours
             <a class="btn btn-secondary" href="#top">Back to top</a></li>
               
               <d1 class="row">
@@ -253,6 +258,19 @@
                     unless flights have been added, which also requires that the reservation date is at least 
                       today. </p>
                   </dd>
+                  <dt class="col-sm-4 ps-4 pt-2">How do I get a profile picture on the site?</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Profile pics are handled by a universal profile pic service called Gravatar. Click this link to 
+                    set up your own profile pic using the same email address that you use for this website.<br>
+                    <a class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="https://gravatar.com/">Create your own Gravatar here!</a></p>
+                  </dd>
+                  <dt class="col-sm-4 ps-4 pt-2">Does Soar Base or Eagleville Soaring Club keep my credit card details when I pay?</dt>
+                    <dd class="col-sm-8 pt-2">
+                      <p>No, this site never sees your payment information. All payment information is handled off-site by Stripe, a 
+                      PCI level 1 certified payment portal. The only information exchanged between these two sites is your email, 
+                      checkout info, and whether the payment was successful or not. Everything else is handled securely between 
+                      Stripe and your bank or credit card provider.</p>
+                    </dd>
                 </d1> 
             </ul>
           
