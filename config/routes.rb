@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :permissions,     except: [:show, :destroy]
   resources :aircraft_users
   resources :users,     except: [:destroy]
+  get 'users/:sendme/resend', to: 'users#resend', as: 'resend_user'
+
+
   resources :hours,     except: [:destroy]
   resources :days,     except: [:destroy]
   get 'reservations/club', to: 'reservations#club'
@@ -48,6 +51,7 @@ Rails.application.routes.draw do
   end
 
   resources :account_activations, only: [:edit]
+ 
   resources :password_resets,     only: [:new, :create, :edit, :update]
   
 end

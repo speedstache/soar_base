@@ -30,7 +30,7 @@
 									<th>Username</th>
 									<th>Email</th>
 									<th>Activated</th>
-									<th colspan="1">Edit User</th>
+									<th colspan="2">Edit User</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -41,6 +41,7 @@
 										<td><%= user.email %></td>
 										<td><%= user.activated.humanize %></td>
 										<td><%= link_to 'Edit', edit_user_path(user), class: "btn btn-primary btn-sm"%></td>
+										<td><%= link_to 'Resend_Activation', resend_user_path(sendme: user.id), class: "btn btn-primary btn-sm"%></td>
 									</tr>
 								<% end %>
 							</tbody>

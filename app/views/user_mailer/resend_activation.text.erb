@@ -1,0 +1,10 @@
+Hi <%= @user.username %>,
+
+Welcome to the Eagleville Soaring Club! Click on the link below to activate your account
+
+Once your account is activated you will be able to:
+
+Make reservations in club aircraft
+Log flights and pay for tows
+
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

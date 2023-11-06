@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   def edit
   end
 
+
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
@@ -35,11 +36,22 @@ class UsersController < ApplicationController
       @permission = @user.create_permission
 
       UserMailer.account_activation(@user).deliver_now
-    flash[:info] = "Please check your email to activate your account."
+    flash[:info] = "Account Activation! Please advise user to check email to activate account."
     redirect_to users_path
     else
       render 'new', status: :unprocessable_entity
     end
+  end
+
+  def resend
+
+    @user = User.find_by(id: params[:sendme])
+
+    @user.refresh_activation_digest
+    UserMailer.resend_activation(@user).deliver_now
+    flash[:info] = "Account Activation resent! Advise user to check email to activate account."
+    redirect_to users_path
+
   end
 
   # PATCH/PUT /users/1 or /users/1.json
@@ -60,7 +72,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.html { redirect_to users_url, notice: "User was successfully deleted." }
       format.json { head :no_content }
     end
   end
