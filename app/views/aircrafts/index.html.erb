@@ -43,10 +43,10 @@
 										<% if aircraft.group != 'towplane' %>
 											<%= Flight.where(aircraft_id: aircraft, flight_date: aircraft.last_maintenance..Date.today ).sum(:flight_time)/60 %>.<%= Flight.where(aircraft_id: aircraft, flight_date: aircraft.last_maintenance..Date.today ).sum(:flight_time)%60/6 %>
 										<% else %>
-											<% if Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).last.tach_end.present? || Tow.order('tows.tow_date ASC').where(tow_date: ..aircraft.last_maintenance).last.tach_end.present? %>
-												<%= Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).last.tach_end - Tow.order('tows.tow_date ASC').where(tow_date: ..aircraft.last_maintenance).last.tach_end %>
-											<% else %>
+											<% if Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).last.tach_end.blank? || Tow.order('tows.tow_date ASC').where(tow_date: ..aircraft.last_maintenance).last.tach_end.blank? %>
 												0
+											<% else %>
+												<%= Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).last.tach_end - Tow.order('tows.tow_date ASC').where(tow_date: ..aircraft.last_maintenance).last.tach_end %>
 											<% end %>		
 										<% end %>
 									</td>
