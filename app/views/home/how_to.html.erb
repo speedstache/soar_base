@@ -157,19 +157,38 @@
               <d1 class="row">
                 <dt class="col-sm-4 ps-4 pt-2">How to add duty days and add tow logs for tow pilots</dt>
                   <dd class="col-sm-8 pt-2">
-                    <p>Soar Base can display the tow pilot for a </p>
+                    <p>Soar Base can display the tow pilot scheduled for a given flying day. Since tow planes
+                    have different data characteristics than gliders, the "flight log" functionality is 
+                    replaced by very similar "tow log" functionality when an aircraft of type 'towplane' 
+                    is scheduled by a user. </p>
                   </dd>
                 <dt class="col-sm-4 ps-4 pt-2">Adding or editing a tow pilot duty day</dt>
                   <dd class="col-sm-8 pt-2">
-                    <p>rewrite this for adding a duty day </p>
+                    <p>Tow pilots can add duty days either by the normal 'Add New Reservation' function, choosing the Pawnee
+                    as the aircraft and setting the day and starting hour (usually first available hour). tow pilots can 
+                    also navigate to Aircraft -> Tow Pilot Schedule to see the upcoming tow pilot schedule and add themselves to the schedule. </p>
                   </dd>
                 <dt class="col-sm-4 ps-4 pt-2">Adding or editing a tow log</dt>
                   <dd class="col-sm-8 pt-2">
-                    <p>rewrite this for adding a tow log</p>
+                    <p>On or after the date specified in the tow pilot schedule, a tow pilot is able to add a tow log to 
+                    their reservation. If a tow pilot attempts to add a tow log via the 'View My Schedule' page, then will be redirected to the 
+                    normal Aircraft -> Tow Pilot Schedule area via the input form.</p>
+                    
+                    <p>Tow logs automatically take
+                    the tach end from the prior tow log and apply it as the tach start for the new tow log. In cases where the towplane
+                    was flown for maintenance this tach start value can be edited. </p>
+                  </dd>
+                  <dt class="col-sm-4 ps-4 pt-2">Closing a tow log</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <p>Tow logs must be updated to 'closed' status to signal that the tow log is complete. Tow logs can be closed only
+                    after a tow log has been entered via the 'Close Tow Log' button. Modifications are not allowed to closed tow logs, but
+                    a closed tow log can be reopened and edited if needed. </p>
                   </dd>
                   <dt class="col-sm-4 ps-4 pt-2">Monitoring tow plane usage and hours</dt>
                   <dd class="col-sm-8 pt-2">
-                    <p>rewrite this for tow plane hours totals </p>
+                    <p>Total tows, flight time, and releases can be monitored in the Aircraft List, like all other aircraft. 
+                    Since towplanes have different data characteristics, the tables are not the same between gliders and towplanes. 
+                    Export funtionality will be added to the towplane logs to allow for offline analysis. </p>
                   </dd>
                 </d1> 
             </ul> 
