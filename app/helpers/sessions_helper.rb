@@ -74,9 +74,12 @@ module SessionsHelper
 
    # return the previous tow log (tach_end) before today
    def previous_tow_log
-    find_date = Tow.order('tows.tow_date ASC').where(tow_date: ...Date.today).last
-    
-    previous_tow_log = find_date.tach_end
+    if Tow.order('tows.tow_date ASC').where(tow_date: ...Date.today).last.present?
+      find_date = Tow.order('tows.tow_date ASC').where(tow_date: ...Date.today).last
+      previous_tow_log = find_date.tach_end
+    else
+      previous_tow_log = 0
+    end    
   end
 
   # Forgets a persistent session.
