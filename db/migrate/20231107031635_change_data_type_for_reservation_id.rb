@@ -1,5 +1,5 @@
 class ChangeDataTypeForReservationId < ActiveRecord::Migration[7.0]
   def change
-    change_column :tows, :reservation_id, :integer
+    change_column :tows, :reservation_id, :integer, using: 'reservation_id::integer'
   end
 end
