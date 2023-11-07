@@ -12,13 +12,28 @@ class AircraftsController < ApplicationController
   # GET /aircrafts/1 or /aircrafts/1.json
   def show
 
-    if Flight.where(aircraft_id: @aircraft).blank?
-      @flighthours = 0
-      @flightcount = 0
-    else
-      @sumhours = Flight.where(aircraft_id: @aircraft, flight_date: @aircraft.last_maintenance..Date.today )
-      @flightcount = @sumhours.count
-      @flighthours = @sumhours.sum(:flight_time)
+    if @aircraft.group != 'towplane'
+      if Flight.where(aircraft_id: @aircraft).blank?
+        @flighthours = 0
+        @flightcount = 0
+      else
+        @sumhours = Flight.where(aircraft_id: @aircraft, flight_date: @aircraft.last_maintenance..Date.today )
+        @flightcount = @sumhours.count
+        @flighthours = @sumhours.sum(:flight_time)/60+@sumhours.sum(:flight_time)%60/6
+      end
+    else    
+      if Tow.where(aircraft_id: @aircraft).blank?
+        @last_maintenance_tow_date = Date.today
+        @most_recent_tow_date = Date.today
+        @sumtows = 0
+        @sumtowhours = 0
+      else  
+        @sumtows = Tow.where(aircraft_id: @aircraft, tow_date: @aircraft.last_maintenance..Date.today ).sum(:tows)
+
+        @last_maintenance_tow_date = Tow.order('tows.tow_date ASC').where(tow_date: ..@aircraft.last_maintenance).last
+        @most_recent_tow_date = Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).last
+        @sumtowhours = @most_recent_tow_date.tach_end - @last_maintenance_tow_date.tach_end
+      end  
     end  
 
   end

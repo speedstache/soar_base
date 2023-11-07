@@ -68,7 +68,7 @@ class ReservationsController < ApplicationController
   def tow_index
 
       @towplanes = Aircraft.where(group: 'towplane')
-      @tow_schedule = Reservation.where(aircraft_id: @towplanes.ids)
+      @tow_schedule = Reservation.where(aircraft_id: @towplanes.ids).order('reservation_date DESC').paginate(page: params[:page], per_page: 5)
 
   end
 

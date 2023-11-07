@@ -14,7 +14,7 @@
   <div class="form-group row m-3" >
       <%= f.label :group, class: "col col-form-label" %>
     <div class="col">
-      <%= f.select :group, options_for_select(["club", "private", "towplane"]),{}, {class: "input-group-text form-control"} %>
+      <%= f.select :group, options_for_select(["club", "private", "towplane"], selected: @aircraft.group),{}, {class: "input-group-text form-control"} %>
     </div>
     <div class="form-group row m-3" >
       <%= f.label :last_maintenance, class: "col col-form-label" %>

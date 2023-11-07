@@ -33,11 +33,12 @@
 							</tbody>
 						</table>
 					</div>
+				<% if @aircraft.group != 'towplane' %>
 					<div class="mt-4">
-					<h6>This aircraft has flown <%= @flightcount %> flights, and <%= @flighthours/60 %>.<%= @flighthours%60/6 %> hours of flight time since last maintenance</h6>
+						<h6>This aircraft has flown <%= @flightcount %> flights, and <%= @flighthours/60 %>.<%= @flighthours%60/6 %> hours of flight time since last maintenance</h6>
 					</div>
 					<div class="mt-4 col">
-					<h6>The following flights have been logged on this aircraft</h6>
+						<h6>The following flights have been logged on this aircraft</h6>
 					<div class="table-responsive">
 						<table class="table table-striped">
 							<thead>
@@ -64,6 +65,45 @@
 								</tbody>
 						</table>
 					</div>	
+				<% else %>
+					<div class="mt-4">
+					<h6>This aircraft has flown <%= @sumtows %> tows, and <%= @sumtowhours %> hours of flight time since last maintenance</h6>
+					</div>
+					<div class="mt-4 col">
+					<h6>The following tow logs have been logged on this aircraft</h6>
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Date of Tow Log</th>
+									<th>Username</th>
+									<th>Aircraft</th>
+									<th>Tach Start</th>
+									<th>Tach End</th>
+									<th>Tow Count</th>
+									<th>Releases</th>
+									<th>Fuel Added</th>
+									<th>Oil Added</th>
+								</tr>
+							</thead>
+								<tbody>
+									<% @aircraft.tows.each do |tow| %>
+										<tr>
+											<td><%= tow.reservation.reservation_date %></td>
+											<td><%= tow.user.username %></td>
+											<td><%= tow.aircraft.short_name %></td>
+											<td><%= tow.tach_start %></td>
+											<td><%= tow.tach_end %></td>
+											<td><%= tow.tows %></td>
+											<td><%= tow.releases %></td>
+											<td><%= tow.fuel_added %></td>
+											<td><%= tow.oil_added %></td>	
+										</tr>
+										<% end %>
+								</tbody>
+						</table>
+					</div>
+				<% end %>		
 				</div>
 			</div>
 		</div>

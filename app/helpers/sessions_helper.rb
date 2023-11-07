@@ -65,6 +65,20 @@ module SessionsHelper
     next_flying_day = find_date.day
   end
 
+  # return the previous flying day before today
+  def previous_flying_day
+    find_date = Day.order('days.day ASC').where(day: ...Date.today, active_flag: true).last
+    
+    previous_flying_day = find_date.day
+  end
+
+   # return the previous tow log (tach_end) before today
+   def previous_tow_log
+    find_date = Tow.order('tows.tow_date ASC').where(tow_date: ...Date.today).last
+    
+    previous_tow_log = find_date.tach_end
+  end
+
   # Forgets a persistent session.
   def forget(user)
     user.forget

@@ -2,135 +2,149 @@
   <div class="row text-center justify-content-center">
 		<div class="col col-sm-12 col-md-10">
 			<div class="row">
-				<div class="col text-start mt-2">
-        <h4>Tow pilot schedule</h4>
+				<div class="col col-12 col-sm-12 col-md-6 text-start mt-2">
+					<h4>Tow pilot schedule</h4>
+					<p class="text-muted">Tow pilots can add their days to the schedule here. Tow logs can be added 
+					on or after scheduled date. Tach End from the prior tow log is logged as Tach Start on new tow log. This can be modified to account for maintenance flying.
 				</div>
-				<div class="col align-text-middle mt-2">
-					<%= link_to 'Add tow pilot scheduled day', new_reservation_path(:aircraft => @towplanes.last), :class => "btn btn-primary btn-sm" %>
-				</div>
-					<div class="row text-start justify-content-center">
-						<div class="col">	
-							<!-- replace table with card for upcoming reservations -->
-							<% @tow_schedule.each do |tow_schedule| %>
-								<div class="card shadow p-3 mb-5 bg-white rounded">
-									<div class="card-header fst-italic">
-										<div class="row">
-											<div class="col input-group justify-content-start">
-												<% if tow_schedule.status == 'open' %>
-													<%= link_to "Edit", edit_reservation_path(tow_schedule), class: "btn btn-primary btn-sm" %>
-												<% else %>
-												<% end %>
-											</div>	
-											<div class="col input-group justify-content-end">	
-												<% if tow_schedule.tows.count == 0 && tow_schedule.status == 'open' %>
-													<%= link_to "Delete", reservation_path(tow_schedule), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
-												<% else %>	
-												<% end %>
-											</div>
-										</div>
-										<div class="row pt-3">
-											<div class="col text-start">
-												<strong>Tow Schedule details </strong>
-											</div>
-											<div class="col text-end justify-content-end">
-												<strong>
-													<% if tow_schedule.status == 'open' && tow_schedule.reservation_date > Date.today %>
-														Upcoming
-													<% elsif tow_schedule.status == 'open' && tow_schedule.reservation_date < 5.days.ago %>
-														Need Tow Log
-													<% else %>
-														<%= tow_schedule.status %> 
-													<% end %>
-												</strong>	
-											</div>
-										</div>
-									</div>			
-									<div class="card-body" style="padding: 20px 20px">
-										<div class="row pb-3">
-											<div class="col ">
-												<strong>Tow Pilot:</strong><br>
-												<%= tow_schedule.user.username %>
-											</div>
-											<div class="col ">
-												<strong>Date:</strong><br>
-												<%= tow_schedule.reservation_date.strftime("%m/%d/%y") %>
-											</div>
-											<div class="col ">
-												<strong>Start Time:</strong><br>
-												<%= tow_schedule.reservation_time %>
-											</div>
-											<div class="col ">
-												<strong>Aircraft:</strong><br>
-												<%= tow_schedule.aircraft.short_name %>
-											</div>
-										</div>
-										<% if tow_schedule.tows.blank? %>
-										<% else %>
-										<div class="row">
-											<div class="table-responsive p-0">
-												<table class="table table-striped">
-													<thead>
-														<tr>
-															<th>Tach Stop</th>
-															<th># of Tows</th>
-															<th># of Releases</th>
-															<th>Fuel Added (gals)</th>
-															<th>Oil Added (qts)</th>
-															<th colspan="2">Modify Tow Log</th>
-														</tr>
-													</thead>
-													<tbody>
-														<% tow_schedule.tows.each do |tow| %>
-														<tr>
-															<td><%= tow.tach_end %></td>
-															<td><%= tow.tows %></td>
-															<td><%= tow.releases %></td>
-															<td><%= tow.fuel_added %></td>
-															<td><%= tow.oil_added %></td>
-															<td>
-																<% if tow_schedule.status == 'open' %>
-																	<%= link_to 'Modify', edit_reservation_tow_path(tow_schedule, tow), class: "btn btn-primary btn-sm"  %>
-																<% else %>
-																<% end %>
-															</td>
-															<td>
-																<% if tow_schedule.status == 'open' %>
-																	<%= link_to "Delete", [tow_schedule, tow], class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
-																<% else %>
-																<% end %>
-															</td>
-														</tr>
-														<% end %>
-													</tbody>
-												</table>
-											</div>
-										</div>
-										<% end %>	
-									</div>
-									<div class="card-footer text-body-secondary" >
-										<div class="row">
-											<div class="col input-group justify-content-start">
-												<% if tow_schedule.reservation_date <= Date.today && tow_schedule.status == 'open' %>
-													<%= link_to "Add Tow Log", new_reservation_tow_path(tow_schedule), :class => "btn btn-primary btn-sm" %>
-												<% else %>
-												<% end %>
-											</div>
-											<div class="col input-group justify-content-end">
-												<% if tow_schedule.reservation_date <= Date.today && tow_schedule.tows.present? && tow_schedule.status == 'open' %>
-													<%= link_to "Close Tow Log", update_reservations_tow_path(tow_schedule, :status => 'closed'), class: "btn btn-info btn-sm" %>
-												<% elsif tow_schedule.reservation_date <= Date.today && tow_schedule.tows.present? && tow_schedule.status == 'closed'%>
-													<%= link_to "Re-open Tow Log", update_reservations_tow_path(tow_schedule, :status => 'open'), class: "btn btn-info btn-sm" %>
-												<% else %>	
-												<% end %>	
-											</div>
-										</div>	
-									</div>
-								</div>		
-							<% end %>
+				<div class="col col-12 col-sm-12 col-md-6 ">
+					<div class="row mt-3">
+						<div class="col">
+							<%= link_to 'Add tow pilot schedule', new_reservation_path(:aircraft => @towplanes.last), :class => "btn btn-primary btn-sm" %>
+						</div>
+					</div>
+					<div class="row my-3">	
+						<div class="col flickr_pagination">	
+								<%= will_paginate @tow_schedule, :container => false %>
 						</div>
 					</div>
 				</div>
-			</div>		
+			</div>			
+			<div class="row text-start justify-content-center">
+				<div class="col">	
+					<!-- replace table with card for upcoming reservations -->
+					<% @tow_schedule.each do |tow_schedule| %>
+						<div class="card shadow p-3 mb-5 bg-white rounded">
+							<div class="card-header fst-italic">
+								<div class="row">
+									<div class="col input-group justify-content-start">
+										<% if tow_schedule.status == 'open' %>
+											<%= link_to "Edit", edit_reservation_path(tow_schedule), class: "btn btn-primary btn-sm" %>
+										<% else %>
+										<% end %>
+									</div>	
+									<div class="col input-group justify-content-end">	
+										<% if tow_schedule.tows.count == 0 && tow_schedule.status == 'open' %>
+											<%= link_to "Delete", reservation_path(tow_schedule), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
+										<% else %>	
+										<% end %>
+									</div>
+								</div>
+								<div class="row pt-3">
+									<div class="col text-start">
+										<strong>Tow Schedule details </strong>
+									</div>
+									<div class="col text-end justify-content-end">
+										<strong>
+											<% if tow_schedule.status == 'open' && tow_schedule.reservation_date > Date.today %>
+												Upcoming
+											<% elsif tow_schedule.status == 'open' && tow_schedule.reservation_date < 5.days.ago %>
+												Need Tow Log
+											<% else %>
+												<%= tow_schedule.status %> 
+											<% end %>
+										</strong>	
+									</div>
+								</div>
+							</div>			
+							<div class="card-body" style="padding: 20px 20px">
+								<div class="row pb-3">
+									<div class="col ">
+										<strong>Tow Pilot:</strong><br>
+										<%= tow_schedule.user.username %>
+									</div>
+									<div class="col ">
+										<strong>Date:</strong><br>
+										<%= tow_schedule.reservation_date.strftime("%m/%d/%y") %>
+									</div>
+									<div class="col ">
+										<strong>Start Time:</strong><br>
+										<%= tow_schedule.reservation_time %>
+									</div>
+									<div class="col ">
+										<strong>Aircraft:</strong><br>
+										<%= tow_schedule.aircraft.short_name %>
+									</div>
+								</div>
+								<% if tow_schedule.tows.blank? %>
+								<% else %>
+								<div class="row">
+									<div class="table-responsive p-0">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th>Tach Start</th>
+													<th>Tach Stop</th>
+													<th>Flight Hrs</th>
+													<th># of Tows</th>
+													<th># of Releases</th>
+													<th>Fuel Added (gals)</th>
+													<th>Oil Added (qts)</th>
+													<th colspan="2">Modify Tow Log</th>
+												</tr>
+											</thead>
+											<tbody>
+												<% tow_schedule.tows.each do |tow| %>
+												<tr>
+													<td><%= tow.tach_start %></td>
+													<td><%= tow.tach_end %></td>
+													<td><%= tow.tach_end - tow.tach_start %></td>
+													<td><%= tow.tows %></td>
+													<td><%= tow.releases %></td>
+													<td><%= tow.fuel_added %></td>
+													<td><%= tow.oil_added %></td>
+													<td>
+														<% if tow_schedule.status == 'open' %>
+															<%= link_to 'Modify', edit_reservation_tow_path(tow_schedule, tow), class: "btn btn-primary btn-sm"  %>
+														<% else %>
+														<% end %>
+													</td>
+													<td>
+														<% if tow_schedule.status == 'open' %>
+															<%= link_to "Delete", [tow_schedule, tow], class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
+														<% else %>
+														<% end %>
+													</td>
+												</tr>
+												<% end %>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<% end %>	
+							</div>
+							<div class="card-footer text-body-secondary" >
+								<div class="row">
+									<div class="col input-group justify-content-start">
+										<% if tow_schedule.reservation_date <= Date.today && tow_schedule.tows.blank? && tow_schedule.status == 'open' %>
+											<%= link_to "Add Tow Log", new_reservation_tow_path(tow_schedule), :class => "btn btn-primary btn-sm" %>
+										<% else %>
+										<% end %>
+									</div>
+									<div class="col input-group justify-content-end">
+										<% if tow_schedule.reservation_date <= Date.today && tow_schedule.tows.present? && tow_schedule.status == 'open' %>
+											<%= link_to "Close Tow Log", update_reservations_tow_path(tow_schedule, :status => 'closed'), class: "btn btn-info btn-sm" %>
+										<% elsif tow_schedule.reservation_date <= Date.today && tow_schedule.tows.present? && tow_schedule.status == 'closed'%>
+											<%= link_to "Re-open Tow Log", update_reservations_tow_path(tow_schedule, :status => 'open'), class: "btn btn-info btn-sm" %>
+										<% else %>	
+										<% end %>	
+									</div>
+								</div>	
+							</div>
+						</div>		
+					<% end %>
+				</div>
+			</div>	
     </div>
 	</div>		
 </div>

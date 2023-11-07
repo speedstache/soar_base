@@ -7,6 +7,7 @@
             <%= f.hidden_field :user_id, value: @tow.user_id %>
 						<%= f.hidden_field :tow_date, value: @tow.tow_date %>
 						<%= f.hidden_field :aircraft_id, value: @tow.aircraft_id %>
+            <%= f.hidden_field :tach_start, value: previous_tow_log %>
           <div class="form-group row m-3" >
             <%= f.label :Tach_Stop_Time, class: "col-4 col-form-label" %>
             <div class="col">

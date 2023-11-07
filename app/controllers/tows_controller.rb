@@ -76,7 +76,7 @@ class TowsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tow_params
-      params.require(:tow).permit(:tows, :releases, :tach_end, :fuel_added, :oil_added)
+      params.require(:tow).permit(:tows, :releases, :tach_end, :tach_start, :fuel_added, :oil_added)
     end
 
     def require_same_user
