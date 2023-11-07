@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :field_status_updates
   resources :towfees
   resources :membership_users
@@ -12,9 +13,17 @@ Rails.application.routes.draw do
   resources :hours,     except: [:destroy]
   resources :days,     except: [:destroy]
   get 'reservations/club', to: 'reservations#club', as: 'reservations_club'
+  get 'reservations/tow', to: 'reservations#tow_index', as: 'reservations_tow'
+  match 'reservations/tow/:id/update', to: 'reservations#tow_update', as: 'update_reservations_tow', via: [:get, :post]
+
+
   resources :reservations do
     resources :flights
+    resources :tows
   end
+
+  resources :tows
+
   resources :flights
   resources :aircrafts,     except: [:destroy]
   

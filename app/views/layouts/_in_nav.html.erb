@@ -89,6 +89,8 @@
               <ul class="dropdown-menu">
                 <li><%= link_to 'Aircraft List', aircrafts_path, class: "dropdown-item" %></li>
                 <li><%= link_to 'Aircraft Users', aircraft_users_path, class: "dropdown-item" %></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><%= link_to 'Tow Pilot Schedule', reservations_tow_path, class: "dropdown-item" %></li>
               </ul>
             </li>
           <% else %>

@@ -30,7 +30,7 @@
 									<th>Date  </th>
 									<th>Time  </th>
 									<th>Aircraft </th>
-									<th>Instructor?</th>
+									<th>Flight Type</th>
 								</tr>
 							</thead>
 								<tbody>
@@ -41,7 +41,15 @@
 											<td class="align-middle"><%= reservation.reservation_date.strftime("%m/%d/%y") %>  </td>
 											<td class="align-middle"><%= reservation.reservation_time %></td>
 											<td class="align-middle"><%= reservation.aircraft.short_name %>  </td>
-											<td class="align-middle"><%= reservation.instructor_flag.humanize %>  </td>
+											<td class="align-middle">
+												<% if reservation.instructor_flag == true %>
+													Instructor needed
+												<% elsif reservation.aircraft.group == 'towplane' %>
+													Tow Pilot
+												<% else %>
+													No Instructor
+												<% end %>			
+											</td>
 										</tr>
 									<% end %>
 								</tbody>

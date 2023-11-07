@@ -1,5 +1,5 @@
 class Flight < ApplicationRecord
-  belongs_to :reservation, dependent: :destroy
+  belongs_to :reservation
   belongs_to :aircraft
   belongs_to :user
 

@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 
   def reservations
-    @reservations = Reservation.where(reservation_date: Date.today.beginning_of_year..Date.today)
+    @reservations = Reservation.where(reservation_date: Date.today.beginning_of_year..Date.today, aircraft_id: Aircraft.where.not(group: 'towplane'))
 
     
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_01_153306) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_07_032637) do
   create_table "aircraft_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "aircraft_id"
@@ -204,6 +204,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_153306) do
     t.float "price_per"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tows", force: :cascade do |t|
+    t.integer "reservation_id"
+    t.date "tow_date"
+    t.integer "aircraft_id"
+    t.integer "tows"
+    t.integer "releases"
+    t.float "tach_end"
+    t.integer "fuel_added"
+    t.integer "oil_added"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

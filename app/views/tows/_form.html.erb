@@ -1,0 +1,57 @@
+<%= form_with(model: tow) do |form| %>
+  <% if tow.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(tow.errors.count, "error") %> prohibited this tow from being saved:</h2>
+
+      <ul>
+        <% tow.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :reservation_id, style: "display: block" %>
+    <%= form.text_field :reservation_id %>
+  </div>
+
+  <div>
+    <%= form.label :tow_date, style: "display: block" %>
+    <%= form.date_field :tow_date %>
+  </div>
+
+  <div>
+    <%= form.label :aircraft_id, style: "display: block" %>
+    <%= form.number_field :aircraft_id %>
+  </div>
+
+  <div>
+    <%= form.label :tows, style: "display: block" %>
+    <%= form.number_field :tows %>
+  </div>
+
+  <div>
+    <%= form.label :releases, style: "display: block" %>
+    <%= form.number_field :releases %>
+  </div>
+
+  <div>
+    <%= form.label :tach_end, style: "display: block" %>
+    <%= form.text_field :tach_end %>
+  </div>
+
+  <div>
+    <%= form.label :fuel_added, style: "display: block" %>
+    <%= form.number_field :fuel_added %>
+  </div>
+
+  <div>
+    <%= form.label :oil_added, style: "display: block" %>
+    <%= form.number_field :oil_added %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

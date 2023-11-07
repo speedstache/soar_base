@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row text-center justify-content-center">
+    <div class="col col-sm-12 col-md-10">
+      <div class="row justify-content-center">
+				<div class="col">
+					<% if @tow_schedule.status == 'open' %>
+						<h4>Confirm Tow Log details for <%= @tow_schedule.user.username %>'s tow duties on <%= @tow_schedule.reservation_date.strftime("%m/%d/%y") %> </h4>
+					<% else %>
+						<h4>Tow Log already submitted for <%= @tow_schedule.user.username %>'s tow duties on <%= @tow_schedule.reservation_date.strftime("%m/%d/%y") %> </h4>
+					<% end %>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="card shadow p-3 mb-5 bg-white rounded">
+							<div class="row card-header fst-italic">
+								<div class="row pt-3">
+									<div class="col text-start">
+										<strong>Tow Schedule details </strong>
+									</div>
+									<div class="col text-end justify-content-end">
+												<strong>
+													<% if tow_schedule.status == 'open' && tow_schedule.reservation_date > Date.today %>
+														Upcoming
+													<% elsif tow_schedule.status == 'open' && tow_schedule.reservation_date < 5.days.ago %>
+														Need Tow Log
+													<% else %>
+														<%= tow_schedule.status %> 
+													<% end %>
+												</strong>	
+											</div>
+								</div>		
+							</div>	
+							<div class="card-body" style="padding: 20px 20px">
+										<div class="row pb-3">
+											<div class="col ">
+												<strong>Tow Pilot:</strong><br>
+												<%= @tow_schedule.user.username %>
+											</div>
+											<div class="col ">
+												<strong>Date:</strong><br>
+												<%= @tow_schedule.reservation_date.strftime("%m/%d/%y") %>
+											</div>
+											<div class="col ">
+												<strong>Start Time:</strong><br>
+												<%= @tow_schedule.reservation_time %>
+											</div>
+											<div class="col ">
+												<strong>Aircraft:</strong><br>
+												<%= @tow_schedule.aircraft.short_name %>
+											</div>
+										</div>
+										<% if @tow_schedule.tows.blank? %>
+										<% else %>
+										<div class="row">
+											<div class="table-responsive p-0">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th>Tach Stop</th>
+															<th># of Tows</th>
+															<th># of Releases</th>
+															<th>Fuel Added (gals)</th>
+															<th>Oil Added (qts)</th>
+														</tr>
+													</thead>
+													<tbody>
+														<% @tow_schedule.tows.each do |tow| %>
+														<tr>
+															<td><%= @tow.tach_end %></td>
+															<td><%= @tow.tows %></td>
+															<td><%= @tow.releases %></td>
+															<td><%= @tow.fuel_added %></td>
+															<td><%= @tow.oil_added %></td>
+														</tr>
+														<% end %>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<% end %>	
+									</div>
+							<div class="row card-footer text-body-secondary">
+								<div class="col input-group justify-content-center m-2">
+									<%= link_to 'Back to Tow Schedule', reservations_tow_path, :class => "btn btn-primary" %>
+								</div>
+								<div class="col input-group justify-content-center m-2">
+								<% if @reservation.status == 'open' %>
+									<%= link_to 'Close Tow Log', edit_checkout_path(id: @reservation.id), :class => "btn btn-primary" %>
+								<% else %>
+								<% end %>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>									
+									
+

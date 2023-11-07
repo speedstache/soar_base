@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reservation_id: MyString
+  tow_date: 2023-11-06
+  aircraft_id: 1
+  tows: 1
+  releases: 1
+  tach_end: 1.5
+  fuel_added: 1
+  oil_added: 1
+
+two:
+  reservation_id: MyString
+  tow_date: 2023-11-06
+  aircraft_id: 1
+  tows: 1
+  releases: 1
+  tach_end: 1.5
+  fuel_added: 1
+  oil_added: 1

@@ -48,7 +48,7 @@ class ReservationsController < ApplicationController
 
   def club
 
-    @res_date = Reservation.search(params[:search])
+    @res_date = Reservation.search(params[:search]).order('reservation_time ASC')
 
     if params[:search] != nil
       @res_show = Day.find_by(day: params[:search]).day
@@ -65,6 +65,45 @@ class ReservationsController < ApplicationController
     @view_23 = @res_date.where(aircraft_id: 3)
   end
 
+  def tow_index
+
+      @towplanes = Aircraft.where(group: 'towplane')
+      @tow_schedule = Reservation.where(aircraft_id: @towplanes.ids)
+
+  end
+
+  def tow_new
+    
+  end
+
+  def tow_update
+
+    @reservation = Reservation.find(params[:id])
+    
+
+    if @reservation.update(status: params[:status])
+
+      flash[:notice] = "Tow Log was successfully updated."
+      redirect_to reservations_tow_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def tow_create
+    
+    @avail_days = Day.where(day: Date.today .. 60.days.from_now)
+    @avail_hours = Hour.where(active_flag: 1).first
+    @reservation = Reservation.new(reservation_params)
+
+    if @reservation.save
+      flash[:notice] = "Tow schedule was successfully created."
+      redirect_to params[:previous_request]
+    else
+      render :new, status: :unprocessable_entity
+    end
+
+  end
 
   # GET /reservations/1 or /reservations/1.json
   def show

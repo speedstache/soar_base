@@ -1,9 +1,10 @@
 class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :aircraft
-  has_many :flights
+  has_many :flights, dependent: :destroy
+  has_many :tows, dependent: :destroy
   has_one :day
-  accepts_nested_attributes_for :flights
+  accepts_nested_attributes_for :flights, :tows
   attribute :reservation_duration, :integer, default: 60
   validates :reservation_date, uniqueness: {scope: [:reservation_date, :reservation_time, :aircraft_id]}
   validates :aircraft_id, uniqueness: {scope: [:reservation_date, :reservation_time, :aircraft_id]}
@@ -33,7 +34,7 @@ class Reservation < ApplicationRecord
     CSV.generate(headers: true) do |csv|
       csv << attributes
 
-      @reservations = Reservation.where(reservation_date: Date.today.beginning_of_year..Date.today)
+      @reservations = Reservation.where(reservation_date: Date.today.beginning_of_year..Date.today, aircraft_id: Aircraft.where.not(group: 'towplane'))
       @reservations.each do |reservation|
           id = reservation.id
           date = reservation.reservation_date
