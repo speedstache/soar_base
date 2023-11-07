@@ -46,7 +46,7 @@
 											<% if Tow.where(aircraft_id: aircraft.id).blank?  %>
 												0
 											<% elsif Tow.order('tows.tow_date ASC').where(tow_date: ..aircraft.last_maintenance).last.blank? %>
-												<%= Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).last.tach_end - Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).first.tach_end %>
+												<%= Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).last.tach_end - Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).first.tach_start %>
 											<% else %>
 												<%= Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).last.tach_end - Tow.order('tows.tow_date ASC').where(tow_date: ..aircraft.last_maintenance).last.tach_end %>
 											<% end %>		

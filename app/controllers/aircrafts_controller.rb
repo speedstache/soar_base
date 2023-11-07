@@ -31,7 +31,7 @@ class AircraftsController < ApplicationController
         @last_maintenance_tow_date = Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).first
         @most_recent_tow_date = Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).last
         @sumtows = Tow.where(aircraft_id: @aircraft, tow_date: @aircraft.last_maintenance..Date.today ).sum(:tows)
-        @sumtowhours = @most_recent_tow_date.tach_end - @last_maintenance_tow_date.tach_end
+        @sumtowhours = @most_recent_tow_date.tach_end - @last_maintenance_tow_date.tach_start
       else  
         @sumtows = Tow.where(aircraft_id: @aircraft, tow_date: @aircraft.last_maintenance..Date.today ).sum(:tows)
         @last_maintenance_tow_date = Tow.order('tows.tow_date ASC').where(tow_date: ..@aircraft.last_maintenance).last
