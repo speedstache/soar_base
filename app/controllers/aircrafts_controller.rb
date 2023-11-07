@@ -22,14 +22,18 @@ class AircraftsController < ApplicationController
         @flighthours = @sumhours.sum(:flight_time)/60+@sumhours.sum(:flight_time)%60/6
       end
     else    
-      if Tow.where(aircraft_id: @aircraft).blank?
+      if Tow.where(aircraft_id: @aircraft.id).blank? 
         @last_maintenance_tow_date = Date.today
         @most_recent_tow_date = Date.today
         @sumtows = 0
         @sumtowhours = 0
+      elsif Tow.order('tows.tow_date ASC').where(tow_date: ..@aircraft.last_maintenance).last.blank?
+        @last_maintenance_tow_date = Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).first
+        @most_recent_tow_date = Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).last
+        @sumtows = Tow.where(aircraft_id: @aircraft, tow_date: @aircraft.last_maintenance..Date.today ).sum(:tows)
+        @sumtowhours = @most_recent_tow_date.tach_end - @last_maintenance_tow_date.tach_end
       else  
         @sumtows = Tow.where(aircraft_id: @aircraft, tow_date: @aircraft.last_maintenance..Date.today ).sum(:tows)
-
         @last_maintenance_tow_date = Tow.order('tows.tow_date ASC').where(tow_date: ..@aircraft.last_maintenance).last
         @most_recent_tow_date = Tow.order('tows.tow_date ASC').where(tow_date: ..Date.today).last
         @sumtowhours = @most_recent_tow_date.tach_end - @last_maintenance_tow_date.tach_end
