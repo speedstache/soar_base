@@ -6,7 +6,7 @@
         <h4>Tow pilot schedule</h4>
 				</div>
 				<div class="col align-text-middle mt-2">
-					<%= link_to 'Add tow pilot scheduled day', new_reservation_path(:aircraft => 6), :class => "btn btn-primary btn-sm" %>
+					<%= link_to 'Add tow pilot scheduled day', new_reservation_path(:aircraft => @towplanes.last), :class => "btn btn-primary btn-sm" %>
 				</div>
 					<div class="row text-start justify-content-center">
 						<div class="col">	
