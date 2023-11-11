@@ -9,6 +9,7 @@ class MembershipUsersController < ApplicationController
     @unassigned_users = User.where.not(id: MembershipUser.all.pluck(:user_id))
 
     @unassigned_user_id = params[:id]
+    @memberships = Membership.where(active_flag: true)
 
   end
 

@@ -1,6 +1,23 @@
 <div class="container">
   <div class="row text-center">
     <div class="col justify-content-start">
+      <div class="row text-center justify-content-center">
+        <div class="col col-sm-12 col-md-12">
+          <% @memberships.each do |membership| %>
+              <button type="button" class="btn btn-secondary m-1"><%= membership.membership_type%> Members
+                <span class="badge badge-primary">
+                  <%= MembershipUser.where(membership_id: membership.id).count %>
+                </span>
+              </button>
+          <% end %>
+          <button type="button" class="btn btn-secondary m-1">All Active Members
+            <span class="badge badge-primary">
+              <%= @membership_users.all.count %>
+            </span>
+          </button>
+        </div>  
+      </div>  
+      <% if @unassigned_users.present? %>
       <div class="row justify-content-center mt-2">
 				<h4>Unassigned Users</h4>
         <div class="col-sm-12 col-md-12 table-responsive">
@@ -25,7 +42,8 @@
             </tbody>
           </table>
         </div>
-        
+      <% else %>
+      <% end %>
       <div class="row justify-content-center">
 				<div class="col mt-3">
 					<h4>Users with Memberships</h4>
