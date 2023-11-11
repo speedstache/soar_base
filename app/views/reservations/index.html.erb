@@ -74,6 +74,12 @@
 							</div>	
 							<div class="card-body" style="padding: 20px 20px">
 								<div class="row pb-3">
+									<div class="row text-center">
+										<% if reservation.status == 'open' && reservation.reservation_date >= Date.today && reservation.aircraft.active_flag != true %>
+											<p><strong>NOTE: </strong><span class="text-muted"><%= reservation.aircraft.short_name %> is currently offline. This reservation may require cancellation.</span></p>
+										<% else %>
+										<% end %>	
+									</div>	
 									<div class="col ">
 										<strong>Pilot:</strong></strong><br>
 										<%= reservation.user.username %></strong>

@@ -1,7 +1,7 @@
 class CreateTows < ActiveRecord::Migration[7.0]
   def change
     create_table :tows do |t|
-      t.string :reservation_id
+      t.integer :reservation_id
       t.date :tow_date
       t.integer :aircraft_id
       t.integer :tows
