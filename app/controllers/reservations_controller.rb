@@ -2,7 +2,6 @@ class ReservationsController < ApplicationController
   before_action :require_user
   before_action :set_reservation, only: %i[show edit update destroy ]
   before_action :require_same_user, only: [:edit, :update, :destroy]
-  before_action :has_membership, only: [:create, :new]
 
   # GET /reservations or /reservations.json
   def index
@@ -11,12 +10,15 @@ class ReservationsController < ApplicationController
 
     @res_date = Reservation.search(params[:search])
 
-    if params[:search] != nil
+    if 
+      params[:search] != nil && @status.blank?
       @res_show = Day.find_by(day: params[:search]).day
       flash.now[:info] = "search date applied"
-    elsif
-      @res_show = next_flying_day
+    elsif @status.blank?
+      @res_show = next_flying_day 
       flash.now[:info] = "search grid set to next flying date"
+    elsif
+      @status.present?  
     end
 
     @avail_days = Day.where(day: 10.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
@@ -61,12 +63,12 @@ class ReservationsController < ApplicationController
 
     @res_date = Reservation.search(params[:search]).order('reservation_time ASC')
 
-    if params[:search] != nil
+    if params[:search] != nil 
       @res_show = Day.find_by(day: params[:search]).day
-      flash.now[:notice] = "search date applied"
+      flash.now[:info] = "search date applied"
     elsif
       @res_show = next_flying_day
-      flash.now[:notice] = "search grid set to next flying date"
+      flash.now[:info] = "search grid set to next flying date"
     end
 
     @avail_days = Day.where(day: 10.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
