@@ -157,6 +157,7 @@ class ReservationsController < ApplicationController
   def edit
     @avail_days = Day.where(day: Date.today .. 60.days.from_now)
     @avail_hours = Hour.where(active_flag: 1)
+    @towpilots = User.where(id: Permission.where(towpilot: true))
   end
 
   # POST /reservations or /reservations.json

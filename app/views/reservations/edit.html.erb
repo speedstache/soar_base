@@ -6,7 +6,16 @@
       <%= form_for [@reservation], html: {class: "shadow p-3 mb-3 bg-info rounded", data: { turbo: false }, local: true}  do |f| %>
             <%= hidden_field_tag :previous_request, request.referer %>
             <%= f.hidden_field :user_id, value: current_user.id %>
-
+          
+          <% if current_user.permission.towpilot? && @reservation.aircraft.group == 'towplane' %>
+            <div class="form-group row m-3" >
+              <%= f.label :User_name, class: "col-4 col-form-label" %>
+              <div class="col">
+                <%= f.select :user_id, options_from_collection_for_select(@towpilots, 'id', 'username', @reservation.user_id), {}, {class: "form-control input-group-text"} %> 
+              </div>
+            </div>	
+          <% else %>
+          <% end %>  
           <div class="form-group row m-3" >
             <%= f.label :date, class: "col-4 col-form-label" %>
             <div class="col">
