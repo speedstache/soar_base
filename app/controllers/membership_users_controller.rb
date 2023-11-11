@@ -5,7 +5,7 @@ class MembershipUsersController < ApplicationController
 
   # GET /membership_users or /membership_users.json
   def index
-    @membership_users = MembershipUser.all.paginate(page: params[:page], per_page: 10)
+    @membership_users = MembershipUser.all.includes(:user).order('users.username ASC').paginate(page: params[:page], per_page: 10)
     @unassigned_users = User.where.not(id: MembershipUser.all.pluck(:user_id))
 
     @unassigned_user_id = params[:id]

@@ -12,9 +12,9 @@ class AircraftUsersController < ApplicationController
     @aircrafts = Aircraft.where(group: "club")
     @users = User.all
 
-    @assigned_users = User.where(id: AircraftUser.all.pluck(:user_id)).paginate(page: params[:page], per_page: 10)
+    @assigned_users = User.where(id: AircraftUser.all.pluck(:user_id)).order('username ASC').paginate(page: params[:page], per_page: 10)
 
-    @unassigned_users = User.where.not(id: AircraftUser.all.pluck(:user_id))
+    @unassigned_users = User.where.not(id: AircraftUser.all.pluck(:user_id)).order('username ASC')
   end
 
   # GET /aircraft_users/1 or /aircraft_users/1.json
