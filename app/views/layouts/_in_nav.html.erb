@@ -51,7 +51,20 @@
           <a class="nav-link disabled" aria-disabled="true">Reservations</a>
         <% end %>
         </li>
-        
+        <li class="nav-item">
+          <% if logged_in? && current_user.permission.towpilot? %>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tow Scheduler
+              </a>
+              <ul class="dropdown-menu">
+                
+                <li><%= link_to 'Tow Pilot Schedule', reservations_tow_path, class: "dropdown-item" %></li>
+              </ul>
+            </li>
+          <% else %>
+          <% end %>
+        </li>
         <li class="nav-item">
           <% if logged_in? && current_user.permission.user_admin? %>
             <li class="nav-item dropdown">
@@ -76,8 +89,6 @@
               <ul class="dropdown-menu">
                 <li><%= link_to 'Aircraft List', aircrafts_path, class: "dropdown-item" %></li>
                 <li><%= link_to 'Aircraft Users', aircraft_users_path, class: "dropdown-item" %></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><% if current_user.permission.towpilot? == true %><%= link_to 'Tow Pilot Schedule', reservations_tow_path, class: "dropdown-item" %><% else %><%= link_to 'Tow Pilot Schedule', reservations_tow_path, class: "dropdown-item disabled" %><% end %></li>
               </ul>
             </li>
           <% else %>
