@@ -20,6 +20,7 @@
 				<% else %>	
 				<% end %>
 			<div class="row text-start justify-content-center">
+					
 				<div class="col">	
 					<h4><%= current_user.username %>'s <%= @status %> reservations</h4>
 					<% if @status == 'upcoming' %><p class="text-muted">Today and Upcoming next 30 days.</p>
@@ -63,9 +64,11 @@
 									<strong>
 										<% if reservation.status == 'open' && reservation.reservation_date > Date.today %>
 											Upcoming
-										<% elsif reservation.status == 'open' && reservation.reservation_date < 5.days.ago %>
+										<% elsif reservation.status == 'open' && reservation.reservation_date < 5.days.ago && reservation.aircraft.group != 'towplane' %>
 											Payment Past Due
-										<% else %>
+										<% elsif reservation.status == 'open' && reservation.reservation_date < 5.days.ago && reservation.aircraft.group == 'towplane' %>
+											Tow Log Due
+										<% else %>	
 											<%= reservation.status %> 
 										<% end %>
 									</strong>	
@@ -77,6 +80,12 @@
 									<div class="row text-center">
 										<% if reservation.status == 'open' && reservation.reservation_date >= Date.today && reservation.aircraft.active_flag != true %>
 											<p><strong>NOTE: </strong><span class="text-muted"><%= reservation.aircraft.short_name %> is currently offline. This reservation may require cancellation.</span></p>
+										<% else %>
+										<% end %>	
+									</div>	
+									<div class="row text-center">
+										<% if FieldStatusUpdate.where(date: reservation.reservation_date).last.present? && reservation.status == 'open' && reservation.reservation_date <= Date.today %>
+											<p><strong>NOTE: </strong><span class="text-muted">Field Status for today indicates a no fly day. This reservation may require cancellation.</span></p>
 										<% else %>
 										<% end %>	
 									</div>	

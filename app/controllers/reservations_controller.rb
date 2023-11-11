@@ -12,10 +12,10 @@ class ReservationsController < ApplicationController
 
     if params[:search] != nil
       @res_show = Day.find_by(day: params[:search]).day
-      flash.now[:notice] = "search date applied"
+      flash.now[:info] = "search date applied"
     elsif
       @res_show = next_flying_day
-      flash.now[:notice] = "search grid set to next flying date"
+      flash.now[:info] = "search grid set to next flying date"
     end
 
     @avail_days = Day.where(day: 10.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
@@ -42,7 +42,17 @@ class ReservationsController < ApplicationController
       @displayreservations = @pendingreservations.paginate(page: params[:page], per_page: 5)
     else
       @displayreservations = @myreservations.paginate(page: params[:page], per_page: 5)
-    end      
+    end   
+    
+    @field_status = FieldStatusUpdate.where(date: @res_show).last
+
+    if @field_status.present? && @field_status.ops_status == true
+      flash.now[:success] = @field_status.title + ' - ' + @field_status.notes
+    elsif @field_status.present? && @field_status.ops_status == false
+      flash.now[:warning] = @field_status.title + ' - ' + @field_status.notes
+    else
+    end 
+
 
   end
 
@@ -63,6 +73,16 @@ class ReservationsController < ApplicationController
     @view_21a = @res_date.where(aircraft_id: 1)
     @view_21b = @res_date.where(aircraft_id: 2)
     @view_23 = @res_date.where(aircraft_id: 3)
+
+    @field_status = FieldStatusUpdate.where(date: @res_show).last
+
+    if @field_status.present? && @field_status.ops_status == true
+      flash.now[:notice] = @field_status.title + ' - ' + @field_status.notes
+    elsif @field_status.present? && @field_status.ops_status == false
+      flash.now[:warning] = @field_status.title + ' - ' + @field_status.notes
+    else
+    end    
+
   end
 
   def tow_index

@@ -35,8 +35,13 @@ class UsersController < ApplicationController
       # create blank permission record, defaults set to false
       @permission = @user.create_permission
 
-      UserMailer.account_activation(@user).deliver_now
-    flash[:info] = "Account Activation! Please advise user to check email to activate account."
+      if params[:user][:activate_now] == "1"
+        UserMailer.account_activation(@user).deliver_now
+        flash[:info] = "Account Activation! Please advise user to check email to activate account."
+      else
+        flash[:info] = "User saved. Remember to send activation link later"
+      end  
+
     redirect_to users_path
     else
       render 'new', status: :unprocessable_entity
@@ -86,7 +91,7 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:username, :email, :password,
-                                   :password_confirmation, :previous_request)
+                                   :password_confirmation, :previous_request, :activate_now)
     end
 
 

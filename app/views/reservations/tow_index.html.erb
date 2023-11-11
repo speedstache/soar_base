@@ -48,7 +48,7 @@
 										<strong>
 											<% if tow_schedule.status == 'open' && tow_schedule.reservation_date > Date.today %>
 												Upcoming
-											<% elsif tow_schedule.status == 'open' && tow_schedule.reservation_date < 5.days.ago %>
+											<% elsif tow_schedule.status == 'open' && tow_schedule.tows.blank? && tow_schedule.reservation_date < 5.days.ago %>
 												Need Tow Log
 											<% else %>
 												<%= tow_schedule.status %> 

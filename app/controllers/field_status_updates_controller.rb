@@ -2,8 +2,7 @@ class FieldStatusUpdatesController < ApplicationController
   before_action :set_field_status_update, only: %i[ show edit update destroy ]
   before_action :require_user
   # need to set before action for instructor or club admin
-  before_action :require_club_admin 
-
+  before_action :require_field_status
   # GET /field_status_updates or /field_status_updates.json
   def index
     @field_status_updates = FieldStatusUpdate.all
@@ -57,7 +56,7 @@ class FieldStatusUpdatesController < ApplicationController
     @field_status_update.destroy
 
     respond_to do |format|
-      format.html { redirect_to field_status_updates_url, notice: "Field status update was successfully destroyed." }
+      format.html { redirect_to field_status_updates_url, notice: "Field status update was successfully deleted." }
       format.json { head :no_content }
     end
   end

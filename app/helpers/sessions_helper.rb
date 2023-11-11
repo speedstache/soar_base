@@ -117,5 +117,12 @@ module SessionsHelper
     redirect_to reservations_url
     end
   end
+
+  def require_field_status
+    if !current_user.permission.site_admin? || !current_user.permission.club_admin? || !current_user.permission.instructor? || !current_user.permission.towpilot?
+    flash[:alert] = "Insufficient privileges for sending field status update"
+    redirect_to reservations_url
+    end
+  end
   
 end
