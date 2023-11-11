@@ -42,7 +42,7 @@
             </d1> 
           </ul>  
           <ul class="list-group list-group-flush" id="currency-section">
-            <li class="list-group-item lead">Flight Info</li>
+            <li class="list-group-item lead">Flight Log</li>
               <d1 class="row">
                 <dt class="col-sm-4 ps-4 pt-2">Prior 30 days</dt>
                   <dd class="col-sm-8 pt-2">
@@ -98,7 +98,173 @@
                   </dd>    
               </d1>
             </li>
-          </ul>        
+          </ul>  
+          
+          <% if @user.permission.towpilot? %>
+          <ul class="list-group list-group-flush" id="towpilot-section">
+            <li class="list-group-item lead">Tow Pilot Log</li>
+              <d1 class="row">
+                <dt class="col-sm-4 ps-4 pt-2">Prior 30 days</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <button type="button" class="btn btn-secondary m-1">Days 
+                      <span class="badge badge-primary">
+                        <%= Tow.where(user_id: @user.id, tow_date: 30.days.ago..Date.today).distinct(:tow_date).count %>
+                      </span>
+                    </button>
+                    <button type="button" class="btn btn-secondary m-1">Tows 
+                      <span class="badge badge-primary">
+                        <%= Tow.where(user_id: @user.id, tow_date: 30.days.ago..Date.today).count %>
+                      </span>
+                    </button>  
+                    <button type="button" class="btn btn-success m-1">Towing Hours 
+                      <span class="badge badge-primary">  
+                        <%= Tow.where(user_id: @user.id, tow_date: 30.days.ago..Date.today).last.tach_end - Tow.where(user_id: @user.id, tow_date: 30.days.ago..Date.today).first.tach_start %>
+                        </span>
+                    </button>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Prior 60 days</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <button type="button" class="btn btn-secondary m-1">Days 
+                      <span class="badge badge-primary">
+                        <%= Tow.where(user_id: @user.id, tow_date: 60.days.ago..Date.today).distinct(:tow_date).count %>
+                      </span>
+                    </button>
+                    <button type="button" class="btn btn-secondary m-1">Tows 
+                      <span class="badge badge-primary">
+                        <%= Tow.where(user_id: @user.id, tow_date: 60.days.ago..Date.today).count %>
+                      </span>
+                    </button>  
+                    <button type="button" class="btn btn-success m-1">Towing Hours 
+                      <span class="badge badge-primary"> 
+                        <%= Tow.where(user_id: @user.id, tow_date: 60.days.ago..Date.today).last.tach_end - Tow.where(user_id: @user.id, tow_date: 60.days.ago..Date.today).first.tach_start %>
+                      </span>
+                    </button>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Prior 90 days</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <button type="button" class="btn btn-secondary m-1">Days 
+                      <span class="badge badge-primary">
+                        <%= Tow.where(user_id: @user.id, tow_date: 90.days.ago..Date.today).distinct(:tow_date).count %>
+                      </span>
+                    </button>
+                    <button type="button" class="btn btn-secondary m-1">Tows 
+                      <span class="badge badge-primary">
+                        <%= Tow.where(user_id: @user.id, tow_date: 90.days.ago..Date.today).count %>
+                      </span>
+                    </button>
+                    <button type="button" class="btn btn-success m-1">Towing Hours 
+                      <span class="badge badge-primary">  
+                        <%= Tow.where(user_id: @user.id, tow_date: 90.days.ago..Date.today).last.tach_end - Tow.where(user_id: @user.id, tow_date: 90.days.ago..Date.today).first.tach_start %>
+                      </span>
+                    </button>
+                  </dd> 
+                <dt class="col-sm-4 ps-4 pt-2">Year to date</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <button type="button" class="btn btn-secondary m-1">Days 
+                      <span class="badge badge-primary">
+                        <%= Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).distinct(:tow_date).count %>
+                      </span>
+                    </button>
+                    <button type="button" class="btn btn-secondary m-1">Tows 
+                      <span class="badge badge-primary">
+                        <%= Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).count %>
+                      </span>
+                    </button>
+                    <button type="button" class="btn btn-success m-1">Towing Hours 
+                      <span class="badge badge-primary"> 
+                        <%= Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).last.tach_end - Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).first.tach_start %>
+
+                      </span>
+                    </button>
+                  </dd>    
+              </d1>
+            </li>
+          </ul> 
+          <% else %>
+          <% end %>
+
+          <% if @user.permission.instructor? %>
+          <ul class="list-group list-group-flush" id="instructor-section">
+            <li class="list-group-item lead">Instructor Log</li>
+              <d1 class="row">
+                <dt class="col-sm-4 ps-4 pt-2">Prior 30 days</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <button type="button" class="btn btn-secondary m-1">Days 
+                      <span class="badge badge-primary">
+                        <%= Flight.where(instructor_id: @user.id, flight_date: 30.days.ago..Date.today).distinct(:flight_date).count %>
+                      </span>
+                    </button>
+                    <button type="button" class="btn btn-secondary m-1">Flights 
+                      <span class="badge badge-primary">
+                        <%= Flight.where(instructor_id: @user.id, flight_date: 30.days.ago..Date.today).count %>
+                      </span>
+                    </button>  
+                    <button type="button" class="btn btn-success m-1">Flight Hours 
+                      <span class="badge badge-primary">  
+                        <%= Flight.where(instructor_id: @user.id, flight_date: 30.days.ago..Date.today).sum(:flight_time)/60 %>.<%= Flight.where(instructor_id: @user.id, flight_date: 30.days.ago..Date.today).sum(:flight_time)%60/6 %>
+                        </span>
+                    </button>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Prior 60 days</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <button type="button" class="btn btn-secondary m-1">Days 
+                      <span class="badge badge-primary">
+                        <%= Flight.where(instructor_id: @user.id, flight_date: 60.days.ago..Date.today).distinct(:flight_date).count %>
+                      </span>
+                    </button>
+                    <button type="button" class="btn btn-secondary m-1">Flights 
+                      <span class="badge badge-primary">
+                        <%= Flight.where(instructor_id: @user.id, flight_date: 60.days.ago..Date.today).count %>
+                      </span>
+                    </button>  
+                    <button type="button" class="btn btn-success m-1">Flight Hours 
+                      <span class="badge badge-primary"> 
+                        <%= Flight.where(instructor_id: @user.id, flight_date: 60.days.ago..Date.today).sum(:flight_time)/60 %>.<%= Flight.where(instructor_id: @user.id, flight_date: 60.days.ago..Date.today).sum(:flight_time)%60/6 %>
+                      </span>
+                    </button>
+                  </dd>
+                <dt class="col-sm-4 ps-4 pt-2">Prior 90 days</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <button type="button" class="btn btn-secondary m-1">Days 
+                      <span class="badge badge-primary">
+                        <%= Flight.where(instructor_id: @user.id, flight_date: 90.days.ago..Date.today).distinct(:flight_date).count %>
+                      </span>
+                    </button>
+                    <button type="button" class="btn btn-secondary m-1">Flights 
+                      <span class="badge badge-primary">
+                        <%= Flight.where(instructor_id: @user.id, flight_date: 90.days.ago..Date.today).count %>
+                      </span>
+                    </button>
+                    <button type="button" class="btn btn-success m-1">Flight Hours 
+                      <span class="badge badge-primary">  
+                        <%= Flight.where(instructor_id: @user.id, flight_date: 90.days.ago..Date.today).sum(:flight_time)/60 %>.<%= Flight.where(instructor_id: @user.id, flight_date: 90.days.ago..Date.today).sum(:flight_time)%60/6 %>
+                      </span>
+                    </button>
+                  </dd> 
+                <dt class="col-sm-4 ps-4 pt-2">Year to date</dt>
+                  <dd class="col-sm-8 pt-2">
+                    <button type="button" class="btn btn-secondary m-1">Days 
+                      <span class="badge badge-primary">
+                        <%= Flight.where(instructor_id: @user.id, flight_date: Date.today.beginning_of_year..Date.today).distinct(:flight_date).count %>
+                      </span>
+                    </button>
+                    <button type="button" class="btn btn-secondary m-1">Flights 
+                      <span class="badge badge-primary">
+                        <%= Flight.where(instructor_id: @user.id, flight_date: Date.today.beginning_of_year..Date.today).count %>
+                      </span>
+                    </button>
+                    <button type="button" class="btn btn-success m-1">Flight Hours 
+                      <span class="badge badge-primary"> 
+                        <%= Flight.where(instructor_id: @user.id, flight_date: Date.today.beginning_of_year..Date.today).sum(:flight_time)/60 %>.<%= Flight.where(instructor_id: @user.id, flight_date: Date.today.beginning_of_year..Date.today).sum(:flight_time)%60/6 %>
+                      </span>
+                    </button>
+                  </dd>    
+              </d1>
+            </li>
+          </ul> 
+          <% else %>
+          <% end %>
+
           <ul class="list-group list-group-flush">
             <li class="list-group-item lead">Club Info</li>
               <d1 class="row">
@@ -122,6 +288,7 @@
                 <dt class="col-sm-4 ps-4 pt-2">Site Permissions</dt>
                   <dd class="col-sm-8 pt-2">
                     <span class="badge badge-pill badge-primary ">Instructor: <%= @user.permission.instructor.humanize %></span>
+                    <span class="badge badge-pill badge-primary ">Tow Pilot: <%= @user.permission.towpilot.humanize %></span>
                     <span class="badge badge-pill badge-primary ">User admin: <%= @user.permission.user_admin.humanize %></span>
                     <span class="badge badge-pill badge-primary ">Club admin: <%= @user.permission.club_admin.humanize %></span>
                     <span class="badge badge-pill badge-primary ">Site admin: <%= @user.permission.site_admin.humanize %></span>

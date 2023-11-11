@@ -182,7 +182,7 @@ class ReservationsController < ApplicationController
     end
 
     def require_same_user
-      if current_user.id != @reservation.user_id && !current_user.permission.club_admin?
+      if current_user.id != @reservation.user_id && !current_user.permission.user_admin? && !current_user.permission.instructor?
       flash[:alert] = "You can only edit or delete your own reservations"
       redirect_to @reservation
       end

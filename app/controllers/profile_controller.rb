@@ -52,7 +52,7 @@ end
 def require_same_user
   @user = User.find(params[:id])
 
-  if current_user.id != @user.id && !current_user.permission.club_admin?
+  if current_user.id != @user.id && !current_user.permission.club_admin? && !current_user.permission.instructor?
   flash[:alert] = "You can only view or edit your own profile"
   redirect_to profile_index_path
   end

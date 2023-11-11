@@ -51,20 +51,7 @@
           <a class="nav-link disabled" aria-disabled="true">Reservations</a>
         <% end %>
         </li>
-        <li class="nav-item">
-          <% if logged_in? && current_user.permission.instructor? %>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Instructors
-                </a>
-                <ul class="dropdown-menu">
-                <a class="dropdown-item disabled" aria-disabled="true">Instructor List</a>
-                <a class="dropdown-item disabled" aria-disabled="true">My Students</a>
-              </ul>
-          <% else %>
-            <a class="nav-link disabled" aria-disabled="true">Instructors</a>
-          <% end %>
-        </li>
+        
         <li class="nav-item">
           <% if logged_in? && current_user.permission.user_admin? %>
             <li class="nav-item dropdown">

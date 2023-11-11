@@ -26,6 +26,7 @@
 								<th>Username</th>
 								<th>Email</th>
 								<th>Instructor</th>
+								<th>Tow Pilot</th>
 								<th>User Admin</th>
 								<th>Club Admin</th>
 								<th>Site Admin</th>
@@ -39,6 +40,7 @@
 									<td><%= permission.user.username %></td>
 									<td><%= permission.user.email %></td>
 									<td><%= permission.instructor.humanize %></td>
+									<td><%= permission.towpilot.humanize %></td>
 									<td><%= permission.user_admin.humanize %></td>
 									<td><%= permission.club_admin.humanize %></td>
 									<td><%= permission.site_admin.humanize %></td>
