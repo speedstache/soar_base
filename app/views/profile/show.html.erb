@@ -271,8 +271,10 @@
                 <dt class="col-sm-4 ps-4 pt-2">Current Membership</dt>
                   <dd class="col-sm-8 pt-2">
                   <% if @user.membership_users.blank? %>
-                    No current membership 
-                  <% else %>   
+                    No membership has been assigned
+                  <% elsif has_membership == false %>
+                    Membership is not active
+                  <% else %>     
                     <span class="badge badge-pill badge-success"><%= @membership.membership_type %> member</span> renews on <%= @renewal_date.strftime("%a, %b %d, %Y") %>
                   <% end %>  
                     </dd>

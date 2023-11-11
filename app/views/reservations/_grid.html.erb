@@ -49,7 +49,7 @@
 						<% end %>
 					<% else %>	
 						<% if @view_21b.where(reservation_time: hour.hour).exists? %>
-							<%= link_to '', reservation_path(@view_21a.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
+							<%= link_to '', reservation_path(@view_21b.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 						<% else %>
 							<% if @res_show < Date.today %>
 								<span class="gray_dot" title="Reservations cannot be created for dates in the past"></span>
@@ -75,7 +75,7 @@
 						<% end %>
 					<% else %>	
 						<% if @view_23.where(reservation_time: hour.hour).exists? %>
-							<%= link_to '', reservation_path(@view_21a.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
+							<%= link_to '', reservation_path(@view_23.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 						<% else %>
 							<% if @res_show < Date.today %>
 								<span class="gray_dot" title="Reservations cannot be created for dates in the past"></span>

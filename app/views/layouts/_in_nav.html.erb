@@ -38,7 +38,7 @@
             Reservations
           </a>
           <ul class="dropdown-menu">
-            <li><%= link_to 'Add New Reservation', new_reservation_path, class: "dropdown-item" %></li>
+            <li><% if has_membership == true %><%= link_to 'Add New Reservation', new_reservation_path, class: "dropdown-item" %><% else %><%= link_to 'Membership Inactive', new_reservation_path, class: "dropdown-item disabled" %><% end %></li>
             <li><%= link_to 'View My Schedule', reservations_path, class: "dropdown-item" %></li>
             <li><%= link_to 'View Club Schedule', reservations_club_path, class: "dropdown-item" %></li>
             <li><hr class="dropdown-divider"></li>

@@ -2,6 +2,7 @@ class ReservationsController < ApplicationController
   before_action :require_user
   before_action :set_reservation, only: %i[show edit update destroy ]
   before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :has_membership, only: [:create, :new]
 
   # GET /reservations or /reservations.json
   def index
@@ -117,7 +118,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
 
     if @reservation.save
-      flash[:notice] = "Tow schedule was successfully created."
+      flash[:success] = "Tow schedule was successfully created."
       redirect_to params[:previous_request]
     else
       render :new, status: :unprocessable_entity
@@ -133,6 +134,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
+    
     @avail_days = Day.where(day: Date.today .. 30.days.from_now, active_flag: 1).order('days.day ASC')
     @avail_hours = Hour.where(active_flag: 1)
     @reservation = Reservation.new
@@ -157,7 +159,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
 
     if @reservation.save
-      flash[:notice] = "Reservation was successfully created."
+      flash[:success] = "Reservation was successfully created."
       redirect_to reservations_path
     else
       render :new, status: :unprocessable_entity
@@ -171,7 +173,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to params[:previous_request], notice: "Reservation was successfully updated." }
+        format.html { redirect_to params[:previous_request], success: "Reservation was successfully updated." }
         format.json { render :show, status: :ok, location: reservation_path(@reservation) }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -185,7 +187,9 @@ class ReservationsController < ApplicationController
     @reservation.destroy
 
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: "Reservation was successfully deleted." }
+      flash[:success] = "Reservation was successfully deleted."
+
+      format.html { redirect_to reservations_url }
       format.json { head :no_content }
     end
   end

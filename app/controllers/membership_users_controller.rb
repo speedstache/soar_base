@@ -35,7 +35,7 @@ class MembershipUsersController < ApplicationController
 
     
     if @membership_user.save
-      flash[:notice] = "Membership and User link was successfully created."
+      flash[:success] = "Membership and User link was successfully created."
       redirect_to membership_users_path
     else
       render :new, status: :unprocessable_entity
@@ -44,9 +44,13 @@ class MembershipUsersController < ApplicationController
 
   # PATCH/PUT /membership_users/1 or /membership_users/1.json
   def update
+
+    @renew = params[:status]
+
     respond_to do |format|
       if @membership_user.update(membership_user_params)
-        format.html { redirect_to membership_users_path, notice: "Membership user was successfully updated." }
+        flash[:success] = "Membership user was successfully updated."
+        format.html { redirect_to membership_users_path }
         format.json { render :show, status: :ok, location: @membership_user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -60,7 +64,8 @@ class MembershipUsersController < ApplicationController
     @membership_user.destroy
 
     respond_to do |format|
-      format.html { redirect_to membership_users_url, notice: "Membership user was successfully deleted." }
+      flash[:warning] = "Membership user was successfully deleted."
+      format.html { redirect_to membership_users_url}
       format.json { head :no_content }
     end
   end
@@ -73,6 +78,6 @@ class MembershipUsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def membership_user_params
-      params.require(:membership_user).permit(:user_id, :membership_id, :renewal_date, :active_flag)
+      params.require(:membership_user).permit(:user_id, :membership_id, :joined_date, :renewal_date, :active_flag)
     end
 end

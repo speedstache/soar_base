@@ -62,22 +62,22 @@
                 <thead>
                   <tr>
                     <th>Username</th>
-                    <th>Email</th>
                     <th>Membership</th>
-                    <th>Renews on</th>
+                    <th>Joined on</t>
+                    <th>Renewed on</th>
                     <th>Time left </th>
                     <th>Next Renewal</th>
                     <th>Notify user on</th>
                     <th>Active Flag</th>
-                    <th colspan="2">Modify</th>
+                    <th colspan="3">Modify</th>
                   </tr>
                 </thead>
                 <tbody>
                     <% @membership_users.each do |membership_user| %>
                       <tr>
                         <td><%= membership_user.user.username %></td>
-                        <td><%= membership_user.user.email %></td>
                         <td><%= membership_user.membership.membership_type %></td>
+                        <td><%= membership_user.renewal_date.strftime("%m/%d/%y") %></td>
                         <td><%= membership_user.renewal_date.strftime("%m/%d/%y") %></td>
                         <td><%= (Date.today..(membership_user.renewal_date + membership_user.membership.renewal_period)).to_a.size %> days</td>
                           <% next_renewal_date = membership_user.renewal_date + membership_user.membership.renewal_period %>
@@ -85,6 +85,11 @@
                           <% renewal_notification_date = membership_user.renewal_date + (membership_user.membership.renewal_period - 30) %>
                         <td><%= renewal_notification_date.strftime("%m/%d/%y") %></td>
                         <td><%= membership_user.active_flag %></td>
+                          <% if membership_user.renewal_date + membership_user.membership.renewal_period <= 30.days.from_now %>
+                            <td><%= link_to 'Renew', edit_membership_user_path(membership_user, :status => 'renew'), :class => "btn btn-info btn-sm" %></td>
+                          <% else %>
+                            <td><%= link_to 'Renew', edit_membership_user_path(membership_user, :status => 'renew'), :class => "btn btn-gray btn-sm disabled" %></td>
+                          <% end %>  
                         <td><%= link_to 'Edit', edit_membership_user_path(membership_user), :class => "btn btn-primary btn-sm" %></td>
                         <td><%= link_to 'Delete', membership_user_path(membership_user),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
                       </tr>

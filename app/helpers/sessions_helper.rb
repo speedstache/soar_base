@@ -43,7 +43,7 @@ module SessionsHelper
     active_member = MembershipUser.where(user_id: current_user.id).last
       if !active_member.nil? 
         next_renewal_date = active_member.renewal_date + active_member.membership.renewal_period
-        if Date.today <= next_renewal_date 
+        if Date.today <= next_renewal_date && active_member.active_flag == true
           has_membership = true
         else
           has_membership = false
