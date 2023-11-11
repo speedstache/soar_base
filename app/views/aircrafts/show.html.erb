@@ -67,7 +67,7 @@
 					</div>	
 				<% else %>
 					<div class="mt-4">
-					<h6>This aircraft has flown <%= @sumtows %> tows, and <%= @sumtowhours %> hours of flight time since last maintenance</h6>
+					<h6>This aircraft has flown <%= @sumtows %> tows, and <%= @sumtowhours.round(2) %> hours of flight time since last maintenance</h6>
 					</div>
 					<div class="mt-4 col">
 					<h6>The following tow logs have been logged on this aircraft</h6>
