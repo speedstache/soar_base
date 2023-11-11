@@ -99,28 +99,35 @@ module SessionsHelper
 
   def require_user_admin
     if !current_user.permission.user_admin?
-    flash[:alert] = "That area requires user admin rights"
+    flash[:danger] = "That area requires user admin rights"
     redirect_to reservations_url
     end
   end
 
   def require_club_admin
     if !current_user.permission.club_admin?
-    flash[:alert] = "That area requires club admin rights"
+    flash[:danger] = "That area requires club admin rights"
     redirect_to reservations_url
     end
   end
 
   def require_site_admin
     if !current_user.permission.site_admin?
-    flash[:alert] = "That area requires site admin rights"
+    flash[:danger] = "That area requires site admin rights"
+    redirect_to reservations_url
+    end
+  end
+
+  def require_towpilot
+    if !current_user.permission.towpilot?
+    flash[:danger] = "That area requires tow pilot rights"
     redirect_to reservations_url
     end
   end
 
   def require_field_status
     if !current_user.permission.site_admin? || !current_user.permission.club_admin? || !current_user.permission.instructor? || !current_user.permission.towpilot?
-    flash[:alert] = "Insufficient privileges for sending field status update"
+    flash[:danger] = "Insufficient privileges for sending field status update"
     redirect_to reservations_url
     end
   end

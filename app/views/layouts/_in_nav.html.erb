@@ -77,7 +77,7 @@
                 <li><%= link_to 'Aircraft List', aircrafts_path, class: "dropdown-item" %></li>
                 <li><%= link_to 'Aircraft Users', aircraft_users_path, class: "dropdown-item" %></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><%= link_to 'Tow Pilot Schedule', reservations_tow_path, class: "dropdown-item" %></li>
+                <li><% if current_user.permission.towpilot? == true %><%= link_to 'Tow Pilot Schedule', reservations_tow_path, class: "dropdown-item" %><% else %><%= link_to 'Tow Pilot Schedule', reservations_tow_path, class: "dropdown-item disabled" %><% end %></li>
               </ul>
             </li>
           <% else %>

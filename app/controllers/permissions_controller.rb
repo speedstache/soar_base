@@ -24,7 +24,7 @@ class PermissionsController < ApplicationController
 
     if @permission.save
 
-    flash[:notice] = "New permissions set up"
+    flash[:success] = "New permissions set up"
     redirect_to users_path
     else
       render 'new', status: :unprocessable_entity
@@ -35,7 +35,8 @@ class PermissionsController < ApplicationController
   def update
     respond_to do |format|
       if @permission.update(permission_params)
-        format.html { redirect_to permissions_path, notice: "Permission was successfully updated." }
+        flash[:success] = "Permission was successfully updated."
+        format.html { redirect_to permissions_path }
         format.json { render :show, status: :ok, location: @permission }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -49,7 +50,8 @@ class PermissionsController < ApplicationController
     @permission.destroy
 
     respond_to do |format|
-      format.html { redirect_to permissions_url, notice: "Permission was successfully destroyed." }
+      flash[:success] = "Permission was successfully updated."
+      format.html { redirect_to permissions_url }
       format.json { head :no_content }
     end
   end

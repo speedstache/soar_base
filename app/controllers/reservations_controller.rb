@@ -2,6 +2,8 @@ class ReservationsController < ApplicationController
   before_action :require_user
   before_action :set_reservation, only: %i[show edit update destroy ]
   before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_towpilot, only: [:tow_edit, :tow_update, :tow_index, :tow_create]
+
 
   # GET /reservations or /reservations.json
   def index
@@ -89,6 +91,8 @@ class ReservationsController < ApplicationController
   end
 
   def tow_index
+    require_towpilot
+
 
       @towplanes = Aircraft.where(group: 'towplane')
       @tow_schedule = Reservation.where(aircraft_id: @towplanes.ids).order('reservation_date DESC').paginate(page: params[:page], per_page: 5)
@@ -100,6 +104,7 @@ class ReservationsController < ApplicationController
   end
 
   def tow_update
+    require_towpilot
 
     @reservation = Reservation.find(params[:id])
     
