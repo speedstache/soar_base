@@ -158,6 +158,7 @@ class ReservationsController < ApplicationController
     @avail_days = Day.where(day: Date.today .. 60.days.from_now)
     @avail_hours = Hour.where(active_flag: 1)
     @towpilots = User.where(id: Permission.where(towpilot: true))
+    @commpilots = User.where(id: Permission.where(commercial: true))
   end
 
   # POST /reservations or /reservations.json
@@ -170,7 +171,7 @@ class ReservationsController < ApplicationController
       flash[:success] = "Reservation was successfully created."
       redirect_to reservations_path
     else
-      render :new, status: :unprocessable_entity
+      redirect_to params[:previous_request], status: :unprocessable_entity
     end
   end
 
@@ -210,7 +211,7 @@ class ReservationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reservation_params
-      params.require(:reservation).permit(:user_id, :reservation_date, :reservation_time, :reservation_duration, :aircraft_id, :instructor_flag, :status, :method, :description, :previous_request)
+      params.require(:reservation).permit(:user_id, :reservation_date, :reservation_time, :reservation_duration, :aircraft_id, :instructor_flag, :rth_flag, :status, :method, :description, :previous_request)
     end
 
     def require_same_user

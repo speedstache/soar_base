@@ -28,6 +28,12 @@
     <%= f.check_box :instructor_flag, class: "form-check-label" %>
   </div>
 </div>
+<div class="form-group row m-3" >
+  <%= f.label :Need_commercial_pilot, class: "col-5 col-form-label " %>
+  <div class="col">
+    <%= f.check_box :rth_flag, class: "form-check-label" %>
+  </div>
+</div>
 <%= link_to "close", reservations_path, :class => "btn btn-light" %>
 <%= f.submit class:"btn btn-primary" %>
 <% end %>

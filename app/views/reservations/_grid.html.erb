@@ -43,7 +43,7 @@
 						<% if @view_21b.where(reservation_time: hour.hour).exists? %>
 							<%= link_to '', reservation_path(@view_21b.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 							<% elsif Aircraft.find(2).active_flag == true %>
-							<%= link_to '', new_reservation_path(:date => @res_show.strftime("%a, %b %d, %Y"), :time => hour.hour, :aircraft => 1), :class=>"open_dot" %>
+							<%= link_to '', new_reservation_path(:date => @res_show.strftime("%a, %b %d, %Y"), :time => hour.hour, :aircraft => 2), :class=>"open_dot" %>
 						<% else %>
 							<span class="gray_dot" title="Aircraft is currently offline"></span>
 						<% end %>
@@ -69,7 +69,7 @@
 						<% if @view_23.where(reservation_time: hour.hour).exists? %>
 							<%= link_to '', reservation_path(@view_23.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 							<% elsif Aircraft.find(3).active_flag == true %>
-							<%= link_to '', new_reservation_path(:date => @res_show.strftime("%a, %b %d, %Y"), :time => hour.hour, :aircraft => 1), :class=>"open_dot" %>
+							<%= link_to '', new_reservation_path(:date => @res_show.strftime("%a, %b %d, %Y"), :time => hour.hour, :aircraft => 3), :class=>"open_dot" %>
 						<% else %>
 							<span class="gray_dot" title="Aircraft is currently offline"></span>
 						<% end %>

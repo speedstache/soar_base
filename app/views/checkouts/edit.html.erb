@@ -1,7 +1,12 @@
 <div class="container">
 	<div class="row text-center justify-content-center" >
-  <h4>Pay via check or cash</h4>
-  <p class="text-muted">If logging a Red Tail Hawk Flight, select that Guest Ride and add the guest name in description field</p>
+    <% if @reservation.rth_flag == false %>
+      <h4>Pay via check or cash</h4>
+      <p class="text-muted">Add info on where payment was submitted if needed.</p>
+    <% else %>
+    <h4>Check out a Red Tail Hawk Fligh</h4>
+      <p class="text-muted">If logging a Red Tail Hawk Flight, remember to add the guest name in description field. Guest will pay via Qr Code.</p>
+    <% end %>
     <div class="col col-sm-10 col-md-6">
       <%= render 'shared/errors', obj: @reservation %>
       <%= form_with(model: @reservation, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>          
@@ -13,12 +18,21 @@
             <%= @reservation.reservation_date %>
           </div>
         </div>
-        <div class="form-group row m-3" >
+        <% if @reservation.rth_flag == false %>
+          <div class="form-group row m-3" >
+              <%= f.label :Payment_method, class: "col col-form-label" %>
+            <div class="col">
+              <%= f.select :method, options_for_select(["Cash", "Check"]),{}, {class: "input-group-text form-control"} %>
+            </div>
+          </div>	
+        <% else %>
+          <div class="form-group row m-3" >
             <%= f.label :Payment_method, class: "col col-form-label" %>
-          <div class="col">
-            <%= f.select :method, options_for_select(["Guest Ride", "Cash", "Check"]),{}, {class: "input-group-text form-control"} %>
+            <div class="col">
+              <%= f.select :method, options_for_select(["RTH Ride"]),{}, {class: "input-group-text form-control"} %>
+            </div>
           </div>
-        </div>	
+        <% end %>
         <div class="form-group row m-3" >
             <%= f.label :Guest_or_Notes, class: "col col-form-label" %><br>
             <p class="text-muted">For cash or check, add in payment location<br> (mail, lockbox, etc)</p>

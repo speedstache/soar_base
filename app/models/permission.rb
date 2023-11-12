@@ -5,6 +5,7 @@ class Permission < ApplicationRecord
   def set_defaults
     self.instructor ||= false
     self.towpilot ||= false
+    self.commercial ||= false
     self.user_admin ||= false 
     self.club_admin ||= false
     self.site_admin ||= false

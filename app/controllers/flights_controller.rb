@@ -36,7 +36,8 @@ class FlightsController < ApplicationController
 
         @flight.update({'fees': @flight.calcfees})
 
-        format.html { redirect_to reservation_path(@reservation), notice: "Flight was successfully created." }
+        flash[:success] = "Flight was successfully created."
+        format.html { redirect_to reservation_path(@reservation) }
         format.json { render :show, status: :created, location: @flight }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -50,7 +51,8 @@ class FlightsController < ApplicationController
     respond_to do |format|
       if @flight.update(flight_params)
         @flight.update({'fees': @flight.calcfees})
-        format.html { redirect_to reservation_path(@reservation), notice: "Flight was successfully updated." }
+        flash[:success] = "Flight was successfully updated."
+        format.html { redirect_to reservation_path(@reservation)}
         format.json { render :show, status: :ok, location: @flight }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,7 +66,9 @@ class FlightsController < ApplicationController
     @flight.destroy
 
     respond_to do |format|
-      format.html { redirect_to flights_url, notice: "Flight was successfully deleted." }
+      flash[:success] = "Flight was successfully deleted."
+
+      format.html { redirect_to flights_url }
       format.json { head :no_content }
     end
   end
@@ -87,7 +91,7 @@ class FlightsController < ApplicationController
     def require_same_user
       @flight = Flight.find(params[:id])
       if current_user.id != @flight.user_id && !current_user.permission.user_admin? && !current_user.permission.instructor?
-      flash[:alert] = "You can only edit or delete your own flights"
+      flash[:danger] = "You can only edit or delete your own flights"
       redirect_to reservations_path
       end
     end	

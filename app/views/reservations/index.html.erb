@@ -108,6 +108,14 @@
 								</div>
 								<div class="row">
 									<div class="col">
+										<% if reservation.rth_flag == true %>
+											<button type="button" class="btn btn-success m-1">Commercial Pilot?
+												<span class="badge badge-primary">
+													<%= reservation.rth_flag.humanize %>
+												</span>
+											</button>
+										<% else %>
+										<% end %>
 										<% if reservation.instructor_flag == true %>
 											<button type="button" class="btn btn-success m-1">Instructor?
 												<span class="badge badge-primary">

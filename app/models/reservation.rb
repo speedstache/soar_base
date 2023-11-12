@@ -8,6 +8,7 @@ class Reservation < ApplicationRecord
   attribute :reservation_duration, :integer, default: 60
   validates :reservation_date, uniqueness: {scope: [:reservation_date, :reservation_time, :aircraft_id]}
   validates :aircraft_id, uniqueness: {scope: [:reservation_date, :reservation_time, :aircraft_id]}
+  
 
   def self.search_date
     find_date = Day.order('days.day ASC').where(day: Date.today.., active_flag: true).first

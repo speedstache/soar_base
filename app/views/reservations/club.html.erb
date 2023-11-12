@@ -25,7 +25,6 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th>Profile&nbsp;</th>
 									<th>Name  </th>
 									<th>Date  </th>
 									<th>Time  </th>
@@ -36,18 +35,21 @@
 								<tbody>
 									<% @res_date.each do |reservation| %>
 										<tr>
-											<td class="align-middle"><%= gravatar_for reservation.user, size: 50 %></td>
 											<td class="align-middle"><%= reservation.user.username %></td>
 											<td class="align-middle"><%= reservation.reservation_date.strftime("%m/%d/%y") %>  </td>
 											<td class="align-middle"><%= reservation.reservation_time %></td>
 											<td class="align-middle"><%= reservation.aircraft.short_name %>  </td>
 											<td class="align-middle">
 												<% if reservation.instructor_flag == true %>
-													Instructor needed
+													Instruction
 												<% elsif reservation.aircraft.group == 'towplane' %>
 													Tow Pilot
+												<% elsif reservation.rth_flag == true %>
+													Red Tail Hawk
+												<% elsif reservation.aircraft.group == 'private' %>
+													Private glider
 												<% else %>
-													No Instructor
+													Member flight	
 												<% end %>			
 											</td>
 										</tr>

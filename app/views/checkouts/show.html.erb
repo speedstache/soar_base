@@ -6,7 +6,7 @@
 					<% if @reservation.status == 'open' %>
 						<h4>Confirm checkout details for <%= @reservation.user.username %>'s reservation on <%= @reservation.reservation_date.strftime("%m/%d/%y") %> </h4>
 					<% else %>
-						<h4>Checkout already submitted for <%= @reservation.user.username %>'s reservation on <%= @reservation.reservation_date.strftime("%m/%d/%y") %> </h4>
+						<h4>Checkout submitted for <%= @reservation.user.username %>'s reservation on <%= @reservation.reservation_date.strftime("%m/%d/%y") %> </h4>
 					<% end %>
 				</div>
 				<div class="row">
@@ -112,24 +112,31 @@
 									</table>
 								</div>
 							</div>
-							<div class="row card-footer text-body-secondary">
-								<div class="col input-group justify-content-center m-2">
-									<%= link_to 'Back to Reservation', reservation_path(@reservation), :class => "btn btn-primary" %>
+							<div class="row card-footer text-body-secondary justify-content-center">
+								<div class="col m-2">
+									<%= link_to 'Close', reservation_path(@reservation), :class => "btn btn-primary" %>
 								</div>
-								<div class="col input-group justify-content-center m-2">
-								<% if @reservation.status == 'open' %>
-									<%= link_to 'Pay via RTH/Cash/Check', edit_checkout_path(id: @reservation.id), :class => "btn btn-primary" %>
-								<% else %>
-								<% end %>
-							</div>
-							<div class="col input-group justify-content-end m-2">
-								<% if @reservation.status == 'open' %>
-									<%= render partial: 'pay/stripe/checkout_button', locals: {
-										session: @checkout_session,
-										title: 'Stripe Checkout', class: "btn btn-primary"
-									} %>
-								<% else %>
-								<% end %>	
+								<div class="col m-2">
+									<% if @reservation.status == 'open' && @reservation.rth_flag == true %>
+										<%= link_to 'Checkout&nbsp;RTH&nbsp;flight'.html_safe, edit_checkout_path(id: @reservation.id), :class => "btn btn-info" %>
+									<% else %>
+									<% end %>
+								</div>	
+								<div class="col m-2">
+									<% if @reservation.status == 'open' && @reservation.rth_flag == false %>
+										<%= link_to 'Pay&nbsp;Cash/Check'.html_safe, edit_checkout_path(id: @reservation.id), :class => "btn btn-info" %>
+									<% else %>
+									<% end %>
+								</div>
+								<div class="col m-2">
+									<% if @reservation.status == 'open' && @reservation.rth_flag == false %>
+										<%= render partial: 'pay/stripe/checkout_button', locals: {
+											session: @checkout_session,
+											title: 'Stripe Checkout', class: "btn btn-info"
+										} %>
+									<% else %>
+									<% end %>	
+								</div>	
 							</div>
 						</div>
 					</div>
