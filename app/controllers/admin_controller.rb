@@ -34,7 +34,7 @@ class AdminController < ApplicationController
 
   def emails
 
-    @active_email_requests = EmailRequest.where(archive: true).paginate(page: params[:page], per_page: 10)
+    @active_email_requests = EmailRequest.where(archive: false).paginate(page: params[:page], per_page: 10)
     @archived_email_requests = EmailRequest.where(archive: true).paginate(page: params[:page], per_page: 10)
 
     def edit
