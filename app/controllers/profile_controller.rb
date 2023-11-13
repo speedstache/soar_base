@@ -33,7 +33,8 @@ def update
 
   respond_to do |format|
     if @user.update(user_params)
-      format.html { redirect_to :action => profile_index_path, notice: "User profile was successfully updated." }
+      flash[:success] = "User profile was successfully updated."
+      format.html { redirect_to :action => profile_index_path }
     else
       format.html { render :edit, status: :unprocessable_entity }
       format.json { render json: @user.errors, status: :unprocessable_entity }

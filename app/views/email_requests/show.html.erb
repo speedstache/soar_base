@@ -1,0 +1,64 @@
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-sm-12 col-md-10">
+			<div class="card shadow p-3 mb-5 bg-white rounded">
+				<div class="card-header fst-italic">
+					<div class="row">
+            <div class="col input-group justify-content-start">	
+              <%= link_to 'Close', admin_emails_path, :class => "btn btn-primary btn-sm" %>
+						</div>
+						<div class="col input-group justify-content-end">	
+							<%= link_to "Delete", email_request_path(@email_request), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
+						</div>
+					</div>		
+					<div class="row pt-3">
+						<div class="col text-start">
+							<strong>Email categorization </strong>
+						</div>
+					</div>
+				</div>	
+				<div class="card-body" style="padding: 20px 20px">
+          <div class="row">  
+						<div class="col ">
+              <button type="button" class="btn btn-success m-1">RTH Ride?
+                <span class="badge badge-primary">
+							    <%= @email_request.ride.humanize %>
+                </span>
+							</button>
+						</div>
+						<div class="col ">
+              <button type="button" class="btn btn-success m-1">Instruction?
+                <span class="badge badge-primary">
+							    <%= @email_request.instruction.humanize %>
+                </span>
+							</button>
+						</div>
+            <div class="col ">
+              <button type="button" class="btn btn-success m-1">Membership?
+                <span class="badge badge-primary">
+							    <%= @email_request.membership.humanize %>
+                </span>
+							</button>
+						</div>
+            <div class="col ">
+              <button type="button" class="btn btn-success m-1">General?
+                <span class="badge badge-primary">
+							    <%= @email_request.general.humanize %>
+                </span>
+							</button>
+						</div>	
+					</div>	
+					<div class="card-footer text-body-secondary" >
+            <p><strong>Date:  </strong><%= @email_request.date %></p>
+            <p><strong>Email:  </strong><%= @email_request.email %></p>
+            <p><strong>Subject:  </strong><%= @email_request.subject %></p>
+            <p><strong>Body:  </strong><%= @email_request.body %></p>
+					</div>
+					<div class="row pt-3">		
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>				
+</div>

@@ -18,25 +18,19 @@
             </button>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#header-section">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <!--<li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">About</a>
-              <ul class="dropdown-menu">
-                <li><%= link_to 'Users List', users_path, class: "nav-item" %></li>
-                <li><%= link_to 'User Permissions', permissions_path, class: "nav-item" %></li>
-                <li><%= link_to 'User Membership', membership_users_path, class: "nav-item" %></li>
-                <li><a class="nav-item disabled" aria-disabled="true">Profile Details</a></li>
-              </ul>
-            </li> -->
-          <li class="nav-item">
-            <a class="nav-link" href="#club-info-section">About</a>  
+            <a class="nav-link" href="<%= pages_index_path %>#header-section">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#fleet-section">Our&nbsp;Fleet</a>
+            <a class="nav-link" href="<%= pages_index_path %>#club-info-section">About</a>  
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#read-more-section">Fly&nbsp;with&nbsp;us</a>
+            <a class="nav-link" href="<%= pages_index_path %>#fleet-section">Our&nbsp;Fleet</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= pages_index_path %>#read-more-section">Fly&nbsp;with&nbsp;us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= pages_flights_path %>" target="_self">Request&nbsp;a&nbsp;ride</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
             <button class="btn btn-info" data-toggle="modal" data-target="#loginModal">Member Login</button>

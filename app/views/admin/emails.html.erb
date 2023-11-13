@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row text-center justify-content-center">
+    <div class="col col-sm-12 col-md-12">
+      <div class="row justify-content-center">
+				<div class="col">
+					<h4>List of Email Requests</h4>
+					<p class="text-muted">Email Requests are all inbound requests from the non-member site.<br>
+					These are shown so that proper action can be taken and emails are not lost.</p>
+          <p class="text-muted">Archive is used to show that we have responded or set up a reservation (for a RTH flight, for example). 
+          Delete is used to remove spam and trash that makes it past the ReCaptcha validation </p>
+				</div>
+				<div class="col">
+            <div class="row mt-2">
+              <div class="col flickr_pagination">	
+                <%= will_paginate @active_email_requests, :container => false %>
+              </div>	
+            </div>
+          </div>  		
+			<div class="row">
+				<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Date</th>
+							<th>Email</th>
+							<th>Subject</th>
+							<th>Ride?</th>
+              <th>Membership?</th>
+              <th>Instruction?</th>
+              <th>General?</th>
+              <th colspan="3">Modify</th>
+						</tr>
+					</thead>
+						<tbody>
+							<% @active_email_requests.each do |active_email_request| %>
+								<tr>
+									<td><%= active_email_request.id %></td>
+                  <td><%= active_email_request.date %></td>
+									<td><%= active_email_request.email %></td>
+									<td><%= active_email_request.subject %></td>
+									<td><%= active_email_request.ride.humanize %></td>
+                  <td><%= active_email_request.membership.humanize %></td>
+                  <td><%= active_email_request.instruction.humanize %></td>
+                  <td><%= active_email_request.general.humanize %></td>
+                  <td><%= link_to 'Details', email_request_path(active_email_request), class: "btn btn-primary btn-sm"%></td>
+									<td><%= link_to 'Archive', update_email_request_path(active_email_request, :archive => true), class: "btn btn-primary btn-sm"%></td>
+									<td><%= link_to 'Delete', email_request_path(active_email_request), class: "btn btn-primary btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+
+								</tr>
+							<% end %>
+						</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+

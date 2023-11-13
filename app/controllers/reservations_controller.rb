@@ -111,7 +111,7 @@ class ReservationsController < ApplicationController
 
     if @reservation.update(status: params[:status])
 
-      flash[:notice] = "Tow Log was successfully updated."
+      flash[:success] = "Tow Log was successfully updated."
       redirect_to reservations_tow_path
     else
       render :new, status: :unprocessable_entity
@@ -182,7 +182,8 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to params[:previous_request], success: "Reservation was successfully updated." }
+        flash[:success] = "Reservation was successfully updated."
+        format.html { redirect_to params[:previous_request] }
         format.json { render :show, status: :ok, location: reservation_path(@reservation) }
       else
         format.html { render :edit, status: :unprocessable_entity }

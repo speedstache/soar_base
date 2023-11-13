@@ -18,6 +18,9 @@ gem "will_paginate", "~> 4.0.0"
 # Humanize gem for boolean values
 gem "humanize_boolean"
 
+# Google Recaptcha gem for emails from non-logged-in users
+gem "recaptcha"
+
 # Ruby reports gem for simplifying data generation and future reporting
 gem "ruport"
 

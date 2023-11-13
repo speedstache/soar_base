@@ -1,0 +1,29 @@
+<%= form_with(model: @email_request, class: "shadow p-3 mb-3 bg-info rounded", local: true, data:{ turbo: false} ) do |f| %>
+  <%= f.hidden_field :date, value: Date.today %>
+    <%= f.hidden_field :ride, value: true %>
+
+    <div class="form-group row p-2" >
+      <%= f.label :email, class: "col-4 col-form-label" %>
+      <div class="col">
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+    </div>    
+    <div class="form-group row p-2" >
+      <%= f.label :subject, class: "col-4 col-form-label" %>
+      <div class="col">
+        <%= f.text_field :subject, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group row p-2" >
+      <%= f.label :body, class: "col-4 col-form-label" %>
+      <div class="col-8">
+        <%= f.text_area :body, rows: 6, class: "input-group-text form control" %>
+      </div>
+    </div>
+    <div class="row ms-1 my-3 text-center justify-content-center">
+      <%= recaptcha_tags %>
+    </div>
+    <%= link_to "Close", pages_flights_path, target: '_self', :class => "btn btn-secondary" %>
+
+  <%= f.submit class:"btn btn-primary" %>
+<% end %>

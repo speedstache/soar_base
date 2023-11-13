@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   resources :field_status_updates
+  resources :email_requests
+  
   resources :towfees
   resources :membership_users
   resources :memberships,     except: [:destroy]
@@ -16,7 +18,6 @@ Rails.application.routes.draw do
   get 'reservations/tow', to: 'reservations#tow_index', as: 'reservations_tow'
   match 'reservations/tow/:id/update', to: 'reservations#tow_update', as: 'update_reservations_tow', via: [:get, :post]
 
-
   resources :reservations do
     resources :flights
     resources :tows
@@ -29,12 +30,21 @@ Rails.application.routes.draw do
   
   get "home/index", to: "home#index"
   get "home/how_to", to: "home#how_to", as: 'how_to'
+
   root to: "pages#index"
 
   get "pages/index", to: 'pages#index'
+  get 'pages/flights', to: 'pages#flights', as: 'pages_flights'   
+  get 'pages/instruction', to: 'pages#instruction'
+  get 'pages/membership', to: 'pages#membership'
+
 
   get 'admin/reservations', to: 'admin#reservations'
   match 'admin/reservations/:id/edit', to: 'admin#edit', as: 'edit_admin_reservation', via: [:get, :post]
+
+
+  get 'admin/emails', to: 'admin#emails', as: 'admin_emails'
+  match 'email_requests/:id/update', to: 'email_requests#update', as: 'update_email_request', via: [:get, :post]
 
   get 'admin/aircrafts', to: 'admin#aircrafts'
   get 'admin/instructors', to: 'admin#instructors'

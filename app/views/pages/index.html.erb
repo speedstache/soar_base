@@ -163,20 +163,20 @@
       <section class="digital-marketing-service" id="digital-marketing-service">
         <div class="container-fluid" style="background-color:#f7f8fa">
           <div class="container">
-          <br><br>
             <div class="row align-items-center" id="fly-with-us">
               <div class="col-12 col-lg-7 grid-margin" data-aos="fade-right">
                 <h3 class="m-0">How to fly with us</h3>
-                <div class="col-lg-7 col-xl-6 p-0">
+                <div class="col-lg-8 col-xl-6 p-0">
                   <p class="py-4 m-0 text-muted">Eagleville Soaring Club flies on most Saturdays and Sundays year round, weather permitting.
                           We fly from <%= Hour.where(active_flag: true).min.hour %> to <%= Hour.where(active_flag: true).max.hour %> and offer paid
                           rides to non-members.
 
                   </p>
                   <p class="font-weight-medium text-muted">Contact us using this form to request a ride with one of our pilots. </p>
-                </div> 
-                <button class="btn btn-info">Request a ride</button>
-      
+                </div>
+                <div> 
+                  <%= link_to "Request a Ride", pages_flights_path, :target => "_self", :class => "btn btn-info" %>
+                </div>  
               </div>
               <div class="col-12 col-lg-5 p-0 img-digital grid-margin" data-aos="fade-left">
                 <img src="../simple_landing_page/images/1690722449753blob.jpg" alt="" class="img-fluid">
