@@ -1,6 +1,16 @@
 <div class="container">
 	<div class="row text-center justify-content-center" >
-  <h4>Send us an note!</h4>
+  <h4>
+    <% if params[:query] == 'ride' %>
+      Send us a note to request a ride
+    <% elsif params[:query] == 'instruction' %>  
+      Send us a note to inquire about flight instruction
+    <% elsif params[:query] == 'membership' %>  
+      Send us a note to inquire about becoming a member
+    <% else %> 
+      Send us an note!
+    <% end %>  
+  </h4>
 
     <div class="col-sm-10 col-md-7">
       <%= render 'shared/errors', obj: @email_request %>

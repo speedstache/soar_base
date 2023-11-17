@@ -1,111 +1,184 @@
 <div class="content-wrapper">
-<div class="container">
-  <section class="digital-marketing-service" id="rth-info-section">
-    <div class="row align-items-center">
-      <div class="col-12 col-lg-5 flex-item grid-margin grid-margin-lg-0" data-aos="fade-right">
-        <h3 class="m-0">Learning to fly a glider</h3>
-        <div class="col-lg-9 col-xl-8 p-0">
-          <p class="py-4 m-0 text-muted">Eagleville Soaring is a Soaring Society of America (SSA) Chapter Club operation<br>
-             located in beautiful Middle Tennessee at Puckett Gliderport (50M) approximately 30 miles south of Nashville.</p>
-          <p class="font-weight-medium text-muted">We have been flying gliders in Eagleville, TN since the 1950s.</p>
-        </div>    
-      </div>
-      <div class="col-12 col-lg-7 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
-        <img src="../simple_landing_page/images/1690722449753blob.jpg" alt="" class="img-fluid">
-      </div>
-    </div>
-  </div>
-  
-  <section class="contact-details" id="contact-details-section">
-    <div class="container">
-      <div class="row text-center text-md-left">
-        <div class="col-12 col-md-6 col-lg-4 grid-margin">
-          <img src="../simple_landing_page/images/Eagleville_Logo_Color.png" width="100" alt="" class="pb-2">
-
-          <div class="pt-2">
-            <p class="text-muted m-0">clubadmin@eaglevillesoaring.com</p>
-            <p class="text-muted m-0">800-306-6690</p>
-          </div>         
+  <div class="container">
+    <section class="digital-marketing-service" id="rth-info-section">
+      <div class="row align-items-center">
+        <div class="col-12 col-lg-5 flex-item grid-margin grid-margin-lg-0" data-aos="fade-right">
+          <h3 class="m-0">Flying with the Eagleville Soaring Club</h3>
+          <div class="col-lg-9 col-xl-8 p-0">
+            <p class="py-4 m-0 text-muted">Eagleville Soaring club offers non-members and glider novices the chance to fly in a glider
+            and experience the wonder of non-powered flight. Our 'Red Tail Hawk' flights are a great gift for someone curious
+            about flying, or perfect for anyone who wants to see the Middle Tennessee countryside from a different vantage point</p>
+            <p class="font-weight-medium text-muted">Rides are dependent on weather, our flying schedule, and the availability of a pilot, but
+            most weekends allow room for guests to fly with us. </p>
+          </div>    
         </div>
-        <div class="col-12 col-md-6 col-lg-4 grid-marg">
-            <h5 class="pb-2">Our address</h5>
-            <p class="text-muted">4689 Highway 41A<br>Eagleville, Tennessee 37060</p>
-            <div class="d-flex justify-content-center justify-content-md-start">
-              <a href="https://www.facebook.com/EaglevilleSC"><span class="mdi mdi-facebook"></span></a>
-              <!-- <a href="#"><span class="mdi mdi-twitter"></span></a>
-              <a href="#"><span class="mdi mdi-instagram"></span></a>
-              <a href="#"><span class="mdi mdi-linkedin"></span></a> -->
+        <div class="col-12 col-lg-7 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
+          <img src="../simple_landing_page/images/1690722449753blob.jpg" alt="" class="img-fluid">
+        </div>
+      </div>  
+      <div class="row">
+        <div class="col">
+          <%= link_to "Request a Ride", new_email_request_path(query: 'instruction'), :class => "btn btn-primary" %>
+        </div>
+      </div>
+    </div>     
+    <div class="container-fluid" style="background-color:#f7f8fa;">  
+      <div class="container">
+        <div class="row m-4 ">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item lead pb-3" id='how-to-schedule' style="background-color:#f7f8fa;">              
+                <d1 class="row">
+                  <dt class="col-sm-4 ps-4 pt-2">Scheduling a ride</dt>
+                    <dd class="col-sm-8 pt-2">
+                      <p>The flight schedule at Eagleville Soaring Club is primarily focused on instructional flights
+                      with our members. Due to this, we can't always guarantee that the specific time you are requesting for a 
+                      ride is available. Glider clubs thrive on flexibility and patience!</p>
+                      <p>Please include as much information about your availability in your email request using the 'Request a Ride' button. 
+                      We will contact you as soon as possible with potential dates and times.</p>
+                    </dd>
+                    <dt class="col-sm-4 ps-4 pt-2">What to expect when you arrive</dt>
+                    <dd class="col-sm-8 pt-2">
+                      <p>When you arrive at Eagleville Soaring on the day of your scheduled ride, please park in the visitors
+                      area near the entrance. Our members may be spread out across the field, in the hangar, or in the office. We 
+                      are usually easy to spot. If you have to look for us, please stay on the "safe" side of the runway cones nearer the 
+                      road. <strong>The runway at Eagleville Soaring is always active!</strong></p>
+                      <p>After any required paperwork or waivers are signed, one of our members will escort you and your family members down to the flight line, usually by golf cart.
+                      Here you will meet your pilot and go through a basic explanation of our safety protocols and flight expectations. </p>
+                      <p>Once all that is out of the way, you and your pilot will get strapped into one of our Schleicher ASK-21 gliders and 
+                      prepare for takeoff</p> 
+                      
+                    </dd>
+                    <dt class="col-sm-4 ps-4 pt-2">What to expect during your flight</dt>
+                    <dd class="col-sm-8 pt-2">
+                      <p>Every flight begins with an "aerotow" up to altitude. Our line crew will secure the glider to the Piper Pawnee 
+                      tow plane with a long rope and the tow plane will pull the rope tight. The tow pilot, glider pilot, and ground crew 
+                      will all exchange hand signals to signal that they are ready for takeoff. The tow plane will apply power and accelerate until first the 
+                      glider, and then the tow plane smoothly lift off the runway.</p>
+                      <p>During the aerotow, the glider pilot will be working to stay directly behind the tow plane. Once at altitude, usually around 3,000 feet above the ground
+                      the glider pilot may ask you to pull the release handle and disconnect the tow rope from the glider. Now you are gliding!</p> 
+                      <p>The length of a glider flight is dependent on many factors, including weather, pilot ability, and how busy the schedule is.
+                      On many days, warm rising air from the ground creates enough upward momentum that a glider can slow down and turn in the rising air. Using these
+                      'thermals' we are able to gain altitude even though the gliders don't have engines. When this happens, you aren't just gliding, now you are soaring!</p>
+
+                    </dd>
+                    <dt class="col-sm-4 ps-4 pt-2">After the flight</dt>
+                    <dd class="col-sm-8 pt-2">
+                      <p>Once the flight is over and the glider has stopped, you and your family are welcome to stay and
+                      watch the glider operations at Eagleville Soaring. Don't be surprised if your first flight turns into a 
+                      desire to join our club. Many of our members began the same way.</p>
+                      <p>Payment for a Red Tail Hawk ride can be made via check or cash at the office on the field, or via credit card
+                      using the QR Code in the office or on this website.</p> 
+                      <!-- Include Stripe Buy Button for RTH flight -->
+                      <script async src="https://js.stripe.com/v3/buy-button.js"?></script>
+
+                      <stripe-buy-button buy-button-id="buy_btn_1OBmFcHnDxnfrk7nYdFOldOu" publishable-key="pk_test_ClEPfPFOv5KBVc5kdlh1NbmV"></stripe-buy-button>
+
+                      
+                    </dd>
+                  </d1> 
+              </ul>     
+              
             </div>
         </div>
       </div>
     </div>    
-  </section>
-  <footer class="border-top">
-    <p class="text-center text-muted pt-4">Copyright © 2023<a href="https://Eaglevillesoaring.com" class="px-1">Eagleville Soaring Club.</a>All rights reserved.</p>
-  </footer>
-  <!-- Modal for Contact - us Button -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLabel">Contact Us</h4>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="Name">Name</label>
-              <input type="text" class="form-control" id="Name" placeholder="Name">
-            </div>
-            <div class="form-group">
-              <label for="Email">Email</label>
-              <input type="email" class="form-control" id="Email-1" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <label for="Message">Message</label>
-              <textarea class="form-control" id="Message" placeholder="Enter your Message"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success">Submit</button>
-        </div>
       </div>
     </div>
-  </div>
-  <!-- Modal for Login Button -->
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="loginModalLabel">Login</h4>
-        </div>
-        <div class="modal-body">
-          <%= form_for(:session, url: login_path) do |f| %>
+    
+    <section class="contact-details" id="contact-details-section">
+      <div class="container">
+        <div class="row text-center text-md-left">
+          <div class="col-12 col-md-6 col-lg-4 grid-margin">
+            <img src="../simple_landing_page/images/Eagleville_Logo_Color.png" width="100" alt="" class="pb-2">
 
-            <%= f.label :email %>
-            <%= f.email_field :email, class: 'form-control' %>
-      
-            <%= f.label :password %>
-            <%= link_to "(forgot password)", new_password_reset_path %>
-            <%= f.password_field :password, class: 'form-control' %>
-      
-            <%= f.label :remember_me, class: "checkbox inline" do %>
-              <%= f.check_box :remember_me %>
-                <span>Remember me on this computer</span>
-              <% end %><br>
-              
-            <div class="modal-footer">  
-              <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-              <%= f.submit "Log in", class: "btn btn-primary" %>
+            <div class="pt-2">
+                <a href="<%= new_email_request_path %>" class="text-muted m-0">clubadmin@eaglevillesoaring.com</a><br>
+                <a href="tel:+8003066690" class="text-muted m-0">800-306-6690</a>
+              </div>          
+          </div>
+          <div class="col-12 col-md-6 col-lg-4 grid-marg">
+              <h5 class="pb-2">Our address</h5>
+              <p class="text-muted">4689 Highway 41A<br>Eagleville, Tennessee 37060</p>
+              <div class="d-flex justify-content-center justify-content-md-start">
+                <a href="https://www.facebook.com/EaglevilleSC"><span class="mdi mdi-facebook"></span></a>
+                <!-- <a href="#"><span class="mdi mdi-twitter"></span></a>
+                <a href="#"><span class="mdi mdi-instagram"></span></a>
+                <a href="#"><span class="mdi mdi-linkedin"></span></a> -->
+              </div>
+          </div>
+        </div>
+      </div>    
+    </section>
+    <footer class="border-top">
+      <p class="text-center text-muted pt-4">Copyright © 2023<a href="https://Eaglevillesoaring.com" class="px-1">Eagleville Soaring Club.</a>All rights reserved.</p>
+    </footer>
+    <!-- Modal for Login Button -->
+      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="loginModalLabel">Login</h4>
             </div>
-          <% end %>
+            <div class="modal-body">
+              <%= form_for(:session, url: login_path) do |f| %>
+
+                <%= f.label :email %>
+                <%= f.email_field :email, class: 'form-control' %>
+          
+                <%= f.label :password %>
+                <%= link_to "(forgot password)", new_password_reset_path %>
+                <%= f.password_field :password, class: 'form-control' %>
+          
+                <%= f.label :remember_me, class: "checkbox inline" do %>
+                  <%= f.check_box :remember_me %>
+                    <span>Remember me on this computer</span>
+                  <% end %><br>
+                  
+                <div class="modal-footer">  
+                  <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                  <%= f.submit "Log in", class: "btn btn-primary" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    <!-- Modal for Contact - us Button -->
+      <div class="modal fade" id="RideRequestModal" tabindex="-1" role="dialog" aria-labelledby="RideRequestModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLabel">Request a Ride</h4>
+            </div>
+            <div class="modal-body">
+              <%= form_with model: @email_request do |f| %>
+
+                <%= f.hidden_field :date, value: Date.today %>
+                <%= f.hidden_field :ride, value: true %>
+
+                <%= f.label :email %>
+                <%= f.email_field :email, class: 'form-control' %>
+          
+                <%= f.label :subject %>
+                <%= f.text_field :subject, class: 'form-control' %>
+
+                <%= f.label :body %>
+                <%= f.text_area :body, rows: 3, width: 50, class: "input-group-text form control" %>
+
+                <div class="row ms-1 my-3">
+                <%= recaptcha_tags %>
+                </div>
+
+                <div class="modal-footer">  
+                  <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                  <%= f.submit "Send Ride Request", class: "btn btn-primary" %>
+                </div>
+              <% end %>
+            </div>
+        </div>
+      </div>
   </div>
-</div> 
-</div>
+</div>  
 <script src="../simple_landing_page/vendors/jquery/jquery.min.js"></script>
 <script src="../simple_landing_page/vendors/bootstrap/bootstrap.min.js"></script>
 <script src="../simple_landing_page/vendors/owl-carousel/js/owl.carousel.min.js"></script>

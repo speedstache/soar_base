@@ -30,7 +30,8 @@
                   and wondered what that must feel like, now you can know!</p>
                 <p class="pb-2 font-weight-medium text-muted">Eagleville Soaring club offers glider rides and pilot lessons at Puckett Gliderport, our home airfield just a half-hour drive from Nashville.</p>
               </div>
-              <button class="btn btn-info">Contact Us</button>
+              <%= link_to "Contact Us", new_email_request_path, :class => "btn btn-primary" %>
+
             </div>
           </div>
         </div>
@@ -195,7 +196,8 @@
                   </p>
                   <p class="pb-2 font-weight-medium text-muted">To learn more about flight training at Eagleville Soaring Club, contact us via this form.</p>
                 </div>
-                <button class="btn btn-info">Learn about flight training</button>
+                <%= link_to "Learn about flight training", pages_instruction_path, :target => "_self", :class => "btn btn-info" %>
+
               </div>
             </div>
             <div class="row align-items-center" id="become-a-member">
@@ -207,7 +209,8 @@
                   </p>
                   <p class="font-weight-medium text-muted">We have <%= MembershipUser.where(active_flag: true).count %> active members in our club across a wide range of experience and age groups. You could be the next!</p>
                 </div> 
-                <button class="btn btn-info">Inquire about membership</button>
+                <%= link_to "Inquire about membership", pages_membership_path, :target => "_self", :class => "btn btn-info" %>
+
       
               </div>
               <div class="col-12 col-lg-5 p-0 img-digital grid-margin" data-aos="fade-left">
@@ -225,8 +228,8 @@
               <img src="../simple_landing_page/images/Eagleville_Logo_Color.png" width="100" alt="" class="pb-2">
 
               <div class="pt-2">
-                <p class="text-muted m-0">clubadmin@eaglevillesoaring.com</p>
-                <p class="text-muted m-0">800-306-6690</p>
+                <a href="<%= new_email_request_path %>" class="text-muted m-0">clubadmin@eaglevillesoaring.com</a><br>
+                <a href="tel:+8003066690" class="text-muted m-0">800-306-6690</a>
               </div>         
             </div>
             <div class="col-12 col-md-6 col-lg-4 grid-marg">

@@ -1,31 +1,34 @@
 <%= form_with(model: @field_status_update, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
   <%= f.hidden_field :username, value: current_user.username %>
   <div class="form-group row p-2" >
-      <%= f.label :Are_we_flying?, class: "col-4 col-form-label" %>
-    <div class="col">
+      <%= f.label :Are_we_flying?, class: "col col-md-4 col-form-label" %>
+    <div class="col col-12 col-md-8">
       <%= f.check_box :ops_status, class: "form-check-label" %>
     </div>
   </div>
   <div class="form-group row p-2" >
-      <%= f.label :date, class: "col-4 col-form-label" %>
-    <div class="col">
+      <%= f.label :date, class: "col col-md-4 col-form-label" %>
+    <div class="col col-12 col-md-8">
       <%= f.date_field :date, class: "input-group-text form-control" %>
     </div>
   </div>	
   <div class="form-group row p-2" >
-      <%= f.label :title, class: "col-4 col-form-label" %>
-    <div class="col">
+      <%= f.label :title, class: "col col-md-4 col-form-label" %>
+    <div class="col col-12 col-md-8">
       <%= f.text_field :title, class: "input-group-text form-control" %>
     </div>
   </div>
   <div class="form-group row p-2" >
-      <%= f.label :notes, class: "col-4 col-form-label" %>
-    <div class="col">
-      <%= f.text_area :notes, rows: 3, class: "input-group-text form control" %>
+      <%= f.label :notes, class: "col col-md-4 col-form-label" %>
+    <div class="col col-12 col-md-8">
+      <%= f.text_area :notes, rows: 3, class: "form-control" %>
     </div>
   </div>
-  <%= link_to "Close", field_status_updates_path, :class => "btn btn-secondary" %>
-  <%= recaptcha_tags %>
-
-  <%= f.submit class:"btn btn-primary" %>
+  <div class="row ms-2 text-start justify-content-start">
+    <div class="col my-2">
+      <%= link_to "Close", field_status_updates_path, :class => "btn btn-secondary" %>
+      <%= f.submit class:"btn btn-primary" %>
+    </div>  
+      <%= recaptcha_tags %>
+    </div>  
 <% end %>

@@ -1,29 +1,41 @@
 <%= form_with(model: @email_request, class: "shadow p-3 mb-3 bg-info rounded", local: true, data:{ turbo: false} ) do |f| %>
   <%= f.hidden_field :date, value: Date.today %>
-    <%= f.hidden_field :ride, value: true %>
-
+    <%= hidden_field_tag :previous_request, request.referer %>
+    <% if params[:query] == 'ride' %>
+      <%= f.hidden_field :ride, value: true %>
+    <% elsif params[:query] == 'instruction' %>
+      <%= f.hidden_field :instruction, value: true %>
+    <% elsif params[:query] == 'membership' %>
+      <%= f.hidden_field :membership, value: true %>
+    <% else %>
+      <%= f.hidden_field :general, value: true %>
+    <% end %>  
     <div class="form-group row p-2" >
-      <%= f.label :email, class: "col-4 col-form-label" %>
-      <div class="col">
-        <%= f.email_field :email, class: 'form-control' %>
+      <div class="col col-md-4 col-form-label">
+      <%= f.label :email, class: "form-label" %>
+      </div>
+      <div class="col col-12 col-md-8">
+        <%= f.email_field :email, autocomplete: 'disabled', class: 'form-control' %>
       </div>
     </div>    
     <div class="form-group row p-2" >
-      <%= f.label :subject, class: "col-4 col-form-label" %>
-      <div class="col">
-        <%= f.text_field :subject, class: 'form-control' %>
+      <%= f.label :subject, class: "col col-md-4 col-form-label" %>
+      <div class="col col-12 col-md-8">
+        <%= f.text_field :subject, autocomplete: 'disabled', class: 'form-control' %>
       </div>
     </div>
     <div class="form-group row p-2" >
-      <%= f.label :body, class: "col-4 col-form-label" %>
-      <div class="col-8">
-        <%= f.text_area :body, rows: 6, class: "input-group-text form control" %>
+      <%= f.label :body, class: "col col-md-4 col-form-label" %>
+      <div class="col col-12 col-md-8">
+        <%= f.text_area :body, rows: 6, class: "form-control text-start" %>
       </div>
     </div>
-    <div class="row ms-1 my-3 text-center justify-content-center">
+    <div class="row ms-2 text-start justify-content-start">
+    <div class="col my-2">
+
+    <%= link_to "Close", pages_flights_path, target: '_self', :class => "btn btn-secondary" %>
+    <%= f.submit "Send Email to Eagleville Soaring Club", class:"btn btn-primary" %>
+    </div>
       <%= recaptcha_tags %>
     </div>
-    <%= link_to "Close", pages_flights_path, target: '_self', :class => "btn btn-secondary" %>
-
-  <%= f.submit class:"btn btn-primary" %>
 <% end %>

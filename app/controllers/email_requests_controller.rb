@@ -18,7 +18,7 @@ def create
     if verify_recaptcha(model: @email_request) && @email_request.save
 
       flash[:success] = "Thank you for your note. We will respond as soon as possible."
-      format.html { redirect_to pages_flights_path }
+      format.html { redirect_to params[:previous_request] }
       format.json { render :show, status: :created, location: @email_request }
     else
       flash.now[:warning] = "no email request sent."
@@ -62,7 +62,7 @@ private
 
     # Only allow a list of trusted parameters through.
     def email_request_params
-      params.require(:email_request).permit(:date, :email, :subject, :body, :ride, :membership, :general, :instruction)
+      params.require(:email_request).permit(:date, :email, :subject, :body, :ride, :membership, :general, :instruction, :previous_request, :query)
     end
 
   
