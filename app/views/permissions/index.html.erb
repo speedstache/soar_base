@@ -25,28 +25,26 @@
 							<tr>
 								<th>Username</th>
 								<th>Email</th>
-								<th>Instructor</th>
-								<th>Tow Pilot</th>
-								<th>Commercial</th>
+								<th>CFIG</th>
+								<th>Tow</th>
+								<th>Comm.</th>
 								<th>User Admin</th>
 								<th>Club Admin</th>
 								<th>Site Admin</th>
-								<th>Global Admin</th>
 								<th>Modify	</th>
 							</tr>
 						</thead>
 						<tbody>
 							<% @permissions.each do |permission| %>
 								<tr>
-									<td><%= permission.user.username %></td>
-									<td><%= permission.user.email %></td>
-									<td><%= permission.instructor.humanize %></td>
-									<td><%= permission.towpilot.humanize %></td>
-									<td><%= permission.commercial.humanize %></td>
-									<td><%= permission.user_admin.humanize %></td>
-									<td><%= permission.club_admin.humanize %></td>
-									<td><%= permission.site_admin.humanize %></td>
-									<td><%= permission.global_admin.humanize %></td>
+									<td><small><%= permission.user.username %></small></td>
+									<td><small><%= permission.user.email %></small></td>
+									<td><span class="badge badge-pill badge-<%= permission.instructor? ? 'success' : 'info' %>"><%= permission.instructor.humanize %></span></td>
+									<td><span class="badge badge-pill badge-<%= permission.towpilot? ? 'success' : 'info' %>"><%= permission.towpilot.humanize %></span></td>
+									<td><span class="badge badge-pill badge-<%= permission.commercial? ? 'success' : 'info' %>"><%= permission.commercial.humanize %></span></td>
+									<td><span class="badge badge-pill badge-<%= permission.user_admin? ? 'success' : 'info' %>"><%= permission.user_admin.humanize %></span></td>
+									<td><span class="badge badge-pill badge-<%= permission.club_admin? ? 'success' : 'info' %>"><%= permission.club_admin.humanize %></span></td>
+									<td><span class="badge badge-pill badge-<%= permission.site_admin? ? 'success' : 'info' %>"><%= permission.site_admin.humanize %></span></td>
 									<td><%= link_to 'Edit', edit_permission_path(permission), class: "btn btn-primary btn-sm"%></td>
 								</tr>
 							<% end %>
