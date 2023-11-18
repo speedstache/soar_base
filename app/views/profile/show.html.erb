@@ -21,23 +21,23 @@
                 <dt class="col-sm-4 ps-4 pt-2">Email</dt>
                   <dd class="col-sm-8 pt-2"><%= @user.email %></dd>
                 <dt class="col-sm-4 ps-4 pt-2">Phone Number</dt>
-                  <dd class="col-sm-8 pt-2"></dd>
+                  <dd class="col-sm-8 pt-2"><a href="tel:+<%= @user.profile.blank? ? '' : @user.profile.phone_number %>"><%= @user.profile.blank? ? '' : @user.profile.phone_number.insert(-8, '-').insert(-5, '-') %></a></dd>
                 <dt class="col-sm-4 ps-4 pt-2">Date of Birth</dt>
-                  <dd class="col-sm-8 pt-2"></dd>
+                  <dd class="col-sm-8 pt-2"><%= @user.profile.blank? ? '' : @user.profile.date_of_birth.strftime("%x") %></dd>
                 <dt class="col-sm-4 ps-4 pt-2">Address</dt>
-                  <dd class="col-sm-8 pt-2"></dd>
+                  <dd class="col-sm-8 pt-2"><%= @user.profile.blank? ? '' : @user.profile.street_first_line %></dd>
                 <dt class="col-sm-4 ps-4 pt-2">Address 2</dt>
-                  <dd class="col-sm-8 pt-2">&nbsp;</dd>
+                  <dd class="col-sm-8 pt-2"><%= @user.profile.blank? ? '' : @user.profile.street_second_line %></dd>
                 <dt class="col-sm-4 ps-4 pt-2">City</dt>
-                  <dd class="col-sm-8 pt-2"></dd>
+                  <dd class="col-sm-8 pt-2"><%= @user.profile.blank? ? '' : @user.profile.city %></dd>
                 <dt class="col-sm-4 ps-4 pt-2">State</dt>
-                  <dd class="col-sm-8 pt-2"></dd>
+                  <dd class="col-sm-8 pt-2"><%= @user.profile.blank? ? '' : @user.profile.state %></dd>
                 <dt class="col-sm-4 ps-4 pt-2">Zip Code</dt>
-                  <dd class="col-sm-8 pt-2"></dd>
+                  <dd class="col-sm-8 pt-2"><%= @user.profile.blank? ? '' : @user.profile.zip %></dd>
                 <dt class="col-sm-4 ps-4 pt-2">Emergency Contact</dt>
-                  <dd class="col-sm-8 pt-2"></dd>
+                  <dd class="col-sm-8 pt-2"><%= @user.profile.blank? ? '' : @user.profile.emergency_contact %></dd>
                 <dt class="col-sm-4 ps-4 pt-2">Emergency Phone</dt>
-                  <dd class="col-sm-8 pt-2"></dd>  
+                  <dd class="col-sm-8 pt-2"><a href="tel:+<%= @user.profile.blank? ? '' : @user.profile.emergency_phone %>"><%= @user.profile.blank? ? '' : @user.profile.emergency_phone.insert(-8, '-').insert(-5, '-') %></a></dd>
               
             </d1> 
           </ul>  

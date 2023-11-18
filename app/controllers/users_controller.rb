@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 
       # create blank permission record, defaults set to false
       @permission = @user.create_permission
+      @profile = @user.create_profile
 
       if params[:user][:activate_now] == "1"
         UserMailer.account_activation(@user).deliver_now
@@ -92,7 +93,7 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:username, :email, :password,
-                                   :password_confirmation, :previous_request, :activate_now)
+                                   :password_confirmation, :previous_request, :activate_now, profile_attributes: [:phone_number, :date_of_birth, :street_first_line, :street_second_line, :city, :state, :zip, :emergency_contact, :emergency_phone])
     end
 
 
