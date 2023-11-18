@@ -31,11 +31,10 @@
       </div>
     </div>
     <div class="row ms-2 text-start justify-content-start">
-    <div class="col my-2">
+      <div class="col my-2">
+        <%= recaptcha_tags class: 'mb-2'%>
 
-    <%= link_to "Close", pages_flights_path, target: '_self', :class => "btn btn-secondary" %>
-    <%= f.submit "Send Email to Eagleville Soaring Club", class:"btn btn-primary" %>
-    </div>
-      <%= recaptcha_tags %>
+        <%= f.submit "Send Email to Eagleville Soaring Club", class:"btn btn-primary" %>
+      </div>
     </div>
 <% end %>
