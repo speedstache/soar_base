@@ -5,20 +5,20 @@
         <div class="col-12 col-lg-5 flex-item grid-margin grid-margin-lg-0" data-aos="fade-right">
           <h3 class="m-0">Becoming a Member of the Eagleville Soaring Club</h3>
           <div class="col-lg-9 col-xl-8 p-0">
-            <p class="py-4 m-0 text-muted">Eagleville Soaring club offers non-members and glider novices the chance to fly in a glider
-            and experience the wonder of non-powered flight. Our 'Red Tail Hawk' flights are a great gift for someone curious
-            about flying, or perfect for anyone who wants to see the Middle Tennessee countryside from a different vantage point</p>
-            <p class="font-weight-medium text-muted">Rides are dependent on weather, our flying schedule, and the availability of a pilot, but
-            most weekends allow room for guests to fly with us. </p>
+            <p class="py-4 m-0 text-muted">Eagleville Soaring club members receive several benefits by joining our club, from free instruction and glider rental
+            to membership in the Soaring Society of America. We also consider membership to be a privilege that provides cameraderie and lifelong 
+            friendships based around a shared love of soaring. </p>
+            <p class="font-weight-medium text-muted">We currently have <%= MembershipUser.where(active_flag: true).count %> active members and growing. If you are interested 
+              in becoming our next member, send us a note using the form below. </p>
           </div>    
         </div>
         <div class="col-12 col-lg-7 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
-          <img src="../simple_landing_page/images/1690722449753blob.jpg" alt="" class="img-fluid">
+          <img src="../simple_landing_page/images/ESC Member Photo_smaller.jpg" alt="" class="img-fluid">
         </div>
       </div>  
       <div class="row">
         <div class="col">
-          <%= link_to "Request a Ride", new_email_request_path(query: 'membership'), :class => "btn btn-primary" %>
+          <%= link_to "Become a Member", new_email_request_path(query: 'membership'), :class => "btn btn-primary" %>
         </div>
       </div>
     </div>     
@@ -28,50 +28,45 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item lead pb-3" id='how-to-schedule' style="background-color:#f7f8fa;">              
                 <d1 class="row">
-                  <dt class="col-sm-4 ps-4 pt-2">Scheduling a ride</dt>
+                  <dt class="col-sm-4 ps-4 pt-2">Becoming a Member</dt>
                     <dd class="col-sm-8 pt-2">
-                      <p>The flight schedule at Eagleville Soaring Club is primarily focused on instructional flights
-                      with our members. Due to this, we can't always guarantee that the specific time you are requesting for a 
-                      ride is available. Glider clubs thrive on flexibility and patience!</p>
-                      <p>Please include as much information about your availability in your email request using the 'Request a Ride' button. 
-                      We will contact you as soon as possible with potential dates and times.</p>
+                      <p>In addition to sending us a note as an introduction, we encourage potential members to come visit us on a flying weekend 
+                      and see what the daily operations at Eagleville Soaring Club are like. Glider clubs are highly social groups, since nothing
+                      happens on the field without the help of our members to move gliders, run wings, drive golf carts, and talk about flying!</p>
+                      <p>We love to see potential members at the field so we get to know you before you join. </p>
                     </dd>
-                    <dt class="col-sm-4 ps-4 pt-2">What to expect when you arrive</dt>
+                    <dt class="col-sm-4 ps-4 pt-2">Different types of memberships</dt>
                     <dd class="col-sm-8 pt-2">
-                      <p>When you arrive at Eagleville Soaring on the day of your scheduled ride, please park in the visitors
-                      area near the entrance. Our members may be spread out across the field, in the hangar, or in the office. We 
-                      are usually easy to spot. If you have to look for us, please stay on the "safe" side of the runway cones nearer the 
-                      road. <strong>The runway at Eagleville Soaring is always active!</strong></p>
-                      <p>After any required paperwork or waivers are signed, one of our members will escort you and your family members down to the flight line, usually by golf cart.
-                      Here you will meet your pilot and go through a basic explanation of our safety protocols and flight expectations. </p>
-                      <p>Once all that is out of the way, you and your pilot will get strapped into one of our Schleicher ASK-21 gliders and 
-                      prepare for takeoff</p> 
+                      <p>Pilots come in different ages and so do our memberships. Eagleville Soaring Club offers three different types of memberships. All of these membership 
+                        types have the same privileges within our club, but are targeted towards different demographics.</p>
+                      <p><span class="font-weight-medium"><%= Membership.find(1).membership_type %> Memberships - </span> Dues are $<%= Membership.find(1).renewal_price %> and renew every <%= Membership.find(1).renewal_period %> days (annually).</p>
+                      <p><%= Membership.find(1).membership_type %> memberships are for most of our members, making up <%= MembershipUser.where(active_flag: true, membership_id: 1).count %> of our <%= MembershipUser.where(active_flag: true).count %> members. </p>
+                      <p><span class="font-weight-medium"><%= Membership.find(3).membership_type %> Memberships - </span> Dues are $<%= Membership.find(3).renewal_price %> and renew every <%= Membership.find(3).renewal_period %> days (annually).</p>
+                      <p><%= Membership.find(3).membership_type %> memberships are targeted towards members age 55 and up. A significant portion of these members are returning to flying after years focused on work and family. They bring with them
+                      a lot of life experience and the stories that come with it. </p>
+                      <p><span class="font-weight-medium"><%= Membership.find(2).membership_type %> Memberships - </span> Dues are $<%= Membership.find(2).renewal_price %> and renew every <%= Membership.find(2).renewal_period %> days (annually).</p>
+                      <p><%= Membership.find(2).membership_type %> memberships are targeted towards students. Typically high school age students, but we frequently see college students as members as well as sometimes students still in middle school!
+                      Some of our most enthusiastic student pilots (and student members) are our youngest members. </p>
+                      
                       
                     </dd>
-                    <dt class="col-sm-4 ps-4 pt-2">What to expect during your flight</dt>
+                    <dt class="col-sm-4 ps-4 pt-2">Soaring Society of America</dt>
                     <dd class="col-sm-8 pt-2">
-                      <p>Every flight begins with an "aerotow" up to altitude. Our line crew will secure the glider to the Piper Pawnee 
-                      tow plane with a long rope and the tow plane will pull the rope tight. The tow pilot, glider pilot, and ground crew 
-                      will all exchange hand signals to signal that they are ready for takeoff. The tow plane will apply power and accelerate until first the 
-                      glider, and then the tow plane smoothly lift off the runway.</p>
-                      <p>During the aerotow, the glider pilot will be working to stay directly behind the tow plane. Once at altitude, usually around 3,000 feet above the ground
-                      the glider pilot may ask you to pull the release handle and disconnect the tow rope from the glider. Now you are gliding!</p> 
-                      <p>The length of a glider flight is dependent on many factors, including weather, pilot ability, and how busy the schedule is.
-                      On many days, warm rising air from the ground creates enough upward momentum that a glider can slow down and turn in the rising air. Using these
-                      'thermals' we are able to gain altitude even though the gliders don't have engines. When this happens, you aren't just gliding, now you are soaring!</p>
-
+                      <p>Membership in the Eagleville Soaring Club also includes membership in the Soaring Society of America. The SSA was formed in 1932 to foster and promote all phases of soaring, both nationally and internationally. 
+                      The SSA publishes a monthly magazing, Soaring, that each Eagleville members receives at their mailing address.</p>
+                      <p>Several of our members have been recognized in Soaring magazine either as participants in regional soaring contests, or in recognition of
+                      flying achievements such as completion of a Bronze, Silver, or Gold badge flight. </p> 
+                      <p>The SSA also sponsors several scholarships each year assisting pilots in achieving their goals of becoming flight instructors.</p>
+                      <p class="font-weight-medium">Read more about all of the things the Soaring Society of America does to promote soaring at their <a href="https://www.ssa.org/" class="btn btn-info btn-sm">website</a></p>
                     </dd>
-                    <dt class="col-sm-4 ps-4 pt-2">After the flight</dt>
+                    <dt class="col-sm-4 ps-4 pt-2">Membership privileges</dt>
                     <dd class="col-sm-8 pt-2">
-                      <p>Once the flight is over and the glider has stopped, you and your family are welcome to stay and
-                      watch the glider operations at Eagleville Soaring. Don't be surprised if your first flight turns into a 
-                      desire to join our club. Many of our members began the same way.</p>
-                      <p>Payment for a Red Tail Hawk ride can be made via check or cash at the office on the field, or via credit card
-                      using the QR Code in the office or on this website.</p> 
-                      <!-- Include Stripe Buy Button for RTH flight -->
-                      <script async src="https://js.stripe.com/v3/buy-button.js"?></script>
-
-                      <stripe-buy-button buy-button-id="buy_btn_1OBmFcHnDxnfrk7nYdFOldOu" publishable-key="pk_test_ClEPfPFOv5KBVc5kdlh1NbmV"></stripe-buy-button>
+                      <p>Eagleville Soaring Club members with active memberships can reserve time in any of our club gliders in which they possess adequate privileges. Pre-solo student pilot members (Full, Senior, and Student members) 
+                      are granted reservation privileges in both of our ASK-21 two place gliders. Student and certificated pilots that have passed solo sign-off can also be granted
+                      privileges in our single place ASK-23 glider.  </p>
+                      <p>Members are also able to take advantage of our experienced group of glider instructors for training.</p> 
+                      <p>Both glider training and usage of the club glider fleet are provided to members at no additional charge. Most members only pay their dues and tow fees, calculated based on how high they towed.
+                      Some members who own their own gliders also pay storage fees for keeping their glider in the club hangar through the year. </p> 
 
                       
                     </dd>
