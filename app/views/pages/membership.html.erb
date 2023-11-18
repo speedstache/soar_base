@@ -39,13 +39,13 @@
                     <dd class="col-sm-8 pt-2">
                       <p>Pilots come in different ages and so do our memberships. Eagleville Soaring Club offers three different types of memberships. All of these membership 
                         types have the same privileges within our club, but are targeted towards different demographics.</p>
-                      <p><span class="font-weight-medium"><%= Membership.find(1).membership_type %> Memberships - </span> Dues are $<%= Membership.find(1).renewal_price %> and renew every <%= Membership.find(1).renewal_period %> days (annually).</p>
-                      <p><%= Membership.find(1).membership_type %> memberships are for most of our members, making up <%= MembershipUser.where(active_flag: true, membership_id: 1).count %> of our <%= MembershipUser.where(active_flag: true).count %> members. </p>
-                      <p><span class="font-weight-medium"><%= Membership.find(3).membership_type %> Memberships - </span> Dues are $<%= Membership.find(3).renewal_price %> and renew every <%= Membership.find(3).renewal_period %> days (annually).</p>
-                      <p><%= Membership.find(3).membership_type %> memberships are targeted towards members age 55 and up. A significant portion of these members are returning to flying after years focused on work and family. They bring with them
+                      <p><span class="font-weight-medium"><%= @full.membership_type %> Memberships - </span> Dues are $<%= @full.renewal_price %> and renew every <%= @full.renewal_period %> days (annually).</p>
+                      <p><%= @full.membership_type %> memberships make up the majority of our members, making up <%= MembershipUser.where(active_flag: true, membership_id: @full.id).count %> of our <%= MembershipUser.where(active_flag: true).count %> members. </p>
+                      <p><span class="font-weight-medium"><%= @senior.membership_type %> Memberships - </span> Dues are $<%= @senior.renewal_price %> and renew every <%= @senior.renewal_period %> days (annually).</p>
+                      <p><%= @senior.membership_type %> memberships are targeted towards members age 55 and up. A significant portion of these members are returning to flying after years focused on work and family. They bring with them
                       a lot of life experience and the stories that come with it. </p>
-                      <p><span class="font-weight-medium"><%= Membership.find(2).membership_type %> Memberships - </span> Dues are $<%= Membership.find(2).renewal_price %> and renew every <%= Membership.find(2).renewal_period %> days (annually).</p>
-                      <p><%= Membership.find(2).membership_type %> memberships are targeted towards students. Typically high school age students, but we frequently see college students as members as well as sometimes students still in middle school!
+                      <p><span class="font-weight-medium"><%= @student.membership_type %> Memberships - </span> Dues are $<%= @student.renewal_price %> and renew every <%= @student.renewal_period %> days (annually).</p>
+                      <p><%= @student.membership_type %> memberships are targeted towards students. Typically high school age students, but we frequently see college students as members as well as sometimes students still in middle school!
                       Some of our most enthusiastic student pilots (and student members) are our youngest members. </p>
                       
                       

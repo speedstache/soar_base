@@ -14,6 +14,11 @@ class PagesController < ApplicationController
   end
 
   def membership
+
+    @full = Membership.find_by(membership_type: 'Full')
+    @senior = Membership.find_by(membership_type: 'Senior')
+    @student = Membership.find_by(membership_type: 'Student')
+
   
   end
 
