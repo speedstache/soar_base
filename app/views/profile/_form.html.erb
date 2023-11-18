@@ -1,4 +1,4 @@
-<%= form_with(model: current_user, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+<%= form_with(model: @user, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
   <%= hidden_field_tag :previous_request, request.referer %>
 
   <div class="form-group row m-3">
@@ -13,7 +13,7 @@
       <%= f.text_field :email, class: "input-group-text form-control" %>
     </div>
   </div>
-  <%= f.fields_for :profile, current_user.profile do |f| %>
+  <%= f.fields_for :profile, @user.profile do |f| %>
     <div class="form-group row m-3" >
       <%= f.label :phone_number, class: "col-4 col-form-label" %>
       <div class="col">
@@ -69,6 +69,6 @@
   </div>
   </div>
   <% end %>
-  <%= link_to "Close", profile_path(current_user),  class: "btn btn-light" %>
+  <%= link_to "Close", profile_path(@user),  class: "btn btn-light" %>
   <%= f.submit class:"btn btn-primary" %>
 <% end %>
