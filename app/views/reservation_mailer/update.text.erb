@@ -1,0 +1,19 @@
+Hi <%= @reservation.user.username %>,
+
+Hello <%= @reservation.user.username %>,
+
+Below are the updated details of your Eagleville Flight Reservation:
+
+Name: <%= @reservation.user.username %>
+Phone Number: <%= @reservation.user.profile.phone_number %>
+Email: <%= @reservation.user.email %>
+
+Aircraft Requested: <%= @reservation.aircraft.name %> - <%= @reservation.aircraft.short_name %>
+Instructor Needed: <%= @reservation.instructor_flag.humanize %>
+Red Tail Hawk Ride: <%= @reservation.rth_flag.humanize %>
+Date and Time: <%= @reservation.reservation_date %> at <%= @reservation.reservation_time %>
+
+Click here to log in and make additional changes to this reservation: <%= link_to "Login", reservations_url %>
+
+Regards,
+Eagleville Soaring Club

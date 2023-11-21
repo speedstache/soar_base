@@ -37,7 +37,7 @@ class AircraftUsersController < ApplicationController
     @aircraft_user = AircraftUser.new(aircraft_user_params)
    
     if @aircraft_user.save
-      flash[:notice] = "Aircraft privileges granted to user."
+      flash[:success] = "Aircraft privileges granted to user."
       redirect_back fallback_location: aircraft_users_path
     else
       render :new, status: :unprocessable_entity

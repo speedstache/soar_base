@@ -10,7 +10,7 @@ class CheckoutsController < ApplicationController
   def update
 
     if @reservation.update(reservation_params)
-      flash[:notice] = "Pending payment was successfully logged."
+      flash[:success] = "Pending payment was successfully logged."
       redirect_to checkout_edit_success_path(@reservation)
     else
       render :new, status: :unprocessable_entity

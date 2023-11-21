@@ -22,7 +22,8 @@ class DaysController < ApplicationController
     @day = Day.find(params[:id])
     respond_to do |format|
       if @day.update(day_params)
-        format.html { redirect_to days_path, notice: "Day was successfully updated." }
+        flash[:success] = "day was successfully updated."
+        format.html { redirect_to days_path }
         format.json { render :show, status: :ok, location: @day }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -34,7 +35,7 @@ class DaysController < ApplicationController
   def create
     @day = Day.new(day_params)
     if @day.save
-      flash[:notice] = "day was successfully created."
+      flash[:success] = "day was successfully created."
       redirect_to days_path
     else
       render :new, status: :unprocessable_entity

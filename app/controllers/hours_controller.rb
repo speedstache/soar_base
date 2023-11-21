@@ -17,7 +17,7 @@ class HoursController < ApplicationController
   def update
     @hour = Hour.find(params[:id])
       if @hour.update(hour_params)
-        flash[:notice] = "Hour was updated successfully"
+        flash[:success] = "Hour was updated successfully"
           redirect_to hours_path
       else
         render 'edit', status: :unprocessable_entity

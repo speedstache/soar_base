@@ -26,7 +26,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.new(membership_params)
 
     if @membership.save
-      flash[:notice] = "New membership was successfully created."
+      flash[:success] = "New membership was successfully created."
       redirect_to memberships_path
     else
       render :new, status: :unprocessable_entity

@@ -1,0 +1,21 @@
+<h1>Eagleville Soaring Club</h1>
+
+<p>Hello <%= @reservation.user.username %>,</p>
+
+<p>Your Eagleville Flight Reservation is tomorrow:</p>
+<ul>
+  <li>Name: <%= @reservation.user.username %></li>
+  <li>Phone Number: <%= @reservation.user.profile.phone_number %></li>
+  <ul>Email: <%= @reservation.user.email %></li>
+ </ul> 
+<p></p>
+<ul>
+  <li>Aircraft Requested: <%= @reservation.aircraft.name %> - <%= @reservation.aircraft.short_name %></li>
+  <li>Instructor Needed: <%= @reservation.instructor_flag.humanize %></li>
+  <li>Red Tail Hawk Ride: <%= @reservation.rth_flag.humanize %></li>
+  <li>Date and Time: <%= @reservation.reservation_date %> at <%= @reservation.reservation_time %></li>
+</ul>
+<p>Click here to log in and make changes to this reservation: <%= link_to "Login", reservations_url %></p>  
+
+Regards,
+Eagleville Soaring Club

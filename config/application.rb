@@ -21,5 +21,8 @@ module SoarBase
     # config.eager_load_paths << Rails.root.join("extras")
     config.action_mailer.default_url_options = { host: "eaglevillesoaring.com" }
 
+    # Use sidekiq for active jobs
+    config.active_job.queue_adapter = :sidekiq
+
   end
 end

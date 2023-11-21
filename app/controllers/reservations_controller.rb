@@ -120,7 +120,7 @@ class ReservationsController < ApplicationController
 
   def tow_create
     
-    @avail_days = Day.where(day: Date.today .. 60.days.from_now)
+    @avail_days = Day.where(day: 10.days.ago .. 60.days.from_now)
     @avail_hours = Hour.where(active_flag: 1).first
     @reservation = Reservation.new(reservation_params)
 
@@ -142,7 +142,7 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     
-    @avail_days = Day.where(day: Date.today .. 30.days.from_now, active_flag: 1).order('days.day ASC')
+    @avail_days = Day.where(day: 10.days.ago .. 30.days.from_now, active_flag: 1).order('days.day ASC')
     @avail_hours = Hour.where(active_flag: 1)
     @reservation = Reservation.new
 
@@ -155,7 +155,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/1/edit
   def edit
-    @avail_days = Day.where(day: Date.today .. 60.days.from_now)
+    @avail_days = Day.where(day: 10.days.ago .. 60.days.from_now)
     @avail_hours = Hour.where(active_flag: 1)
     @towpilots = User.where(id: Permission.where(towpilot: true))
     @commpilots = User.where(id: Permission.where(commercial: true))
@@ -168,20 +168,22 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
 
     if @reservation.save
+      ReservationMailer.confirmation(@reservation).deliver_later
       flash[:success] = "Reservation was successfully created."
       redirect_to reservations_path
     else
-      redirect_to params[:previous_request], status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /reservations/1 or /reservations/1.json
   def update
-    @avail_days = Day.where(day: Date.today .. 60.days.from_now)
+    @avail_days = Day.where(day: 10.days.ago .. 60.days.from_now)
     @avail_hours = Hour.where(active_flag: 1)
 
     respond_to do |format|
       if @reservation.update(reservation_params)
+        ReservationMailer.update(@reservation).deliver_later
         flash[:success] = "Reservation was successfully updated."
         format.html { redirect_to params[:previous_request] }
         format.json { render :show, status: :ok, location: reservation_path(@reservation) }
@@ -197,8 +199,8 @@ class ReservationsController < ApplicationController
     @reservation.destroy
 
     respond_to do |format|
+      ReservationMailer.deletion(@reservation).deliver_later
       flash[:success] = "Reservation was successfully deleted."
-
       format.html { redirect_to reservations_url }
       format.json { head :no_content }
     end
