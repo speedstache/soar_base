@@ -3,6 +3,7 @@ class MembershipUser < ApplicationRecord
   belongs_to :user
   belongs_to :membership
   validates :membership_id, presence: true
+  validates :joined_date, presence: true
   validates :renewal_date, presence: true
 
 
