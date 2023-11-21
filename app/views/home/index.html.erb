@@ -6,6 +6,13 @@
         <ul class="list-group list-group-flush ">
           <li class="list-group-item lead pb-3">Release Notes</li>
             <d1 class="row">
+            <dt class="col-sm-4 ps-4 pt-2">11/21/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Added email confirmation for New reservations, Modified reservations, deleted reservations</p>
+                  <p>Added Sidekiq support to schedule Reservation reminders to individuals for their flights the next day</p>
+                  <p>Disabled sidekiq scheduled jobs to avoid spamming testers with fake data until we launch</p>
+
+                </dd>
             <dt class="col-sm-4 ps-4 pt-2">11/17/23</dt>
                 <dd class="col-sm-8 pt-2">
                   <p>Added email form links for non-login users </p>
