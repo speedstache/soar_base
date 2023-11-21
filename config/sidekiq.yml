@@ -1,0 +1,18 @@
+# config/sidekiq.yml
+:concurrency: 3
+:timeout: 60
+:verbose: true
+:queues:
+  - critical
+  - default
+  - mailers
+  - active_storage_analysis
+  - active_storage_purge
+
+:scheduler:
+  :schedule:
+    reminder:
+      cron: "*/5 * * * *" # every day at 20:00
+      class: ReservationReminderJob
+      queue: default
+      description: "Send reminder emails to users with reservations tomorrow"

@@ -168,7 +168,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
 
     if @reservation.save
-      ReservationMailer.confirmation(@reservation).deliver_later
+      ReservationMailer.confirmation(@reservation).deliver_now
       flash[:success] = "Reservation was successfully created."
       redirect_to reservations_path
     else
@@ -183,7 +183,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.update(reservation_params)
-        ReservationMailer.update(@reservation).deliver_later
+        ReservationMailer.update(@reservation).deliver_now
         flash[:success] = "Reservation was successfully updated."
         format.html { redirect_to params[:previous_request] }
         format.json { render :show, status: :ok, location: reservation_path(@reservation) }
@@ -199,7 +199,7 @@ class ReservationsController < ApplicationController
     @reservation.destroy
 
     respond_to do |format|
-      ReservationMailer.deletion(@reservation).deliver_later
+      ReservationMailer.deletion(@reservation).deliver_now
       flash[:success] = "Reservation was successfully deleted."
       format.html { redirect_to reservations_url }
       format.json { head :no_content }
