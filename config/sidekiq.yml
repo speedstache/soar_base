@@ -12,7 +12,7 @@
 :scheduler:
   :schedule:
     reminder:
-      cron: "0 2 * * *" # every day at 02:00 UTC
+      cron: "0 19 * * *" # every day at 19:00 CST
       class: ReservationReminderJob
       queue: default
       description: "Send reminder emails to users with reservations tomorrow"
