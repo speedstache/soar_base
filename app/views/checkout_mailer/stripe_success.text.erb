@@ -1,0 +1,20 @@
+Hello <%= @reservation.user.username %>,
+
+Thank you for completing payment for reservation #<%= @reservation.id %>
+
+Name: <%= @reservation.user.username %>
+Phone Number: <%= @reservation.user.profile.phone_number %>
+Email: <%= @reservation.user.email %>
+
+Aircraft Requested: <%= @reservation.aircraft.name %> - <%= @reservation.aircraft.short_name %>
+Instructor Needed: <%= @reservation.instructor_flag.humanize %>
+Red Tail Hawk Ride: <%= @reservation.rth_flag.humanize %>
+Date and Time: <%= @reservation.reservation_date %> at <%= @reservation.reservation_time %>
+
+Flights: <%= @reservation.flights.count %>
+Amount Charged: $<%= @reservation.flights.pluck(:fees).sum.to_int %>.00
+Payment Method: Stripe Payment 
+Payment Date: <%= Date.today %>
+
+Regards,
+Eagleville Soaring Club

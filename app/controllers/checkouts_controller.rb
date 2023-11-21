@@ -55,6 +55,7 @@ class CheckoutsController < ApplicationController
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @line_items = Stripe::Checkout::Session.list_line_items(params[:session_id])
     @reservation = Reservation.find(@session.client_reference_id)
+    CheckoutMailer.stripe_success(@reservation).deliver_later
 
   end
 
