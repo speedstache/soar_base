@@ -7,6 +7,7 @@ class User < ApplicationRecord
   before_save :downcase_email
 
   has_one :permission, dependent: :destroy
+  accepts_nested_attributes_for :permission
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile
   has_many :membership_users, dependent: :destroy

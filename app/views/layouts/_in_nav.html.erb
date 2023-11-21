@@ -123,7 +123,8 @@
               <ul class="dropdown-menu">
               <li><%= link_to 'Reservation logs', admin_reservations_path, class: "dropdown-item" %></li>
                 <li><%= link_to 'Inbound Email logs', admin_emails_path, class: "dropdown-item" %></li>
-                <li><%= link_to 'Instructor logs', admin_instructors_path, class: "dropdown-item" %></li>
+                <li><%= link_to 'Sidekiq Monitor', '/sidekiq', target: '_new', class: "dropdown-item" %></li>
+                <li><%= link_to 'Instructor logs', admin_instructors_path, class: "dropdown-item disabled" %></li>
               </ul>
             </li>
           <% else %>

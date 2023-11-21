@@ -1,10 +1,8 @@
 require 'sidekiq/web'
 require 'sidekiq-scheduler/web'
-
+require 'admin_constraint'
 
 Rails.application.routes.draw do
-
-    mount Sidekiq::Web => "/sidekiq"
 
   resources :field_status_updates
   resources :email_requests
@@ -79,5 +77,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
  
   resources :password_resets,     only: [:new, :create, :edit, :update]
+
+  mount Sidekiq::Web => "/sidekiq", :constraints => AdminConstraint.new
 
 end

@@ -24,5 +24,10 @@ module SoarBase
     # Use sidekiq for active jobs
     config.active_job.queue_adapter = :sidekiq
 
+    def index
+      flash.danger = 'No page found at that address'
+      redirect_to root_path
+    end
+
   end
 end
