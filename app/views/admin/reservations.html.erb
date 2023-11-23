@@ -23,7 +23,7 @@
               <th>Instructor</th>
 							<th>Flight Count</th>
               <th>Flight Minutes</th>
-              <th>Tow Fees</th>
+              <th>Fees</th>
               <th>Status</th>
               <th>Payment Method</th>
               <th>Description</th>
@@ -40,7 +40,7 @@
 									<td><%= reservation.instructor_flag.humanize %></td>
                   <td><%= reservation.flights.count %></td>
                   <td><%= reservation.flights.pluck(:flight_time).sum %></td>
-                  <td><%= number_to_currency(reservation.flights.pluck(:fees).sum) %></td>
+                  <td><%= reservation.rth_flag? ? '$180.00' : number_to_currency(reservation.flights.pluck(:fees).sum) %></td>
 									<td>
 										<% if reservation.status == 'open' && reservation.reservation_date > Date.today %>
 											Upcoming

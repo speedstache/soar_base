@@ -3,6 +3,8 @@ class Flight < ApplicationRecord
   belongs_to :aircraft
   belongs_to :user
 
+  validates :tow_height, numericality: {greater_than_or_equal_to: 100,  only_integer: true }
+
   # method to determine the price of a tow based on a tow height
 
   def calcfees

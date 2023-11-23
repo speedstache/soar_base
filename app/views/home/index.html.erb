@@ -6,6 +6,16 @@
         <ul class="list-group list-group-flush ">
           <li class="list-group-item lead pb-3">Release Notes</li>
             <d1 class="row">
+            <dt class="col-sm-4 ps-4 pt-2">11/22/23</dt>
+                <dd class="col-sm-8 pt-2">
+                  <p>Fixed total flights hours for Aircraft/show path</p>
+                  <p>Rounded total flight hours for tow log entries to 2 decimal places</p>
+                  <p>Added aircraft_id to accepted params for edit_flight_path, defaulted to current selection</p>
+                  <p>Added Glossary section to How To page</p>
+                  <p>Added validation for tow height minimum to be 100 feet or greater</p>
+                  <p>Hard Coded RTH flight fees to $180 within Reservation index, show. Checkout show, index, success. And in Admin reservations list and CSV export. Need to map this to a database entry. </p>
+
+                </dd>
             <dt class="col-sm-4 ps-4 pt-2">11/21/23</dt>
                 <dd class="col-sm-8 pt-2">
                   <p>Added email confirmation for New reservations, Modified reservations, deleted reservations</p>

@@ -9,7 +9,7 @@
             <div class="form-group row p-2" >
             <%= f.label :aircraft, class: "col col-form-label" %>
             <div class="col">  
-              <%= f.select :aircraft_id, options_for_select(has_privileges_in.map { |obj| [obj[:short_name], obj[:id]] }), {}, {class: "input-group-text"} %>
+              <%= f.select :aircraft_id, options_for_select(has_privileges_in.map { |obj| [obj[:short_name], obj[:id]] }, selected: @flight.aircraft_id), {}, {class: "form-control input-group-text"} %>
             </div>
           </div>
             <div class="form-group row p-2" >

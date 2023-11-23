@@ -19,7 +19,7 @@ class AircraftsController < ApplicationController
       else
         @sumhours = Flight.where(aircraft_id: @aircraft, flight_date: @aircraft.last_maintenance..Date.today )
         @flightcount = @sumhours.count
-        @flighthours = @sumhours.sum(:flight_time)/60+@sumhours.sum(:flight_time)%60/6
+        @flighthours = (@sumhours.sum(:flight_time)/60+@sumhours.sum(:flight_time)%60/60.to_f)
       end
     else    
       if Tow.where(aircraft_id: @aircraft.id).blank? 

@@ -132,7 +132,7 @@
 											</button>
 											<button type="button" class="btn btn-secondary m-1">Tow Fees 
 												<span class="badge badge-primary">
-													<%= number_to_currency(reservation.flights.pluck(:fees).sum) %>
+													<%= reservation.rth_flag? ? 0 : number_to_currency(reservation.flights.pluck(:fees).sum) %>
 												</span>
 											</button>
 										<% else %>
@@ -167,7 +167,7 @@
 													<td><%= flight.aircraft.short_name %></td>
 													<td><%= flight.tow_height %></td>
 													<td><%= flight.flight_time %></td>
-													<td><%= number_to_currency(flight.fees) %></td>
+													<td><%= reservation.rth_flag? ? 0 : number_to_currency(flight.fees) %></td>
 													<td>
 														<% if reservation.status == 'open' %>
 															<%= link_to 'Modify', edit_reservation_flight_path(reservation, flight), class: "btn btn-primary btn-sm"  %>

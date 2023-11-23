@@ -44,7 +44,7 @@ class Reservation < ApplicationRecord
           instructor = reservation.instructor_flag.humanize
           flight_count = reservation.flights.count
           flight_minutes = reservation.flights.pluck(:flight_time).sum
-          tow_fees = reservation.flights.pluck(:fees).sum
+          tow_fees = if reservation.rth_flag == true then 180 else reservation.flights.pluck(:fees).sum end
           status = reservation.status 
           payment_method = reservation.method
           description = reservation.description
