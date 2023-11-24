@@ -12,7 +12,7 @@ class AircraftUsersController < ApplicationController
     @aircrafts = Aircraft.where(group: "club")
     @users = User.all
 
-    @assigned_users = User.where(id: AircraftUser.all.pluck(:user_id)).order('username ASC').paginate(page: params[:page], per_page: 10)
+    @assigned_users = User.where(id: AircraftUser.all.pluck(:user_id)).order('username ASC').paginate(page: params[:page], per_page: 2)
 
     @unassigned_users = User.where.not(id: AircraftUser.all.pluck(:user_id)).order('username ASC')
   end
