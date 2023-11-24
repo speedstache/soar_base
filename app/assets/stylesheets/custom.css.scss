@@ -76,10 +76,14 @@ body {
       color: gray; }
   .flickr_pagination .page_info {
     color: #aaaaaa;
-    padding-top: 0.8em; }
+    padding-top: 0.8em; 
+    margin-top: 0.5em; }
   .flickr_pagination .previous_page, .flickr_pagination .next_page {
-    border-width: 2px; }
+    border-width: 2px; 
+    margin-top: 0.5em; }
   .flickr_pagination .previous_page {
-    margin-right: 1em; }
+    margin-right: 1em; 
+    margin-top: 0.5em; }
   .flickr_pagination .next_page {
-    margin-left: 1em; }
+    margin-left: 1em; 
+    margin-top: 0.5em; }
