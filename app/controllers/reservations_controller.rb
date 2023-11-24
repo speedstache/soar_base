@@ -197,10 +197,11 @@ class ReservationsController < ApplicationController
 
   # DELETE /reservations/1 or /reservations/1.json
   def destroy
+    #must send deletion email prior to deleting reservation or it won't have the data needed to populate email
+    ReservationMailer.deletion(@reservation).deliver_now
     @reservation.destroy
 
     respond_to do |format|
-      ReservationMailer.deletion(@reservation).deliver_later
       flash[:success] = "Reservation was successfully deleted."
       format.html { redirect_to reservations_url }
       format.json { head :no_content }
