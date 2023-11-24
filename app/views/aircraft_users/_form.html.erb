@@ -4,7 +4,7 @@
   <div class="form-group row m-3" >
       <%= f.label :Select_aircraft, class: "col-4 col-form-label" %>
     <div class="col">
-    <%= f.collection_select(:aircraft_id, Aircraft.all, :id, :short_name, {:include_hidden => false}, {multiple: false, size: 4, class: "input-group-text form-control"}) %>
+    <%= f.collection_select(:aircraft_id, Aircraft.all.order('id ASC'), :id, :short_name, {:include_hidden => false}, {multiple: false, size: 4, class: "input-group-text form-control"}) %>
     </div>
   </div>
   <%= link_to "Close", aircraft_users_path, :class => "btn btn-secondary" %>
