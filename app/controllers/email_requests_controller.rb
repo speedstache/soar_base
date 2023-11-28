@@ -63,7 +63,7 @@ private
 
     # Only allow a list of trusted parameters through.
     def email_request_params
-      params.require(:email_request).permit(:date, :email, :subject, :body, :ride, :membership, :general, :instruction, :previous_request, :query, :g-recaptcha-response)
+      params.require(:email_request).permit(:date, :email, :subject, :body, :ride, :membership, :general, :instruction, :previous_request, :query)
     end
 
   
