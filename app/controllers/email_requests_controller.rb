@@ -13,9 +13,10 @@ end
 
 def create
   @email_request = EmailRequest.new(email_request_params)
+  @recaptcha_succeeded = verify_recaptcha(model: @email_request)
 
   respond_to do |format|
-    if verify_recaptcha(model: @email_request) && @email_request.save
+    if @recaptcha_succeeded && @email_request.save
 
       flash[:success] = "Thank you for your note. We will respond as soon as possible."
       format.html { redirect_to params[:previous_request] }

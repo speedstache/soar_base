@@ -27,7 +27,7 @@ class FieldStatusUpdatesController < ApplicationController
 
 
     respond_to do |format|
-      if verify_recaptcha(model: @field_status_update) && @field_status_update.save
+      if @field_status_update.save
 
         FieldStatusMailer.field_status(@field_status_update).deliver_now
         flash[:success] = "Field status update was created and sent."
