@@ -171,7 +171,7 @@ class ReservationsController < ApplicationController
     if @reservation.save
       ReservationMailer.confirmation(@reservation).deliver_later
       flash[:success] = "Reservation was successfully created."
-      redirect_to reservations_path
+      redirect_to params[:previous_request]
     else
       render :new, status: :unprocessable_entity
     end

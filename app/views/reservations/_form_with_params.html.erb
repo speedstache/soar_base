@@ -3,6 +3,7 @@
   <%= f.hidden_field :reservation_date, value: @date %>
   <%= f.hidden_field :reservation_time, value: @time %>
   <%= f.hidden_field :aircraft_id, value: @aircraft %>
+  <%= hidden_field_tag :previous_request, request.referer %>
 <div class="form-group row m-3" >
   <%= f.label :date, class: "col-4 col-form-label " %>
   <div class="col form-control">
