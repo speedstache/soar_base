@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :require_user
   before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :require_user_admin
+  before_action :require_user_admin, only: %i[ create destroy ]
+  before_action :require_same_user
 
   # GET /users or /users.json
   def index
@@ -98,5 +99,13 @@ class UsersController < ApplicationController
                                    :password_confirmation, :previous_request, :activate_now, profile_attributes: [:phone_number, :date_of_birth, :street_first_line, :street_second_line, :city, :state, :zip, :emergency_contact, :emergency_phone])
     end
 
+    def require_same_user
+      @user = User.find(params[:id])
+    
+      if current_user.id != @user.id && !current_user.permission.club_admin? && !current_user.permission.instructor?
+      flash[:alert] = "You can only view or edit your own profile"
+      redirect_to profile_index_path
+      end
+    end
 
 end
