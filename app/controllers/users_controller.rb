@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :require_user
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :require_user_admin, only: %i[ create destroy ]
-  before_action :require_same_user
+  before_action :require_same_user, only: %i[edit update]
 
   # GET /users or /users.json
   def index
