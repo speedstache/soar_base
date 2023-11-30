@@ -124,13 +124,13 @@
 									<% end %>
 								</div>	
 								<div class="col m-2">
-									<% if @reservation.status == 'open' && @reservation.rth_flag == false %>
+									<% if @reservation.status == 'open' && @reservation.rth_flag.blank? %>
 										<%= link_to 'Pay&nbsp;Cash/Check'.html_safe, edit_checkout_path(id: @reservation.id), :class => "btn btn-info" %>
 									<% else %>
 									<% end %>
 								</div>
 								<div class="col m-2">
-									<% if @reservation.status == 'open' && @reservation.rth_flag == false %>
+									<% if @reservation.status == 'open' && @reservation.rth_flag.blank? %>
 										<%= render partial: 'pay/stripe/checkout_button', locals: {
 											session: @checkout_session,
 											title: 'Stripe Checkout', class: "btn btn-info"
