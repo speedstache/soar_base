@@ -1,8 +1,8 @@
 <div class="container mx-2 my-2">
 	<div class="row text-center justify-content-center" >
     <h4 class="text-center mt-4 mb-4">Reset Password</h4>
-    <div class="col-sm-10 col-md-6">
-			<%= form_for(@user, url: password_reset_path(params[:id]), class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+    <div class="col-sm-10 col-md-6 shadow p-3 mb-3 bg-secondary rounded">
+			<%= form_for(@user, url: password_reset_path(params[:id]), local: true) do |f| %>
         <%= hidden_field_tag :email, @user.email %>
         <div class="form-group row p-2" >
           <%= f.label :password, class: "col col-12 col-md-6 col-form-label" %>
