@@ -137,44 +137,4 @@
           </div>
         </div>
       </div>
-    <!-- Modal for Contact - us Button -->
-      <div class="modal fade" id="RideRequestModal" tabindex="-1" role="dialog" aria-labelledby="RideRequestModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="exampleModalLabel">Request a Ride</h4>
-            </div>
-            <div class="modal-body">
-              <%= form_with model: @email_request do |f| %>
-
-                <%= f.hidden_field :date, value: Date.today %>
-                <%= f.hidden_field :ride, value: true %>
-
-                <%= f.label :email %>
-                <%= f.email_field :email, class: 'form-control' %>
-          
-                <%= f.label :subject %>
-                <%= f.text_field :subject, class: 'form-control' %>
-
-                <%= f.label :body %>
-                <%= f.text_area :body, rows: 3, width: 50, class: "input-group-text form control" %>
-
-                <div class="row ms-1 my-3">
-                <%= recaptcha_tags %>
-                </div>
-
-                <div class="modal-footer">  
-                  <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                  <%= f.submit "Send Ride Request", class: "btn btn-primary" %>
-                </div>
-              <% end %>
-            </div>
-        </div>
-      </div>
-  </div>
-</div>  
-<script src="../simple_landing_page/vendors/jquery/jquery.min.js"></script>
-<script src="../simple_landing_page/vendors/bootstrap/bootstrap.min.js"></script>
-<script src="../simple_landing_page/vendors/owl-carousel/js/owl.carousel.min.js"></script>
-<script src="../simple_landing_page/vendors/aos/js/aos.js"></script>
-<script src="../simple_landing_page/js/landingpage.js"></script>
+    
