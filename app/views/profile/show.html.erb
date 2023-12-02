@@ -21,7 +21,7 @@
                 <dt class="col-sm-4 ps-4 pt-2">Email</dt>
                   <dd class="col-sm-8 pt-2"><%= @user.email %></dd>
                 <dt class="col-sm-4 ps-4 pt-2">Phone Number</dt>
-                  <dd class="col-sm-8 pt-2"><a href="tel:+<%= @user.profile.phone_number.blank? ? '' : @user.profile.phone_number %>"><%= @user.profile.phone_number.blank? ? '' : @user.profile.phone_number.insert(-8, '-').insert(-5, '-') %></a></dd>
+                  <dd class="col-sm-8 pt-2"><a href="tel:<%= @user.profile.phone_number.blank? ? '' : @user.profile.phone_number %>"><%= @user.profile.phone_number.blank? ? '' : @user.profile.phone_number.insert(-8, '-').insert(-5, '-') %></a></dd>
                 <dt class="col-sm-4 ps-4 pt-2">Date of Birth</dt>
                   <dd class="col-sm-8 pt-2"><%= @user.profile.date_of_birth.blank? ? '' : @user.profile.date_of_birth.strftime("%x") %></dd>
                 <dt class="col-sm-4 ps-4 pt-2">Address</dt>
@@ -37,7 +37,7 @@
                 <dt class="col-sm-4 ps-4 pt-2">Emergency Contact</dt>
                   <dd class="col-sm-8 pt-2"><%= @user.profile.emergency_contact.blank? ? '' : @user.profile.emergency_contact %></dd>
                 <dt class="col-sm-4 ps-4 pt-2">Emergency Phone</dt>
-                  <dd class="col-sm-8 pt-2"><a href="tel:+<%= @user.profile.emergency_phone.blank? ? '' : @user.profile.emergency_phone %>"><%= @user.profile.emergency_phone.blank? ? '' : @user.profile.emergency_phone.insert(-8, '-').insert(-5, '-') %></a></dd>
+                  <dd class="col-sm-8 pt-2"><a href="tel:<%= @user.profile.emergency_phone.blank? ? '' : @user.profile.emergency_phone %>"><%= @user.profile.emergency_phone.blank? ? '' : @user.profile.emergency_phone.insert(-8, '-').insert(-5, '-') %></a></dd>
               
             </d1> 
           </ul>  
