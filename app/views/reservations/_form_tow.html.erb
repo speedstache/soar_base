@@ -1,6 +1,7 @@
 <%= form_with scope: :reservation, url: reservations_path(:date, :time, :aircraft), class: "shadow p-3 m-3 bg-info rounded", data: { turbo: false }, local: true do |f| %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :aircraft_id, value: @aircraft %>
+  <%= hidden_field_tag :previous_request, request.referer %>
   <div class="form-group row m-3" >
   <%= f.label :date, class: "col-4 col-form-label" %>
   <div class="col">
