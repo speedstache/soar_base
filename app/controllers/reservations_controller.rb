@@ -125,7 +125,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
 
     if @reservation.save
-      ReservationMailer.confirmation(@reservation).deliver_later
+      ReservationMailer.confirmation(@reservation).deliver_now
       flash[:success] = "Tow schedule was successfully created."
       redirect_to params[:previous_request]
     else
