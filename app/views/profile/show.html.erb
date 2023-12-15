@@ -8,9 +8,13 @@
               <%= gravatar_for @user, size: 100 %>
             </div>
             <div class="col pt-3 justify-content-end">
-              <%= link_to 'Update Personal Info', edit_profile_path, class: "btn btn-primary btn-sm"%>
+              <%= link_to 'Update Personal Info', edit_profile_path, class: "btn btn-primary btn-sm"%><br>
+              <small>Manage your profile pic here: <a class="badge badge-info" target="_blank" rel="noopener noreferrer" href="https://gravatar.com/">Gravatar</a><br>
+              (use same email address as login)</small>
+
             </div>
-          </div>  
+          </div> 
+          
         </div>
         <div class="card-body" style="padding: 10px 10px">
           <ul class="list-group list-group-flush" id="personal-info">
