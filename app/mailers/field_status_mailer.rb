@@ -4,7 +4,7 @@ class FieldStatusMailer < ApplicationMailer
     @field_status_update = field_status_update
     @flying = @field_status_update.ops_status ? 'Yes' : 'No'
 
-    mail to: "nathan.r.taylor@gmail.com", subject: "Eagleville Soaring Club - Are we Flying? "+@flying
+    mail to: "eagleville-soaring-club-members@googlegroups.com", subject: "Eagleville Soaring Club - Are we Flying? "+@flying
   end
   
 end

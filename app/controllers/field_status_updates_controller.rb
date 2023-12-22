@@ -45,7 +45,7 @@ class FieldStatusUpdatesController < ApplicationController
     respond_to do |format|
       if @field_status_update.update(field_status_update_params)
         flash[:success] = "Field status update was successfully updated."
-        format.html { redirect_to field_status_update_url(@field_status_update) }
+        format.html { redirect_to field_status_updates_path }
         format.json { render :show, status: :ok, location: @field_status_update }
       else
         format.html { render :edit, status: :unprocessable_entity }
