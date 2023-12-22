@@ -27,7 +27,7 @@ class CheckoutsController < ApplicationController
       .payment_processor
       .checkout(
         mode: 'payment',
-        payment_method_configuration: 'pmc_1NxNOeHnDxnfrk7n8dp8f8yB',
+        payment_method_configuration: 'pmc_1KTc28HnDxnfrk7nNzF47Msa',
         client_reference_id: @reservation.id,
         payment_intent_data: {
           description: "Eagleville Soaring Club - Order " + @reservation.id.to_s
