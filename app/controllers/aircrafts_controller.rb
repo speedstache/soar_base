@@ -5,7 +5,7 @@ class AircraftsController < ApplicationController
 
   # GET /aircrafts or /aircrafts.json
   def index
-    @aircrafts = Aircraft.all.paginate(page: params[:page], per_page: 10).order('aircrafts.id ASC')
+    @aircrafts = Aircraft.where.not(group: 'instructor').paginate(page: params[:page], per_page: 10).order('aircrafts.id ASC')
     
   end
 

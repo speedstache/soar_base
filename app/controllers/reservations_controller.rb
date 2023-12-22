@@ -134,6 +134,49 @@ class ReservationsController < ApplicationController
 
   end
 
+  def cfi_index
+    require_instructor
+
+      @instructor = Aircraft.where(group: 'instructor')
+      @instructor_schedule = Reservation.where(aircraft_id: @instructor.ids).order('reservation_date DESC').paginate(page: params[:page], per_page: 5)
+
+  end
+
+  def cfi_new
+    
+  end
+
+  def cfi_create
+    
+    @avail_days = Day.where(day: 10.days.ago .. 60.days.from_now)
+    @avail_hours = Hour.where(active_flag: 1).first
+    @reservation = Reservation.new(reservation_params)
+
+    if @reservation.save
+      ReservationMailer.confirmation(@reservation).deliver_now
+      flash[:success] = "Instructor schedule was successfully created."
+      redirect_to params[:previous_request]
+    else
+      render :new, status: :unprocessable_entity
+    end
+
+  end
+
+  def cfi_update
+    require_instructor
+
+    @reservation = Reservation.find(params[:id])
+    
+
+    if @reservation.update(status: params[:status])
+
+      flash[:success] = "Instructor schedule was successfully updated."
+      redirect_to reservations_tow_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   # GET /reservations/1 or /reservations/1.json
   def show
     @reservation = Reservation.find(params[:id])
@@ -159,6 +202,7 @@ class ReservationsController < ApplicationController
     @avail_days = Day.where(day: 10.days.ago .. 60.days.from_now)
     @avail_hours = Hour.where(active_flag: 1)
     @towpilots = User.where(id: Permission.where(towpilot: true))
+    @instructors = User.where(id: Permission.where(instructor: true))
     @commpilots = User.where(id: Permission.where(commercial: true))
   end
 

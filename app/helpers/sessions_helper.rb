@@ -132,6 +132,13 @@ module SessionsHelper
     end
   end
 
+  def require_instructor
+    if !current_user.permission.instructor?
+    flash[:danger] = "That action requires instructor rights"
+    redirect_to reservations_url
+    end
+  end
+
   def require_field_status
     if !current_user.permission.site_admin? || !current_user.permission.club_admin? || !current_user.permission.instructor? || !current_user.permission.towpilot?
     flash[:danger] = "Insufficient privileges for sending field status update"

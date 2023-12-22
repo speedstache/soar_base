@@ -16,6 +16,13 @@
                 <%= f.select :user_id, options_from_collection_for_select(@towpilots, 'id', 'username', @reservation.user_id), {}, {class: "form-control input-group-text"} %> 
               </div>
             </div>	
+          <% elsif current_user.permission.instructor? && @reservation.aircraft.group == 'instructor' %>
+            <div class="form-group row m-3" >
+              <%= f.label :User_name, class: "col-4 col-form-label" %>
+              <div class="col">
+                <%= f.select :user_id, options_from_collection_for_select(@instructors, 'id', 'username', @reservation.user_id), {}, {class: "form-control input-group-text"} %> 
+              </div>
+            </div>	
           <% elsif is_pilot_admin == true && @reservation.rth_flag == true %>
             <div class="form-group row m-3" >
               <%= f.label :Select_pilot, class: "col-4 col-form-label" %>
@@ -38,13 +45,18 @@
             </div>
           </div>
             <%= f.hidden_field :reservation_duration %>
+          <% if @reservation.aircraft.group == 'instructor' %>
+          <% else %>
           <div class="form-group row m-3" >
             <%= f.label :aircraft, class: "col-4 col-form-label" %>
             <div class="col">
               
                 <%= f.select :aircraft_id, options_for_select(has_privileges_in.map { |obj| [obj[:short_name], obj[:id]] }, selected: @reservation.aircraft_id), {}, {class: "form-control input-group-text"} %>
-            </div>
+            </div>  
           </div>
+          <% end %>
+          <% if @reservation.aircraft.group == 'towplane' || @reservation.aircraft.group == 'instructor' %>
+          <% else %>
             <div class="form-group row m-3" >
               <%= f.label :Need_Commercial_pilot, class: "col-5 col-form-label" %>
               <div class="col">
@@ -57,6 +69,7 @@
                 <%= f.check_box :instructor_flag, class: "form-check-label" %>
               </div>
             </div>
+          <% end %>  
           <%= link_to "Close", reservation_path(@reservation), :class => "btn btn-light" %>
           <%= f.submit class:"btn btn-primary" %>
       <% end %>

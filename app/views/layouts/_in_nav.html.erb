@@ -52,14 +52,15 @@
         <% end %>
         </li>
         <li class="nav-item">
-          <% if logged_in? && current_user.permission.towpilot? %>
+          <% if logged_in? && current_user.permission.towpilot? || current_user.permission.instructor? %>
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Tow Scheduler
+                Resource Scheduler
               </a>
               <ul class="dropdown-menu">
                 
-                <li><%= link_to 'Tow Pilot Schedule', reservations_tow_path, class: "dropdown-item" %></li>
+                <li><%= link_to 'Tow Pilot Schedule', reservations_tow_path, class: "dropdown-item" %></li>              
+                <li><%= link_to 'Instructor Schedule', reservations_cfi_path, class: "dropdown-item" %></li>
               </ul>
             </li>
           <% else %>
