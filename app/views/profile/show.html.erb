@@ -164,12 +164,12 @@
                   </dd> 
                 <dt class="col-sm-4 ps-4 pt-2">Year to date</dt>
                   <dd class="col-sm-8 pt-2">
+                  <% if Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).present? %>
                     <button type="button" class="btn btn-secondary m-1">Days 
                       <span class="badge badge-primary">
                         <%= Tow.where(user_id: @user.id).present? ? Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).distinct(:tow_date).count : 0 %>
                       </span>
                     </button>
-                    <% if Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).present? %>
                     <button type="button" class="btn btn-secondary m-1">Tows 
                       <span class="badge badge-primary">
                         <%= Tow.where(user_id: @user.id).present? ? Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).count : 0 %>
