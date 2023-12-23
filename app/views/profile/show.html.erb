@@ -176,7 +176,7 @@
                     </button>
                     <button type="button" class="btn btn-success m-1">Towing Hours 
                       <span class="badge badge-primary"> 
-                        <%= Tow.where(user_id: @user.id).present? ? (Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).last.tach_end - Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).first.tach_start).round(2) : 0 %>
+                        <%= Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).last.tach_end.present? ? (Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).last.tach_end - Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).first.tach_start).round(2) : 0 %>
 
                       </span>
                     </button>
