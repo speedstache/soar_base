@@ -1,6 +1,15 @@
 class PagesController < ApplicationController
 
   def index
+
+    @field_status = FieldStatusUpdate.where(date: Date.today).last
+
+    if @field_status.present? && @field_status.ops_status == true
+      flash.now[:success] = 'Eagleville Field Status for ' + Date.today.strftime("%a, %b %d, %Y") + ': '+ @field_status.title + ' - ' + @field_status.notes
+    elsif @field_status.present? && @field_status.ops_status == false
+      flash.now[:warning] = 'Eagleville Field Status for ' + Date.today.strftime("%a, %b %d, %Y") + ': '+ @field_status.title + ' - ' + @field_status.notes
+    else
+    end   
     
   end
 
