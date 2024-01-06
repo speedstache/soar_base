@@ -140,17 +140,18 @@ module SessionsHelper
   end
 
   def require_field_status
-    if !current_user.permission.site_admin? || !current_user.permission.club_admin? || !current_user.permission.instructor? || !current_user.permission.towpilot?
-    flash[:danger] = "Insufficient privileges for sending field status update"
-    redirect_to reservations_url
+    if current_user.permission.site_admin? || current_user.permission.club_admin? || current_user.permission.instructor? || current_user.permission.towpilot?
+    else
+      flash[:danger] = "Insufficient privileges for sending field status update"
+      redirect_to reservations_url
     end
   end
 
   def is_pilot_admin
-    if !current_user.permission.site_admin? || !current_user.permission.user_admin? || !current_user.permission.instructor? || !current_user.permission.commercial? 
-    is_pilot_admin = false
-    else
+    if current_user.permission.site_admin? || current_user.permission.user_admin? || current_user.permission.instructor? || current_user.permission.commercial? 
     is_pilot_admin = true
+    else
+    is_pilot_admin = false
     end
     return is_pilot_admin
   end

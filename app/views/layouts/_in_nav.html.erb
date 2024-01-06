@@ -61,6 +61,7 @@
                 
                 <li><%= link_to 'Tow Pilot Schedule', reservations_tow_path, class: "dropdown-item" %></li>              
                 <li><%= link_to 'Instructor Schedule', reservations_cfi_path, class: "dropdown-item" %></li>
+                <li><%= link_to 'Send Field Ops Status', field_status_updates_path, class: "dropdown-item" %></li>
               </ul>
             </li>
           <% else %>
@@ -97,13 +98,12 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <% if logged_in? && current_user.permission.club_admin? %>
+          <% if logged_in? && current_user.permission.club_admin? || current_user.permission.towpilot? || current_user.permission.instructor? %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Site
               </a>
               <ul class="dropdown-menu">
-              <li><%= link_to 'Send Field Ops Status', field_status_updates_path, class: "dropdown-item" %></li>
                 <li><%= link_to 'Hours of Operation', hours_path, class: "dropdown-item" %></li>
                 <li><%= link_to 'Days of Operation', days_path, class: "dropdown-item" %></li>
                  <li><hr class="dropdown-divider"></li>
