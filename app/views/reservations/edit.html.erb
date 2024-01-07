@@ -9,16 +9,8 @@
             <%= hidden_field_tag :previous_request, request.referer %>
             <%= f.hidden_field :user_id, value: current_user.id %>
 
-          <% # User admins and instructors can edit the username associated with any reservation %>  
-          <% if current_user.permission.user_admin? || current_user.permission.instructor? %>
-            <div class="form-group row m-3" >
-              <%= f.label :User_name, class: "col-4 col-form-label" %>
-              <div class="col">
-                <%= f.select :user_id, options_from_collection_for_select(User.all, 'id', 'username', @reservation.user_id), {}, {class: "form-control input-group-text"} %> 
-              </div>
-            </div>
           <% # tow pilots can edit the tow pilot of a tow reservation  %>
-          <% elsif current_user.permission.towpilot? && @reservation.aircraft.group == 'towplane' %>
+          <% if current_user.permission.towpilot? && @reservation.aircraft.group == 'towplane' %>
             <div class="form-group row m-3" >
               <%= f.label :User_name, class: "col-4 col-form-label" %>
               <div class="col">
@@ -39,6 +31,14 @@
               <%= f.label :Select_pilot, class: "col-4 col-form-label" %>
               <div class="col">
                 <%= f.select :user_id, options_from_collection_for_select(@commpilots, 'id', 'username', @reservation.user_id), {}, {class: "form-control input-group-text"} %> 
+              </div>
+            </div>
+          <% # User admins and instructors can edit the username associated with any reservation %>  
+          <% elsif current_user.permission.user_admin? || current_user.permission.instructor? %>
+            <div class="form-group row m-3" >
+              <%= f.label :User_name, class: "col-4 col-form-label" %>
+              <div class="col">
+                <%= f.select :user_id, options_from_collection_for_select(User.all, 'id', 'username', @reservation.user_id), {}, {class: "form-control input-group-text"} %> 
               </div>
             </div>
           <% end %>
