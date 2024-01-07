@@ -86,7 +86,7 @@
 									</div>	
 									<div class="row text-center">
 										<% if FieldStatusUpdate.where(date: reservation.reservation_date).last.present? && reservation.status == 'open' && reservation.reservation_date <= Date.today %>
-											<p><strong>NOTE: </strong><span class="text-muted">Field Status for today indicates a no fly day. This reservation may require cancellation.</span></p>
+											<p><strong>NOTE: </strong><span class="text-muted">Field Status for today indicates a no fly day. This reservation may be auto-canceled at 7pm tonight, or can be deleted by the user.</span></p>
 										<% else %>
 										<% end %>	
 									</div>	
