@@ -16,3 +16,11 @@
       class: ReservationReminderJob
       queue: default
       description: "Send reminder emails to users with reservations tomorrow"
+
+:scheduler:
+  :schedule:
+    reminder:
+      cron: "0 19 * * *" # every day at 21:00 CST
+      class: NoFlyDayJob
+      queue: default
+      description: "Update reservations to noflyday when we have a field status update"
