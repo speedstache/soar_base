@@ -18,7 +18,7 @@
       description: "Send reminder emails to users with reservations tomorrow"
 
     noflyday:
-      cron: "0 22 * * *" # every day at 22:00 CST
+      cron: "0 19 * * *" # every day at 19:00 CST
       class: NoFlyDayJob
       queue: default
       description: "Update reservations to noflyday when we have a field status update"
