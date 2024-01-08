@@ -7,5 +7,7 @@ class Reminder < ApplicationJob
       reservations.each do |reservation|
       ReservationMailer.reminder(reservation).deliver_later
       end
+      
+  end  
 
 end 
