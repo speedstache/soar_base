@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   
   get "home/index", to: "home#index"
   get "home/how_to", to: "home#how_to", as: 'how_to'
+  get "home/club_docs", to: "home#club_docs", as: 'club_docs'
+
 
   root to: "pages#index"
 
