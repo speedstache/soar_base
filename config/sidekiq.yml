@@ -20,7 +20,7 @@
 :scheduler:
   :schedule:
     reminder:
-      cron: "0 19 * * *" # every day at 20:00 CST
+      cron: "0 19 * * *" # every day at 20:10 CST
       class: NoFlyDayJob
       queue: default
       description: "Update Reservations when we have a no fly day"
