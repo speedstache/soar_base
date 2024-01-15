@@ -14,15 +14,16 @@ end
 def create
   @email_request = EmailRequest.new(email_request_params)
   @recaptcha_succeeded = verify_recaptcha(model: @email_request)
+  
 
   respond_to do |format|
-    if @recaptcha_succeeded && @email_request.save
+    if @recaptcha_succeeded && @email_request.save && !@email_request.email.match(/(.ru)/) && !email_request.body.match(/[\u0401\u0451\u0410-\u044f]/)
 
       flash[:success] = "Thank you for your note. We will respond as soon as possible."
       format.html { redirect_to params[:previous_request] }
       format.json { render :show, status: :created, location: @email_request }
     else
-      flash.now[:warning] = "no email request sent."
+      flash.now[:warning] = "no email sent"
       format.html { render :new, status: :unprocessable_entity }
       format.json { render json: @email_request.errors, status: :unprocessable_entity }
     end
