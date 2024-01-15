@@ -54,6 +54,10 @@ Rails.application.routes.draw do
 
   get 'admin/emails', to: 'admin#emails', as: 'admin_emails'
   match 'email_requests/:id/update', to: 'email_requests#update', as: 'update_email_request', via: [:get, :post]
+  get 'forward_email', to: 'email_requests#forward_email', as: :forward_email
+  get 'trello_ride_request', to: 'email_requests#trello_ride_request', as: :trello_ride_request
+  get 'trello_membership_request', to: 'email_requests#trello_membership_request', as: :trello_membership_request
+
 
   get 'admin/aircrafts', to: 'admin#aircrafts'
   get 'admin/instructors', to: 'admin#instructors'

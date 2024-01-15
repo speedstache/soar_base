@@ -20,32 +20,43 @@
 				<div class="table-responsive">
 				<table class="table table-striped">
 					<thead>
-						<tr>
+						<tr><small>
 							<th>ID</th>
 							<th>Date</th>
 							<th>Email</th>
-							<th>Subject</th>
-							<th>Ride?</th>
-              <th>Membership?</th>
-              <th>Instruction?</th>
-              <th>General?</th>
-              <th colspan="3">Modify</th>
-						</tr>
+							<th>Subject Line</th>
+              <th>Email Category</th>
+              <th colspan="3">Email Actions</th>
+						</small></tr>
 					</thead>
 						<tbody>
 							<% @active_email_requests.each do |active_email_request| %>
 								<tr>
-									<td><%= active_email_request.id %></td>
-                  <td><%= active_email_request.date %></td>
-									<td><%= active_email_request.email %></td>
-									<td><%= active_email_request.subject %></td>
-									<td><%= active_email_request.ride.humanize %></td>
-                  <td><%= active_email_request.membership.humanize %></td>
-                  <td><%= active_email_request.instruction.humanize %></td>
-                  <td><%= active_email_request.general.humanize %></td>
-                  <td><%= link_to 'Details', email_request_path(active_email_request), class: "btn btn-primary btn-sm"%></td>
-									<td><%= link_to 'Archive', update_email_request_path(active_email_request, :archive => true), class: "btn btn-primary btn-sm"%></td>
-									<td><%= link_to 'Delete', email_request_path(active_email_request), class: "btn btn-primary btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+									<td><small><%= active_email_request.id %></small></td>
+                  <td><small><%= active_email_request.date %></small></td>
+									<td><small><%= active_email_request.email %></small></td>
+									<td><small><%= active_email_request.subject %></small></td>
+									<td><small>
+										<% if active_email_request.ride? %>
+											<%= 'Ride Request' %>
+										<% elsif active_email_request.membership? %>
+											<%= 'Membership Request' %>
+										<% elsif active_email_request.instruction? %>
+											<%= 'Instruction Request' %>
+										<% elsif active_email_request.general? %>
+											<%= 'Generic Inquiry' %>
+										<% end %>
+									</small></td>	
+                  <td><small><%= link_to 'Read Contents', email_request_path(active_email_request), class: "badge badge-primary"%><br>
+										<%= link_to 'Forward to Email', forward_email_path(:id => active_email_request.id), class: "badge badge-success" %></small></td>
+
+									<td><small><%= link_to 'Delete', email_request_path(active_email_request), class: "badge badge-warning", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %><br>
+										<%= link_to 'Archive', update_email_request_path(active_email_request, :archive => true), class: "badge badge-warning"%></small></td>
+
+									<td><small><%= link_to 'Post to Ride Trello', trello_ride_request_path(:id => active_email_request.id), class: "badge badge-secondary" %><br>
+										<%= link_to 'Post to Member Trello', trello_membership_request_path(:id => active_email_request.id), class: "badge badge-secondary" %></small></td>
+
+
 
 								</tr>
 							<% end %>

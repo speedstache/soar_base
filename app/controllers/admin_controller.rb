@@ -48,7 +48,7 @@ class AdminController < ApplicationController
       @email_request = EmailRequest.find(params[:id])
 
       if @email_request.update(email_request_params)
-        flash[:success] = "Email has been archived"
+        flash[:success] = "Email has been archived from admin controller"
         format.html { redirect_to admin_email_requests_path }
       else
         render :new, status: :unprocessable_entity
@@ -58,7 +58,6 @@ class AdminController < ApplicationController
   end
 
   def edit_email
-
 
   end
 

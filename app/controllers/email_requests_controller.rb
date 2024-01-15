@@ -55,9 +55,36 @@ def destroy
     format.json { head :no_content }
   end
 
+end
+
+def forward_email
+  @email_request = EmailRequest.find(params[:id])
+  @send_to_email = current_user.email
+
+  EmailRequestMailer.forward(@send_to_email, @email_request.id).deliver_now
+  flash[:success] = "Item has been forwarded to your email"
+  redirect_to admin_emails_path 
+
 
 end
 
+def trello_ride_request
+  @email_request = EmailRequest.find(params[:id])
+
+  EmailRequestMailer.trello_ride(@email_request.id).deliver_now
+  flash[:success] = "Item has been sent to Trello Board for Ride Requests"
+  redirect_to admin_emails_path 
+
+end
+
+def trello_membership_request
+  @email_request = EmailRequest.find(params[:id])
+
+  EmailRequestMailer.trello_member(@email_request.id).deliver_now
+  flash[:success] = "Item has been sent to Trello Board for Membership Requests"
+  redirect_to admin_emails_path 
+
+end
 
 private
 
