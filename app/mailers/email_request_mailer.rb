@@ -13,7 +13,7 @@ class EmailRequestMailer < ApplicationMailer
 
     @recipient = "nathantaylor14+pn4hbmnlhskzqhi7807b@boards.trello.com"
 
-    mail to: @recipient, subject: @email_contents.date+" Ride Request - "+@email_contents.email
+    mail to: @recipient, subject: @email_contents.date.strftime(%x)+" Ride Request - "+@email_contents.email
   end
 
   def trello_member(id)
@@ -21,7 +21,7 @@ class EmailRequestMailer < ApplicationMailer
 
     @recipient = "nathantaylor14+jsdrvr71eskj9rkd7yjm@boards.trello.com"
 
-    mail to: @recipient, subject: @email_contents.date+" Membership Request - "+@email_contents.email
+    mail to: @recipient, subject: @email_contents.date.strftime(%x)+" Membership Request - "+@email_contents.email
   end
 
 end
