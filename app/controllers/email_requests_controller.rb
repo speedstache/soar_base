@@ -17,7 +17,7 @@ def create
   
 
   respond_to do |format|
-    if @recaptcha_succeeded && !@email_request.email.match(/(.ru)/)
+    if @recaptcha_succeeded && !@email_request.email.match(/(.ru)/) && !@email_request.body.match(/[\u0401\u0451\u0410-\u044f]/)
       @email_request.save
       flash[:success] = "Thank you for your note. We will respond as soon as possible."
       format.html { redirect_to params[:previous_request] }
