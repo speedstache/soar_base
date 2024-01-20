@@ -22,3 +22,9 @@
       class: NoFlyDayJob
       queue: default
       description: "Update reservations to noflyday when we have a field status update"
+
+    webhookcleanup:
+      cron: "0 19 * * 7" # every Sunday at 19:00 CST
+      class: WebhookCleanup
+      queue: default
+      description: "Delete Webhooks older than 30 days that have a status of skipped"
