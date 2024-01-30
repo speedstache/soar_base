@@ -6,6 +6,8 @@ class AdminController < ApplicationController
     #show all reservations from the past 400 days. Will improve this with more flexibility but it works for now.
     @validaircraft = Aircraft.where(group: 'private').or(Aircraft.where(group: 'club'))
     @reservations = Reservation.where(reservation_date: 400.days.ago..Date.today, aircraft_id: @validaircraft)
+    #exclude three records that were used to back-date aircraft hours when site was set up
+    @reservations = @reservations.where.not(id => [128,129,127])
 
     respond_to do |format|
       format.html
