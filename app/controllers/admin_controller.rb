@@ -5,7 +5,7 @@ class AdminController < ApplicationController
     #show all reservations in private aircraft and club aircraft, exclude instructor and towplane logs
     #show all reservations from the past 400 days. Will improve this with more flexibility but it works for now.
     @validaircraft = Aircraft.where(group: 'private').or(Aircraft.where(group: 'club'))
-    @reservations = Reservation.where(reservation_date: 400.days.ago..Date.today, aircraft_id: @validaircraft).order('reservations.id DESC')
+    @reservations = Reservation.where(reservation_date: 400.days.ago..Date.today, aircraft_id: @validaircraft).order('reservations.reservation_date DESC','reservations.id DESC')
 
     respond_to do |format|
       format.html
