@@ -197,7 +197,7 @@
                   <dd class="col-sm-8 pt-2">
                     <button type="button" class="btn btn-secondary m-1">Days 
                       <span class="badge badge-primary">
-                        <%= Flight.where(instructor_id: @user.id, flight_date: 30.days.ago..Date.today).distinct(:flight_date).count %>
+                        <%= Flight.where(instructor_id: @user.id, flight_date: 30.days.ago..Date.today).distinct(:flight_date).count(:flight_date) %>
                       </span>
                     </button>
                     <button type="button" class="btn btn-secondary m-1">Flights 
@@ -215,7 +215,7 @@
                   <dd class="col-sm-8 pt-2">
                     <button type="button" class="btn btn-secondary m-1">Days 
                       <span class="badge badge-primary">
-                        <%= Flight.where(instructor_id: @user.id, flight_date: 60.days.ago..Date.today).distinct(:flight_date).count %>
+                        <%= Flight.where(instructor_id: @user.id, flight_date: 60.days.ago..Date.today).distinct(:flight_date)count(:flight_date) %>
                       </span>
                     </button>
                     <button type="button" class="btn btn-secondary m-1">Flights 
@@ -233,7 +233,7 @@
                   <dd class="col-sm-8 pt-2">
                     <button type="button" class="btn btn-secondary m-1">Days 
                       <span class="badge badge-primary">
-                        <%= Flight.where(instructor_id: @user.id, flight_date: 90.days.ago..Date.today).distinct(:flight_date).count %>
+                        <%= Flight.where(instructor_id: @user.id, flight_date: 90.days.ago..Date.today).distinct(:flight_date).count(:flight_date) %>
                       </span>
                     </button>
                     <button type="button" class="btn btn-secondary m-1">Flights 
@@ -256,7 +256,7 @@
                     </button>
                     <button type="button" class="btn btn-secondary m-1">Flights 
                       <span class="badge badge-primary">
-                        <%= Flight.where(instructor_id: @user.id, flight_date: Date.today.beginning_of_year..Date.today).count %>
+                        <%= Flight.where(instructor_id: @user.id, flight_date: Date.today.beginning_of_year..Date.today).count(:flight_date) %>
                       </span>
                     </button>
                     <button type="button" class="btn btn-success m-1">Flight Hours 
