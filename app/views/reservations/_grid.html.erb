@@ -13,7 +13,7 @@
 			<td>21A</td>
 			<% @avail_hours.each do |hour| %>
 				<td >
-					<% if has_membership == true && @res_show >= Date.today %>
+					<% if has_membership == true && @res_show >= 5.days.ago %>
 						<% if @view_21a.where(reservation_time: hour.hour).exists? %>
 							<%= link_to '', reservation_path(@view_21a.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 						<% elsif Aircraft.find(1).active_flag == true %>
@@ -25,8 +25,8 @@
 						<% if @view_21a.where(reservation_time: hour.hour).exists? %>
 							<%= link_to '', reservation_path(@view_21a.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 						<% else %>
-							<% if @res_show < Date.today %>
-								<span class="gray_dot" title="Reservations cannot be created for dates in the past"></span>
+							<% if @res_show < 5.days.ago %>
+								<span class="gray_dot" title="Reservations cannot be created for dates that far in the past"></span>
 							<% else %>
 								<span class="gray_dot" title="Reservation privileges only for active memberships"></span>
 							<% end %>
@@ -39,7 +39,7 @@
 			<td>21B</td>
 			<% @avail_hours.each do |hour| %>
 				<td >
-					<% if has_membership == true && @res_show >= Date.today %>
+					<% if has_membership == true && @res_show >= 5.days.ago %>
 						<% if @view_21b.where(reservation_time: hour.hour).exists? %>
 							<%= link_to '', reservation_path(@view_21b.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 							<% elsif Aircraft.find(2).active_flag == true %>
@@ -51,8 +51,8 @@
 						<% if @view_21b.where(reservation_time: hour.hour).exists? %>
 							<%= link_to '', reservation_path(@view_21b.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 						<% else %>
-							<% if @res_show < Date.today %>
-								<span class="gray_dot" title="Reservations cannot be created for dates in the past"></span>
+							<% if @res_show < 5.days.ago %>
+								<span class="gray_dot" title="Reservations cannot be created for dates that far in the past"></span>
 							<% else %>
 								<span class="gray_dot" title="Reservation privileges only for active memberships"></span>
 							<% end %>
@@ -65,7 +65,7 @@
 			<td>ASK-23</td>
 			<% @avail_hours.each do |hour| %>
 				<td >
-					<% if has_membership == true && @res_show >= Date.today  %>
+					<% if has_membership == true && @res_show >= 5.days.ago  %>
 						<% if @view_23.where(reservation_time: hour.hour).exists? %>
 							<%= link_to '', reservation_path(@view_23.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 							<% elsif Aircraft.find(3).active_flag == true %>
@@ -77,8 +77,8 @@
 						<% if @view_23.where(reservation_time: hour.hour).exists? %>
 							<%= link_to '', reservation_path(@view_23.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 						<% else %>
-							<% if @res_show < Date.today %>
-								<span class="gray_dot" title="Reservations cannot be created for dates in the past"></span>
+							<% if @res_show < 5.days.ago %>
+								<span class="gray_dot" title="Reservations cannot be created for dates that far in the past"></span>
 							<% else %>
 								<span class="gray_dot" title="Reservation privileges only for active memberships"></span>
 							<% end %>
