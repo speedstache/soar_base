@@ -26,6 +26,7 @@
 							<th>RTH Ride</th>
 							<th>Flight Count</th>
               <th>Flight Minutes</th>
+							<th>Tow Height</th>
               <th>Fees</th>
               <th>Status</th>
               <th>Payment Method</th>
@@ -44,6 +45,7 @@
 									<td><%= flight.reservation.rth_flag.humanize %></td>
                   <td><%= 1 %></td>
                   <td><%= flight.flight_time %></td>
+									<td><%= flight.tow_height %></td>
                   <td><%= flight.fees %></td>
 									<td>
 										<% if flight.reservation.status == 'open' && flight.reservation.reservation_date > Date.today %>
