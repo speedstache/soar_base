@@ -16,32 +16,32 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>ID</th>
-							<th>Date</th>
-							<th>Name</th>
-							<th>Aircraft</th>
-              <th>Instructor</th>
-							<th>Flight Count</th>
-              <th>Flight Minutes</th>
-              <th>Fees</th>
-              <th>Status</th>
-              <th>Payment Method</th>
-              <th>Description</th>
-							<th colspan="2">Update Status</th>
+							<th><small>ID</small></th>
+							<th><small>Date</small></th>
+							<th><small>Name</small></th>
+							<th><small>Aircraft</small></th>
+              <th><small>Instructor</small></th>
+							<th><small>Flight Count</small></th>
+              <th><small>Flight Minutes</small></th>
+              <th><small>Fees</small></th>
+              <th><small>Status</small></th>
+              <th><small>Payment Method</small></th>
+              <th><small>Description</small></th>
+							<th colspan="2"><small>Update Status</small></th>
 						</tr>
 					</thead>
 						<tbody>
 							<% @reservations.each do |reservation| %>
 								<tr>
-									<td><%= reservation.id %></td>
-									<td><%= reservation.reservation_date %></td>
-									<td><%= reservation.user.username %></td>
-									<td><%= reservation.aircraft.short_name %></td>
-									<td><%= reservation.instructor_flag.humanize %></td>
-                  <td><%= reservation.flights.count %></td>
-                  <td><%= reservation.flights.pluck(:flight_time).sum %></td>
-                  <td><%= reservation.rth_flag? ? '$180.00' : number_to_currency(reservation.flights.pluck(:fees).sum) %></td>
-									<td>
+									<td><small><%= reservation.id %></small></td>
+									<td><small><%= reservation.reservation_date %></small></td>
+									<td><small><%= reservation.user.username %></small></td>
+									<td><small><%= reservation.aircraft.short_name %></small></td>
+									<td><small><%= reservation.instructor_flag.humanize %></small></td>
+                  <td><small><%= reservation.flights.count %></small></td>
+                  <td><small><%= reservation.flights.pluck(:flight_time).sum %></small></td>
+                  <td><small><%= reservation.rth_flag? ? '$180.00' : number_to_currency(reservation.flights.pluck(:fees).sum) %></small></td>
+									<td><small>
 										<% if reservation.status == 'open' && reservation.reservation_date > Date.today %>
 											Upcoming
 										<% elsif reservation.status == 'open' && reservation.reservation_date < 5.days.ago %>
@@ -49,10 +49,10 @@
 										<% else %>
 										<%= reservation.status %> 
 										<% end %>
-									</td>
-									<td><%= reservation.method %></td>
-									<td><%= reservation.description %></td>
-									<td><%= link_to 'Edit', edit_admin_reservation_path(reservation), class: "btn btn-primary btn-sm"%></td>
+										</small></td>
+									<td><small><%= reservation.method %></small></td>
+									<td><small><%= reservation.description %></small></td>
+									<td><small><%= link_to 'Edit', edit_admin_reservation_path(reservation), class: "btn btn-primary btn-sm"%></small></td>
 								</tr>
 							<% end %>
 						</tbody>

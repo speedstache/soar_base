@@ -17,37 +17,37 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Reservation ID</th>
-							<th>Flight ID</th>
-							<th>Date</th>
-							<th>Name</th>
-							<th>Aircraft</th>
-              <th>Instructor</th>
-							<th>RTH Ride</th>
-							<th>Flight Count</th>
-              <th>Flight Minutes</th>
-							<th>Tow Height</th>
-              <th>Fees</th>
-              <th>Status</th>
-              <th>Payment Method</th>
-              <th>Description</th>
+							<th><small>Reservation ID</small></th>
+							<th><small>Flight ID</small></th>
+							<th><small>Date</small></th>
+							<th><small>Name</small></th>
+							<th><small>Aircraft</small></th>
+              <th><small>Instructor</small></th>
+							<th><small>RTH Ride</small></th>
+							<th><small>Flight Count</small></th>
+              <th><small>Flight Minutes</small></th>
+							<th><small>Tow Height</small></th>
+              <th><small>Fees</small></th>
+              <th><small>Status</small></th>
+              <th><small>Payment Method</small></th>
+              <th><small>Description</small></th>
 						</tr>
 					</thead>
 						<tbody>
 							<% @flights.each do |flight| %>
 								<tr>
-									<td><%= flight.reservation_id %></td>
-									<td><%= flight.id %></td>
-									<td><%= flight.flight_date %></td>
-									<td><%= flight.user.username %></td>
-									<td><%= flight.aircraft.short_name %></td>
-									<td><%= flight.reservation.instructor_flag.humanize %></td>
-									<td><%= flight.reservation.rth_flag.humanize %></td>
-                  <td><%= 1 %></td>
-                  <td><%= flight.flight_time %></td>
-									<td><%= flight.tow_height %></td>
-                  <td><%= flight.fees %></td>
-									<td>
+									<td><small><%= flight.reservation_id %></small></td>
+									<td><small><%= flight.id %></small></td>
+									<td><small><%= flight.flight_date %></small></td>
+									<td><small><%= flight.user.username %></small></td>
+									<td><small><%= flight.aircraft.short_name %></small></td>
+									<td><small><%= flight.reservation.instructor_flag.humanize %></small></td>
+									<td><small><%= flight.reservation.rth_flag.humanize %></small></td>
+                  <td><small><%= 1 %></small></td>
+                  <td><small><%= flight.flight_time %></small></td>
+									<td><small><%= flight.tow_height %></small></td>
+                  <td><small><%= flight.fees %></small></td>
+									<td><small>
 										<% if flight.reservation.status == 'open' && flight.reservation.reservation_date > Date.today %>
 											Upcoming
 										<% elsif flight.reservation.status == 'open' && flight.reservation.reservation_date < 5.days.ago %>
@@ -55,9 +55,9 @@
 										<% else %>
 										<%= flight.reservation.status %> 
 										<% end %>
-									</td>
-									<td><%= flight.reservation.method %></td>
-									<td><%= flight.reservation.description %></td>
+										</small></td>
+									<td><small><%= flight.reservation.method %></small></td>
+									<td><small><%= flight.reservation.description %></small></td>
 								</tr>
 							<% end %>
 						</tbody>
