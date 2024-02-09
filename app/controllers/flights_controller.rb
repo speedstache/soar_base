@@ -34,7 +34,11 @@ class FlightsController < ApplicationController
     respond_to do |format|
       if @flight.save
 
-        @flight.update({'fees': @flight.calcfees})
+        if @flight.reservation.rth_flag? 
+          @flight.update({'fees': 0})
+        else
+          @flight.update({'fees': @flight.calcfees})
+        end
 
         flash[:success] = "Flight was successfully created."
         format.html { redirect_to reservation_path(@reservation) }
@@ -50,7 +54,13 @@ class FlightsController < ApplicationController
   def update
     respond_to do |format|
       if @flight.update(flight_params)
-        @flight.update({'fees': @flight.calcfees})
+        
+        if @flight.reservation.rth_flag? 
+          @flight.update({'fees': 0})
+        else
+          @flight.update({'fees': @flight.calcfees})
+        end
+        
         flash[:success] = "Flight was successfully updated."
         format.html { redirect_to reservation_path(@reservation)}
         format.json { render :show, status: :ok, location: @flight }

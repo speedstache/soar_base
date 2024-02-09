@@ -49,6 +49,7 @@ Rails.application.routes.draw do
 
 
   get 'admin/reservations', to: 'admin#reservations'
+  get 'admin/flights', to: 'admin#flights'
   match 'admin/reservations/:id/edit', to: 'admin#edit', as: 'edit_admin_reservation', via: [:get, :post]
 
 

@@ -28,8 +28,18 @@ class AdminController < ApplicationController
     end
 
   end
+
+  def flights
+    @flights = Flight.where(flight_date: 400.days.ago..Date.today).order('flights.flight_date DESC','flights.reservation_id ASC')
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data @flights.flight_to_csv, filename: "ESC_flight_logs_#{Date.today}.csv" }
+    end
+
+  end
   
-    def aircrafts
+  def aircrafts
   end
 
   def instructors

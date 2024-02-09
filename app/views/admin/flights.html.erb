@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row text-center justify-content-center">
+    <div class="col col-sm-12 col-md-12">
+      <div class="row justify-content-center">
+				<div class="col">
+					<h4>Flight logs</h4>
+					<p class="text-muted">Flight logs only include flights entered on reservations.<br>
+					To see all reservations, including those with no flights added yet, check Reservations log.<br>
+					Search and date picker functions to be added later.<br>
+					Export displays all flights that have already occurred from beginning of year to today's date.</p>
+				</div>
+				<div class="col align-text-middle">
+					<%= link_to 'Export to CSV', '/admin/flights.csv', :class => "btn btn-primary" %>
+				</div>	
+			<div class="row">
+				<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Reservation ID</th>
+							<th>Flight ID</th>
+							<th>Date</th>
+							<th>Name</th>
+							<th>Aircraft</th>
+              <th>Instructor</th>
+							<th>RTH Ride</th>
+							<th>Flight Count</th>
+              <th>Flight Minutes</th>
+              <th>Fees</th>
+              <th>Status</th>
+              <th>Payment Method</th>
+              <th>Description</th>
+						</tr>
+					</thead>
+						<tbody>
+							<% @flights.each do |flight| %>
+								<tr>
+									<td><%= flight.reservation_id %></td>
+									<td><%= flight.id %></td>
+									<td><%= flight.flight_date %></td>
+									<td><%= flight.user.username %></td>
+									<td><%= flight.aircraft.short_name %></td>
+									<td><%= flight.reservation.instructor_flag.humanize %></td>
+									<td><%= flight.reservation.rth_flag.humanize %></td>
+                  <td><%= 1 %></td>
+                  <td><%= flight.flight_time %></td>
+                  <td><%= flight.fees %></td>
+									<td>
+										<% if flight.reservation.status == 'open' && flight.reservation.reservation_date > Date.today %>
+											Upcoming
+										<% elsif flight.reservation.status == 'open' && flight.reservation.reservation_date < 5.days.ago %>
+											Payment Past Due
+										<% else %>
+										<%= flight.reservation.status %> 
+										<% end %>
+									</td>
+									<td><%= flight.reservation.method %></td>
+									<td><%= flight.reservation.description %></td>
+								</tr>
+							<% end %>
+						</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+

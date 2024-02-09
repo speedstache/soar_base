@@ -24,5 +24,32 @@ class Flight < ApplicationRecord
     return calcfees
   end
 
+  #define the csv export format for the flights grid and iterate through the model for each value
+  def self.flight_to_csv
+    attributes = %w{reservation_id flight_id date name aircraft instructor rth_ride flight_count flight_minutes tow_fees status payment_method description}
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      @flights = Flight.where(flight_date: 500.days.ago..Date.today).order('flights.flight_date DESC','flights.reservation_id ASC')
+
+      @flights.each do |flight|
+          reservation_id = flight.reservation_id
+          flight_id = flight.id
+          date = flight.flight_date
+          name = flight.user.username
+          aircraft = flight.aircraft.short_name
+          instructor = flight.reservation.instructor_flag.humanize
+          rth_ride = flight.reservation.rth_flag.humanize
+          flight_count = 1
+          flight_minutes = flight.flight_time
+          tow_fees = flight.fees
+          status = flight.reservation.status 
+          payment_method = flight.reservation.method
+          description = flight.reservation.description
+          csv << [reservation_id, flight_id, date, name, aircraft, instructor, rth_ride, flight_count, flight_minutes, tow_fees, status, payment_method, description]
+      end
+    end
+
+  end
 
 end
