@@ -30,7 +30,7 @@ class Flight < ApplicationRecord
     CSV.generate(headers: true) do |csv|
       csv << attributes
 
-      @flights = Flight.where(flight_date: 500.days.ago..Date.today).order('flights.flight_date DESC','flights.reservation_id ASC')
+      @flights = Flight.where(flight_date: Date.today.beginning_of_year..Date.today).order('flights.flight_date DESC','flights.reservation_id ASC')
 
       @flights.each do |flight|
           reservation_id = flight.reservation_id
