@@ -30,7 +30,7 @@ class AdminController < ApplicationController
   end
 
   def flights
-    @flights = Flight.where(flight_date: 400.days.ago..Date.today).order('flights.flight_date DESC','flights.reservation_id ASC')
+    @flights = Flight.where(flight_date: 400.days.ago..Date.today).order('flights.flight_date DESC','flights.reservation_id DESC')
 
     respond_to do |format|
       format.html
