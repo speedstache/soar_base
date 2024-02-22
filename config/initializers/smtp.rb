@@ -1,7 +1,7 @@
 
 #if you are using the API key
 ActionMailer::Base.smtp_settings = {
-  domain: 'EAGLEVILLESOARING.COM',
+  domain: 'EAGLEVILLESOARING.ORG',
   address:        "smtp.sendgrid.net",
   port:            587,
   authentication: :plain,
