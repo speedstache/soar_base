@@ -18,7 +18,7 @@
       description: "Send reminder emails to users with reservations tomorrow"
 
     pastdue:
-      cron: "17 14 * * *" # every day at 14:13 CST
+      cron: "20 14 * * *" # every day at 14:13 CST
       class: PastDueReminderJob
       queue: default
       description: "Send reminder emails to users with past due reservations"
