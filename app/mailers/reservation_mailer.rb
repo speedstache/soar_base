@@ -22,7 +22,7 @@ class ReservationMailer < ApplicationMailer
 
   def past_due(reservation)
     @reservation = reservation
-    mail to: "nathan.r.taylor@gmail.com", subject: "Eagleville Soaring Club - Reservation Past Due"
+    mail to: @reservation.user.email, subject: "Eagleville Soaring Club - Reservation Past Due"
   end
   
 end
