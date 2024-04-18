@@ -46,7 +46,13 @@
                   <td><small><%= 1 %></small></td>
                   <td><small><%= flight.flight_time %></small></td>
 									<td><small><%= flight.tow_height %></small></td>
-                  <td><small><%= flight.fees %></small></td>
+                  <td><small>
+										<% if flight.reservation.rth_flag == true %>
+											180.0
+										<% else %>	
+											<%= flight.fees %>
+										<% end %>
+									</small></td>
 									<td><small>
 										<% if flight.reservation.status == 'open' && flight.reservation.reservation_date > Date.today %>
 											Upcoming

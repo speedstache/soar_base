@@ -29,13 +29,14 @@
           <div class="form-group row m-3" >
             <%= f.label :Payment_method, class: "col col-form-label" %>
             <div class="col">
-              <%= f.select :method, options_for_select(["RTH Ride"]),{}, {class: "input-group-text form-control"} %>
+              <%= f.select :method, options_for_select(["Cash", "Check", "Stripe"]),{}, {class: "input-group-text form-control"} %>
             </div>
           </div>
         <% end %>
         <div class="form-group row m-3" >
             <%= f.label :Guest_or_Notes, class: "col col-form-label" %><br>
             <p class="text-muted">For cash or check, add in payment location<br> (mail, lockbox, etc)</p>
+            <p class="text-muted">For Stripe, have guest use the QR Code in the office.</p>
           <div class="col">
             <%= f.text_field :description, class: "input-group-text form-control" %>
           </div>
