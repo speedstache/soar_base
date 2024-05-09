@@ -6,13 +6,13 @@
           <% @memberships.each do |membership| %>
               <button type="button" class="btn btn-secondary m-1"><%= membership.membership_type%> Members
                 <span class="badge badge-primary">
-                  <%= MembershipUser.where(membership_id: membership.id).count %>
+                  <%= MembershipUser.where(membership_id: membership.id, active_flag: true).count %>
                 </span>
               </button>
           <% end %>
           <button type="button" class="btn btn-secondary m-1">All Active Members
             <span class="badge badge-primary">
-              <%= @membership_users.all.count %>
+              <%= @membership_users.where(active_flag: true).count %>
             </span>
           </button>
         </div>  
