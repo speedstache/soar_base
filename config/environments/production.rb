@@ -105,5 +105,7 @@ Rails.application.configure do
     :domain         => 'eaglevillesoaring.org',
     :enable_starttls_auto => true
   }
+
+  config.force_ssl = true
   
 end
