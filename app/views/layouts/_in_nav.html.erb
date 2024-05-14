@@ -53,7 +53,7 @@
         <% end %>
         </li>
         <li class="nav-item">
-          <% if logged_in? && current_user.permission.towpilot? || current_user.permission.instructor? %>
+          <% if logged_in? && current_user.permission.towpilot? || current_user.permission.instructor? || current_user.permission.commercial? %>
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Resource Scheduler
@@ -62,6 +62,7 @@
                 
                 <li><%= link_to 'Tow Pilot Schedule', reservations_tow_path, class: "dropdown-item" %></li>              
                 <li><%= link_to 'Instructor Schedule', reservations_cfi_path, class: "dropdown-item" %></li>
+                <li><%= link_to 'Comm. Pilot Schedule', reservations_comm_path, class: "dropdown-item" %></li>
                 <li><%= link_to 'Send Field Ops Status', field_status_updates_path, class: "dropdown-item" %></li>
               </ul>
             </li>

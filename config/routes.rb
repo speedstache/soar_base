@@ -21,8 +21,11 @@ Rails.application.routes.draw do
   get 'reservations/club', to: 'reservations#club', as: 'reservations_club'
   get 'reservations/tow', to: 'reservations#tow_index', as: 'reservations_tow'
   get 'reservations/cfi', to: 'reservations#cfi_index', as: 'reservations_cfi'
+  get 'reservations/comm', to: 'reservations#comm_index', as: 'reservations_comm'
+
   match 'reservations/tow/:id/update', to: 'reservations#tow_update', as: 'update_reservations_tow', via: [:get, :post]
   match 'reservations/cfi/:id/update', to: 'reservations#cfi_update', as: 'update_reservations_cfi', via: [:get, :post]
+  match 'reservations/comm/:id/update', to: 'reservations#comm_update', as: 'update_reservations_comm', via: [:get, :post]
 
 
   resources :reservations do

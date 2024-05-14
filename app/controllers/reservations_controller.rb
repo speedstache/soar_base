@@ -177,6 +177,49 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def comm_index
+    require_commercial
+
+      @commercial = Aircraft.where(group: 'commercial')
+      @commercial_schedule = Reservation.where(aircraft_id: @commercial.ids).order('reservation_date DESC').paginate(page: params[:page], per_page: 5)
+
+  end
+
+  def comm_new
+    
+  end
+
+  def comm_create
+    
+    @avail_days = Day.where(day: 10.days.ago .. 60.days.from_now)
+    @avail_hours = Hour.where(active_flag: 1).first
+    @reservation = Reservation.new(reservation_params)
+
+    if @reservation.save
+      ReservationMailer.confirmation(@reservation).deliver_now
+      flash[:success] = "Commercial Pilot schedule was successfully created."
+      redirect_to params[:previous_request]
+    else
+      render :new, status: :unprocessable_entity
+    end
+
+  end
+
+  def comm_update
+    require_commercial
+
+    @reservation = Reservation.find(params[:id])
+    
+
+    if @reservation.update(status: params[:status])
+
+      flash[:success] = "Commercial Pilot schedule was successfully updated."
+      redirect_to reservations_tow_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   # GET /reservations/1 or /reservations/1.json
   def show
     @reservation = Reservation.find(params[:id])

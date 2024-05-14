@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row text-center justify-content-center">
+		<div class="col col-sm-12 col-md-10">
+			<div class="row">
+				<div class="col col-12 col-sm-12 col-md-6 text-start mt-2">
+					<h4>Commercial Pilot schedule</h4>
+					<p class="text-muted">Commercial Pilots can add their days to the schedule here. Commercial Pilots are not required to add any followup details 
+					after their schedule date because all flights will be logged on their individual schedules as normal flights.
+				</div>
+				<div class="col col-12 col-sm-12 col-md-6 ">
+					<div class="row mt-3">
+						<div class="col">
+							<%= link_to 'Add Commercial Pilot schedule', new_reservation_path(:aircraft => @commercial.last), :class => "btn btn-primary btn-sm" %>
+						</div>
+					</div>
+					<div class="row my-3">	
+						<div class="col flickr_pagination">	
+								<%= will_paginate @commercial_schedule, :container => false %>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="row text-start justify-content-center">
+				<div class="col">	
+					<!-- replace table with card for upcoming reservations -->
+					<% @commercial_schedule.each do |commercial_schedule| %>
+						<div class="card shadow p-3 mb-5 bg-white rounded">
+							<div class="card-header fst-italic">
+								<div class="row">
+									<div class="col input-group justify-content-start">
+										<% if commercial_schedule.status == 'open' %>
+											<%= link_to "Edit", edit_reservation_path(commercial_schedule), class: "btn btn-primary btn-sm" %>
+										<% else %>
+										<% end %>
+									</div>	
+									<div class="col input-group justify-content-end">	
+										<% if commercial_schedule.reservation_date > Date.today && commercial_schedule.status == 'open' %>
+											<%= link_to "Delete", reservation_path(commercial_schedule), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
+										<% else %>	
+										<% end %>
+									</div>
+								</div>
+								<div class="row pt-3">
+									<div class="col text-start">
+										<strong>Commercial Pilot Schedule details </strong>
+									</div>
+									<div class="col text-end justify-content-end">
+										<strong>
+											<% if commercial_schedule.status == 'open' && commercial_schedule.reservation_date > Date.today %>
+												Upcoming
+											<% else %>
+												Past 
+											<% end %>
+										</strong>	
+									</div>
+								</div>
+							</div>			
+							<div class="card-body" style="padding: 20px 20px">
+								<div class="row pb-3">
+									<div class="col ">
+										<strong>Commercial Pilot:</strong><br>
+										<%= commercial_schedule.user.username %>
+									</div>
+									<div class="col ">
+										<strong>Date:</strong><br>
+										<%= commercial_schedule.reservation_date.strftime("%m/%d/%y") %>
+									</div>
+									<div class="col ">
+										<strong>Start Time:</strong><br>
+										<%= commercial_schedule.reservation_time %>
+									</div>
+								</div>
+							</div>
+							<div class="card-footer text-body-secondary" >
+								<div class="row">
+								</div>	
+							</div>
+						</div>		
+					<% end %>
+				</div>
+			</div>	
+    </div>
+	</div>		
+</div>
