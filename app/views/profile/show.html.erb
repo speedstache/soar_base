@@ -122,7 +122,7 @@
                     </button>  
                     <button type="button" class="btn btn-success m-1">Towing Hours 
                       <span class="badge badge-primary">  
-                        <%= Tow.where(user_id: @user.id).present? ? (Tow.where(user_id: @user.id, tow_date: 30.days.ago..Date.today).last.tach_end - Tow.where(user_id: @user.id, tow_date: 30.days.ago..Date.today).first.tach_start).round(2) : 0 %>
+                        <%= Tow.where(user_id: @user.id, tow_date: 30.days.ago..Date.today).present? ? (Tow.where(user_id: @user.id, tow_date: 30.days.ago..Date.today).last.tach_end - Tow.where(user_id: @user.id, tow_date: 30.days.ago..Date.today).first.tach_start).round(2) : 0 %>
                         </span>
                     </button>
                   </dd>
@@ -140,7 +140,7 @@
                     </button>  
                     <button type="button" class="btn btn-success m-1">Towing Hours 
                       <span class="badge badge-primary"> 
-                        <%= Tow.where(user_id: @user.id).present? ? (Tow.where(user_id: @user.id, tow_date: 60.days.ago..Date.today).last.tach_end - Tow.where(user_id: @user.id, tow_date: 60.days.ago..Date.today).first.tach_start).round(2) : 0 %>
+                        <%= Tow.where(user_id: @user.id, tow_date: 60.days.ago..Date.today).present? ? (Tow.where(user_id: @user.id, tow_date: 60.days.ago..Date.today).last.tach_end - Tow.where(user_id: @user.id, tow_date: 60.days.ago..Date.today).first.tach_start).round(2) : 0 %>
                       </span>
                     </button>
                   </dd>
@@ -158,7 +158,7 @@
                     </button>
                     <button type="button" class="btn btn-success m-1">Towing Hours 
                       <span class="badge badge-primary">  
-                        <%= Tow.where(user_id: @user.id).present? ? (Tow.where(user_id: @user.id, tow_date: 90.days.ago..Date.today).last.tach_end - Tow.where(user_id: @user.id, tow_date: 90.days.ago..Date.today).first.tach_start).round(2) : 0 %>
+                        <%= Tow.where(user_id: @user.id, tow_date: 90.days.ago..Date.today).present? ? (Tow.where(user_id: @user.id, tow_date: 90.days.ago..Date.today).last.tach_end - Tow.where(user_id: @user.id, tow_date: 90.days.ago..Date.today).first.tach_start).round(2) : 0 %>
                       </span>
                     </button>
                   </dd> 
@@ -177,7 +177,7 @@
                     </button>
                     <button type="button" class="btn btn-success m-1">Towing Hours 
                       <span class="badge badge-primary"> 
-                        <%= Tow.where(user_id: @user.id).present? ? (Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).last.tach_end - Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).first.tach_start).round(2) : 0 %>
+                        <%= Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).present? ? (Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).last.tach_end - Tow.where(user_id: @user.id, tow_date: Date.today.beginning_of_year..Date.today).first.tach_start).round(2) : 0 %>
                       </span>
                       <% else %>
                       <% end %>
