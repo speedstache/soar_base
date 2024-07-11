@@ -32,6 +32,7 @@ class Flight < ApplicationRecord
 
       @flights = Flight.where(flight_date: Date.today.beginning_of_year..Date.today).order('flights.flight_date DESC','flights.reservation_id ASC')
 
+      #Change rth flight tow fees to $180, also do this in admin/flights.html.erb
       @flights.each do |flight|
           reservation_id = flight.reservation_id
           flight_id = flight.id
@@ -43,7 +44,7 @@ class Flight < ApplicationRecord
           flight_count = 1
           flight_minutes = flight.flight_time
           tow_height = flight.tow_height
-          tow_fees = flight.fees
+          tow_fees = flight.reservation.rth_flag.present? ? 180.00 : flight.fees
           status = flight.reservation.status 
           payment_method = flight.reservation.method
           description = flight.reservation.description

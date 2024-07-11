@@ -46,7 +46,7 @@
                   <td><small><%= 1 %></small></td>
                   <td><small><%= flight.flight_time %></small></td>
 									<td><small><%= flight.tow_height %></small></td>
-                  <td><small>
+                  <td><small><!-- change flight fees to $180 for rth flights, also do this in flight.rb -->
 										<% if flight.reservation.rth_flag == true %>
 											180.0
 										<% else %>	
