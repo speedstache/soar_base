@@ -52,8 +52,13 @@ Rails.application.routes.draw do
 
 
   get 'admin/reservations', to: 'admin#reservations'
+  match 'admin/reservations/:id/edit', to: 'admin#editreservation', as: 'edit_admin_reservation', via: [:get, :post]
+  match 'admin/reservations/:id/edit', to: 'admin#updatereservation', as: 'update_admin_reservation', via: [:post, :put, :patch]
+  match 'admin/reservations/:id/delete', to: 'reservations#destroy', as: 'delete_admin_reservation', via: :delete
+
   get 'admin/flights', to: 'admin#flights'
-  match 'admin/reservations/:id/edit', to: 'admin#edit', as: 'edit_admin_reservation', via: [:get, :post]
+  match 'admin/flights/:id/edit', to: 'admin#editflight', as: 'edit_admin_flight', via: [:get, :post, :put, :patch]
+  
 
 
   get 'admin/emails', to: 'admin#emails', as: 'admin_emails'

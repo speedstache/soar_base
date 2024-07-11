@@ -271,7 +271,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.update(reservation_params)
-        ReservationMailer.update(@reservation).deliver_later
+          ReservationMailer.update(@reservation).deliver_now
         flash[:success] = "Reservation was successfully updated."
         format.html { redirect_to params[:previous_request] }
         format.json { render :show, status: :ok, location: reservation_path(@reservation) }

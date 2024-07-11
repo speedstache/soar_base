@@ -12,11 +12,11 @@ class AdminController < ApplicationController
       format.csv {send_data @reservations.to_csv, filename: "ESC_reservation_logs_#{Date.today}.csv" }
     end
 
-    def edit
+    def editreservation
       @reservation = Reservation.find(params[:id])
     end
 
-    def update
+    def updatereservation
       @reservation = Reservation.find(params[:id])
 
       if @reservation.update(reservation_params)
@@ -27,6 +27,19 @@ class AdminController < ApplicationController
       end
     end
 
+    # DELETE /reservations/1 or /reservations/1.json
+    def destroy
+      @reservation = Reservation.find(params[:id])
+      @reservation.destroy
+
+      respond_to do |format|
+        flash[:success] = "Reservation was successfully deleted."
+        format.html { redirect_to admin_reservations_path }
+        format.json { head :no_content }
+     end
+    end
+
+
   end
 
   def flights
@@ -35,6 +48,21 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.html
       format.csv {send_data @flights.flight_to_csv, filename: "ESC_flight_logs_#{Date.today}.csv" }
+    end
+
+    def editflight
+      @editflight = Flight.find(params[:id])
+    end
+
+    def update
+      @editflight = Flight.find(params[:id])
+
+      if @editflight.update(flight_params)
+        flash[:success] = "Changes were successfully logged."
+        format.html { redirect_to admin_flights_path }
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
 
   end
@@ -79,6 +107,10 @@ class AdminController < ApplicationController
 
   def reservation_params
     params.require(@reservation).permit(:status, :method, :description)
+  end
+
+  def flight_params
+    params.require(@editflight).permit(:aircraft_id, :tow_height, :flight_time, :rope_break, :fees, :instructor_id, :reservation_id, :previous_request)
   end
 
   def email_request_params

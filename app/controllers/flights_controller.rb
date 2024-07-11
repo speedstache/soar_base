@@ -2,10 +2,11 @@ class FlightsController < ApplicationController
   before_action :require_user
   before_action :require_same_user, only: [:edit, :update, :destroy]
   before_action :set_flight, only: %i[ show edit update destroy ]
-  before_action :set_reservation
+  before_action :set_reservation, except: %i[update]
 
   # GET /flights or /flights.json
   def index
+    
     @flights = Flight.all
     @towtal
   end
@@ -62,7 +63,7 @@ class FlightsController < ApplicationController
         end
         
         flash[:success] = "Flight was successfully updated."
-        format.html { redirect_to reservation_path(@reservation)}
+        format.html { redirect_to params[:previous_request]}
         format.json { render :show, status: :ok, location: @flight }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -91,7 +92,7 @@ class FlightsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def flight_params
-      params.require(:flight).permit(:aircraft_id, :tow_height, :flight_time, :rope_break, :fees, :instructor_id)
+      params.require(:flight).permit(:aircraft_id, :tow_height, :flight_time, :rope_break, :fees, :instructor_id, :reservation_id, :previous_request)
     end
 
     def set_reservation

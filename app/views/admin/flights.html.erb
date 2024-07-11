@@ -31,6 +31,8 @@
               <th><small>Status</small></th>
               <th><small>Payment Method</small></th>
               <th><small>Description</small></th>
+							<th><small>Modify</small></th>
+
 						</tr>
 					</thead>
 						<tbody>
@@ -46,7 +48,7 @@
                   <td><small><%= 1 %></small></td>
                   <td><small><%= flight.flight_time %></small></td>
 									<td><small><%= flight.tow_height %></small></td>
-                  <td><small><!-- change flight fees to $180 for rth flights, also do this in flight.rb -->
+                  <td><small><!-- change flight fees to $180 for rth flights, also do this in models/flight.rb -->
 										<% if flight.reservation.rth_flag == true %>
 											180.0
 										<% else %>	
@@ -64,6 +66,7 @@
 										</small></td>
 									<td><small><%= flight.reservation.method %></small></td>
 									<td><small><%= flight.reservation.description %></small></td>
+									<td><small><%= link_to 'Edit', edit_admin_flight_path(flight), class: "btn btn-primary btn-sm"%></small></td>
 								</tr>
 							<% end %>
 						</tbody>

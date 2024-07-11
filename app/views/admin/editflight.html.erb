@@ -2,16 +2,17 @@
 	<div class="row text-center justify-content-center">
   <h4>Modify a flight</h4>
     <div class="col-sm-10 col-md-6">
-      <%= render 'shared/errors', obj: @flight %>
-        <%= form_for [@reservation, @flight], html: {class: "shadow p-3 mb-3 bg-info rounded", data: { turbo: false }, local: true}  do |f| %>
+      <%= render 'shared/errors', obj: @editflight %>
+        <%= form_for @editflight, html: {class: "shadow p-3 mb-3 bg-info rounded", data: { turbo: false }, local: true}  do |f| %>
           <%= hidden_field_tag :previous_request, request.referer %>
   
-          <%= f.hidden_field :user_id, value: @flight.user_id %>
-						<%= f.hidden_field :user_id, value: @flight.flight_date %>
+          <%= f.hidden_field :user_id, value: @editflight.user_id %>
+            <%= f.hidden_field :reservation_id, value: @editflight.reservation.id %>
+
             <div class="form-group row p-2" >
             <%= f.label :aircraft, class: "col col-form-label" %>
             <div class="col">  
-              <%= f.select :aircraft_id, options_for_select(has_privileges_in.map { |obj| [obj[:short_name], obj[:id]] }, selected: @flight.aircraft_id), {}, {class: "form-control input-group-text"} %>
+              <%= f.select :aircraft_id, options_for_select(has_privileges_in.map { |obj| [obj[:short_name], obj[:id]] }, selected: @editflight.aircraft_id), {}, {class: "form-control input-group-text"} %>
             </div>
           </div>
             <div class="form-group row p-2" >
@@ -35,7 +36,7 @@
           </div>
           -->
           <!-- only bring up instructor list if instructor was selected in reservation -->
-          <% if @reservation.instructor_flag == true %>
+          <% if @editflight.reservation.instructor_flag == true %>
           <div class="form-group row p-2" >
             <%= f.label :instructor, class: "col col-form-label" %>
             <div class="col">
@@ -45,7 +46,7 @@
           <% else %>
           <div></div>
           <% end %>
-          <%= link_to "Close", reservation_path(@reservation), :class => "btn btn-secondary" %>
+          <%= link_to "Close", admin_flights_path, :class => "btn btn-secondary" %>
         <%= f.submit class:"btn btn-primary" %>
       <% end %>
     </div>
