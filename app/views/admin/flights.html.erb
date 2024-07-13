@@ -24,7 +24,6 @@
 							<th><small>Aircraft</small></th>
               <th><small>Instructor</small></th>
 							<th><small>RTH Ride</small></th>
-							<th><small>Flight Count</small></th>
               <th><small>Flight Minutes</small></th>
 							<th><small>Tow Height</small></th>
               <th><small>Fees</small></th>
@@ -45,7 +44,6 @@
 									<td><small><%= flight.aircraft.short_name %></small></td>
 									<td><small><%= flight.reservation.instructor_flag.humanize %></small></td>
 									<td><small><%= flight.reservation.rth_flag.humanize %></small></td>
-                  <td><small><%= 1 %></small></td>
                   <td><small><%= flight.flight_time %></small></td>
 									<td><small><%= flight.tow_height %></small></td>
                   <td><small><!-- change flight fees to $180 for rth flights, also do this in models/flight.rb -->
