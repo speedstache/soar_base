@@ -23,12 +23,12 @@ class ReservationsController < ApplicationController
       @status.present?  
     end
 
-    @avail_days = Day.where(day: 10.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
+    @avail_days = Day.where(day: 30.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
     @avail_hours = Hour.where(active_flag: 1).order('hours.id ASC')
     @view_21a = @res_date.where(aircraft_id: 1)
     @view_21b = @res_date.where(aircraft_id: 2)
     @view_23 = @res_date.where(aircraft_id: 3)
-    @myreservations = current_user.reservations.where(reservation_date: 10.days.ago..30.days.from_now, status: 'open').order('reservation_date DESC')
+    @myreservations = current_user.reservations.where(reservation_date: 20.days.ago..30.days.from_now, status: 'open').order('reservation_date DESC')
     @pastduereservations = current_user.reservations.where(reservation_date: 100.days.ago..5.days.ago, status: 'open').order('reservation_date DESC')
     @paidreservations = current_user.reservations.where(status: 'paid').order('reservation_date DESC')
     @upcomingreservations = current_user.reservations.where(reservation_date: Date.today..60.days.from_now, status: 'open').order('reservation_date DESC')
@@ -73,7 +73,7 @@ class ReservationsController < ApplicationController
       flash.now[:info] = "search grid set to next flying date"
     end
 
-    @avail_days = Day.where(day: 10.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
+    @avail_days = Day.where(day: 30.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
     @avail_hours = Hour.where(active_flag: 1).order('hours.id ASC')
     @view_21a = @res_date.where(aircraft_id: 1)
     @view_21b = @res_date.where(aircraft_id: 2)
@@ -120,7 +120,7 @@ class ReservationsController < ApplicationController
 
   def tow_create
     
-    @avail_days = Day.where(day: 10.days.ago .. 60.days.from_now)
+    @avail_days = Day.where(day: 30.days.ago .. 60.days.from_now)
     @avail_hours = Hour.where(active_flag: 1).first
     @reservation = Reservation.new(reservation_params)
 
@@ -148,7 +148,7 @@ class ReservationsController < ApplicationController
 
   def cfi_create
     
-    @avail_days = Day.where(day: 10.days.ago .. 60.days.from_now)
+    @avail_days = Day.where(day: 30.days.ago .. 60.days.from_now)
     @avail_hours = Hour.where(active_flag: 1).first
     @reservation = Reservation.new(reservation_params)
 
@@ -191,7 +191,7 @@ class ReservationsController < ApplicationController
 
   def comm_create
     
-    @avail_days = Day.where(day: 10.days.ago .. 60.days.from_now)
+    @avail_days = Day.where(day: 30.days.ago .. 60.days.from_now)
     @avail_hours = Hour.where(active_flag: 1).first
     @reservation = Reservation.new(reservation_params)
 
@@ -229,7 +229,7 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     
-    @avail_days = Day.where(day: 10.days.ago .. 30.days.from_now, active_flag: 1).order('days.day ASC')
+    @avail_days = Day.where(day: 30.days.ago .. 30.days.from_now, active_flag: 1).order('days.day ASC')
     @avail_hours = Hour.where(active_flag: 1)
     @reservation = Reservation.new
 
@@ -242,7 +242,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/1/edit
   def edit
-    @avail_days = Day.where(day: 10.days.ago .. 60.days.from_now)
+    @avail_days = Day.where(day: 30.days.ago .. 60.days.from_now)
     @avail_hours = Hour.where(active_flag: 1)
     @towpilots = User.where(id: Permission.where(towpilot: true))
     @instructors = User.where(id: Permission.where(instructor: true))
@@ -266,7 +266,7 @@ class ReservationsController < ApplicationController
 
   # PATCH/PUT /reservations/1 or /reservations/1.json
   def update
-    @avail_days = Day.where(day: 10.days.ago .. 60.days.from_now)
+    @avail_days = Day.where(day: 30.days.ago .. 60.days.from_now)
     @avail_hours = Hour.where(active_flag: 1)
 
     respond_to do |format|

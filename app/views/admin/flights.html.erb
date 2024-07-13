@@ -50,7 +50,7 @@
 									<td><small><%= flight.tow_height %></small></td>
                   <td><small><!-- change flight fees to $180 for rth flights, also do this in models/flight.rb -->
 										<% if flight.reservation.rth_flag == true %>
-											180.0
+											$180.00
 										<% else %>	
 											<%= number_to_currency(flight.fees) %>
 										<% end %>
