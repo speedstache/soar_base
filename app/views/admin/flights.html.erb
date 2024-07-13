@@ -52,7 +52,7 @@
 										<% if flight.reservation.rth_flag == true %>
 											180.0
 										<% else %>	
-											<%= flight.fees %>
+											<%= number_to_currency(flight.fees) %>
 										<% end %>
 									</small></td>
 									<td><small>
