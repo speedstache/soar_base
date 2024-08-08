@@ -39,7 +39,7 @@ class Flight < ApplicationRecord
           date = flight.flight_date
           name = flight.user.username
           aircraft = flight.aircraft.short_name
-          instructor = flight.reservation.instructor_flag.humanize
+          instructor = flight.instructor_id.nil? ? 'none' : User.find(flight.instructor_id).username
           rth_ride = flight.reservation.rth_flag.humanize
           flight_count = 1
           flight_minutes = flight.flight_time

@@ -42,7 +42,7 @@
 									<td><small><%= flight.flight_date %></small></td>
 									<td><small><%= flight.user.username %></small></td>
 									<td><small><%= flight.aircraft.short_name %></small></td>
-									<td><small><%= flight.reservation.instructor_flag.humanize %></small></td>
+									<td><small><%= flight.instructor_id.nil? ? 'None' : User.find(flight.instructor_id).username %></small></td>
 									<td><small><%= flight.reservation.rth_flag.humanize %></small></td>
                   <td><small><%= flight.flight_time %></small></td>
 									<td><small><%= flight.tow_height %></small></td>
