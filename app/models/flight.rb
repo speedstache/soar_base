@@ -54,4 +54,29 @@ class Flight < ApplicationRecord
 
   end
 
+  #define the csv export format for the flights grid and iterate through the model for each value
+  def self.instructor_to_csv
+    attributes = %w{reservation_id flight_id date name aircraft instructor_name flight_minutes tow_height}
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      @instructorflights = Flight.where.not(instructor_id: nil)
+      @flights = @instructorflights.where(flight_date: 400.days.ago..Date.today).order('flights.flight_date DESC','flights.reservation_id DESC')
+
+      #Change rth flight tow fees to $180, also do this in admin/flights.html.erb
+      @flights.each do |flight|
+          reservation_id = flight.reservation_id
+          flight_id = flight.id
+          date = flight.flight_date
+          name = flight.user.username
+          aircraft = flight.aircraft.short_name
+          instructor_name = User.find(flight.instructor_id).username
+          flight_minutes = flight.flight_time
+          tow_height = flight.tow_height
+          csv << [reservation_id, flight_id, date, name, aircraft, instructor_name, flight_minutes, tow_height]
+      end
+    end
+
+  end
+
 end

@@ -59,6 +59,8 @@ Rails.application.routes.draw do
   get 'admin/flights', to: 'admin#flights'
   match 'admin/flights/:id/edit', to: 'admin#editflight', as: 'edit_admin_flight', via: [:get, :post, :put, :patch]
   
+  get 'admin/instructors', to: 'admin#instructors'
+  match 'admin/instructors/:id/edit', to: 'admin#editinstructor', as: 'edit_admin_instructor', via: [:get, :post, :put, :patch]
 
 
   get 'admin/emails', to: 'admin#emails', as: 'admin_emails'
@@ -69,7 +71,7 @@ Rails.application.routes.draw do
 
 
   get 'admin/aircrafts', to: 'admin#aircrafts'
-  get 'admin/instructors', to: 'admin#instructors'
+  get 'admin/towpilots', to: 'admin#towpilots'
 
 
   resources :profile, only: [:index, :show, :edit, :update]

@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row text-center justify-content-center">
+    <div class="col col-sm-12 col-md-12">
+      <div class="row justify-content-center">
+				<div class="col">
+					<h4>Instructor Flight logs</h4>
+					<p class="text-muted">Instructor logs only include flights with instructors logged.<br>
+					Data is based on user-entry. Incorrect instructors can be checked against tow logs.<br>
+					Search and date picker functions to be added later.<br>
+					Export displays all flights that have already occurred from beginning of year to today's date.</p>
+				</div>
+				<div class="col align-text-middle">
+					<%= link_to 'Export to CSV', '/admin/instructors.csv', :class => "btn btn-primary" %>
+				</div>	
+			<div class="row">
+				<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th><small>Reservation ID</small></th>
+							<th><small>Flight ID</small></th>
+							<th><small>Date</small></th>
+							<th><small>Name</small></th>
+							<th><small>Aircraft</small></th>
+              <th><small>Instructor Name</small></th>
+              <th><small>Flight Minutes</small></th>
+							<th><small>Tow Height</small></th>
+							<th><small>Modify</small></th>
+
+						</tr>
+					</thead>
+						<tbody>
+							<% @flights.each do |flight| %>
+								<tr>
+									<td><small><%= flight.reservation_id %></small></td>
+									<td><small><%= flight.id %></small></td>
+									<td><small><%= flight.flight_date %></small></td>
+									<td><small><%= flight.user.username %></small></td>
+									<td><small><%= flight.aircraft.short_name %></small></td>
+									<td><small><%= User.find(flight.instructor_id).username %></small></td>
+                  <td><small><%= flight.flight_time %></small></td>
+									<td><small><%= flight.tow_height %></small></td>
+									<td><small><%= link_to 'Edit', edit_admin_instructor_path(flight), class: "btn btn-primary btn-sm"%></small></td>
+								</tr>
+							<% end %>
+						</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+

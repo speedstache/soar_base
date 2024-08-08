@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row text-center justify-content-center">
+    <div class="col col-sm-12 col-md-12">
+      <div class="row justify-content-center">
+				<div class="col">
+					<h4>Tow logs</h4>
+					<p class="text-muted">All tow pilots and tow counts year to date.<br>
+					Modify tow logs via the tow schedule links under Resource Scheduler.
+					Search and date picker functions to be added later.<br>
+					Export displays all reservations that have already occurred from beginning of year to today's date.</p>
+				</div>
+				<div class="col align-text-middle">
+					<%= link_to 'Export to CSV', '/admin/towpilots.csv', :class => "btn btn-primary" %>
+				</div>	
+			<div class="row">
+				<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th><small>ID</small></th>
+							<th><small>Date</small></th>
+							<th><small>Name</small></th>
+							<th><small>Aircraft</small></th>
+							<th><small>Flight Count</small></th>
+						</tr>
+					</thead>
+						<tbody>
+							<% @reservations.each do |reservation| %>
+								<tr>
+									<td><small><%= reservation.id %></small></td>
+									<td><small><%= reservation.reservation_date %></small></td>
+									<td><small><%= reservation.user.username %></small></td>
+									<td><small><%= reservation.aircraft.short_name %></small></td>
+                  <td><small><%= reservation.tows.nil? ? '0' : reservation.tows.pluck(:tows).sum %></small></td>
+									
+								</tr>
+							<% end %>
+						</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+

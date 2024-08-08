@@ -9,7 +9,7 @@ class AdminController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv {send_data @reservations.to_csv, filename: "ESC_reservation_logs_#{Date.today}.csv" }
+      format.csv {send_data @reservations.reservation_to_csv, filename: "ESC_reservation_logs_#{Date.today}.csv" }
     end
 
     def editreservation
@@ -71,6 +71,70 @@ class AdminController < ApplicationController
   end
 
   def instructors
+    @instructorflights = Flight.where.not(instructor_id: nil)
+    @flights = @instructorflights.where(flight_date: 400.days.ago..Date.today).order('flights.flight_date DESC','flights.reservation_id DESC')
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data @flights.instructor_to_csv, filename: "ESC_instructor_logs_#{Date.today}.csv" }
+    end
+
+    def editinstructor
+      @editinstructor = Flight.find(params[:id])
+    end
+
+    def update
+      @editinstructor = Flight.find(params[:id])
+
+      if @editinstructor.update(flight_params)
+        flash[:success] = "Changes were successfully logged."
+        format.html { redirect_to admin_instructors_path }
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+
+
+  end
+
+  def towpilots
+    #show all reservations related to towplane logs
+    #show all reservations from the past 400 days. Will improve this with more flexibility but it works for now.
+    @validaircraft = Aircraft.where(group: 'towplane')
+    @reservations = Reservation.where(reservation_date: 400.days.ago..Date.today, aircraft_id: @validaircraft).order('reservations.reservation_date DESC','reservations.id DESC')
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data @reservations.towpilot_to_csv, filename: "ESC_towpilot_logs_#{Date.today}.csv" }
+    end
+
+    def editreservation
+      @reservation = Reservation.find(params[:id])
+    end
+
+    def updatereservation
+      @reservation = Reservation.find(params[:id])
+
+      if @reservation.update(reservation_params)
+        flash[:success] = "Changes were successfully logged."
+        format.html { redirect_to admin_reservations_path }
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+
+    # DELETE /reservations/1 or /reservations/1.json
+    def destroy
+      @reservation = Reservation.find(params[:id])
+      @reservation.destroy
+
+      respond_to do |format|
+        flash[:success] = "Reservation was successfully deleted."
+        format.html { redirect_to admin_reservations_path }
+        format.json { head :no_content }
+     end
+    end
+
   end
 
   def emails
