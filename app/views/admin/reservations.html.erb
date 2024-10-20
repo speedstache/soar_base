@@ -39,7 +39,7 @@
 									<td><small><%= reservation.aircraft.short_name %></small></td>
 									<td><small><%= reservation.instructor_flag.humanize %></small></td>
                   <td><small><%= reservation.flights.count %></small></td>
-                  <td><small><%= reservation.flights.pluck(:flight_time).sum %></small></td>
+                  <td><small><%= reservation.flights.pluck(:flight_time).sum(&:to_i) %></small></td>
                   <td><small><%= reservation.rth_flag? ? '$180.00' : number_to_currency(reservation.flights.pluck(:fees).sum) %></small></td>
 									<td><small>
 										<% if reservation.status == 'open' && reservation.reservation_date > Date.today %>
