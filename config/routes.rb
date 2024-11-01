@@ -12,8 +12,11 @@ Rails.application.routes.draw do
   resources :memberships,     except: [:destroy]
   resources :permissions,     except: [:show, :destroy]
   resources :aircraft_users
+  get 'users/archived', to: 'users#archived_index', as: 'archived_users'
+
   resources :users,     except: [:destroy]
   get 'users/:sendme/resend', to: 'users#resend', as: 'resend_user'
+
 
 
   resources :hours,     except: [:destroy]

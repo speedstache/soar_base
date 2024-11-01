@@ -30,6 +30,11 @@
       <%= f.check_box :activate_now, class: "form-check-label" %>
     </div>
   </div>
+    <% if params[:status] == 'archive' %>
+      <%= f.hidden_field :status, value: 'archive' %>
+    <% else %>
+      <%= f.hidden_field :status, value: 'active' %>
+    <% end %> 
     <%= link_to "Close", users_path,  class: "btn btn-light" %> 
     <%= f.submit class:"btn btn-primary" %>
 <% end %>

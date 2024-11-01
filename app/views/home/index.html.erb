@@ -6,6 +6,17 @@
         <ul class="list-group list-group-flush ">
           <li class="list-group-item lead pb-3">Release Notes</li>
             <d1 class="row">
+            <dt class="col-sm-4 ps-4 pt-2">11/1/24</dt>
+            <dd class="col-sm-8 pt-2">
+              <p>Moved Admin section to beginning of nav to make room for drop downs</p> 
+              <p>Added 'status' column to User model</p>
+              <p>Added 'status' hidden column to User creation form</p>
+              <p>Updated all existing users to status Active in production database</p>
+              <p>Added Archive button to User Index page to toggle users to archived status</p>
+              <p>Limited display of users in membership and profile pages to only those NOT in archive status</p>
+
+
+            </dd>
             <dt class="col-sm-4 ps-4 pt-2">10/19/24</dt>
             <dd class="col-sm-8 pt-2">
               <p>Added SSL connection to sidekiq</p> 

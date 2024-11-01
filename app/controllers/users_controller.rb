@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all.paginate(page: params[:page], per_page: 10).order(:username)
+    @users = User.where.not(status: 'archive').paginate(page: params[:page], per_page: 10).order(:username)
   end
 
   # GET /users/1 or /users/1.json
@@ -87,6 +87,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def archived_index
+    @archived_users = User.where(status: 'archive')
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -96,7 +101,7 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:username, :email, :password,
-                                   :password_confirmation, :previous_request, :activate_now, profile_attributes: [:phone_number, :date_of_birth, :street_first_line, :street_second_line, :city, :state, :zip, :emergency_contact, :emergency_phone])
+                                   :password_confirmation, :previous_request, :activate_now, :status, profile_attributes: [:phone_number, :date_of_birth, :street_first_line, :street_second_line, :city, :state, :zip, :emergency_contact, :emergency_phone])
     end
 
     def require_same_user

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row text-center justify-content-center">
-    <div class="col col-sm-10 col-md-10">
+    <div class="col col-sm-12 col-md-12">
       <div class="row justify-content-center">
 				<div class="col-12 col-md-6">
 					<h4>List of Users</h4>
@@ -9,7 +9,7 @@
 				<div class="col mt-2">
 					<div class="row">
 						<div class="col">
-							<%= link_to 'Add new user', new_user_path, :class => "btn btn-primary" %>
+							<%= link_to 'Add new user', new_user_path(:status => 'active'), :class => "btn btn-primary" %>
 						</div>
 					</div>
 					<div class="row mt-2">	
@@ -30,23 +30,30 @@
 									<th>Username</th>
 									<th>Email</th>
 									<th>Activated</th>
-									<th colspan="2">Edit User</th>
+									<th colspan="3">Edit User</th>
 								</tr>
 							</thead>
 							<tbody>
 								<% @users.each do |user| %>
 									<tr>
-										<td><%= gravatar_for user, size: 50 %></td>
-										<td><%= user.username %></td>
-										<td><%= user.email %></td>
-										<td><%= user.activated.humanize %></td>
-										<td><%= link_to 'Edit', edit_user_path(user), class: "btn btn-primary btn-sm"%></td>
-										<td>
-											<% if !user.activated? %>
-												<%= link_to 'Resend_Activation', resend_user_path(sendme: user.id), class: "btn btn-primary btn-sm"%>
+										<td><small><%= gravatar_for user, size: 30 %></small></td>
+										<td><small><%= user.username %></small></td>
+										<td><small><%= user.email %></small></td>
+										<td><small><%= user.activated.humanize %></small></td>
+										<td><small><%= link_to 'Edit', edit_user_path(user), class: "btn btn-primary btn-sm"%></small></td>
+										<td><small>
+											<% if user.membership_users.pluck(:active_flag).last == true %>
+											<%= link_to 'Archive', edit_user_path(user, :status => 'archive'), class: "btn btn-gray btn-sm disabled" %>
 											<% else %>
-											<% end %>	
-												</td>
+												<%= link_to 'Archive', edit_user_path(user, :status => 'archive'), class: "btn btn-primary btn-sm" %>
+											<% end %>
+										</small></td>
+										<td><small>	
+											<% if !user.activated? %>
+													<%= link_to 'Resend_Activation', resend_user_path(sendme: user.id), class: "btn btn-primary btn-sm"%>
+											<% else %>
+											<% end %>
+										</small></td>		 
 									</tr>
 								<% end %>
 							</tbody>

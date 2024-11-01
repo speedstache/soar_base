@@ -15,6 +15,7 @@
                   <th>Add Aircraft</th>
                   <th>Profile pic</th>
                   <th>Username</th>
+                  <th>Status</th>
                   <th colspan="2">Allowed to reserve</th>
                 </tr>
               </thead>
@@ -24,6 +25,7 @@
                     <td><%= link_to 'Add aircraft', new_aircraft_user_path(:id => user.id), :class => "btn btn-primary btn-sm" %>
                     <td><%= gravatar_for user, size: 50 %></td>
                     <td><%= user.username %></td>
+                    <td><%= user.status %></td>
                     <td>No privileges assigned</td>  
                   </tr>
                 <% end %>
@@ -52,6 +54,7 @@
                   <th>Add aircraft</th>
                   <th>Profile pic</th>
                   <th>Username</th>
+                  <th>Status</th>
                   <th colspan="2">Allowed to reserve</th>
                 </tr>
               </thead>
@@ -61,6 +64,7 @@
                     <td><%= link_to 'Add aircraft', new_aircraft_user_path(:id => user.id), :class => "btn btn-primary btn-sm" %>
                     <td><%= gravatar_for user, size: 50 %></td>
                     <td><%= user.username %></td>
+                    <td><%= user.status %></td>
                     <td>
                       <% AircraftUser.where(user_id: user.id).each do |aircraftuser| %>
                       <div class="row">
