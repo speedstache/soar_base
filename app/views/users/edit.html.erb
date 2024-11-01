@@ -3,6 +3,10 @@
     <h4>Edit user</h4>
     <div class="col-sm-10 col-md-6">
       <%= render 'shared/errors', obj: @user %>
+      <% if params[:status] == 'archive' %>
+        When archiving a user, be sure to click 'Update User' to save Archived status. Edits to user info are allowed, but are not required.<br>
+      <% else %>
+      <% end %>  
       <%= render 'form' %>
     </div>
   </div>

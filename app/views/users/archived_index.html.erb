@@ -19,7 +19,6 @@
 								<tr>
 									<th>Username</th>
 									<th>Email</th>
-									<th>Activated</th>
 									<th colspan="3">Edit User</th>
 								</tr>
 							</thead>
@@ -28,7 +27,6 @@
 									<tr>
 										<td><small><%= archived_user.username %></small></td>
 										<td><small><%= archived_user.email %></small></td>
-										<td><small><%= archived_user.activated.humanize %></small></td>
 										<td><small><%= link_to 'Unarchive', edit_user_path(archived_user, :status => 'active'), class: "btn btn-primary btn-sm"%></small></td>
 										
 											 
