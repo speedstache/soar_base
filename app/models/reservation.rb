@@ -35,7 +35,7 @@ class Reservation < ApplicationRecord
     CSV.generate(headers: true) do |csv|
       csv << attributes
 
-      @reservations = Reservation.where(reservation_date: Date.today.beginning_of_year..Date.today, aircraft_id: Aircraft.where.not(group: 'towplane'))
+      @reservations = Reservation.where(reservation_date: 400.days.ago..Date.today, aircraft_id: Aircraft.where.not(group: 'towplane'))
       @reservations.each do |reservation|
           id = reservation.id
           date = reservation.reservation_date
@@ -61,7 +61,7 @@ class Reservation < ApplicationRecord
     CSV.generate(headers: true) do |csv|
       csv << attributes
 
-      @reservations = Reservation.where(reservation_date: Date.today.beginning_of_year..Date.today, aircraft_id: Aircraft.where(group: 'towplane'))
+      @reservations = Reservation.where(reservation_date: 400.days.ago..Date.today, aircraft_id: Aircraft.where(group: 'towplane'))
       @reservations.each do |reservation|
           id = reservation.id
           date = reservation.reservation_date

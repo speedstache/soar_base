@@ -30,7 +30,7 @@ class Flight < ApplicationRecord
     CSV.generate(headers: true) do |csv|
       csv << attributes
 
-      @flights = Flight.where(flight_date: Date.today.beginning_of_year..Date.today).order('flights.flight_date DESC','flights.reservation_id ASC')
+      @flights = Flight.where(flight_date: 400.days.ago..Date.today).order('flights.flight_date DESC','flights.reservation_id ASC')
 
       #Change rth flight tow fees to $180, also do this in admin/flights.html.erb
       @flights.each do |flight|
