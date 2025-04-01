@@ -9,7 +9,9 @@
             to membership in the Soaring Society of America. We also consider membership to be a privilege that provides cameraderie and lifelong 
             friendships based around a shared love of soaring. </p>
             <p class="font-weight-medium text-muted">We currently have <%= MembershipUser.where(active_flag: true).count %> active members and growing. If you are interested 
-              in becoming our next member, send us a note using the form below. </p>
+              in becoming our next member we encourage you to visit us on a weekend to meet
+              our members, see our operations in action, and experience the club firsthand. This is
+              the best way to get a feel for our community and ask any questions. You may also send us a note using the form below. </p>
           </div>    
         </div>
         <div class="col-12 col-lg-7 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
@@ -30,7 +32,7 @@
                 <d1 class="row">
                   <dt class="col-sm-4 ps-4 pt-2">Becoming a Member</dt>
                     <dd class="col-sm-8 pt-2">
-                      <p>In addition to sending us a note as an introduction, we encourage potential members to come visit us on a flying weekend 
+                      <p>We encourage potential members to come visit us on a flying weekend 
                       and see what the daily operations at Eagleville Soaring Club are like. Glider clubs are highly social groups, since nothing
                       happens on the field without the help of our members to move gliders, run wings, drive golf carts, and talk about flying!</p>
                       <p>We love to see potential members at the field so we get to know you before you join. </p>
@@ -44,7 +46,7 @@
                       Many of our members are returning to flying after a long hiatus, while others are just starting on their journey towards a glider certificate.</p>
                       
                       <p><span class="font-weight-medium"><%= @student.membership_type %> Memberships - </span> Dues are $<%= @student.renewal_price %> and renew every <%= @student.renewal_period %> days (annually).</p>
-                      <p><%= @student.membership_type %> memberships are targeted towards students. Typically high school age students, but we frequently see college students as members as well as sometimes students still in middle school!
+                      <p><%= @student.membership_type %> memberships are targeted towards students. Typically high school age students, but we also extend student memberships to college students as well as students 13 years or older.
                       Some of our most enthusiastic student pilots (and student members) are our youngest members. </p>
                       
                       

@@ -173,10 +173,10 @@
                           rides to non-members.
 
                   </p>
-                  <p class="font-weight-medium text-muted">Contact us using this form to request a ride with one of our pilots. </p>
+                  <p class="font-weight-medium text-muted">Read more about taking a glider ride and how to visit us at the field by clicking the link below. </p>
                 </div>
                 <div> 
-                  <%= link_to "Request a Ride", pages_flights_path, :target => "_self", :class => "btn btn-info" %>
+                  <%= link_to "Take a Glider Ride", pages_flights_path, :target => "_self", :class => "btn btn-info" %>
                 </div>  
               </div>
               <div class="col-12 col-lg-6 mt-3 p-0 img-digital grid-margin" data-aos="fade-left">
@@ -194,7 +194,7 @@
                   journey as a glider pilot with no prior experience. Our instructors are experts in taking absolute beginners through the learning process and
                   preparing them for first solo and beyond. <br>
                   </p>
-                  <p class="pb-2 font-weight-medium text-muted">To learn more about flight training at Eagleville Soaring Club, contact us via this form.</p>
+                  <p class="pb-2 font-weight-medium text-muted">Click the link below To learn more about flight training at Eagleville Soaring Club.</p>
                 </div>
                 <%= link_to "Learn about flight training", pages_instruction_path, :target => "_self", :class => "btn btn-info" %>
 
@@ -207,9 +207,11 @@
                   <p class="py-4 m-0 text-muted">Membership in the Eagleville Soaring Club has multiple benefits. Members are granted usage
                   privileges in our club gliders based on experience and training, as well as an annual membership in the Soaring Society of America. 
                   </p>
+                  <p>If you are interested in membership, we encourage you to visit us on a weekend to meet our members, see our operations in action, and experience the club firsthand.
+                  </p>
                   <p class="font-weight-medium text-muted">We have <%= MembershipUser.where(active_flag: true).count %> active members in our club across a wide range of experience and age groups. You could be the next!</p>
                 </div> 
-                <%= link_to "Inquire about membership", pages_membership_path, :target => "_self", :class => "btn btn-info" %>
+                <%= link_to "Read more about membership", pages_membership_path, :target => "_self", :class => "btn btn-info" %>
 
       
               </div>
