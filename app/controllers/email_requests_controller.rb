@@ -19,7 +19,7 @@ def create
   respond_to do |format|
     if @recaptcha_succeeded && !@email_request.email.match(/(.ru)/) && !@email_request.body.match(/[\u0401\u0451\u0410-\u044f]/)
       @email_request.save
-        EmailRequestMailer.secretary_ride(@email_request.id).deliver_now
+        EmailRequestMailer.secretary_forward(@email_request.id).deliver_now
       flash[:success] = "Thank you for your note. We will respond as soon as possible."
       format.html { redirect_to params[:previous_request] }
       format.json { render :show, status: :created, location: @email_request }
