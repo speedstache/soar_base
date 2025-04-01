@@ -24,7 +24,7 @@ class EmailRequestMailer < ApplicationMailer
     mail to: @recipient, subject: @email_contents.date.strftime("%x")+" Membership Request - "+@email_contents.email
   end
 
-  def secretary_forward(email, id)
+  def secretary_forward(id)
     @email_contents = EmailRequest.find(id)
 
     @recipient = "nathan.r.taylor@gmail.com"
