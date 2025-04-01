@@ -29,7 +29,7 @@ class EmailRequestMailer < ApplicationMailer
 
     @recipient = "nathan.r.taylor@gmail.com"
 
-    mail to: @recipient, subject: "ESC Email Forward - "+@email_contents.subject
+    mail to: @recipient, subject: @email_contents.subject, from: @email_contents.email
   end
 
 
