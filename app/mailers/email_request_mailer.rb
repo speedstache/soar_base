@@ -29,7 +29,7 @@ class EmailRequestMailer < ApplicationMailer
 
     @recipient = "nathan.r.taylor@gmail.com"
 
-    mail to: @recipient, subject: @email_contents.subject, from: @email_contents.email
+    mail to: @recipient, subject: @email_contents.subject
   end
 
 
