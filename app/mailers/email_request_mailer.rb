@@ -27,7 +27,7 @@ class EmailRequestMailer < ApplicationMailer
   def secretary_forward(email_request)
     @email_contents = email_request
 
-    @recipient = "nathan.r.taylor@gmail.com"
+    @recipient = "eaglevillesoaringclub.secretary@gmail.com"
 
     mail to: @recipient, subject: @email_contents.subject
   end
