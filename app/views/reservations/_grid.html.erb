@@ -13,7 +13,7 @@
 			<td>21A</td>
 			<% @avail_hours.each do |hour| %>
 				<td >
-					<% if has_membership == true && @res_show >= 15.days.ago %>
+					<% if has_membership == true && has_privileges_in == true && @res_show >= 15.days.ago %>
 						<% if @view_21a.where(reservation_time: hour.hour).exists? %>
 							<%= link_to '', reservation_path(@view_21a.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 						<% elsif Aircraft.find(1).active_flag == true %>
@@ -39,7 +39,7 @@
 			<td>21B</td>
 			<% @avail_hours.each do |hour| %>
 				<td >
-					<% if has_membership == true && @res_show >= 15.days.ago %>
+					<% if has_membership == true && has_privileges_in == true && @res_show >= 15.days.ago %>
 						<% if @view_21b.where(reservation_time: hour.hour).exists? %>
 							<%= link_to '', reservation_path(@view_21b.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 							<% elsif Aircraft.find(2).active_flag == true %>
@@ -65,7 +65,7 @@
 			<td>LS4 QW</td>
 			<% @avail_hours.each do |hour| %>
 				<td >
-					<% if has_membership == true && @res_show >= 15.days.ago  %>
+					<% if has_membership == true &&  has_privileges_in == true && @res_show >= 15.days.ago  %>
 						<% if @view_ls4.where(reservation_time: hour.hour).exists? %>
 							<%= link_to '', reservation_path(@view_ls4.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 							<% elsif Aircraft.find(16).active_flag == true %>
