@@ -62,20 +62,20 @@
 			<% end %>
 			</tr>
 			<tr>
-			<td>ASK-23</td>
+			<td>LS4 QW</td>
 			<% @avail_hours.each do |hour| %>
 				<td >
 					<% if has_membership == true && @res_show >= 15.days.ago  %>
-						<% if @view_23.where(reservation_time: hour.hour).exists? %>
-							<%= link_to '', reservation_path(@view_23.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
-							<% elsif Aircraft.find(3).active_flag == true %>
-							<%= link_to '', new_reservation_path(:date => @res_show.strftime("%a, %b %d, %Y"), :time => hour.hour, :aircraft => 3), :class=>"open_dot" %>
+						<% if @view_ls4.where(reservation_time: hour.hour).exists? %>
+							<%= link_to '', reservation_path(@view_ls4.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
+							<% elsif Aircraft.find(16).active_flag == true %>
+							<%= link_to '', new_reservation_path(:date => @res_show.strftime("%a, %b %d, %Y"), :time => hour.hour, :aircraft => 16), :class=>"open_dot" %>
 						<% else %>
 							<span class="gray_dot" title="Aircraft is currently offline"></span>
 						<% end %>
 					<% else %>	
-						<% if @view_23.where(reservation_time: hour.hour).exists? %>
-							<%= link_to '', reservation_path(@view_23.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
+						<% if @view_ls4.where(reservation_time: hour.hour).exists? %>
+							<%= link_to '', reservation_path(@view_ls4.where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 						<% else %>
 							<% if @res_show < 15.days.ago %>
 								<span class="gray_dot" title="Reservations cannot be created for dates that far in the past"></span>

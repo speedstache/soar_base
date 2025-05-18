@@ -28,6 +28,7 @@ class ReservationsController < ApplicationController
     @view_21a = @res_date.where(aircraft_id: 1)
     @view_21b = @res_date.where(aircraft_id: 2)
     @view_23 = @res_date.where(aircraft_id: 3)
+    @view_ls4 = @res_date.where(aircraft_id: 3)
     @myreservations = current_user.reservations.where(reservation_date: 20.days.ago..30.days.from_now, status: 'open').order('reservation_date DESC')
     @pastduereservations = current_user.reservations.where(reservation_date: 100.days.ago..5.days.ago, status: 'open').order('reservation_date DESC')
     @paidreservations = current_user.reservations.where(status: 'paid').order('reservation_date DESC')
@@ -78,6 +79,7 @@ class ReservationsController < ApplicationController
     @view_21a = @res_date.where(aircraft_id: 1)
     @view_21b = @res_date.where(aircraft_id: 2)
     @view_23 = @res_date.where(aircraft_id: 3)
+    @view_ls4 = @res_date.where(aircraft_id: 3)
 
     @field_status = FieldStatusUpdate.where(date: @res_show).last
 
