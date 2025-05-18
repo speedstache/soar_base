@@ -37,6 +37,13 @@ module SessionsHelper
   
   end
 
+  #permissions for reserving via the grid
+  def aircraft_privilege_ids
+    aircraft_privilege_ids = current_user.aircraft_ids
+  end
+
+  
+
   # Check the current user for an active membership
   def has_membership
 
