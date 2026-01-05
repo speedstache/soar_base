@@ -34,3 +34,9 @@
       class: WebhookCleanup
       queue: default
       description: "Delete Webhooks older than 30 days that have a status of skipped"
+
+    weeklydaygenerator:
+      cron: "0 19 * * 1" # every Monday at 19:00 CST
+      class: WeeklyDayGenerator
+      queue: default
+      description: "Add additional week to flying days to keep website running"
