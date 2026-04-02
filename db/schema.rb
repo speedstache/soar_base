@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_01_135055) do
+ActiveRecord::Schema[7.0].define(version: 2026_04_02_034629) do
   create_table "aircraft_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "aircraft_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_01_135055) do
     t.boolean "active_flag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "archived", default: false
   end
 
   create_table "days", force: :cascade do |t|
@@ -103,8 +104,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_01_135055) do
   end
 
   create_table "pay_charges", force: :cascade do |t|
-    t.bigint "customer_id", null: false
-    t.bigint "subscription_id"
+    t.integer "customer_id", null: false
+    t.integer "subscription_id"
     t.string "processor_id", null: false
     t.integer "amount", null: false
     t.string "currency"
@@ -145,7 +146,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_01_135055) do
   end
 
   create_table "pay_payment_methods", force: :cascade do |t|
-    t.bigint "customer_id", null: false
+    t.integer "customer_id", null: false
     t.string "processor_id", null: false
     t.boolean "default"
     t.string "type"
@@ -156,7 +157,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_01_135055) do
   end
 
   create_table "pay_subscriptions", force: :cascade do |t|
-    t.bigint "customer_id", null: false
+    t.integer "customer_id", null: false
     t.string "name", null: false
     t.string "processor_id", null: false
     t.string "processor_plan", null: false

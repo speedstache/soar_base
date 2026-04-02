@@ -18,16 +18,18 @@
 									<th>Group</th>
 									<th>Last Maintenance</th>
 									<th>Active flag</th>
-									<th colspan="2">Modify</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><%= @aircraft.name %></td>
-									<td><%= @aircraft.short_name %></td>
-									<td><%= @aircraft.group %></td>
-									<td><%= @aircraft.last_maintenance %></td>
-									<td><%=  @aircraft.active_flag.humanize %></td>
+								<th>Archived</th>
+								<th colspan="2">Modify</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><%= @aircraft.name %></td>
+								<td><%= @aircraft.short_name %></td>
+								<td><%= @aircraft.group %></td>
+								<td><%= @aircraft.last_maintenance %></td>
+								<td><%=  @aircraft.active_flag.humanize %></td>
+								<td><%=  @aircraft.archived.humanize %></td>
 									<td><%= link_to 'Edit', edit_aircraft_path(@aircraft), class: "btn btn-primary btn-sm"%></td>
 								</tr>
 							</tbody>

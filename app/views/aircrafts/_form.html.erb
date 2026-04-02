@@ -29,6 +29,12 @@
       <%= f.check_box :active_flag, class: "form-check-label" %>
     </div>
   </div>
+  <div class="form-group row m-3" >
+      <%= f.label :archived, class: "col col-form-label" %>
+    <div class="col">
+      <%= f.check_box :archived, class: "form-check-label" %>
+    </div>
+  </div>
   <%= link_to "Back to aircraft list", aircrafts_path, :class => "btn btn-secondary" %>
   <%= f.submit class:"btn btn-primary" %>
 <% end %>

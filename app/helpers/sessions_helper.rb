@@ -26,12 +26,15 @@ module SessionsHelper
   end
 
   def has_privileges_in
-    
     # will need to limit this to users that have active memberships once available
     aircraftuser_ids = AircraftUser.where(user_id: User.where(id: current_user.id).ids)
       has_privileges_in = []
       aircraftuser_ids.each do |aircraftuser_id|
-        has_privileges_in << { id: AircraftUser.find(aircraftuser_id.id).aircraft.id, short_name: AircraftUser.find(aircraftuser_id.id).aircraft.short_name }
+        aircraft = AircraftUser.find(aircraftuser_id.id).aircraft
+        # Only include non-archived aircraft
+        unless aircraft.archived?
+          has_privileges_in << { id: aircraft.id, short_name: aircraft.short_name }
+        end
       end
     return has_privileges_in
   

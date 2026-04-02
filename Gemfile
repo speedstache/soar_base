@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.2"
+ruby "3.2.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.7", ">= 7.0.7.2"
@@ -13,7 +13,7 @@ gem "sprockets-rails"
 gem "tod"
 
 # Add Will_paginate to reduce load times
-gem "will_paginate", "~> 4.0.0"
+gem "will_paginate", "~> 4.0.1"
 
 # Humanize gem for boolean values
 gem "humanize_boolean"

@@ -29,6 +29,7 @@
 							<th>Last Maint.</th>
 							<th>Hours Flown</th>
 							<th>Active</th>
+							<th>Archived</th>
 							<th colspan="2">Modify Aircraft</th>
 						</tr>
 					</thead>
@@ -53,6 +54,7 @@
 										<% end %>
 									</td>
 									<td><%= aircraft.active_flag.humanize %></td>
+									<td><%= aircraft.archived.humanize %></td>
 									<td><%= link_to 'Details', aircraft_path(aircraft), class: "btn btn-info btn-sm"%></td>
 									<td><%= link_to 'Edit', edit_aircraft_path(aircraft), class: "btn btn-primary btn-sm"%></td>
 								</tr>

@@ -176,8 +176,8 @@ aircrafts = [
   { name: "N23456", short_name: "2-3", group: "club", last_maintenance: 45.days.ago },   # club
   { name: "N34567", short_name: "3-4", group: "private", last_maintenance: 15.days.ago },   # private
   { name: "N45678", short_name: "T-1", group: "towplane", last_maintenance: 60.days.ago },   # towplane
-  { name: "N56789", short_name: "I-1", group: "club", last_maintenance: 20.days.ago },   # club
-  { name: "N67890", short_name: "C-1", group: "club", last_maintenance: 10.days.ago },   # club
+  { name: "Instructor", short_name: "CFI-G", group: "instructor", last_maintenance: 20.days.ago },   # instructor
+  { name: "Commercial", short_name: "RTH Pilot", group: "commercial", last_maintenance: 10.days.ago },   # commercial
 ]
 
 aircrafts.each do |attrs|
@@ -194,9 +194,8 @@ end
 # STEP 7: Create Memberships
 # ============================================================================
 memberships = [
-  { membership_type: "Student", renewal_period: 365, renewal_price: 50000, active_flag: true },
-  { membership_type: "Full Member", renewal_period: 365, renewal_price: 120000, active_flag: true },
-  { membership_type: "Trial", renewal_period: 30, renewal_price: 15000, active_flag: true },
+  { membership_type: "Student", renewal_period: 365, renewal_price: 600, active_flag: true },
+  { membership_type: "Full", renewal_period: 365, renewal_price: 1200, active_flag: true },
   { membership_type: "Instructor", renewal_period: 365, renewal_price: 80000, active_flag: true },
 ]
 

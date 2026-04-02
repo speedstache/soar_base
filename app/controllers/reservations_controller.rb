@@ -25,10 +25,21 @@ class ReservationsController < ApplicationController
 
     @avail_days = Day.where(day: 30.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
     @avail_hours = Hour.where(active_flag: 1).order('hours.id ASC')
-    @view_21a = @res_date.where(aircraft_id: 1)
-    @view_21b = @res_date.where(aircraft_id: 2)
-    @view_23 = @res_date.where(aircraft_id: 3)
-    @view_ls4 = @res_date.where(aircraft_id: 16)
+    
+    # Build grid data for:
+    # - All non-archived club aircraft
+    # - Private aircraft user has permission for (non-archived)
+    club_aircraft = Aircraft.where(archived: false, group: 'club')
+    private_permitted = Aircraft.where(archived: false, group: 'private', id: current_user.aircraft_ids)
+    @permitted_aircraft = club_aircraft.or(private_permitted).sort_by(&:id)
+    @grid_aircraft = []
+    @permitted_aircraft.each do |aircraft|
+      @grid_aircraft << {
+        aircraft: aircraft,
+        reservations: @res_date.where(aircraft_id: aircraft.id)
+      }
+    end
+    
     @myreservations = current_user.reservations.where(reservation_date: 20.days.ago..30.days.from_now, status: 'open').order('reservation_date DESC')
     @pastduereservations = current_user.reservations.where(reservation_date: 100.days.ago..5.days.ago, status: 'open').order('reservation_date DESC')
     @paidreservations = current_user.reservations.where(status: 'paid').order('reservation_date DESC')
@@ -76,10 +87,20 @@ class ReservationsController < ApplicationController
 
     @avail_days = Day.where(day: 30.days.ago..30.days.from_now, active_flag: 1).order('days.day ASC')
     @avail_hours = Hour.where(active_flag: 1).order('hours.id ASC')
-    @view_21a = @res_date.where(aircraft_id: 1)
-    @view_21b = @res_date.where(aircraft_id: 2)
-    @view_23 = @res_date.where(aircraft_id: 3)
-    @view_ls4 = @res_date.where(aircraft_id: 16)
+    
+    # Build grid data for:
+    # - All non-archived club aircraft
+    # - Private aircraft user has permission for (non-archived)
+    club_aircraft = Aircraft.where(archived: false, group: 'club')
+    private_permitted = Aircraft.where(archived: false, group: 'private', id: current_user.aircraft_ids)
+    @permitted_aircraft = club_aircraft.or(private_permitted).sort_by(&:id)
+    @grid_aircraft = []
+    @permitted_aircraft.each do |aircraft|
+      @grid_aircraft << {
+        aircraft: aircraft,
+        reservations: @res_date.where(aircraft_id: aircraft.id)
+      }
+    end
 
     @field_status = FieldStatusUpdate.where(date: @res_show).last
 
