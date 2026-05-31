@@ -1,9 +1,9 @@
 <%= form_with(model: @field_status_update, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
   <%= f.hidden_field :username, value: current_user.username %>
   <div class="form-group row p-2" >
-      <%= f.label :Check_box_if_we_are_we_flying, class: "col col-md-4 col-form-label" %>
+      <%= f.label :Uncheck_box_if_we_are_not_flying, class: "col col-md-4 col-form-label" %>
     <div class="col col-12 col-md-8">
-      <%= f.check_box :ops_status, class: "form-check-label" %>
+      <%= f.check_box :ops_status, checked: true,class: "form-check-label" %>
     </div>
   </div>
   <div class="form-group row p-2" >
