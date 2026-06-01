@@ -40,3 +40,5 @@ sendgrid.env
 
 /config/credentials/development.key
 .env.development
+
+dnsimple_api_key.md
