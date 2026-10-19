@@ -74,3 +74,5 @@
 	</div>
 </div>
 
+                                                       <th><small>Correct Dates</small></th>
+                                                                       <td><small><% if current_user.permission.user_admin? %><%= link_to 'Correct dates', edit_admin_flight_date_correction_path(flight), class: "btn btn-secondary btn-sm" %><% end %></small></td>

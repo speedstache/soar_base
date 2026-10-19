@@ -60,6 +60,8 @@ Rails.application.routes.draw do
   match 'admin/reservations/:id/delete', to: 'reservations#destroy', as: 'delete_admin_reservation', via: :delete
 
   get 'admin/flights', to: 'admin#flights'
+  get 'admin/flights/:id/correct_dates', to: 'admin/flight_date_corrections#edit', as: 'edit_admin_flight_date_correction'
+  patch 'admin/flights/:id/correct_dates', to: 'admin/flight_date_corrections#update', as: 'admin_flight_date_correction'
   match 'admin/flights/:id/edit', to: 'admin#editflight', as: 'edit_admin_flight', via: [:get, :post, :put, :patch]
   
   get 'admin/instructors', to: 'admin#instructors'

@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-10 col-md-6">
+      <h4>Correct flight dates</h4>
+      <p class="text-muted">Changing the reservation date updates every flight and tow log attached to it. To correct just this flight, leave the reservation date unchanged.</p>
+      <% if flash[:alert].present? %>
+        <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
+      <% end %>
+      <%= form_with scope: :date_correction, url: admin_flight_date_correction_path(@flight), method: :patch, local: true, class: "shadow p-3 mb-3 bg-info rounded" do |form| %>
+        <div class="form-group row m-3">
+          <%= form.label :reservation_date, "Reservation date", class: "col-4 col-form-label" %>
+          <div class="col">
+            <%= form.date_field :reservation_date, value: @reservation.reservation_date, required: true, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group row m-3">
+          <%= form.label :flight_date, "Selected flight date", class: "col-4 col-form-label" %>
+          <div class="col">
+            <%= form.date_field :flight_date, value: @flight.flight_date, required: true, class: "form-control" %>
+          </div>
+        </div>
+        <%= link_to "Cancel", admin_flights_path, class: "btn btn-light" %>
+        <%= form.submit "Save dates", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
