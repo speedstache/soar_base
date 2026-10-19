@@ -1,0 +1,13 @@
+<div data-controller="profile-image-editor" data-profile-image-editor-max-size-value="5242880">
+  <%= form_with url: form_url, method: form_method, multipart: true, local: true, data: { action: "submit->profile-image-editor#submit" } do |form| %>
+    <%= form.label :profile_image, "Choose a profile image", class: "form-label" %>
+    <%= form.file_field :profile_image, accept: "image/jpeg,image/png,image/webp", required: true, class: "form-control", data: { profile_image_editor_target: "input", action: "change->profile-image-editor#load" } %>
+    <small class="form-text text-muted">JPEG, PNG, or WebP. Maximum 5 MiB.</small>
+    <div class="mt-3" data-profile-image-editor-target="editor" hidden>
+      <img alt="Crop preview" class="profile-image-crop-preview" data-profile-image-editor-target="image">
+      <label class="form-label mt-2" for="profile-image-zoom">Zoom</label>
+      <input id="profile-image-zoom" class="form-range" type="range" min="0" max="2" step="0.01" value="0" data-profile-image-editor-target="zoom" data-action="input->profile-image-editor#zoom">
+    </div>
+    <%= form.submit "Save image", disabled: true, class: "btn btn-primary mt-3", data: { profile_image_editor_target: "submit" } %>
+  <% end %>
+</div>

@@ -1,11 +1,14 @@
 module ApplicationHelper
 
-  def gravatar_for(user, options = { size: 80 })
-    email_address = user.email.downcase
-    hash = Digest::MD5.hexdigest(email_address)
+  def profile_image_for(user, options = { size: 80 })
     size = options[:size]
-    gravatar_url = "https://www.gravatar.com/avatar/#{hash}?s=#{size}"
-    image_tag(gravatar_url, alt: user.username, class: "rounded shadow mx-auto d-block")
+    classes = "rounded shadow mx-auto d-block profile-image"
+
+    if user.profile_image_attached?
+      image_tag(user_profile_image_path(user), alt: "#{user.username}'s profile image", class: classes, width: size, height: size)
+    else
+      content_tag(:span, user.username.first.upcase, class: "#{classes} profile-image-placeholder", style: "width: #{size}px; height: #{size}px", role: "img", aria: { label: "No profile image for #{user.username}" })
+    end
   end
   
 end

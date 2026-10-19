@@ -36,7 +36,7 @@
 							<tbody>
 								<% @users.each do |user| %>
 									<tr>
-										<td><small><%= gravatar_for user, size: 30 %></small></td>
+										<td><small><%= profile_image_for user, size: 30 %></small></td>
 										<td><small><%= user.username %></small></td>
 										<td><small><%= user.email %></small></td>
 										<td><small><%= user.activated.humanize %></small></td>

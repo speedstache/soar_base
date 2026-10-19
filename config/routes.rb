@@ -78,6 +78,13 @@ Rails.application.routes.draw do
 
 
   resources :profile, only: [:index, :show, :edit, :update]
+  get "profile_images/:user_id", to: "profile_images#show", as: :user_profile_image
+    resource :profile_image, only: [:create, :destroy], controller: "profile_images"
+    namespace :admin do
+      resources :users, only: [] do
+        resource :profile_image, only: [:update, :destroy], controller: "user_profile_images"
+      end
+    end
   resources :members, only: [:index]
 
   get 'login', to: 'sessions#new'

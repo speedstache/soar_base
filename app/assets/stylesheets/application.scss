@@ -7,3 +7,34 @@
 @import "css/style";
 @import "css/style.min";
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css");
+
+.profile-image {
+	object-fit: cover;
+}
+
+.profile-image-placeholder {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: #e9ecef;
+	color: #343a40;
+	font-weight: 600;
+}
+
+.profile-image-crop-preview {
+	display: block;
+	max-height: 360px;
+	max-width: 100%;
+}
+
+.profile-form-errors {
+	background-color: #f3f5f6;
+	border-color: #d8dee2;
+	color: #495057;
+}
+
+.profile-form-errors .alert-heading {
+	color: #343a40;
+}
