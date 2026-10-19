@@ -3,8 +3,8 @@
 <%= render @membership_user %>
 
 <div>
-  <%= link_to "Edit this membership user", edit_membership_user_path(@membership_user) %> |
-  <%= link_to "Back to membership users", membership_users_path %>
+  <%= link_to "Edit this membership user", edit_membership_user_path(@membership_user, return_to: params[:return_to].presence || request.fullpath) %> |
+  <%= link_to "Back to membership users", params[:return_to].presence || membership_users_path %>
 
-  <%= button_to "Destroy this membership user", @membership_user, method: :delete %>
+  <%= button_to "Destroy this membership user", membership_user_path(@membership_user, return_to: params[:return_to].presence || request.fullpath), method: :delete %>
 </div>

@@ -47,7 +47,7 @@
 									<td><span class="badge badge-pill badge-<%= permission.user_admin? ? 'success' : 'info' %>"><%= permission.user_admin.humanize %></span></td>
 									<td><span class="badge badge-pill badge-<%= permission.club_admin? ? 'success' : 'info' %>"><%= permission.club_admin.humanize %></span></td>
 									<td><span class="badge badge-pill badge-<%= permission.site_admin? ? 'success' : 'info' %>"><%= permission.site_admin.humanize %></span></td>
-									<td><%= link_to 'Edit', edit_permission_path(permission), class: "btn btn-primary btn-sm"%></td>
+									<td><%= link_to 'Edit', edit_permission_path(permission, return_to: request.fullpath), class: "btn btn-primary btn-sm"%></td>
 								</tr>
 							<% end %>
 						</tbody>

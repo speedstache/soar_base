@@ -4,7 +4,7 @@
     <div class="col col-sm-10 col-md-6">
       <%= render 'shared/errors', obj: @reservation %>
         <%= form_for @reservation, html: {class: "shadow p-3 mb-3 bg-info rounded", local: true } do |f| %>
-          <%= hidden_field_tag :previous_request, request.referer %>
+          <%= hidden_field_tag :return_to, params[:return_to].presence || request.referer %>
 
           <%= f.hidden_field :status, value: 'paid' %>
 

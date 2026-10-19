@@ -37,7 +37,7 @@ class MembershipUsersController < ApplicationController
     
     if @membership_user.save
       flash[:success] = "Membership and User link was successfully created."
-      redirect_to membership_users_path
+      redirect_to return_path(membership_users_path)
     else
       render :new, status: :unprocessable_entity
     end
@@ -51,7 +51,7 @@ class MembershipUsersController < ApplicationController
     respond_to do |format|
       if @membership_user.update(membership_user_params)
         flash[:success] = "Membership user was successfully updated."
-        format.html { redirect_to membership_users_path }
+        format.html { redirect_to return_path(membership_users_path) }
         format.json { render :show, status: :ok, location: @membership_user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -66,7 +66,7 @@ class MembershipUsersController < ApplicationController
 
     respond_to do |format|
       flash[:warning] = "Membership user was successfully deleted."
-      format.html { redirect_to membership_users_url}
+      format.html { redirect_to return_path(membership_users_url) }
       format.json { head :no_content }
     end
   end

@@ -15,11 +15,13 @@ class TowsController < ApplicationController
 
   # GET /tows/new
   def new
+    @return_path = return_path(reservations_tow_path)
     @tow = Tow.new
   end
 
   # GET /tows/1/edit
   def edit
+    @return_path = return_path(reservations_tow_path)
   end
 
   # POST /tows or /tows.json
@@ -32,7 +34,7 @@ class TowsController < ApplicationController
 
     respond_to do |format|
       if @tow.save
-        format.html { redirect_to reservations_tow_path, notice: "Tow log was successfully added." }
+        format.html { redirect_to return_path(reservations_tow_path), notice: "Tow log was successfully added." }
         format.json { render :show, status: :created, location: @tow }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -45,7 +47,7 @@ class TowsController < ApplicationController
   def update
     respond_to do |format|
       if @tow.update(tow_params)
-        format.html { redirect_to reservations_tow_path, notice: "Tow log was successfully updated." }
+        format.html { redirect_to return_path(reservations_tow_path), notice: "Tow log was successfully updated." }
         format.json { render :show, status: :ok, location: @tow }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -59,7 +61,7 @@ class TowsController < ApplicationController
     @tow.destroy
 
     respond_to do |format|
-      format.html { redirect_to reservations_tow_path, notice: "Tow log was successfully deleted." }
+      format.html { redirect_to return_path(reservations_tow_path), notice: "Tow log was successfully deleted." }
       format.json { head :no_content }
     end
   end

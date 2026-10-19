@@ -10,7 +10,7 @@
 				<div class="col col-12 col-sm-12 col-md-6 ">
 					<div class="row mt-3">
 						<div class="col">
-							<%= link_to 'Add tow pilot schedule', new_reservation_path(:aircraft => @towplanes.last), :class => "btn btn-primary btn-sm" %>
+							<%= link_to 'Add tow pilot schedule', new_reservation_path(aircraft: @towplanes.last, return_to: request.fullpath), class: "btn btn-primary btn-sm" %>
 						</div>
 					</div>
 					<div class="row my-3">	
@@ -29,13 +29,13 @@
 								<div class="row">
 									<div class="col input-group justify-content-start">
 										<% if tow_schedule.status == 'open' %>
-											<%= link_to "Edit", edit_reservation_path(tow_schedule), class: "btn btn-primary btn-sm" %>
+											<%= link_to "Edit", edit_reservation_path(tow_schedule, return_to: request.fullpath), class: "btn btn-primary btn-sm" %>
 										<% else %>
 										<% end %>
 									</div>	
 									<div class="col input-group justify-content-end">	
 										<% if tow_schedule.tows.count == 0 && tow_schedule.status == 'open' %>
-											<%= link_to "Delete", reservation_path(tow_schedule), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
+												<%= link_to "Delete", reservation_path(tow_schedule, return_to: request.fullpath), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
 										<% else %>	
 										<% end %>
 									</div>
@@ -105,13 +105,13 @@
 													<td><%= tow.oil_added %></td>
 													<td>
 														<% if tow_schedule.status == 'open' %>
-															<%= link_to 'Modify', edit_reservation_tow_path(tow_schedule, tow), class: "btn btn-primary btn-sm"  %>
+															<%= link_to 'Modify', edit_reservation_tow_path(tow_schedule, tow, return_to: request.fullpath), class: "btn btn-primary btn-sm"  %>
 														<% else %>
 														<% end %>
 													</td>
 													<td>
 														<% if tow_schedule.status == 'open' %>
-															<%= link_to "Delete", [tow_schedule, tow], class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
+															<%= link_to "Delete", reservation_tow_path(tow_schedule, tow, return_to: request.fullpath), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
 														<% else %>
 														<% end %>
 													</td>
@@ -127,15 +127,15 @@
 								<div class="row">
 									<div class="col input-group justify-content-start">
 										<% if tow_schedule.reservation_date <= Date.today && tow_schedule.tows.blank? && tow_schedule.status == 'open' %>
-											<%= link_to "Add Tow Log", new_reservation_tow_path(tow_schedule), :class => "btn btn-primary btn-sm" %>
+											<%= link_to "Add Tow Log", new_reservation_tow_path(tow_schedule, return_to: request.fullpath), class: "btn btn-primary btn-sm" %>
 										<% else %>
 										<% end %>
 									</div>
 									<div class="col input-group justify-content-end">
 										<% if tow_schedule.reservation_date <= Date.today && tow_schedule.tows.present? && tow_schedule.status == 'open' %>
-											<%= link_to "Close Tow Log", update_reservations_tow_path(tow_schedule, :status => 'closed'), class: "btn btn-info btn-sm" %>
+											<%= link_to "Close Tow Log", update_reservations_tow_path(tow_schedule, status: 'closed', return_to: request.fullpath), class: "btn btn-info btn-sm" %>
 										<% elsif tow_schedule.reservation_date <= Date.today && tow_schedule.tows.present? && tow_schedule.status == 'closed'%>
-											<%= link_to "Re-open Tow Log", update_reservations_tow_path(tow_schedule, :status => 'open'), class: "btn btn-info btn-sm" %>
+											<%= link_to "Re-open Tow Log", update_reservations_tow_path(tow_schedule, status: 'open', return_to: request.fullpath), class: "btn btn-info btn-sm" %>
 										<% else %>	
 										<% end %>	
 									</div>

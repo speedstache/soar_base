@@ -135,7 +135,7 @@ class ReservationsController < ApplicationController
     if @reservation.update(status: params[:status])
 
       flash[:success] = "Tow Log was successfully updated."
-      redirect_to reservations_tow_path
+      redirect_to return_path(reservations_tow_path)
     else
       render :new, status: :unprocessable_entity
     end
@@ -150,7 +150,7 @@ class ReservationsController < ApplicationController
     if @reservation.save
       ReservationMailer.confirmation(@reservation).deliver_now
       flash[:success] = "Tow schedule was successfully created."
-      redirect_to params[:previous_request]
+      redirect_to return_path(reservations_tow_path)
     else
       render :new, status: :unprocessable_entity
     end
@@ -178,7 +178,7 @@ class ReservationsController < ApplicationController
     if @reservation.save
       ReservationMailer.confirmation(@reservation).deliver_now
       flash[:success] = "Instructor schedule was successfully created."
-      redirect_to params[:previous_request]
+      redirect_to return_path(reservations_cfi_path)
     else
       render :new, status: :unprocessable_entity
     end
@@ -194,7 +194,7 @@ class ReservationsController < ApplicationController
     if @reservation.update(status: params[:status])
 
       flash[:success] = "Instructor schedule was successfully updated."
-      redirect_to reservations_tow_path
+      redirect_to return_path(reservations_tow_path)
     else
       render :new, status: :unprocessable_entity
     end
@@ -221,7 +221,7 @@ class ReservationsController < ApplicationController
     if @reservation.save
       ReservationMailer.confirmation(@reservation).deliver_now
       flash[:success] = "Commercial Pilot schedule was successfully created."
-      redirect_to params[:previous_request]
+      redirect_to return_path(reservations_comm_path)
     else
       render :new, status: :unprocessable_entity
     end
@@ -237,7 +237,7 @@ class ReservationsController < ApplicationController
     if @reservation.update(status: params[:status])
 
       flash[:success] = "Commercial Pilot schedule was successfully updated."
-      redirect_to reservations_tow_path
+      redirect_to return_path(reservations_tow_path)
     else
       render :new, status: :unprocessable_entity
     end
@@ -281,7 +281,7 @@ class ReservationsController < ApplicationController
     if @reservation.save
       ReservationMailer.confirmation(@reservation).deliver_now
       flash[:success] = "Reservation was successfully created."
-      redirect_to params[:previous_request]
+      redirect_to return_path(reservations_path)
     else
       render :new, status: :unprocessable_entity
     end
@@ -296,7 +296,7 @@ class ReservationsController < ApplicationController
       if @reservation.update(reservation_params)
           ReservationMailer.update(@reservation).deliver_now
         flash[:success] = "Reservation was successfully updated."
-        format.html { redirect_to params[:previous_request] }
+        format.html { redirect_to return_path(reservation_path(@reservation)) }
         format.json { render :show, status: :ok, location: reservation_path(@reservation) }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -313,7 +313,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       flash[:success] = "Reservation was successfully deleted."
-      format.html { redirect_to reservations_url }
+      format.html { redirect_to return_path(reservations_url) }
       format.json { head :no_content }
     end
   end

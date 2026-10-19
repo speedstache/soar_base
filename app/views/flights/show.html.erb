@@ -3,8 +3,8 @@
 <%= render @flight %>
 
 <div>
-  <%= link_to "Edit this flight", edit_flight_path(@flight) %> |
-  <%= link_to "Back to flights", flights_path %>
+  <%= link_to "Edit this flight", edit_flight_path(@flight, return_to: request.fullpath) %> |
+  <%= link_to "Back to flights", params[:return_to].presence || flights_path %>
 
-  <%= button_to "Destroy this flight", @flight, method: :delete %>
+  <%= button_to "Destroy this flight", flight_path(@flight, return_to: params[:return_to].presence || request.fullpath), method: :delete %>
 </div>

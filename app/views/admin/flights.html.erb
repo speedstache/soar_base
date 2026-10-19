@@ -64,7 +64,7 @@
 										</small></td>
 									<td><small><%= flight.reservation.method %></small></td>
 									<td><small><%= flight.reservation.description %></small></td>
-									<td><small><%= link_to 'Edit', edit_admin_flight_path(flight), class: "btn btn-primary btn-sm"%></small></td>
+									<td><small><%= link_to 'Edit', edit_admin_flight_path(flight, return_to: request.fullpath), class: "btn btn-primary btn-sm"%></small></td>
 								</tr>
 							<% end %>
 						</tbody>

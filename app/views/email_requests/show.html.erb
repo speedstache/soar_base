@@ -5,10 +5,10 @@
 				<div class="card-header fst-italic">
 					<div class="row">
             <div class="col input-group justify-content-start">	
-              <%= link_to 'Close', admin_emails_path, :class => "btn btn-primary btn-sm" %>
+			  <%= link_to 'Close', params[:return_to].presence || admin_emails_path, class: "btn btn-primary btn-sm" %>
 						</div>
 						<div class="col input-group justify-content-end">	
-							<%= link_to "Delete", email_request_path(@email_request), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
+							<%= link_to "Delete", email_request_path(@email_request, return_to: params[:return_to]), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
 						</div>
 					</div>		
 					<div class="row pt-3">

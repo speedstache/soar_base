@@ -47,11 +47,11 @@
 											<%= 'Generic Inquiry' %>
 										<% end %>
 									</small></td>	
-                  <td><small><%= link_to 'Read Contents', email_request_path(active_email_request), class: "badge badge-primary"%><br>
+				  <td><small><%= link_to 'Read Contents', email_request_path(active_email_request, return_to: request.fullpath), class: "badge badge-primary"%><br>
 										<%= link_to 'Forward to Email', forward_email_path(:id => active_email_request.id), class: "badge badge-success" %></small></td>
 
-									<td><small><%= link_to 'Delete', email_request_path(active_email_request), class: "badge badge-warning", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %><br>
-										<%= link_to 'Archive', update_email_request_path(active_email_request, :archive => true), class: "badge badge-warning"%></small></td>
+										<td><small><%= link_to 'Delete', email_request_path(active_email_request, return_to: request.fullpath), class: "badge badge-warning", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %><br>
+										<%= link_to 'Archive', update_email_request_path(active_email_request, archive: true, return_to: request.fullpath), class: "badge badge-warning"%></small></td>
 
 									<td><small><%= link_to 'Post to Ride Trello', trello_ride_request_path(:id => active_email_request.id), class: "badge badge-secondary" %><br>
 										<%= link_to 'Post to Member Trello', trello_membership_request_path(:id => active_email_request.id), class: "badge badge-secondary" %></small></td>

@@ -55,8 +55,8 @@
 									</td>
 									<td><%= aircraft.active_flag.humanize %></td>
 									<td><%= aircraft.archived.humanize %></td>
-									<td><%= link_to 'Details', aircraft_path(aircraft), class: "btn btn-info btn-sm"%></td>
-									<td><%= link_to 'Edit', edit_aircraft_path(aircraft), class: "btn btn-primary btn-sm"%></td>
+									<td><%= link_to 'Details', aircraft_path(aircraft, return_to: request.fullpath), class: "btn btn-info btn-sm"%></td>
+									<td><%= link_to 'Edit', edit_aircraft_path(aircraft, return_to: request.fullpath), class: "btn btn-primary btn-sm"%></td>
 								</tr>
 							<% end %>
 						</tbody>

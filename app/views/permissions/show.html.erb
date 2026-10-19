@@ -3,8 +3,8 @@
 <%= render @permission %>
 
 <div>
-  <%= link_to "Edit this permission", edit_permission_path(@permission) %> |
-  <%= link_to "Back to permissions", permissions_path %>
+  <%= link_to "Edit this permission", edit_permission_path(@permission, return_to: params[:return_to].presence || request.fullpath) %> |
+  <%= link_to "Back to permissions", params[:return_to].presence || permissions_path %>
 
   <%= button_to "Destroy this permission", @permission, method: :delete %>
 </div>

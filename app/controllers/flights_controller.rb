@@ -42,7 +42,7 @@ class FlightsController < ApplicationController
         end
 
         flash[:success] = "Flight was successfully created."
-        format.html { redirect_to reservation_path(@reservation) }
+        format.html { redirect_to return_path(reservation_path(@reservation)) }
         format.json { render :show, status: :created, location: @flight }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -63,7 +63,7 @@ class FlightsController < ApplicationController
         end
         
         flash[:success] = "Flight was successfully updated."
-        format.html { redirect_to params[:previous_request]}
+        format.html { redirect_to return_path(reservation_path(@flight.reservation)) }
         format.json { render :show, status: :ok, location: @flight }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -79,7 +79,7 @@ class FlightsController < ApplicationController
     respond_to do |format|
       flash[:success] = "Flight was successfully deleted."
 
-      format.html { redirect_to flights_url }
+      format.html { redirect_to return_path(flights_url) }
       format.json { head :no_content }
     end
   end

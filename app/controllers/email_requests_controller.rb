@@ -21,15 +21,15 @@ def create
       @email_request.save
       EmailRequestMailer.secretary_forward(@email_request).deliver_now
       flash[:success] = "Thank you for your note. We will respond as soon as possible."
-      format.html { redirect_to params[:previous_request] }
+      format.html { redirect_to return_path(root_path) }
       format.json { render :show, status: :created, location: @email_request }
     elsif @recaptcha_succeeded && @email_request.email.match(/(.ru)/)
       flash[:success] = "Thank you for your note."
-      format.html { redirect_to params[:previous_request] }
+      format.html { redirect_to return_path(root_path) }
       format.json { render :show, status: :created, location: @email_request }
     elsif @recaptcha_succeeded && @email_request.body.match(/[\u0401\u0451\u0410-\u044f]/)
       flash[:success] = "Thank you for your note."
-      format.html { redirect_to params[:previous_request] }
+      format.html { redirect_to return_path(root_path) }
       format.json { render :show, status: :created, location: @email_request }
     else
       flash.now[:warning] = "no email sent"
@@ -47,7 +47,7 @@ def update
     if @email_request.update(archive: params[:archive])
 
       flash[:success] = "Email was successfully archived"
-      redirect_to admin_emails_path
+      redirect_to return_path(admin_emails_path)
     else
       render :new, status: :unprocessable_entity
     end
@@ -61,7 +61,7 @@ def destroy
   respond_to do |format|
     flash[:success] = "email was was successfully deleted."
 
-    format.html { redirect_to admin_emails_path }
+    format.html { redirect_to return_path(admin_emails_path) }
     format.json { head :no_content }
   end
 

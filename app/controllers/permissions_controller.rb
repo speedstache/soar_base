@@ -36,7 +36,7 @@ class PermissionsController < ApplicationController
     respond_to do |format|
       if @permission.update(permission_params)
         flash[:success] = "Permission was successfully updated."
-        format.html { redirect_to permissions_path }
+        format.html { redirect_to return_path(permissions_path) }
         format.json { render :show, status: :ok, location: @permission }
       else
         format.html { render :edit, status: :unprocessable_entity }

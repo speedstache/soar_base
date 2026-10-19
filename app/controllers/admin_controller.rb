@@ -21,7 +21,7 @@ class AdminController < ApplicationController
 
       if @reservation.update(reservation_params)
         flash[:success] = "Changes were successfully logged."
-        format.html { redirect_to admin_reservations_path }
+        format.html { redirect_to return_path(admin_reservations_path) }
       else
         render :new, status: :unprocessable_entity
       end
@@ -34,7 +34,7 @@ class AdminController < ApplicationController
 
       respond_to do |format|
         flash[:success] = "Reservation was successfully deleted."
-        format.html { redirect_to admin_reservations_path }
+        format.html { redirect_to return_path(admin_reservations_path) }
         format.json { head :no_content }
      end
     end
@@ -59,7 +59,7 @@ class AdminController < ApplicationController
 
       if @editflight.update(flight_params)
         flash[:success] = "Changes were successfully logged."
-        format.html { redirect_to admin_flights_path }
+        format.html { redirect_to return_path(admin_flights_path) }
       else
         render :new, status: :unprocessable_entity
       end
@@ -88,7 +88,7 @@ class AdminController < ApplicationController
 
       if @editinstructor.update(flight_params)
         flash[:success] = "Changes were successfully logged."
-        format.html { redirect_to admin_instructors_path }
+        format.html { redirect_to return_path(admin_instructors_path) }
       else
         render :new, status: :unprocessable_entity
       end
@@ -117,7 +117,7 @@ class AdminController < ApplicationController
 
       if @reservation.update(reservation_params)
         flash[:success] = "Changes were successfully logged."
-        format.html { redirect_to admin_reservations_path }
+        format.html { redirect_to return_path(admin_towpilots_path) }
       else
         render :new, status: :unprocessable_entity
       end
@@ -130,7 +130,7 @@ class AdminController < ApplicationController
 
       respond_to do |format|
         flash[:success] = "Reservation was successfully deleted."
-        format.html { redirect_to admin_reservations_path }
+        format.html { redirect_to return_path(admin_towpilots_path) }
         format.json { head :no_content }
      end
     end
@@ -151,7 +151,7 @@ class AdminController < ApplicationController
 
       if @email_request.update(email_request_params)
         flash[:success] = "Email has been archived from admin controller"
-        format.html { redirect_to admin_email_requests_path }
+        format.html { redirect_to return_path(admin_emails_path) }
       else
         render :new, status: :unprocessable_entity
       end

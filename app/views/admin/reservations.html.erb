@@ -52,9 +52,9 @@
 										</small></td>
 									<td><small><%= reservation.method %></small></td>
 									<td><small><%= reservation.description %></small></td>
-									<td><small><%= link_to 'Edit', edit_admin_reservation_path(reservation), class: "btn btn-primary btn-sm"%></small></td>
+										<td><small><%= link_to 'Edit', edit_admin_reservation_path(reservation, return_to: request.fullpath), class: "btn btn-primary btn-sm"%></small></td>
 									<td><small><% if reservation.status == 'open' %>
-															<%= link_to "Delete", delete_admin_reservation_path(reservation), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
+																<%= link_to "Delete", delete_admin_reservation_path(reservation, return_to: request.fullpath), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
 														<% else %>
 														<% end %>
 									</td>

@@ -22,7 +22,7 @@
           <td><%= flight.tow_height %>  </td>
           <td><%= flight.flight_time %>  </td>
           <td><%= flight.rope_break %>  </td>
-          <td><%= link_to 'delete flight', [@reservation, flight], data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+		  <td><%= link_to 'delete flight', reservation_flight_path(@reservation, flight, return_to: request.fullpath), data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
 				</tr>
 			<% end %>
 

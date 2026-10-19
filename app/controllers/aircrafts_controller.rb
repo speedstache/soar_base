@@ -59,7 +59,7 @@ class AircraftsController < ApplicationController
 
     respond_to do |format|
       if @aircraft.save
-        format.html { redirect_to aircraft_url(@aircraft), notice: "Aircraft was successfully created." }
+        format.html { redirect_to return_path(aircraft_url(@aircraft)), notice: "Aircraft was successfully created." }
         format.json { render :show, status: :created, location: @aircraft }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -72,7 +72,7 @@ class AircraftsController < ApplicationController
   def update
     respond_to do |format|
       if @aircraft.update(params.require(:aircraft).permit(:name, :short_name, :group, :last_maintenance, :active_flag, :archived))
-        format.html { redirect_to aircrafts_path, notice: "Aircraft was successfully updated." }
+        format.html { redirect_to return_path(aircrafts_path), notice: "Aircraft was successfully updated." }
         format.json { render :show, status: :ok, location: @aircraft }
       else
         format.html { render :edit, status: :unprocessable_entity }

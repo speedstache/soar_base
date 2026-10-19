@@ -18,7 +18,7 @@
 							<% if grid_item[:reservations].where(reservation_time: hour.hour).exists? %>
 								<%= link_to '', reservation_path(grid_item[:reservations].where(reservation_time: hour.hour).pluck(:id)), :class=>"closed_dot" %>
 							<% elsif grid_item[:aircraft].active_flag == true %>
-								<%= link_to '', new_reservation_path(:date => @res_show.strftime("%a, %b %d, %Y"), :time => hour.hour, :aircraft => grid_item[:aircraft].id), :class=>"open_dot" %>
+									<%= link_to '', new_reservation_path(date: @res_show.strftime("%a, %b %d, %Y"), time: hour.hour, aircraft: grid_item[:aircraft].id, return_to: request.fullpath), class: "open_dot" %>
 							<% else %>
 								<span class="gray_dot" title="Aircraft is currently offline"></span>
 							<% end %>

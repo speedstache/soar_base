@@ -46,13 +46,13 @@
 								<div class="row">
 									<div class="col input-group justify-content-start">
 										<% if reservation.status == 'open' %>
-											<%= link_to "Edit", edit_reservation_path(reservation), class: "btn btn-primary btn-sm" %>
+											<%= link_to "Edit", edit_reservation_path(reservation, return_to: request.fullpath), class: "btn btn-primary btn-sm" %>
 										<% else %>
 										<% end %>
 									</div>	
 									<div class="col input-group justify-content-end">	
 										<% if reservation.flights.count == 0 && reservation.status == 'open' && reservation.tows.count == 0 %>
-											<%= link_to "Delete", reservation_path(reservation), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
+											<%= link_to "Delete", reservation_path(reservation, return_to: request.fullpath), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
 										<% else %>	
 										<% end %>
 									</div>
@@ -166,13 +166,13 @@
 													<td><%= reservation.rth_flag? ? 0 : number_to_currency(flight.fees) %></td>
 													<td>
 														<% if reservation.status == 'open' %>
-															<%= link_to 'Modify', edit_reservation_flight_path(reservation, flight), class: "btn btn-primary btn-sm"  %>
+															<%= link_to 'Modify', edit_reservation_flight_path(reservation, flight, return_to: request.fullpath), class: "btn btn-primary btn-sm"  %>
 														<% else %>
 														<% end %>
 													</td>
 													<td>
 														<% if reservation.status == 'open' %>
-															<%= link_to "Delete", [reservation, flight], class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
+															<%= link_to "Delete", reservation_flight_path(reservation, flight, return_to: request.fullpath), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %>
 														<% else %>
 														<% end %>
 													</td>
@@ -188,9 +188,9 @@
 								<div class="row">
 									<div class="col input-group justify-content-start">
 									<% if reservation.reservation_date <= Date.today && reservation.status == 'open' && reservation.aircraft.group != 'towplane' %>
-										<%= link_to "Add flight", new_reservation_flight_path(reservation), :class => "btn btn-primary btn-sm" %>
+										<%= link_to "Add flight", new_reservation_flight_path(reservation, return_to: request.fullpath), class: "btn btn-primary btn-sm" %>
 									<% elsif reservation.reservation_date <= Date.today && reservation.status == 'open' && reservation.aircraft.group == 'towplane' %>
-									<%= link_to "Add tow log", new_reservation_tow_path(reservation), :class => "btn btn-primary btn-sm" %>
+										<%= link_to "Add tow log", new_reservation_tow_path(reservation, return_to: request.fullpath), class: "btn btn-primary btn-sm" %>
 
 									<% else %>
 									<% end %>

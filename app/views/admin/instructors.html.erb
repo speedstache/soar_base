@@ -40,7 +40,7 @@
 									<td><small><%= User.find(flight.instructor_id).username %></small></td>
                   <td><small><%= flight.flight_time %></small></td>
 									<td><small><%= flight.tow_height %></small></td>
-									<td><small><%= link_to 'Edit', edit_admin_instructor_path(flight), class: "btn btn-primary btn-sm"%></small></td>
+									<td><small><%= link_to 'Edit', edit_admin_instructor_path(flight, return_to: request.fullpath), class: "btn btn-primary btn-sm"%></small></td>
 								</tr>
 							<% end %>
 						</tbody>

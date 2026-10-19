@@ -36,7 +36,7 @@
                     <td><%= unassigned_user.username %></td>
                     <td><%= unassigned_user.email %></td>
                     <td>No Membership</td>
-                    <td><%= link_to 'Assign', new_membership_user_path(:id => unassigned_user.id), :class => "btn btn-primary" %></td>
+                    <td><%= link_to 'Assign', new_membership_user_path(id: unassigned_user.id, return_to: request.fullpath), class: "btn btn-primary" %></td>
                   </tr>
                 <% end %>
             </tbody>
@@ -86,12 +86,12 @@
                         <td><%= renewal_notification_date.strftime("%m/%d/%y") %></td>
                         <td><%= membership_user.active_flag %></td>
                           <% if membership_user.renewal_date + membership_user.membership.renewal_period <= 30.days.from_now %>
-                            <td><%= link_to 'Renew', edit_membership_user_path(membership_user, :status => 'renew'), :class => "btn btn-info btn-sm" %></td>
+                            <td><%= link_to 'Renew', edit_membership_user_path(membership_user, status: 'renew', return_to: request.fullpath), class: "btn btn-info btn-sm" %></td>
                           <% else %>
-                            <td><%= link_to 'Renew', edit_membership_user_path(membership_user, :status => 'renew'), :class => "btn btn-gray btn-sm disabled" %></td>
+                            <td><%= link_to 'Renew', edit_membership_user_path(membership_user, status: 'renew', return_to: request.fullpath), class: "btn btn-gray btn-sm disabled" %></td>
                           <% end %>  
-                        <td><%= link_to 'Edit', edit_membership_user_path(membership_user), :class => "btn btn-primary btn-sm" %></td>
-                        <td><%= link_to 'Delete', membership_user_path(membership_user),class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
+                        <td><%= link_to 'Edit', edit_membership_user_path(membership_user, return_to: request.fullpath), class: "btn btn-primary btn-sm" %></td>
+                        <td><%= link_to 'Delete', membership_user_path(membership_user, return_to: request.fullpath), class: "btn btn-warning btn-sm", data: {turbo_confirm: "Are you sure?", turbo_method: :delete } %></td>
                       </tr>
                     <% end %>
                 </tbody>

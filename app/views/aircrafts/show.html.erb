@@ -6,7 +6,7 @@
 					<h4>Show Aircraft details</h4>
 				</div>
 				<div class="col mt-2">
-					<%= link_to 'Back to aircraft list', aircrafts_path, :class => "btn btn-primary btn-sm mb-5" %>
+					<%= link_to 'Back to aircraft list', params[:return_to].presence || aircrafts_path, class: "btn btn-primary btn-sm mb-5" %>
 				</div>
 				<div class="row">
 					<div class="table-responsive">
@@ -30,7 +30,7 @@
 								<td><%= @aircraft.last_maintenance %></td>
 								<td><%=  @aircraft.active_flag.humanize %></td>
 								<td><%=  @aircraft.archived.humanize %></td>
-									<td><%= link_to 'Edit', edit_aircraft_path(@aircraft), class: "btn btn-primary btn-sm"%></td>
+									<td><%= link_to 'Edit', edit_aircraft_path(@aircraft, return_to: params[:return_to].presence || request.fullpath), class: "btn btn-primary btn-sm"%></td>
 								</tr>
 							</tbody>
 						</table>
