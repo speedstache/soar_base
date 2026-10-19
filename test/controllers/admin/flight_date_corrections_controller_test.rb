@@ -22,6 +22,15 @@ class Admin::FlightDateCorrectionsControllerTest < ActionDispatch::IntegrationTe
     assert_select "input[name='date_correction[flight_date]']"
   end
 
+  test "admin flights page renders date correction actions for each flight" do
+    sign_in(@admin)
+
+    get "/admin/flights"
+
+    assert_response :success
+    assert_select "a[href='#{edit_admin_flight_date_correction_path(@flight)}']", text: "Correct dates", minimum: 1
+  end
+
   test "anonymous visitor is redirected to login" do
     get edit_admin_flight_date_correction_path(@flight)
 
