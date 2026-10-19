@@ -7,7 +7,7 @@
           <div class="card-header fst-italic">
             <div class="row">
               <div class="col-2 text-start justify-content-start">
-                <%= gravatar_for @user, size: 100 %>
+                <%= profile_image_for @user, size: 100 %>
               </div>
               <div class="col text-end justify-content-end">
                 <%= link_to 'Update Personal Info', edit_profile_path(@user), class: "btn btn-primary btn-sm"%>
@@ -77,6 +77,14 @@
 
           </div>
           <div class="row card-footer text-body-secondary">
+            <% if logged_in? && current_user.permission.user_admin? %>
+              <div class="col-12 mb-3">
+                <%= render "shared/profile_image_editor", form_url: admin_user_profile_image_path(@user), form_method: :patch %>
+                <% if @user.profile_image_attached? %>
+                  <%= button_to "Remove profile image", admin_user_profile_image_path(@user), method: :delete, class: "btn btn-outline-danger btn-sm mt-2", form: { data: { turbo_confirm: "Remove this user's profile image?" } } %>
+                <% end %>
+              </div>
+            <% end %>
 						<div class="col input-group justify-content-start">
 							<% if logged_in? && current_user.permission.user_admin? %>
 								<%= link_to 'Go back to users list', users_path, :class => "btn btn-primary btn-sm mb-5" %>

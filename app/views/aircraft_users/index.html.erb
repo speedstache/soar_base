@@ -23,7 +23,7 @@
                 <% @unassigned_users.each do |user| %>
                   <tr>
                     <td><%= link_to 'Add aircraft', new_aircraft_user_path(:id => user.id), :class => "btn btn-primary btn-sm" %>
-                    <td><%= gravatar_for user, size: 50 %></td>
+                    <td><%= profile_image_for user, size: 50 %></td>
                     <td><%= user.username %></td>
                     <td><%= user.status %></td>
                     <td>No privileges assigned</td>  
@@ -62,7 +62,7 @@
                 <% @assigned_users.each do |user| %>
                   <tr>
                     <td><%= link_to 'Add aircraft', new_aircraft_user_path(:id => user.id), :class => "btn btn-primary btn-sm" %>
-                    <td><%= gravatar_for user, size: 50 %></td>
+                    <td><%= profile_image_for user, size: 50 %></td>
                     <td><%= user.username %></td>
                     <td><%= user.status %></td>
                     <td>

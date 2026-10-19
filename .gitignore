@@ -42,3 +42,4 @@ sendgrid.env
 .env.development
 
 dnsimple_api_key.md
+latest.dump

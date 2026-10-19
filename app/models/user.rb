@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_one :permission, dependent: :destroy
   accepts_nested_attributes_for :permission
+  has_one :profile_image_record, class_name: "UserProfileImage", dependent: :destroy
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile
   has_many :membership_users, dependent: :destroy
@@ -26,6 +27,22 @@ class User < ApplicationRecord
                       format: { with: VALID_EMAIL_REGEX }  
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validate :profile_image_type_and_size
+
+  def profile_image=(uploaded_file)
+    data = uploaded_file.read(5.megabytes + 1)
+    profile_image_record || build_profile_image_record
+    profile_image_record.image_data = data
+    profile_image_record.content_type = uploaded_file.content_type
+  end
+
+  def profile_image_attached?
+    profile_image_record&.image_data.present?
+  end
+
+  def remove_profile_image!
+    profile_image_record&.destroy!
+  end
 
   # Activates an account.
   def activate
@@ -123,6 +140,32 @@ end
 
 
   private
+
+  def profile_image_type_and_size
+    return unless profile_image_record&.image_data.present?
+
+    unless valid_profile_image_signature?
+      errors.add(:base, "Profile image must be a JPEG, PNG, or WebP image")
+    end
+
+    if profile_image_record.image_data.bytesize > 5.megabytes
+      errors.add(:base, "Profile image must be no larger than 5 MiB")
+    end
+  end
+
+  def valid_profile_image_signature?
+    image_data = profile_image_record.image_data
+    case profile_image_record.content_type
+    when "image/jpeg"
+      image_data.start_with?("\xFF\xD8\xFF".b)
+    when "image/png"
+      image_data.start_with?("\x89PNG\r\n\x1A\n".b)
+    when "image/webp"
+      image_data.start_with?("RIFF".b) && image_data.byteslice(8, 4) == "WEBP"
+    else
+      false
+    end
+  end
 
   # Returns the hash digest of the given string.
   def User.digest(string)

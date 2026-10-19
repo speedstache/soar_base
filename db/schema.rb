@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_04_02_034629) do
+ActiveRecord::Schema[7.0].define(version: 2026_10_19_174805) do
   create_table "aircraft_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "aircraft_id"
@@ -255,6 +255,15 @@ ActiveRecord::Schema[7.0].define(version: 2026_04_02_034629) do
     t.float "tach_start"
   end
 
+  create_table "user_profile_images", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.binary "image_data", null: false
+    t.string "content_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_profile_images_on_user_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -268,10 +277,13 @@ ActiveRecord::Schema[7.0].define(version: 2026_04_02_034629) do
     t.datetime "activated_at"
     t.string "remember_digest"
     t.string "status"
+    t.binary "profile_image_data"
+    t.string "profile_image_content_type"
   end
 
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_charges", "pay_subscriptions", column: "subscription_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
+  add_foreign_key "user_profile_images", "users"
 end

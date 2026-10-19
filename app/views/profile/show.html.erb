@@ -5,12 +5,10 @@
         <div class="card-header fst-italic">
           <div class="row">
             <div class="col ps-0 justify-content-start">
-              <%= gravatar_for @user, size: 100 %>
+              <%= profile_image_for @user, size: 100 %>
             </div>
             <div class="col pt-3 justify-content-end">
-              <%= link_to 'Update Personal Info', edit_profile_path, class: "btn btn-primary btn-sm"%><br>
-              <small>Manage your profile pic here: <a class="badge badge-info" target="_blank" rel="noopener noreferrer" href="https://gravatar.com/">Gravatar</a><br>
-              (use same email address as login)</small>
+              <%= link_to 'Update Personal Info', edit_profile_path(@user), class: "btn btn-primary btn-sm"%>
 
             </div>
           </div> 

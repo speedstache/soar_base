@@ -27,7 +27,6 @@ class UsersController < ApplicationController
   end
 
 
-  # POST /users or /users.json
   def create
     @user = User.new(user_params)
 
@@ -67,7 +66,7 @@ class UsersController < ApplicationController
       if @user.update(user_params)
 
         flash[:success] = "Profile info successfully updated."
-        format.html { redirect_to params[:previous_request] }
+        format.html { redirect_to(params[:previous_request].presence || profile_path(@user)) }
         format.json { render :show, status: :ok, location: @user }
       else
 
